@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stock-bot"
+version = "0.1.0"
+description = "A small trading assistant for interacting with IBKR."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Your Name", email = "you@example.com" }
+]
+keywords = ["trading", "ibkr", "automation"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+
+# Console script so the app can be run after installation:
+[project.scripts]
+stock-bot = "stock_bot.main:main"
+
+[project.dependencies]
+python-dotenv = "^1.0"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "black>=24.0",
+  "ruff>=0.12",
+  "mypy>=1.0",
+]
+ib = [
+  "ib_insync>=0.9", # optional IB convenience library; add if your brokers use it
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests*"]
+
+[tool.setuptools.dynamic]
+# no dynamic fields used (keeps stamping simple)

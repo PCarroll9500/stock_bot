@@ -1,0 +1,22 @@
+{
+    "updated_at": "2025-08-10T14:30:00Z",
+    "title": "Inf Money Stock Bot",
+    "invested_cost_basis": 1,
+    "equity_series": [
+        {
+            "date": "2",
+            "equity": 1
+        }
+    ],
+    "positions": [
+        {
+            "ticker": "",
+            "name": "",
+            "buy_price": 1,
+            "quantity": 1,
+            "buy_date_time": "",
+            "description": "",
+            "reason": ""
+        }
+    ]
+}
