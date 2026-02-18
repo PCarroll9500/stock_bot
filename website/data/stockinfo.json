@@ -1,0 +1,129 @@
+{
+  "updated_at": "2025-08-18T08:21:58.206159-04:00",
+  "title": "Inf Money Stock Bot",
+  "invested_cost_basis": 10000.0,
+  "equity_series": [
+    {
+      "date": "2025-08-09",
+      "equity": 10000.0
+    },
+    {
+      "date": "2025-08-10",
+      "equity": 10200.0
+    },
+    {
+      "date": "2025-08-11",
+      "equity": 10500.0
+    },
+    {
+      "date": "2025-08-12",
+      "equity": 10500.0
+    },
+    {
+      "date": "2025-08-13",
+      "equity": 10500.0
+    },
+    {
+      "date": "2025-08-14",
+      "equity": 10500.0
+    },
+    {
+      "date": "2025-08-18",
+      "equity": 10500.0
+    }
+  ],
+  "positions": [
+    {
+      "ticker": "BBIO",
+      "qty": 10.0,
+      "avg_price": 100.0
+    },
+    {
+      "ticker": "TSLA",
+      "qty": 10.0,
+      "avg_price": 100.0
+    },
+    {
+      "ticker": "AVXL",
+      "qty": 10.0,
+      "avg_price": 100.0
+    },
+    {
+      "ticker": "AFRM",
+      "qty": 10.0,
+      "avg_price": 100.0
+    },
+    {
+      "ticker": "MSTR",
+      "qty": 10.0,
+      "avg_price": 100.0
+    },
+    {
+      "ticker": "NVDA",
+      "qty": 10.0,
+      "avg_price": 100.0
+    },
+    {
+      "ticker": "NBTX",
+      "qty": 10.0,
+      "avg_price": 100.0
+    },
+    {
+      "ticker": "PLTR",
+      "qty": 10.0,
+      "avg_price": 100.0
+    },
+    {
+      "ticker": "BMBL",
+      "qty": 10.0,
+      "avg_price": 100.0
+    },
+    {
+      "ticker": "GILD",
+      "qty": 10.0,
+      "avg_price": 100.0
+    }
+  ],
+  "picks": [
+    {
+      "ticker": "BBIO",
+      "reason": "BridgeBio Pharma recently received FDA approval for their drug Acoramidis, sparking significant investor interest and rapid price movement."
+    },
+    {
+      "ticker": "TSLA",
+      "reason": "Recent leaked email revealing plans to increase production by 50% this quarter, fueling social media frenzy and buy interest."
+    },
+    {
+      "ticker": "AVXL",
+      "reason": "Positive Phase 3 trial results for Alzheimer's treatment released today."
+    },
+    {
+      "ticker": "AFRM",
+      "reason": "Affirm Holdings soared due to announcing a major partnership with Amazon for exclusive buy-now-pay-later options, creating a strong catalyst for today's price surge."
+    },
+    {
+      "ticker": "MSTR",
+      "reason": "Bitcoin's surge above a key technical level has spurred massive buy volumes and social media hype, making MicroStrategy, a large holder of Bitcoin, poised for a significant spike."
+    },
+    {
+      "ticker": "NVDA",
+      "reason": "Recent positive comments from U.S. politicians over the AI technology investment surge are driving heavy interest and volume in NVIDIA today."
+    },
+    {
+      "ticker": "NBTX",
+      "reason": "Nanobiotix (NBTX) announced highly positive data from its pivotal phase 3 trial for a cancer treatment, igniting a strong surge in pre-market activity."
+    },
+    {
+      "ticker": "PLTR",
+      "reason": "Palantir Technologies surges as it releases groundbreaking new AI product that has generated substantial buzz on social media and investor forums."
+    },
+    {
+      "ticker": "BMBL",
+      "reason": "Explosive pre-market momentum following a rumor of acquisition talks with a major tech firm, fueling high-volume speculation."
+    },
+    {
+      "ticker": "GILD",
+      "reason": "An unexpected FDA approval for one of Gilead Sciences' new drugs announced this morning is driving significant market reaction and could surge the stock price today."
+    }
+  ]
+}

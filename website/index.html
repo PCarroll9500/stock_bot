@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stock Bot Website</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>📈 Stock Bot Dashboard</header>
+
+  <main>
+    <section class="card">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <div class="meta">
+          <div class="title" id="title">—</div>
+          <div>Last Updated: <span id="lastUpdate">—</span></div>
+          <div class="status" id="status">Loading…</div>
+        </div>
+        <div class="row">
+          <button class="btn ghost" id="showRawBtn">Show raw JSON</button>
+          <button class="btn primary" id="retryBtn">Retry</button>
+        </div>
+      </div>
+
+      <!-- Local file mode notice + picker -->
+      <div id="localNotice" class="notice hidden" style="margin-top:.75rem">
+        You opened this page as a local file (<code class="small">file://</code>), so browsers block <code class="small">fetch()</code>.
+        Either run a small local server (e.g. <code class="small">python -m http.server</code> in <code class="small">docs/</code>)
+        <em>or</em> click “Load JSON…” to pick <code class="small">docs/data/stockinfo.json</code> manually.
+        <div class="row" style="margin-top:.5rem">
+          <input type="file" id="fileInput" accept=".json,application/json" class="hidden"/>
+          <button class="btn primary" id="pickBtn">Load JSON…</button>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpis">
+        <div class="kpi">
+          <div class="label">Portfolio Value</div>
+          <div class="value" id="portfolioValue">—</div>
+          <div class="subtle">vs Cost Basis: <span id="portfolioPct">—</span></div>
+        </div>
+        <div class="kpi" id="oneTicker" class="hidden">
+          <div class="label"><span id="oneTickerSym">—</span> Price</div>
+          <div class="value" id="oneTickerPrice">—</div>
+          <div class="subtle">Δ vs Avg: <span id="oneTickerPct">—</span></div>
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="section-title">Equity over time</div>
+      <div id="chartWrap" style="margin-top:.25rem">
+        <svg id="chart" viewBox="0 0 800 220" preserveAspectRatio="none" aria-label="equity sparkline"></svg>
+      </div>
+
+      <!-- Equity table -->
+      <div style="overflow:auto;margin-top:.5rem">
+        <table id="equityTable">
+          <thead><tr><th>Date</th><th>Equity</th></tr></thead>
+          <tbody id="equityBody"><tr><td colspan="2">Loading…</td></tr></tbody>
+        </table>
+      </div>
+
+      <!-- Positions -->
+      <div class="section-title">Positions (live)</div>
+      <div style="overflow:auto;margin-top:.25rem">
+        <table id="posTable">
+          <thead>
+            <tr>
+              <th>Ticker</th><th>Qty</th><th>Avg Price</th><th>Current</th>
+              <th>Market Value</th><th>Unrealized P/L</th><th>P/L %</th>
+            </tr>
+          </thead>
+          <tbody id="posBody"><tr><td colspan="7">Loading…</td></tr></tbody>
+        </table>
+      </div>
+
+      <!-- Raw JSON (toggle) -->
+      <pre id="raw" class="hidden" style="margin-top:1rem;background:#0e1430;border:1px solid #2a355f;border-radius:10px;padding:.75rem;overflow:auto;max-height:300px"></pre>
+
+      <!-- Error box -->
+      <div id="errorBox" class="hidden" style="margin-top:1rem;padding:.75rem;border-radius:10px;border:1px solid #5d2a33;background:#2a1216;color:#ffd7db">
+        <strong>Couldn’t load data.</strong>
+        <div id="errorMsg" style="margin-top:.25rem"></div>
+        <details style="margin-top:.25rem"><summary>Troubleshooting</summary>
+          <ul>
+            <li>Ensure <code class="small">docs/data/stockinfo.json</code> exists in the deployed site.</li>
+            <li>Because <code class="small">index.html</code> is in <code class="small">docs/</code>, the fetch path is <code class="small">./data/stockinfo.json</code>.</li>
+            <li>We add <code class="small">?v=timestamp</code> to beat caching.</li>
+            <li>For local <code class="small">file://</code>: use the “Load JSON…” button or run a tiny server.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer> <span id="year"></span> Stock Bot</footer>
+  <script src="script.js"></script>
+</body>
+</html>
