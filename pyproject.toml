@@ -24,12 +24,15 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
 ]
 
+dependencies = [
+  "python-dotenv>=1.0",
+  "pandas",
+  "ib_insync>=0.9",
+]
+
 # Console script so the app can be run after installation:
 [project.scripts]
 stock-bot = "stock_bot.main:main"
-
-[project.dependencies]
-python-dotenv = "^1.0"
 
 [project.optional-dependencies]
 dev = [
