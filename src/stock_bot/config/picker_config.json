@@ -1,0 +1,16 @@
+{
+  "num_stocks": 10,
+  "always_exclude": [
+    "NVDA", "TSLA", "AAPL", "AMZN", "GOOGL", "META", "MSFT", "BTC"
+  ],
+  "trend_filters": {                                                                                                                                                                                                                                                                                                                            
+      "daily":     { "min": -3.0,  "max": null },           
+      "weekly":    { "min":  2.0, "max": null },                                                                                                                                                                                                                                                                                               
+      "monthly":   { "min": 3.0,  "max": null },                                                                                                                                                                                                                                                                                               
+      "quarterly": { "min":  7.0, "max": null },                                                                                                                                                                                                                                                                                               
+      "ytd":       { "min":  5.0, "max": null },                                                                                                                                                                                                                                                                                               
+      "yearly":    { "min": 20.0, "max": null },
+      "overall":   { "min": 20,   "max": null }
+  }
+
+}
