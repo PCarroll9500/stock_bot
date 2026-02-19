@@ -46,7 +46,7 @@ def load_ib_settings() -> IBSettings:
 
 def load_logging_settings() -> LoggingSettings:
     return LoggingSettings(
-        level=os.getenv("LOG_LEVEL", "WARNING").upper(),
+        level=os.getenv("LOG_LEVEL", "INFO").upper(),
         file=os.getenv("LOG_FILE", "logs/stock_bot.log"),
     )
 

@@ -1,5 +1,5 @@
-# \src\stock_bot\brokers\ib\connect_disconnect.py
- 
+# src/stock_bot/brokers/ib/connect_disconnect.py
+
 import logging
 from ib_insync import IB
 from stock_bot.config.settings import ib_settings
@@ -20,6 +20,7 @@ def connect_ib() -> IB:
             ib_settings.host,
             ib_settings.port,
             clientId=ib_settings.client_id,
+            timeout=10,
         )
     else:
         logger.debug("IBKR already connected")

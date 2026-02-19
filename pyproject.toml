@@ -27,7 +27,9 @@ classifiers = [
 dependencies = [
   "python-dotenv>=1.0",
   "pandas",
+  "requests>=2.28",
   "ib_insync>=0.9",
+  "openai>=1.0",
 ]
 
 # Console script so the app can be run after installation:

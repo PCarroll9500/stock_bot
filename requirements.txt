@@ -1,3 +1,5 @@
 python-dotenv
 ib_insync
 pandas
+requests
+openai

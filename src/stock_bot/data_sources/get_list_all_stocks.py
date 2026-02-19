@@ -1,26 +1,51 @@
 # src/stock_bot/data_sources/get_list_all_stocks.py
 
-import pandas as pd
+import io
 
+import pandas as pd
+import requests
+
+NASDAQ_LISTED_URL = "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
 NASDAQ_OTHERLISTED_URL = "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+
+REQUEST_TIMEOUT = 10
+
+
+def _fetch_csv(url: str) -> str:
+    response = requests.get(url, timeout=REQUEST_TIMEOUT)
+    response.raise_for_status()
+    return response.text
 
 
 def get_list_all_stocks() -> pd.DataFrame:
     """
-    Get a list of all stocks from NASDAQ Other Listed Securities.
+    Get a list of all US-listed stocks from NASDAQ's symbol directories.
+    Combines NASDAQ-listed (nasdaqlisted.txt) and other-exchange-listed
+    (otherlisted.txt — NYSE, NYSE Arca, NYSE American, BATS) securities.
 
     Returns:
         pd.DataFrame: DataFrame containing `symbol`, `name`, and `exchange`.
     """
-    df = pd.read_csv(
-        NASDAQ_OTHERLISTED_URL,
+    # NASDAQ-listed stocks
+    nasdaq_df = pd.read_csv(
+        io.StringIO(_fetch_csv(NASDAQ_LISTED_URL)),
+        sep="|",
+        dtype=str,
+        usecols=["Symbol", "Security Name"],
+        na_values="",
+    )
+    nasdaq_df = nasdaq_df.rename(columns={"Symbol": "symbol", "Security Name": "name"})
+    nasdaq_df["exchange"] = "NASDAQ"
+
+    # NYSE / Amex / BATS / etc.
+    other_df = pd.read_csv(
+        io.StringIO(_fetch_csv(NASDAQ_OTHERLISTED_URL)),
         sep="|",
         dtype=str,
         usecols=["ACT Symbol", "Security Name", "Exchange"],
         na_values="",
     )
-
-    df = df.rename(
+    other_df = other_df.rename(
         columns={
             "ACT Symbol": "symbol",
             "Security Name": "name",
@@ -28,7 +53,13 @@ def get_list_all_stocks() -> pd.DataFrame:
         }
     )
 
-    return df   
+    df = pd.concat([nasdaq_df, other_df], ignore_index=True)
+
+    # Both files end with a "File Creation Time: ..." footer row — drop it
+    df = df[~df["symbol"].str.startswith("File Creation Time", na=True)]
+    df = df.dropna(subset=["symbol"])
+
+    return df
 
 
 def main():

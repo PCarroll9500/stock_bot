@@ -1,6 +1,7 @@
 # src/stock_bot/main.py
 
 import logging
+import sys
 
 from stock_bot.core.logging_config import setup_logging
 from stock_bot.config.settings import ib_settings
@@ -19,14 +20,10 @@ def main():
         ib_settings.client_id,
     )
 
-        # Get list of all stocks available on the NASDAQ
     try:
-        symbols_data = get_list_all_stocks()
-        # Defensive: ensure we can index "symbol"
-        valid_symbols = symbols_data.get("symbol") if isinstance(symbols_data, dict) else symbols_data["symbol"]
-        logger.info("Retrieved %d valid stock symbols from NASDAQ", len(valid_symbols))
-    except Exception as e:
-        # Log full exception and continue with empty list to avoid NameError later
+        valid_symbols = get_list_all_stocks()["symbol"].tolist()
+        logger.info("Retrieved %d valid stock symbols", len(valid_symbols))
+    except Exception:
         logger.exception("Error retrieving stock symbols")
         valid_symbols = []
 
@@ -36,6 +33,8 @@ def main():
         logger.info("Connected to IBKR")
     else:
         logger.error("Failed to connect to IBKR")
+        disconnect_ib()
+        sys.exit(1)
 
     # TODO: run strategies, loops, etc.
 
