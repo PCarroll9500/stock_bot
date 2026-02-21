@@ -11,8 +11,8 @@ from ib_insync import IB, Stock
 logger = logging.getLogger(__name__)
 
 # Resolve portfolio.json path relative to this file:
-# portfolio_writer.py -> data_sources/ -> stock_bot/ -> src/ -> repo_root/ -> website/data/
-_PORTFOLIO_JSON = Path(__file__).resolve().parents[3] / "website" / "data" / "portfolio.json"
+# portfolio_writer.py -> data_sources/ -> stock_bot/ -> src/ -> repo_root/ -> docs/data/
+_PORTFOLIO_JSON = Path(__file__).resolve().parents[3] / "docs" / "data" / "portfolio.json"
 _INITIAL_INVESTMENT = 10_000.0
 
 
