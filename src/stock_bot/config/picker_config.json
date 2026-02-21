@@ -1,16 +1,36 @@
 {
-  "num_stocks": 10,
-  "always_exclude": [
-    "NVDA", "TSLA", "AAPL", "AMZN", "GOOGL", "META", "MSFT", "BTC"
-  ],
-  "trend_filters": {                                                                                                                                                                                                                                                                                                                            
-      "daily":     { "min": -3.0,  "max": null },           
-      "weekly":    { "min":  2.0, "max": null },                                                                                                                                                                                                                                                                                               
-      "monthly":   { "min": 3.0,  "max": null },                                                                                                                                                                                                                                                                                               
-      "quarterly": { "min":  7.0, "max": null },                                                                                                                                                                                                                                                                                               
-      "ytd":       { "min":  5.0, "max": null },                                                                                                                                                                                                                                                                                               
-      "yearly":    { "min": 20.0, "max": null },
-      "overall":   { "min": 20,   "max": null }
-  }
+  "aggressive_mode": true,
+  "aggressive_min_score": 9,
+  "spy_down_threshold": -1.0,
 
+  "num_stocks": 10,
+  "min_score": 7,
+  "max_open_gap_pct": 5.0,
+  "always_exclude": ["NVDA", "TSLA", "BTC"],
+
+  "trend_filters": {
+    "monthly":   {"min": 5.0, "max": null},
+    "quarterly": {"min": 10.0, "max": null},
+    "overall":   {"min": 10.0, "max": null}
+  },
+
+  "scanner": {
+    "market_cap_max_b": 10.0,
+    "scan_codes": [
+      "TOP_PERC_GAIN", "TOP_OPEN_PERC_GAIN", "HIGH_OPEN_GAP",
+      "TOP_AFTER_HOURS_PERC_GAIN", "MOST_ACTIVE", "MOST_ACTIVE_USD",
+      "HOT_BY_VOLUME", "TOP_VOLUME_RATE", "TOP_TRADE_COUNT",
+      "HIGH_VS_52W_HL", "HIGH_LAST_VS_EMA20", "HOT_BY_PRICE_RANGE",
+      "HOT_BY_OPT_VOLUME", "TOP_OPT_IMP_VOLAT_GAIN",
+      "SCAN_socialSentimentScoreChange_DESC"
+    ],
+    "price_min": 5.0,
+    "volume_min": 500000,
+    "max_per_scan": 50
+  },
+
+  "news": {
+    "providers": "FLY+BRFG+DJ-N",
+    "max_articles": 5
+  }
 }

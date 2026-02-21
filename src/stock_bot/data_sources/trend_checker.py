@@ -5,6 +5,8 @@ from datetime import date
 
 from ib_insync import IB, Stock, util
 
+
+
 logger = logging.getLogger(__name__)
 
 # Period → number of trading-day bars to look back
@@ -151,4 +153,171 @@ def passes_trend_filters(ticker: str, ib: IB, filters_config: dict) -> bool:
             return False
 
     logger.info("trend_checker: %s passed all trend filters", ticker)
+    return True
+
+
+def passes_gap_filter(ticker: str, ib: IB, max_gap_pct: float) -> bool:
+    """
+    Return False if today's open gapped up more than max_gap_pct% vs yesterday's close.
+
+    Fail-open: returns True if data is unavailable or insufficient.
+    """
+    contract = Stock(ticker, "SMART", "USD")
+    try:
+        qualified = ib.qualifyContracts(contract)
+    except Exception:
+        logger.warning("gap_filter: qualifyContracts failed for %s — passing (fail-open)", ticker)
+        return True
+
+    if not qualified:
+        return True
+
+    try:
+        bars = ib.reqHistoricalData(
+            qualified[0],
+            endDateTime="",
+            durationStr="2 D",
+            barSizeSetting="1 day",
+            whatToShow="TRADES",
+            useRTH=True,
+            formatDate=1,
+        )
+    except Exception:
+        logger.warning("gap_filter: reqHistoricalData failed for %s — passing (fail-open)", ticker)
+        return True
+
+    if not bars or len(bars) < 2:
+        return True
+
+    prev_close = bars[-2].close
+    today_open = bars[-1].open
+
+    if not prev_close or prev_close == 0:
+        return True
+
+    gap_pct = (today_open - prev_close) / prev_close * 100.0
+    if gap_pct > max_gap_pct:
+        logger.info(
+            "gap_filter: %s REJECTED — open gap +%.2f%% > max %.2f%%",
+            ticker, gap_pct, max_gap_pct,
+        )
+        return False
+
+    logger.info("gap_filter: %s passed — open gap %.2f%%", ticker, gap_pct)
+    return True
+
+
+def get_spy_day_return(ib: IB) -> float | None:
+    """
+    Return SPY's percentage change today vs yesterday's close.
+    Returns None if data is unavailable.
+    """
+    contract = Stock("SPY", "SMART", "USD")
+    try:
+        bars = ib.reqHistoricalData(
+            contract,
+            endDateTime="",
+            durationStr="2 D",
+            barSizeSetting="1 day",
+            whatToShow="TRADES",
+            useRTH=True,
+            formatDate=1,
+        )
+    except Exception:
+        logger.warning("SPY context check failed — skipping")
+        return None
+
+    if not bars or len(bars) < 2:
+        return None
+
+    prev_close = bars[-2].close
+    today_close = bars[-1].close
+    if not prev_close or prev_close == 0:
+        return None
+
+    return (today_close - prev_close) / prev_close * 100.0
+
+
+def passes_aggressive_filters(ticker: str, ib: IB, max_gap_pct: float) -> bool:
+    """
+    Aggressive mode filter — requires green on the day and rejects fading gaps.
+
+    Uses 2 days of 1-min bars to compute:
+      - prev_close: last bar of yesterday
+      - today_open: first bar of today
+      - current:    most recent bar
+
+    Rejects if:
+      - Fading gap: opened >max_gap_pct% up but current < today_open
+      - Red on day: current <= prev_close
+
+    Continuing gaps (large gap still holding/expanding) are allowed — that's momentum.
+    Fail-open on data errors.
+    """
+    contract = Stock(ticker, "SMART", "USD")
+    try:
+        qualified = ib.qualifyContracts(contract)
+    except Exception:
+        logger.warning("aggressive_filter: qualifyContracts failed for %s — passing (fail-open)", ticker)
+        return True
+
+    if not qualified:
+        return True
+
+    try:
+        bars = ib.reqHistoricalData(
+            qualified[0],
+            endDateTime="",
+            durationStr="2 D",
+            barSizeSetting="1 min",
+            whatToShow="TRADES",
+            useRTH=True,
+            formatDate=2,
+        )
+    except Exception:
+        logger.warning("aggressive_filter: reqHistoricalData failed for %s — passing (fail-open)", ticker)
+        return True
+
+    if not bars or len(bars) < 2:
+        return True
+
+    from datetime import date as date_type
+    today = date_type.today()
+
+    yesterday_bars = [b for b in bars if b.date.date() < today]
+    today_bars = [b for b in bars if b.date.date() == today]
+
+    if not yesterday_bars or not today_bars:
+        logger.info("aggressive_filter: %s — insufficient intraday data, passing", ticker)
+        return True
+
+    prev_close = yesterday_bars[-1].close
+    today_open = today_bars[0].open
+    current = today_bars[-1].close
+
+    if not prev_close or prev_close == 0:
+        return True
+
+    gap_pct = (today_open - prev_close) / prev_close * 100.0
+
+    # Reject fading gaps
+    if gap_pct > max_gap_pct and current < today_open:
+        logger.info(
+            "aggressive_filter: %s REJECTED — fading gap (opened +%.2f%%, now below open)",
+            ticker, gap_pct,
+        )
+        return False
+
+    # Reject red on the day
+    if current <= prev_close:
+        logger.info(
+            "aggressive_filter: %s REJECTED — red on day (current %.2f <= prev_close %.2f)",
+            ticker, current, prev_close,
+        )
+        return False
+
+    logger.info(
+        "aggressive_filter: %s passed — gap %.2f%%, intraday +%.2f%%",
+        ticker, gap_pct, (current - prev_close) / prev_close * 100.0,
+    )
     return True

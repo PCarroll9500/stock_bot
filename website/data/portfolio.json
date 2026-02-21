@@ -1,0 +1,159 @@
+{
+  "title": "Inf Money Stock Bot",
+  "initial_investment": 10000,
+  "start_date": "2026-02-20",
+  "updated_at": "2026-02-20T16:05:04.173236",
+  "sessions": [
+    {
+      "date": "2026-02-20",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "ASIC",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Ategrity Specialty posted a solid Q4 earnings beat and announced a share repurchase program.",
+          "allocation_pct": 10.0,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "JAKK",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Jakks Pacific reported Q4 adjusted EPS and revenue that beat consensus estimates.",
+          "allocation_pct": 10.0,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "HG",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Hamilton Insurance reported a Q4 earnings beat and announced a special dividend, leading to multiple price target raises.",
+          "allocation_pct": 10.0,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "RVYL",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Ryvyl announced NASDAQ compliance and an anticipated merger with Roundtable, which is a major market-moving event.",
+          "allocation_pct": 10.0,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "FET",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Forum Energy reported a Q4 earnings beat with adjusted EPS of 41c versus estimates of 36c and revenue of $202M versus estimates of $190.5M.",
+          "allocation_pct": 10.0,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BCPC",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Balchem reported strong Q4 earnings with record net sales and adjusted EPS beating last year's figures.",
+          "allocation_pct": 10.0,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "MATV",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Mativ reported a significant earnings beat with Q4 EPS of $1.80 compared to 3c last year, indicating strong financial performance.",
+          "allocation_pct": 10.0,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "WFCF",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "The adoption of RaiseWell Certified by Whole Foods is a major milestone for Where Food Comes From.",
+          "allocation_pct": 10.0,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NP",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Neptune Insurance's shares rose 13% on 4Q revenue growth that beat expectations, despite mixed analyst ratings.",
+          "allocation_pct": 10.0,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "HIMS",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Hims & Hers announced a major acquisition of Eucalyptus for $1.15 billion, expanding its geographic reach.",
+          "allocation_pct": 10.0,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "portfolio_open_value": 10000.0,
+      "portfolio_close_value": 10000.0,
+      "session_return_pct": 0.0,
+      "session_return_usd": 0.0
+    }
+  ],
+  "equity_curve": [
+    {
+      "date": "2026-02-20",
+      "portfolio_value": 10000.0,
+      "qqq_indexed": 10000.0
+    }
+  ]
+}

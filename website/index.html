@@ -2,100 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stock Bot Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inf Money Stock Bot</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
-  <header>📈 Stock Bot Dashboard</header>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <span class="header-icon">&#9650;</span>
+        <div>
+          <div class="header-title">Inf Money Stock Bot</div>
+          <div class="header-sub">AI-powered aggressive day trading &mdash; paper account</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <span class="badge" id="modeBadge">loading…</span>
+        <span class="updated-at" id="updatedAt">—</span>
+      </div>
+    </div>
+  </header>
 
   <main>
-    <section class="card">
-      <div class="row" style="justify-content:space-between;align-items:center">
-        <div class="meta">
-          <div class="title" id="title">—</div>
-          <div>Last Updated: <span id="lastUpdate">—</span></div>
-          <div class="status" id="status">Loading…</div>
-        </div>
-        <div class="row">
-          <button class="btn ghost" id="showRawBtn">Show raw JSON</button>
-          <button class="btn primary" id="retryBtn">Retry</button>
-        </div>
+
+    <!-- LOCAL FILE MODE NOTICE -->
+    <div id="localNotice" class="notice hidden">
+      You opened this page as a local <code>file://</code> — browsers block <code>fetch()</code> for security.
+      Click <strong>Load JSON…</strong> and pick <code>website/data/portfolio.json</code> to preview locally,
+      or push to GitHub Pages to load it automatically.
+      <div style="margin-top:.6rem;display:flex;gap:.5rem;align-items:center">
+        <input type="file" id="fileInput" accept=".json,application/json" style="display:none" />
+        <button id="pickBtn" class="local-btn">Load JSON…</button>
       </div>
+    </div>
 
-      <!-- Local file mode notice + picker -->
-      <div id="localNotice" class="notice hidden" style="margin-top:.75rem">
-        You opened this page as a local file (<code class="small">file://</code>), so browsers block <code class="small">fetch()</code>.
-        Either run a small local server (e.g. <code class="small">python -m http.server</code> in <code class="small">docs/</code>)
-        <em>or</em> click “Load JSON…” to pick <code class="small">docs/data/stockinfo.json</code> manually.
-        <div class="row" style="margin-top:.5rem">
-          <input type="file" id="fileInput" accept=".json,application/json" class="hidden"/>
-          <button class="btn primary" id="pickBtn">Load JSON…</button>
-        </div>
+    <!-- KPI CARDS -->
+    <section class="kpi-grid" id="kpiGrid">
+      <div class="kpi-card">
+        <div class="kpi-label">Portfolio Value</div>
+        <div class="kpi-value" id="kpiPortfolioValue">—</div>
+        <div class="kpi-sub" id="kpiVsInitial">vs $10,000 initial</div>
       </div>
-
-      <!-- KPIs -->
-      <div class="kpis">
-        <div class="kpi">
-          <div class="label">Portfolio Value</div>
-          <div class="value" id="portfolioValue">—</div>
-          <div class="subtle">vs Cost Basis: <span id="portfolioPct">—</span></div>
-        </div>
-        <div class="kpi" id="oneTicker" class="hidden">
-          <div class="label"><span id="oneTickerSym">—</span> Price</div>
-          <div class="value" id="oneTickerPrice">—</div>
-          <div class="subtle">Δ vs Avg: <span id="oneTickerPct">—</span></div>
-        </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Total Return</div>
+        <div class="kpi-value" id="kpiTotalReturnUsd">—</div>
+        <div class="kpi-sub" id="kpiTotalReturnPct">—</div>
       </div>
-
-      <!-- Chart -->
-      <div class="section-title">Equity over time</div>
-      <div id="chartWrap" style="margin-top:.25rem">
-        <svg id="chart" viewBox="0 0 800 220" preserveAspectRatio="none" aria-label="equity sparkline"></svg>
+      <div class="kpi-card">
+        <div class="kpi-label">Today's Return</div>
+        <div class="kpi-value" id="kpiTodayReturnUsd">—</div>
+        <div class="kpi-sub" id="kpiTodayReturnPct">—</div>
       </div>
-
-      <!-- Equity table -->
-      <div style="overflow:auto;margin-top:.5rem">
-        <table id="equityTable">
-          <thead><tr><th>Date</th><th>Equity</th></tr></thead>
-          <tbody id="equityBody"><tr><td colspan="2">Loading…</td></tr></tbody>
-        </table>
-      </div>
-
-      <!-- Positions -->
-      <div class="section-title">Positions (live)</div>
-      <div style="overflow:auto;margin-top:.25rem">
-        <table id="posTable">
-          <thead>
-            <tr>
-              <th>Ticker</th><th>Qty</th><th>Avg Price</th><th>Current</th>
-              <th>Market Value</th><th>Unrealized P/L</th><th>P/L %</th>
-            </tr>
-          </thead>
-          <tbody id="posBody"><tr><td colspan="7">Loading…</td></tr></tbody>
-        </table>
-      </div>
-
-      <!-- Raw JSON (toggle) -->
-      <pre id="raw" class="hidden" style="margin-top:1rem;background:#0e1430;border:1px solid #2a355f;border-radius:10px;padding:.75rem;overflow:auto;max-height:300px"></pre>
-
-      <!-- Error box -->
-      <div id="errorBox" class="hidden" style="margin-top:1rem;padding:.75rem;border-radius:10px;border:1px solid #5d2a33;background:#2a1216;color:#ffd7db">
-        <strong>Couldn’t load data.</strong>
-        <div id="errorMsg" style="margin-top:.25rem"></div>
-        <details style="margin-top:.25rem"><summary>Troubleshooting</summary>
-          <ul>
-            <li>Ensure <code class="small">docs/data/stockinfo.json</code> exists in the deployed site.</li>
-            <li>Because <code class="small">index.html</code> is in <code class="small">docs/</code>, the fetch path is <code class="small">./data/stockinfo.json</code>.</li>
-            <li>We add <code class="small">?v=timestamp</code> to beat caching.</li>
-            <li>For local <code class="small">file://</code>: use the “Load JSON…” button or run a tiny server.</li>
-          </ul>
-        </details>
+      <div class="kpi-card">
+        <div class="kpi-label">vs QQQ (NASDAQ)</div>
+        <div class="kpi-value" id="kpiVsQqq">—</div>
+        <div class="kpi-sub" id="kpiVsQqqSub">indexed to $10,000</div>
       </div>
     </section>
+
+    <!-- EQUITY CHART -->
+    <section class="card chart-card">
+      <div class="card-header">
+        <div class="card-title">Equity Curve</div>
+        <div class="chart-legend">
+          <span class="legend-dot green"></span><span>Portfolio</span>
+          <span class="legend-dot yellow"></span><span>QQQ (indexed)</span>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="equityChart"></canvas>
+      </div>
+    </section>
+
+    <!-- TODAY'S PICKS -->
+    <section class="card" id="todaySection">
+      <div class="card-header">
+        <div class="card-title" id="todayTitle">Today's Picks</div>
+        <div class="card-sub" id="todayMeta">—</div>
+      </div>
+      <div class="table-wrap">
+        <table id="picksTable">
+          <thead>
+            <tr>
+              <th>Ticker</th>
+              <th>Score</th>
+              <th>Alloc</th>
+              <th>Shares</th>
+              <th>Buy Price</th>
+              <th>Current / Close</th>
+              <th>Day Return</th>
+              <th>Day P&amp;L</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody id="picksBody">
+            <tr><td colspan="9" class="empty">No session today.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SESSION HISTORY -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-title">Session History</div>
+      </div>
+      <div class="table-wrap">
+        <table id="historyTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Mode</th>
+              <th>Open Value</th>
+              <th>Close Value</th>
+              <th>Session Return</th>
+              <th>vs QQQ</th>
+              <th>Picks</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody">
+            <tr><td colspan="7" class="empty">No sessions yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
   </main>
 
-  <footer> <span id="year"></span> Stock Bot</footer>
+  <footer>
+    <span>&copy; <span id="year"></span> Inf Money Stock Bot &mdash; paper trading only</span>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>

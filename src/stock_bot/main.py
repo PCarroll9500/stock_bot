@@ -8,13 +8,18 @@ from pathlib import Path
 from stock_bot.core.logging_config import setup_logging
 from stock_bot.config.settings import ib_settings
 from stock_bot.brokers.ib.connect_disconnect import connect_ib, disconnect_ib
-from stock_bot.data_sources.get_list_all_stocks import get_list_all_stocks
-from stock_bot.data_sources.trend_checker import passes_trend_filters
-from stock_bot.ai.stock_picker import get_stocks
+from stock_bot.data_sources.scanner import get_scanner_universe
+from stock_bot.data_sources.news_fetcher import fetch_news_for_tickers
+from stock_bot.data_sources.trend_checker import (
+    passes_trend_filters,
+    passes_gap_filter,
+    passes_aggressive_filters,
+    get_spy_day_return,
+)
+from stock_bot.ai.catalyst_scorer import score_and_rank
+from stock_bot.data_sources.portfolio_writer import write_session
 
 _CONFIG_DIR = Path(__file__).parent / "config"
-
-MAX_REPLACEMENT_ATTEMPTS = 30
 
 
 def _load_picker_config() -> dict:
@@ -42,18 +47,18 @@ def main():
     )
 
     config = _load_picker_config()
-    excluded_tickers = config.get("always_exclude", [])
-    num_stocks = config.get("num_stocks", 10)
-    trend_filters = config.get("trend_filters") or None
+    excluded_tickers: list[str] = config.get("always_exclude", [])
+    excluded_set = set(excluded_tickers)
+    num_stocks: int = config.get("num_stocks", 10)
+    min_score: int = config.get("min_score", 7)
+    max_open_gap_pct: float = config.get("max_open_gap_pct", 5.0)
+    trend_filters: dict | None = config.get("trend_filters") or None
+    aggressive_mode: bool = config.get("aggressive_mode", False)
 
-    logger.info("Loaded %d statically excluded tickers", len(excluded_tickers))
-
-    try:
-        valid_symbols = get_list_all_stocks()["symbol"].tolist()
-        logger.info("Retrieved %d valid stock symbols", len(valid_symbols))
-    except Exception:
-        logger.exception("Error retrieving stock symbols")
-        valid_symbols = []
+    logger.info(
+        "Loaded config — aggressive_mode=%s, num_stocks=%d",
+        aggressive_mode, num_stocks,
+    )
 
     ib = connect_ib()
 
@@ -64,48 +69,65 @@ def main():
         disconnect_ib()
         sys.exit(1)
 
-    # TODO: merge current IBKR holdings into excluded_tickers so the picker
+    # TODO: merge current IBKR holdings into excluded_set so the picker
     #       never re-buys a stock already held in the account.
     #       e.g. held = [p.contract.symbol for p in ib.positions()]
-    #            excluded_tickers = list(set(excluded_tickers) | set(held))
+    #            excluded_set |= set(held)
 
-    # Initial pick
-    picks = get_stocks(num_stocks, valid_symbols, excluded_tickers)
+    # 1. Scan
+    universe = get_scanner_universe(ib, config["scanner"])
+    universe = [s for s in universe if s["ticker"] not in excluded_set]
+    logger.info("Scanner universe: %d unique tickers", len(universe))
 
-    # Trend-check each pick; replace failures until num_stocks are validated
-    # or the replacement attempt cap is hit (prevents infinite loops if the
-    # market is so filtered that no stocks pass).
-    if trend_filters:
-        session_excluded = set(excluded_tickers)
-        validated = []
-        pending = list(picks)
-        replacement_attempts = 0
+    # 2. Filter
+    spy_return: float | None = None
+    if aggressive_mode:
+        effective_min_score = config.get("aggressive_min_score", 9)
 
-        while pending and replacement_attempts < MAX_REPLACEMENT_ATTEMPTS:
-            pick = pending.pop(0)
-            if passes_trend_filters(pick["ticker"], ib, trend_filters):
-                validated.append(pick)
-            else:
-                logger.info("Trend filter rejected %s — fetching replacement", pick["ticker"])
-                session_excluded.add(pick["ticker"])
-                replacement_attempts += 1
-                replacement = get_stocks(1, valid_symbols, list(session_excluded))
-                if replacement:
-                    pending.append(replacement[0])  # replacement also goes through trend check
+        # SPY context check — down market raises the bar
+        spy_return = get_spy_day_return(ib)
+        if spy_return is not None:
+            logger.info("SPY day return: %.2f%%", spy_return)
+            if spy_return < config.get("spy_down_threshold", -1.0):
+                effective_min_score = 10
+                logger.info("SPY down %.2f%% — raising min_score to 10", spy_return)
 
-        if len(validated) < num_stocks:
-            logger.warning(
-                "Could only validate %d/%d picks after trend filtering",
-                len(validated), num_stocks,
-            )
+        # Skip trend filter entirely — historical trend is irrelevant for binary events
+        survivors = universe
+        logger.info("Aggressive mode: skipping trend filter, %d candidates", len(survivors))
 
-        picks = validated
+        # Aggressive momentum filter: reject fading gaps and red-on-day stocks
+        survivors = [s for s in survivors if passes_aggressive_filters(s["ticker"], ib, max_open_gap_pct)]
+        logger.info("After aggressive filter: %d survivors", len(survivors))
+
+    else:
+        effective_min_score = min_score
+
+        # Conservative: trend filter then simple gap filter
+        if trend_filters:
+            survivors = [s for s in universe if passes_trend_filters(s["ticker"], ib, trend_filters)]
+        else:
+            survivors = universe
+        logger.info("After trend filter: %d survivors", len(survivors))
+
+        survivors = [s for s in survivors if passes_gap_filter(s["ticker"], ib, max_open_gap_pct)]
+        logger.info("After gap filter: %d survivors", len(survivors))
+
+    # 3. News
+    news_by_ticker = fetch_news_for_tickers(survivors, ib, config["news"])
+
+    # 4. Score + rank (bullish only, effective_min_score threshold applied inside)
+    picks = score_and_rank(news_by_ticker, num_stocks, excluded_set, min_score=effective_min_score)
 
     logger.info("Final picks (%d):", len(picks))
-    for pick in picks:
-        logger.info("  %s — %s", pick["ticker"], pick["reason"])
+    for p in picks:
+        logger.info("  %s (score=%d, %s) — %s", p["ticker"], p["score"], p["direction"], p["reason"])
 
     # TODO: execute trades via IBKR for each pick
+
+    # 5. Record session to portfolio.json
+    mode_label = "aggressive" if aggressive_mode else "conservative"
+    write_session(picks, ib, mode=mode_label, spy_return=spy_return)
 
     disconnect_ib()
     logger.info("Disconnected from IBKR. Shutdown complete.")
