@@ -1,0 +1,127 @@
+{
+  "title": "Inf Money Stock Bot [TEST]",
+  "initial_investment": 10000.0,
+  "start_date": "2026-02-20",
+  "updated_at": "2026-02-20T23:58:02.860159",
+  "sessions": [
+    {
+      "date": "2026-02-20",
+      "mode": "aggressive",
+      "spy_return_pct": 0.723,
+      "picks": [
+        {
+          "ticker": "SNSE",
+          "score": 10,
+          "direction": "bullish",
+          "reason": "The acquisition of Faeth Therapeutics and a $200 million private placement are major catalysts, supported by a strong upward trend across all timeframes.",
+          "trend_summary": "1d: +23.1%  1w: +268.5%  1m: +256.0%  3m: +292.3%  1yr: +272.0%",
+          "allocation_pct": 14.3,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ZIM",
+          "score": 10,
+          "direction": "bullish",
+          "reason": "ZIM is being acquired by Hapag-Lloyd for $35 per share, significantly above the current price target, amidst strong upward trends across all timeframes.",
+          "trend_summary": "1d: +0.3%  1w: +38.2%  1m: +30.3%  3m: +72.3%  1yr: +40.0%",
+          "allocation_pct": 14.3,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "RYI",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Ryerson shares rise on merger outlook and demand improvements, supported by strong short-term and yearly price trends.",
+          "trend_summary": "1d: +17.0%  1w: +0.1%  1m: -6.3%  3m: +39.2%  1yr: +15.1%",
+          "allocation_pct": 14.3,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ASMB",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Gilead Sciences exercising option to license Assembly Biosciences' programs with potential milestone payments is a major catalyst, supported by strong short-term and yearly price trends.",
+          "trend_summary": "1d: +10.7%  1w: +10.2%  1m: +9.1%  3m: -19.9%  1yr: +132.8%",
+          "allocation_pct": 14.3,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "MMTXU",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "The announcement of the separate trading of ordinary shares and warrants is a major catalyst, supported by a positive price trend across all timeframes.",
+          "trend_summary": "1d: +2.2%  1w: +2.0%  1m: +2.8%  3m: +3.1%  1yr: +3.3%",
+          "allocation_pct": 14.3,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VAL",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "Valaris reported a significant Q4 EPS beat and strong revenue, coupled with a robust upward trend across all timeframes.",
+          "trend_summary": "1d: +3.5%  1w: +7.7%  1m: +74.4%  3m: +68.8%  1yr: +129.2%",
+          "allocation_pct": 14.3,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ATEX",
+          "score": 9,
+          "direction": "bullish",
+          "reason": "FCC approval for 900 MHz band expansion is a major catalyst, supported by strong short-term and medium-term price trends.",
+          "trend_summary": "1d: +4.3%  1w: +22.7%  1m: +50.0%  3m: +65.6%  1yr: -8.0%",
+          "allocation_pct": 14.3,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "portfolio_open_value": 10000.0,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null
+    }
+  ],
+  "equity_curve": [
+    {
+      "date": "2026-02-20",
+      "portfolio_value": 10000.0,
+      "qqq_indexed": 10000.0
+    }
+  ]
+}

@@ -105,6 +105,69 @@ def get_trend_data(ticker: str, ib: IB) -> dict | None:
     return result
 
 
+def get_trend_for_scoring(ticker: str, ib: IB) -> dict | None:
+    """
+    Fetch 1 year of daily bars and return pct_change for key timeframes.
+    Used to give GPT trend context during catalyst scoring.
+
+    Returns: {"daily": float|None, "weekly": float|None, "monthly": float|None,
+               "quarterly": float|None, "yearly": float|None}
+    Returns None on any failure (fail-open — scorer will note data unavailable).
+    """
+    contract = Stock(ticker, "SMART", "USD")
+    try:
+        qualified = ib.qualifyContracts(contract)
+        if not qualified:
+            return None
+        bars = ib.reqHistoricalData(
+            qualified[0],
+            endDateTime="",
+            durationStr="1 Y",
+            barSizeSetting="1 day",
+            whatToShow="TRADES",
+            useRTH=True,
+            formatDate=1,
+        )
+    except Exception:
+        logger.warning("trend_checker: trend fetch failed for %s", ticker)
+        return None
+
+    if not bars or len(bars) < 2:
+        return None
+
+    closes = [b.close for b in bars]
+    n = len(closes)
+    last = closes[-1]
+
+    def pct(lookback: int) -> float | None:
+        if n >= lookback:
+            p = closes[-lookback]
+            return round((last - p) / p * 100, 1) if p else None
+        return None
+
+    return {
+        "daily":     pct(2),
+        "weekly":    pct(6),
+        "monthly":   pct(22),
+        "quarterly": pct(min(64, n)),
+        "yearly":    pct(min(253, n)),
+    }
+
+
+def fmt_trend_for_prompt(trend: dict | None) -> str:
+    """Format trend dict as a compact string for GPT prompt injection."""
+    if not trend:
+        return "unavailable"
+    labels = [("daily", "1d"), ("weekly", "1w"), ("monthly", "1m"),
+              ("quarterly", "3m"), ("yearly", "1yr")]
+    parts = []
+    for key, label in labels:
+        val = trend.get(key)
+        if val is not None:
+            parts.append(f"{label}: {'+' if val >= 0 else ''}{val:.1f}%")
+    return "  ".join(parts) if parts else "unavailable"
+
+
 def passes_trend_filters(ticker: str, ib: IB, filters_config: dict) -> bool:
     """
     Return True if `ticker` passes all configured trend thresholds.

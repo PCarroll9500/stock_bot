@@ -9,6 +9,7 @@ Cron entry (add with: crontab -e):
   5 16 * * 1-5 cd /home/patrick/dev/github/stock_bot && .venv/bin/python scripts/close_of_day.py >> logs/close_of_day.log 2>&1
 """
 
+import argparse
 import logging
 import sys
 from datetime import date as date_type
@@ -17,6 +18,7 @@ from pathlib import Path
 # Package is installed in the venv via `pip install -e .`
 from stock_bot.core.logging_config import setup_logging
 from stock_bot.brokers.ib.connect_disconnect import connect_ib, disconnect_ib
+from stock_bot.brokers.ib.sell_all import sell_all_stock
 from stock_bot.data_sources.portfolio_writer import (
     load_portfolio,
     save_portfolio,
@@ -25,11 +27,24 @@ from stock_bot.data_sources.portfolio_writer import (
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Close of day price updater")
+    parser.add_argument(
+        "--test",
+        action="store_true",
+        help="Test mode: read/write portfolio_test.json instead of portfolio.json",
+    )
+    args = parser.parse_args()
+    test_mode: bool = args.test
+
     setup_logging()
     logger = logging.getLogger(__name__)
+
+    if test_mode:
+        logger.info("*** TEST MODE — using portfolio_test.json ***")
+
     today = date_type.today().isoformat()
 
-    portfolio = load_portfolio()
+    portfolio = load_portfolio(test_mode=test_mode)
     sessions = portfolio.get("sessions", [])
     session = next((s for s in sessions if s.get("date") == today), None)
 
@@ -47,6 +62,16 @@ def main() -> None:
         sys.exit(1)
 
     logger.info("close_of_day: updating session for %s", today)
+
+    # Liquidate all open positions before recording final prices
+    logger.info("close_of_day: liquidating all positions")
+    for pick in session.get("picks", []):
+        if pick.get("shares", 0) > 0:
+            try:
+                sell_all_stock(pick["ticker"], ib)
+            except Exception:
+                logger.error("close_of_day: sell failed for %s", pick["ticker"], exc_info=True)
+    ib.sleep(5)  # allow market orders to acknowledge
 
     # Fetch close prices for every pick
     total_close_value = 0.0
@@ -113,7 +138,7 @@ def main() -> None:
     portfolio["equity_curve"] = equity_curve
 
     disconnect_ib()
-    save_portfolio(portfolio)
+    save_portfolio(portfolio, test_mode=test_mode)
 
     logger.info(
         "close_of_day: done — portfolio $%.2f (%+.2f%%) | QQQ %+.2f%%",

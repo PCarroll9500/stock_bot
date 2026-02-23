@@ -10,10 +10,14 @@ from ib_insync import IB, Stock
 
 logger = logging.getLogger(__name__)
 
-# Resolve portfolio.json path relative to this file:
-# portfolio_writer.py -> data_sources/ -> stock_bot/ -> src/ -> repo_root/ -> docs/data/
-_PORTFOLIO_JSON = Path(__file__).resolve().parents[3] / "docs" / "data" / "portfolio.json"
-_INITIAL_INVESTMENT = 10_000.0
+_DATA_DIR = Path(__file__).resolve().parents[3] / "docs" / "data"
+_PORTFOLIO_JSON      = _DATA_DIR / "portfolio.json"
+_PORTFOLIO_JSON_TEST = _DATA_DIR / "portfolio_test.json"
+_INITIAL_INVESTMENT  = 10_000.0
+
+
+def _resolve_path(test_mode: bool) -> Path:
+    return _PORTFOLIO_JSON_TEST if test_mode else _PORTFOLIO_JSON
 
 
 def _get_last_price(ticker: str, ib: IB) -> float | None:
@@ -39,15 +43,18 @@ def _get_last_price(ticker: str, ib: IB) -> float | None:
     return None
 
 
-def load_portfolio() -> dict:
-    """Load portfolio.json, or return a fresh skeleton if it doesn't exist."""
-    if _PORTFOLIO_JSON.exists():
+def load_portfolio(test_mode: bool = False) -> dict:
+    """Load portfolio.json (or portfolio_test.json in test mode).
+    Returns a fresh skeleton if the file doesn't exist."""
+    path = _resolve_path(test_mode)
+    if path.exists():
         try:
-            return json.loads(_PORTFOLIO_JSON.read_text(encoding="utf-8"))
+            return json.loads(path.read_text(encoding="utf-8"))
         except Exception:
-            logger.warning("portfolio_writer: could not parse portfolio.json — starting fresh")
+            logger.warning("portfolio_writer: could not parse %s — starting fresh", path.name)
+    title = "Inf Money Stock Bot [TEST]" if test_mode else "Inf Money Stock Bot"
     return {
-        "title": "Inf Money Stock Bot",
+        "title": title,
         "initial_investment": _INITIAL_INVESTMENT,
         "start_date": date_type.today().isoformat(),
         "updated_at": datetime.now().isoformat(),
@@ -56,15 +63,16 @@ def load_portfolio() -> dict:
     }
 
 
-def save_portfolio(data: dict) -> None:
+def save_portfolio(data: dict, test_mode: bool = False) -> None:
     """Write portfolio dict to JSON."""
+    path = _resolve_path(test_mode)
     data["updated_at"] = datetime.now().isoformat()
-    _PORTFOLIO_JSON.parent.mkdir(parents=True, exist_ok=True)
-    _PORTFOLIO_JSON.write_text(json.dumps(data, indent=2), encoding="utf-8")
-    logger.info("portfolio_writer: saved → %s", _PORTFOLIO_JSON)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    logger.info("portfolio_writer: saved → %s", path)
 
 
-def _get_open_value(portfolio: dict) -> float:
+def _get_open_value(portfolio: dict, test_mode: bool = False) -> float:
     """Return the previous session's close value, or the initial investment."""
     for session in reversed(portfolio.get("sessions", [])):
         close = session.get("portfolio_close_value")
@@ -78,32 +86,33 @@ def write_session(
     ib: IB,
     mode: str = "aggressive",
     spy_return: float | None = None,
+    test_mode: bool = False,
 ) -> None:
     """
-    Compute score-weighted allocations for each pick, fetch buy prices from IBKR,
-    and append (or replace) today's session in portfolio.json.
-
-    Allocation formula: each stock's weight = its score / sum(all scores).
-    Higher-scoring picks receive proportionally more capital.
+    Fetch buy prices from IBKR and write today's session to portfolio.json.
+    In test_mode, writes to portfolio_test.json — real data is never touched.
     """
     if not picks:
         logger.info("portfolio_writer: no picks — skipping session write")
         return
 
-    portfolio = load_portfolio()
+    if test_mode:
+        logger.info("portfolio_writer: TEST MODE — writing to portfolio_test.json")
+
+    portfolio = load_portfolio(test_mode=test_mode)
     today = date_type.today().isoformat()
     open_value = _get_open_value(portfolio)
-    total_score = sum(p["score"] for p in picks)
 
     # QQQ as NASDAQ proxy
     qqq_price = _get_last_price("QQQ", ib)
     logger.info("portfolio_writer: QQQ price = %s", qqq_price)
 
-    # Build per-pick entries with allocations and share counts
+    # Build per-pick entries — use GPT-assigned allocation_pct if present,
+    # fall back to equal weighting only if missing
     pick_entries = []
     for p in picks:
-        alloc_pct = (p["score"] / total_score) * 100 if total_score else 0
-        alloc_usd = (p["score"] / total_score) * open_value if total_score else 0
+        alloc_pct = p.get("allocation_pct") or round(100.0 / len(picks), 1)
+        alloc_usd = alloc_pct / 100 * open_value
 
         buy_price = _get_last_price(p["ticker"], ib)
         if buy_price and buy_price > 0:
@@ -122,6 +131,7 @@ def write_session(
             "score": p["score"],
             "direction": p["direction"],
             "reason": p["reason"],
+            "trend_summary": p.get("trend_summary", ""),
             "allocation_pct": round(alloc_pct, 1),
             "shares": shares,
             "buy_price": buy_price or 0,
@@ -173,4 +183,4 @@ def write_session(
         equity_curve.append(eq_point)
     portfolio["equity_curve"] = equity_curve
 
-    save_portfolio(portfolio)
+    save_portfolio(portfolio, test_mode=test_mode)
