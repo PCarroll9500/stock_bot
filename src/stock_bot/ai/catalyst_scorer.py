@@ -14,33 +14,16 @@ MODEL       = "gpt-4o"
 TEMPERATURE = 0.3
 MAX_WORKERS = 10
 
-# ── Prompt templates ──────────────────────────────────────────────────────────
+_ALLOC_MIN_PCT = 5.0
+_ALLOC_MAX_PCT = 35.0
+
+
+# ── Prompt template ────────────────────────────────────────────────────────────
 
 @lru_cache(maxsize=1)
 def _load_prompt_template() -> str:
     return files("stock_bot.templates").joinpath("catalyst_prompt.txt").read_text(encoding="utf-8")
 
-
-_ALLOCATION_PROMPT = """\
-You are a portfolio manager allocating capital across a set of aggressive day-trading picks.
-
-Given the picks below (each with a catalyst score, price trend, and reason), assign an \
-allocation percentage to each. Allocations must sum to exactly 100%.
-
-Rules:
-- Higher allocation: strong catalyst (score 9-10) AND healthy trend (monthly/yearly positive or only mildly negative)
-- Lower allocation: speculative play, poor yearly trend (worse than -25%), borderline score, or uncertain catalyst
-- A pick with a terrible yearly trend (worse than -40%) should get no more than 5-8% even with a good catalyst
-- Minimum per pick: 5%
-- Maximum per pick: 35%
-- Reflect relative conviction — a clearly superior pick should get meaningfully more capital than weaker ones
-
-Picks:
-{picks_summary}
-
-Respond with a JSON array only — no explanation outside the JSON:
-[{{"ticker": "X", "allocation_pct": 20.0}}, ...]
-"""
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -67,6 +50,7 @@ def _parse_json_response(raw: str) -> dict:
         raw = raw.strip()
     return json.loads(raw)
 
+
 # ── Per-ticker scoring ────────────────────────────────────────────────────────
 
 def _score_ticker(
@@ -89,83 +73,98 @@ def _score_ticker(
             max_tokens=200,
         )
         parsed = _parse_json_response(response.choices[0].message.content or "")
-        score     = int(parsed.get("score", 0))
-        direction = str(parsed.get("direction", "bearish")).lower()
-        reason    = str(parsed.get("reason", ""))
+        score         = int(parsed.get("score", 0))
+        direction     = str(parsed.get("direction", "bearish")).lower()
+        risk          = max(1, min(5, int(parsed.get("risk", 3))))
+        expected_gain = float(parsed.get("expected_gain_pct", 0.0))
+        reason        = str(parsed.get("reason", ""))
         logger.info(
-            "catalyst_scorer: %s scored %d (%s) | trend: %s | %s",
-            ticker, score, direction, trend_summary, reason,
+            "catalyst_scorer: %s score=%d dir=%s risk=%d gain=%.1f%% | %s",
+            ticker, score, direction, risk, expected_gain, reason,
         )
-        return {"ticker": ticker, "score": score, "direction": direction, "reason": reason}
+        return {
+            "ticker": ticker,
+            "score": score,
+            "direction": direction,
+            "risk": risk,
+            "expected_gain_pct": expected_gain,
+            "reason": reason,
+        }
     except Exception:
         logger.warning("catalyst_scorer: failed to score %s — defaulting to 0", ticker, exc_info=True)
-        return {"ticker": ticker, "score": 0, "direction": "bearish", "reason": "scoring failed"}
+        return {
+            "ticker": ticker,
+            "score": 0,
+            "direction": "bearish",
+            "risk": 5,
+            "expected_gain_pct": 0.0,
+            "reason": "scoring failed",
+        }
 
-# ── Portfolio allocation ──────────────────────────────────────────────────────
 
-def _allocate_portfolio(client: OpenAI, picks: list[dict]) -> dict[str, float]:
+# ── Math-based allocation ─────────────────────────────────────────────────────
+
+def _compute_allocations(picks: list[dict]) -> dict[str, float]:
     """
-    Second GPT call: given the top N picks, assign allocation percentages summing to 100%.
+    Allocate capital proportionally to expected value: score * expected_gain_pct / risk.
 
-    Each pick must already have 'trend_summary' set.
-    Falls back to equal weighting on any failure.
+    Uses iterative redistribution so every pick stays within
+    [_ALLOC_MIN_PCT, _ALLOC_MAX_PCT] and the total is exactly 100%.
+
+    Algorithm: each pass computes proportional allocations for unconstrained
+    picks. Any pick hitting min or max is fixed and excluded from subsequent
+    passes so budget is redistributed to remaining free picks.
     """
-    lines = [
-        f"- {p['ticker']}: score={p['score']}/10, "
-        f"trend=[{p.get('trend_summary', 'N/A')}], "
-        f"reason=\"{p['reason']}\""
+    convictions: dict[str, float] = {
+        p["ticker"]: p["score"] * max(p.get("expected_gain_pct", 1.0), 0.5) / max(p["risk"], 1)
         for p in picks
-    ]
-    prompt = _ALLOCATION_PROMPT.replace("{picks_summary}", "\n".join(lines))
+    }
+    tickers = list(convictions)
+    fixed: dict[str, float] = {}
 
-    try:
-        response = client.chat.completions.create(
-            model=MODEL,
-            messages=[{"role": "system", "content": prompt}],
-            temperature=0.2,
-            max_tokens=300,
-        )
-        allocations = _parse_json_response(response.choices[0].message.content or "")
-        result = {a["ticker"]: float(a["allocation_pct"]) for a in allocations}
+    for _ in range(len(tickers) + 1):
+        free = [t for t in tickers if t not in fixed]
+        if not free:
+            break
 
-        # Normalize to exactly 100% in case of rounding drift
-        total = sum(result.values())
-        if total > 0:
-            result = {t: round(v / total * 100, 1) for t, v in result.items()}
+        remaining = 100.0 - sum(fixed.values())
+        free_total = sum(convictions[t] for t in free) or 1.0
+        tentative = {t: convictions[t] / free_total * remaining for t in free}
 
-        logger.info("catalyst_scorer: GPT allocations — %s", result)
-        return result
+        newly_fixed = {
+            t: _ALLOC_MAX_PCT for t, v in tentative.items() if v > _ALLOC_MAX_PCT
+        } | {
+            t: _ALLOC_MIN_PCT for t, v in tentative.items() if v < _ALLOC_MIN_PCT
+        }
 
-    except Exception:
-        logger.warning(
-            "catalyst_scorer: allocation call failed — falling back to equal weighting",
-            exc_info=True,
-        )
-        equal = round(100.0 / len(picks), 1)
-        return {p["ticker"]: equal for p in picks}
+        if not newly_fixed:
+            fixed.update(tentative)
+            break
+        fixed.update(newly_fixed)
+
+    result = {t: round(fixed.get(t, 100.0 / len(tickers)), 1) for t in tickers}
+    logger.info(
+        "catalyst_scorer: allocations — %s",
+        {t: f"{v}%" for t, v in sorted(result.items(), key=lambda x: -x[1])},
+    )
+    return result
+
 
 # ── Public API ────────────────────────────────────────────────────────────────
 
-def score_and_rank(
+def score_candidates(
     news_by_ticker: dict[str, list[dict]],
-    num_stocks: int,
     excluded: set[str],
-    min_score: int = 7,
     trend_by_ticker: dict[str, str] | None = None,
 ) -> list[dict]:
     """
-    Score each ticker in parallel using GPT (with trend context).
-    Then run a second GPT call to assign risk-adjusted allocations.
+    Score every ticker in news_by_ticker with GPT in parallel.
 
-    Args:
-        news_by_ticker:   ticker → list of news articles
-        num_stocks:       max picks to return
-        excluded:         tickers to skip
-        min_score:        minimum score threshold
-        trend_by_ticker:  ticker → formatted trend string (from fmt_trend_for_prompt)
+    Returns the full raw list (unfiltered, unsorted) so the caller can
+    apply different thresholds without re-calling GPT.
 
-    Returns:
-        list of dicts with keys: ticker, score, direction, reason, allocation_pct, trend_summary
+    Each result dict has keys: ticker, score, direction, risk,
+    expected_gain_pct, reason, trend_summary.
     """
     client = OpenAI()
     trend_by_ticker = trend_by_ticker or {}
@@ -180,7 +179,7 @@ def score_and_rank(
 
     results: list[dict] = []
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        future_to_ticker = {
+        futures = {
             executor.submit(
                 _score_ticker,
                 client,
@@ -190,33 +189,57 @@ def score_and_rank(
             ): ticker
             for ticker, articles in candidates.items()
         }
-        for future in as_completed(future_to_ticker):
+        for future in as_completed(futures):
             result = future.result()
             result["trend_summary"] = trend_by_ticker.get(result["ticker"], "unavailable")
             results.append(result)
 
-    # Filter: bullish only, above min_score
-    bullish = [r for r in results if r["direction"] == "bullish" and r["score"] >= min_score]
-    rejected_bearish = [r["ticker"] for r in results if r["direction"] != "bullish"]
-    rejected_score   = [r["ticker"] for r in results if r["direction"] == "bullish" and r["score"] < min_score]
+    return results
+
+
+def filter_and_rank(
+    scored: list[dict],
+    num_stocks: int,
+    min_score: int,
+) -> list[dict]:
+    """
+    Filter scored results to bullish picks above min_score, sort by score,
+    take top num_stocks, then compute risk-adjusted allocations.
+
+    Returns list of pick dicts with allocation_pct added.
+    """
+    bullish = [r for r in scored if r["direction"] == "bullish" and r["score"] >= min_score]
+    rejected_bearish = [r["ticker"] for r in scored if r["direction"] != "bullish"]
+    rejected_score   = [r["ticker"] for r in scored if r["direction"] == "bullish" and r["score"] < min_score]
 
     if rejected_bearish:
-        logger.info("catalyst_scorer: bearish filtered: %s", ", ".join(rejected_bearish))
+        logger.info("catalyst_scorer: bearish/neutral filtered: %s", ", ".join(rejected_bearish))
     if rejected_score:
-        logger.info("catalyst_scorer: below min_score (%d) filtered: %s", min_score, ", ".join(rejected_score))
+        logger.info(
+            "catalyst_scorer: below min_score (%d) filtered: %s",
+            min_score, ", ".join(rejected_score),
+        )
 
     bullish.sort(key=lambda x: x["score"], reverse=True)
     top = bullish[:num_stocks]
 
     if not top:
-        logger.info("catalyst_scorer: no picks passed filters")
         return []
 
-    # Second GPT call — risk-adjusted allocation
-    logger.info("catalyst_scorer: running portfolio allocation for %d picks", len(top))
-    allocations = _allocate_portfolio(client, top)
+    allocations = _compute_allocations(top)
     for pick in top:
         pick["allocation_pct"] = allocations.get(pick["ticker"], round(100.0 / len(top), 1))
 
-    logger.info("catalyst_scorer: final %d picks with allocations", len(top))
     return top
+
+
+def score_and_rank(
+    news_by_ticker: dict[str, list[dict]],
+    num_stocks: int,
+    excluded: set[str],
+    min_score: int = 7,
+    trend_by_ticker: dict[str, str] | None = None,
+) -> list[dict]:
+    """Convenience wrapper: score_candidates + filter_and_rank in one call."""
+    scored = score_candidates(news_by_ticker, excluded, trend_by_ticker)
+    return filter_and_rank(scored, num_stocks, min_score)

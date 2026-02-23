@@ -20,7 +20,7 @@ from stock_bot.data_sources.trend_checker import (
     get_trend_for_scoring,
     fmt_trend_for_prompt,
 )
-from stock_bot.ai.catalyst_scorer import score_and_rank
+from stock_bot.ai.catalyst_scorer import score_candidates, filter_and_rank
 from stock_bot.data_sources.portfolio_writer import (
     write_session,
     load_portfolio,
@@ -144,20 +144,63 @@ def main():
         trend_by_ticker[ticker] = fmt_trend_for_prompt(trend)
         logger.info("trend: %s — %s", ticker, trend_by_ticker[ticker])
 
-    # 5. Score + rank with trend context; second GPT call assigns risk-adjusted allocations
-    picks = score_and_rank(
-        news_by_ticker,
-        num_stocks,
-        excluded_set,
-        min_score=effective_min_score,
-        trend_by_ticker=trend_by_ticker,
-    )
+    # 5. Score all candidates once with GPT (no repeated API calls on retry)
+    all_scored = score_candidates(news_by_ticker, excluded_set, trend_by_ticker)
 
-    logger.info("Final picks (%d):", len(picks))
+    # 6. Try to fill num_stocks slots — lower aggression threshold until we hit the target
+    picks: list[dict] = []
+    score_floor = config.get("score_floor", 4)  # never go below this
+    threshold = effective_min_score
+
+    while threshold >= score_floor:
+        picks = filter_and_rank(all_scored, num_stocks, min_score=threshold)
+        if len(picks) >= num_stocks:
+            logger.info(
+                "Target of %d stocks reached at min_score=%d", num_stocks, threshold
+            )
+            break
+        logger.info(
+            "Only %d picks at min_score=%d — lowering threshold to %d",
+            len(picks), threshold, threshold - 1,
+        )
+        threshold -= 1
+
+    # If still short after threshold relaxation, expand the candidate pool to
+    # the broader conservative universe (gap filter only, no aggressive filter)
+    if len(picks) < num_stocks and aggressive_mode:
+        logger.info(
+            "Still short (%d/%d) — expanding to conservative candidate pool",
+            len(picks), num_stocks,
+        )
+        already_scored = {p["ticker"] for p in all_scored}
+        conservative_extras = [
+            s for s in universe
+            if s["ticker"] not in already_scored
+            and s["ticker"] not in excluded_set
+            and passes_gap_filter(s["ticker"], ib, max_open_gap_pct)
+        ]
+        if conservative_extras:
+            extra_news = fetch_news_for_tickers(conservative_extras, ib, config["news"])
+            for ticker in extra_news:
+                trend = get_trend_for_scoring(ticker, ib)
+                trend_by_ticker[ticker] = fmt_trend_for_prompt(trend)
+            extra_scored = score_candidates(extra_news, excluded_set, trend_by_ticker)
+            all_scored = all_scored + extra_scored
+            picks = filter_and_rank(all_scored, num_stocks, min_score=score_floor)
+            logger.info(
+                "After conservative expansion: %d picks (min_score=%d)",
+                len(picks), score_floor,
+            )
+
+    logger.info("Final picks (%d/%d):", len(picks), num_stocks)
     for p in picks:
-        logger.info("  %s (score=%d, %s) — %s", p["ticker"], p["score"], p["direction"], p["reason"])
+        logger.info(
+            "  %s score=%d risk=%d gain=%.1f%% alloc=%.1f%% — %s",
+            p["ticker"], p["score"], p.get("risk", 0),
+            p.get("expected_gain_pct", 0), p.get("allocation_pct", 0), p["reason"],
+        )
 
-    # 5. Execute buy orders via IBKR
+    # 7. Execute buy orders via IBKR
     if picks:
         _portfolio = load_portfolio(test_mode=test_mode)
         open_value = _get_open_value(_portfolio)
@@ -171,7 +214,7 @@ def main():
             except Exception:
                 logger.error("Buy order failed for %s", pick["ticker"], exc_info=True)
 
-    # 6. Record session to portfolio.json (or portfolio_test.json in test mode)
+    # 8. Record session to portfolio.json (or portfolio_test.json in test mode)
     mode_label = "aggressive" if aggressive_mode else "conservative"
     write_session(picks, ib, mode=mode_label, spy_return=spy_return, test_mode=test_mode)
 

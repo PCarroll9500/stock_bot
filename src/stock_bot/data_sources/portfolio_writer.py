@@ -130,6 +130,8 @@ def write_session(
             "ticker": p["ticker"],
             "score": p["score"],
             "direction": p["direction"],
+            "risk": p.get("risk"),
+            "expected_gain_pct": p.get("expected_gain_pct"),
             "reason": p["reason"],
             "trend_summary": p.get("trend_summary", ""),
             "allocation_pct": round(alloc_pct, 1),

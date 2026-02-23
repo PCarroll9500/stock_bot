@@ -1,10 +1,11 @@
 {
   "aggressive_mode": true,
-  "aggressive_min_score": 9,
+  "aggressive_min_score": 6,
   "spy_down_threshold": -1.0,
 
   "num_stocks": 10,
-  "min_score": 7,
+  "min_score": 5,
+  "score_floor": 4,
   "max_open_gap_pct": 5.0,
   "always_exclude": ["NVDA", "TSLA", "BTC"],
 
