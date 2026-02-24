@@ -1,23 +1,264 @@
 // script.js — Inf Money Stock Bot dashboard
 'use strict';
 
-const DATA_PATH = './data/portfolio.json';
-
-// CORS proxies tried in order — first success wins
-const PROXIES = [
-  'https://corsproxy.io/?',
-  'https://api.allorigins.win/raw?url=',
-  'https://api.codetabs.com/v1/proxy?quest=',
-];
-
+const DATA_PATH        = './data/portfolio.json';
 const PRICE_REFRESH_MS = 60_000;
-const REQUEST_DELAY_MS = 200;
+const REQUEST_DELAY_MS = 150;   // ms between per-ticker requests
+const CACHE_TTL_MS     = 55_000; // price cache TTL (just under the 60s refresh)
 
 // ── Global state ──────────────────────────────────────────────────────────────
-let _portfolio  = null;   // full portfolio.json object
-let _session    = null;   // current/latest session object
-let _livePrices = {};     // { ticker: livePrice } populated as Yahoo prices arrive
-let _qqqData    = null;   // { curve: [{date, price, indexed}], startPrice, livePrice }
+let _portfolio  = null;
+let _session    = null;
+let _livePrices = {};   // { ticker: price } — latest confirmed price per ticker
+let _qqqData    = null; // { curve, startPrice, livePrice }
+
+// ── Price cache ───────────────────────────────────────────────────────────────
+// Keeps the last good price + timestamp so stale prices survive brief outages.
+const _cache = {}; // { ticker: { price, ts } }
+
+function cacheGet(ticker) {
+  const e = _cache[ticker];
+  if (!e) return null;
+  if (Date.now() - e.ts < CACHE_TTL_MS) return e.price; // fresh
+  return null; // expired (stale copy still in _cache for fallback)
+}
+function cacheSet(ticker, price) {
+  _cache[ticker] = { price, ts: Date.now() };
+}
+function cacheStale(ticker) {
+  return _cache[ticker]?.price ?? null; // stale-but-better-than-nothing
+}
+
+// ── CORS proxy pool ───────────────────────────────────────────────────────────
+// All requests race through every proxy simultaneously; first response wins.
+const PROXY_FNS = [
+  u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+  u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+];
+
+async function _fetchWithTimeout(url, ms, asText = false) {
+  const ctl = new AbortController();
+  const t   = setTimeout(() => ctl.abort(), ms);
+  try {
+    const r = await fetch(url, { signal: ctl.signal, cache: 'no-store' });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return asText ? r.text() : r.json();
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+// Race all proxies; return first valid response or null.
+async function raceProxies(url, timeoutMs = 6000, asText = false) {
+  try {
+    return await Promise.any(
+      PROXY_FNS.map(fn =>
+        _fetchWithTimeout(fn(url), timeoutMs, asText)
+          .then(d => {
+            if (d == null) throw new Error('empty');
+            return d;
+          })
+      )
+    );
+  } catch {
+    return null; // AggregateError — all proxies failed
+  }
+}
+
+// ── Yahoo Finance fetchers ─────────────────────────────────────────────────────
+// Try both Yahoo hosts (query1 / query2) in the same race.
+const YAHOO_HOSTS = ['query1', 'query2'];
+
+function yahooChartUrl(host, ticker, extraParams = '') {
+  return `https://${host}.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?interval=1d&range=5d${extraParams}`;
+}
+
+function extractYahooPrice(data) {
+  const result = data?.chart?.result?.[0];
+  if (!result) return null;
+  const live = result.meta?.regularMarketPrice;
+  if (live != null && live > 0) return { price: Number(live), result };
+  const closes = result.indicators?.quote?.[0]?.close ?? [];
+  for (let i = closes.length - 1; i >= 0; i--) {
+    if (closes[i] != null) return { price: Number(closes[i]), result };
+  }
+  return null;
+}
+
+async function fetchYahooPrice(ticker) {
+  // Fire all (proxy × host) combinations at once — 6 concurrent attempts
+  const urls = YAHOO_HOSTS.flatMap(host =>
+    PROXY_FNS.map(fn => fn(yahooChartUrl(host, ticker)))
+  );
+  try {
+    const data = await Promise.any(
+      urls.map(u =>
+        _fetchWithTimeout(u, 6000)
+          .then(d => {
+            const hit = extractYahooPrice(d);
+            if (!hit) throw new Error('no price');
+            return hit.price;
+          })
+      )
+    );
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+// ── Stooq fallback ────────────────────────────────────────────────────────────
+// Stooq is a reliable Polish financial site with no meaningful rate limit.
+// Returns CSV with the last daily close — no real-time prices.
+
+function parseStooqClose(csv) {
+  if (!csv || typeof csv !== 'string') return null;
+  const lines = csv.trim().split('\n');
+  if (lines.length < 2) return null;
+  const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
+  const vals    = lines[1].split(',').map(v => v.trim().replace(/"/g, ''));
+  const ci = headers.indexOf('close');
+  if (ci < 0) return null;
+  const p = parseFloat(vals[ci]);
+  return isNaN(p) ? null : p;
+}
+
+async function fetchStooqPrice(ticker) {
+  const url  = `https://stooq.com/q/l/?s=${encodeURIComponent(ticker.toLowerCase())}.us&f=sd2ohlcv&h&e=csv`;
+  const text = await raceProxies(url, 5000, /*asText=*/true);
+  return parseStooqClose(text);
+}
+
+// ── Combined price fetch ───────────────────────────────────────────────────────
+// 1. Fresh cache → 2. Yahoo (parallel proxy+host race) → 3. Stooq → 4. Stale cache
+
+async function fetchPrice(ticker) {
+  const fresh = cacheGet(ticker);
+  if (fresh != null) return fresh;
+
+  let price = await fetchYahooPrice(ticker);
+
+  if (price == null) {
+    console.info(`[${ticker}] Yahoo failed, trying Stooq…`);
+    price = await fetchStooqPrice(ticker);
+  }
+
+  if (price != null) {
+    cacheSet(ticker, price);
+    return price;
+  }
+
+  // Return stale price so UI doesn't go blank
+  const stale = cacheStale(ticker);
+  if (stale != null) console.info(`[${ticker}] Using stale price: ${stale}`);
+  return stale;
+}
+
+// ── QQQ historical data ───────────────────────────────────────────────────────
+
+function buildQqqCurve(timestamps, closes, meta, initial) {
+  const startPrice = closes.find(c => c != null);
+  if (!startPrice) return null;
+
+  const curve = [];
+  for (let i = 0; i < timestamps.length; i++) {
+    if (closes[i] == null) continue;
+    const date    = new Date(timestamps[i] * 1000).toISOString().slice(0, 10);
+    const indexed = (closes[i] / startPrice) * initial;
+    curve.push({ date, price: closes[i], indexed });
+  }
+
+  // Splice in live price for today
+  const livePrice = meta?.regularMarketPrice;
+  const today     = new Date().toISOString().slice(0, 10);
+  if (livePrice && livePrice > 0) {
+    const last        = curve.at(-1);
+    const liveIndexed = (livePrice / startPrice) * initial;
+    if (last?.date === today) {
+      last.price   = livePrice;
+      last.indexed = liveIndexed;
+    } else {
+      curve.push({ date: today, price: livePrice, indexed: liveIndexed });
+    }
+  }
+
+  return { curve, startPrice, livePrice: livePrice || closes.filter(Boolean).at(-1) };
+}
+
+async function fetchQqqViaYahoo(startDate, initial) {
+  const startTs = Math.floor(new Date(startDate + 'T00:00:00').getTime() / 1000);
+  const endTs   = Math.floor(Date.now() / 1000) + 86400;
+
+  const urls = YAHOO_HOSTS.flatMap(host =>
+    PROXY_FNS.map(fn =>
+      fn(`https://${host}.finance.yahoo.com/v8/finance/chart/QQQ?interval=1d&period1=${startTs}&period2=${endTs}`)
+    )
+  );
+
+  try {
+    return await Promise.any(
+      urls.map(u =>
+        _fetchWithTimeout(u, 8000).then(data => {
+          const result = data?.chart?.result?.[0];
+          if (!result) throw new Error('no result');
+          const qqqData = buildQqqCurve(
+            result.timestamp || [],
+            result.indicators?.quote?.[0]?.close || [],
+            result.meta,
+            initial
+          );
+          if (!qqqData?.curve?.length) throw new Error('empty curve');
+          return qqqData;
+        })
+      )
+    );
+  } catch {
+    return null;
+  }
+}
+
+async function fetchQqqViaStooq(startDate, initial) {
+  const d1  = startDate.replace(/-/g, '');
+  const now = new Date();
+  const d2  = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
+  const url = `https://stooq.com/q/d/l/?s=qqq.us&d1=${d1}&d2=${d2}&i=d`;
+
+  const text = await raceProxies(url, 8000, /*asText=*/true);
+  if (!text || typeof text !== 'string') return null;
+
+  const lines = text.trim().split('\n');
+  if (lines.length < 2) return null;
+
+  const headers  = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
+  const dateIdx  = headers.indexOf('date');
+  const closeIdx = headers.indexOf('close');
+  if (dateIdx < 0 || closeIdx < 0) return null;
+
+  const rows = lines.slice(1)
+    .map(l => l.split(',').map(v => v.trim().replace(/"/g, '')))
+    .filter(r => r[dateIdx] && !isNaN(parseFloat(r[closeIdx])))
+    .sort((a, b) => a[dateIdx].localeCompare(b[dateIdx]));   // oldest first
+
+  if (!rows.length) return null;
+
+  const startPrice = parseFloat(rows[0][closeIdx]);
+  const curve = rows.map(r => {
+    const price   = parseFloat(r[closeIdx]);
+    const indexed = (price / startPrice) * initial;
+    return { date: r[dateIdx], price, indexed };
+  });
+
+  return { curve, startPrice, livePrice: curve.at(-1).price };
+}
+
+// Try Yahoo first, fall back to Stooq
+async function fetchQqqHistory(startDate, initial) {
+  const yahoo = await fetchQqqViaYahoo(startDate, initial);
+  if (yahoo) return yahoo;
+  console.info('[QQQ] Yahoo failed, trying Stooq…');
+  return fetchQqqViaStooq(startDate, initial);
+}
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function $(id) { return document.getElementById(id); }
@@ -42,92 +283,7 @@ function colorClass(n) {
 }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-async function fetchWithTimeout(url, ms = 7000) {
-  const ctl = new AbortController();
-  const t = setTimeout(() => ctl.abort(), ms);
-  try {
-    const r = await fetch(url, { signal: ctl.signal, cache: 'no-store' });
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    return await r.json();
-  } finally {
-    clearTimeout(t);
-  }
-}
-
-// ── Yahoo Finance helpers ─────────────────────────────────────────────────────
-
-async function fetchPrice(ticker) {
-  const yUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?interval=1d&range=5d`;
-  for (const proxy of PROXIES) {
-    try {
-      const data   = await fetchWithTimeout(proxy + encodeURIComponent(yUrl), 6000);
-      const result = data?.chart?.result?.[0];
-      if (!result) continue;
-      const live = result.meta?.regularMarketPrice;
-      if (live != null && live > 0) return Number(live);
-      const closes = result.indicators?.quote?.[0]?.close ?? [];
-      for (let i = closes.length - 1; i >= 0; i--) {
-        if (closes[i] != null) return Number(closes[i]);
-      }
-    } catch (e) {
-      console.warn(`[${ticker}] proxy ${proxy} failed:`, e.message);
-    }
-  }
-  return null;
-}
-
-// ── QQQ historical data ───────────────────────────────────────────────────────
-// Fetches daily QQQ closes from startDate to today, indexed to `initial` dollars.
-
-async function fetchQqqHistory(startDate, initial) {
-  const startTs = Math.floor(new Date(startDate + 'T00:00:00').getTime() / 1000);
-  const endTs   = Math.floor(Date.now() / 1000) + 86400;
-  const yUrl    = `https://query1.finance.yahoo.com/v8/finance/chart/QQQ?interval=1d&period1=${startTs}&period2=${endTs}`;
-
-  for (const proxy of PROXIES) {
-    try {
-      const data   = await fetchWithTimeout(proxy + encodeURIComponent(yUrl), 8000);
-      const result = data?.chart?.result?.[0];
-      if (!result) continue;
-
-      const timestamps = result.timestamp || [];
-      const closes     = result.indicators?.quote?.[0]?.close || [];
-      const meta       = result.meta || {};
-      const startPrice = closes.find(c => c != null);
-      if (!startPrice) continue;
-
-      const curve = [];
-      for (let i = 0; i < timestamps.length; i++) {
-        if (closes[i] == null) continue;
-        const date    = new Date(timestamps[i] * 1000).toISOString().slice(0, 10);
-        const indexed = (closes[i] / startPrice) * initial;
-        curve.push({ date, price: closes[i], indexed });
-      }
-
-      // Splice in live price for today if market is open
-      const livePrice = meta.regularMarketPrice;
-      const today     = new Date().toISOString().slice(0, 10);
-      if (livePrice && livePrice > 0) {
-        const last        = curve.at(-1);
-        const liveIndexed = (livePrice / startPrice) * initial;
-        if (last && last.date === today) {
-          last.price   = livePrice;
-          last.indexed = liveIndexed;
-        } else {
-          curve.push({ date: today, price: livePrice, indexed: liveIndexed });
-        }
-      }
-
-      return { curve, startPrice, livePrice: livePrice || closes.at(-1) };
-    } catch (e) {
-      console.warn('[QQQ] proxy failed:', e.message);
-    }
-  }
-  return null;
-}
-
 // ── Live portfolio value ──────────────────────────────────────────────────────
-// Returns null if session is already closed (caller should use stored close value).
 
 function computeLivePortfolioValue(session, livePrices) {
   if (!session || session.portfolio_close_value != null) return null;
@@ -141,13 +297,11 @@ function computeLivePortfolioValue(session, livePrices) {
       const buyVal = pick.buy_value || pick.buy_price * pick.shares;
       totalInvested += buyVal;
       const price = livePrices[pick.ticker];
-      // Fall back to buy price so value doesn't disappear before prices load
       liveInvested += price != null ? price * pick.shares : buyVal;
     }
   }
 
-  const cash = Math.max(0, openValue - totalInvested);
-  return cash + liveInvested;
+  return Math.max(0, openValue - totalInvested) + liveInvested;
 }
 
 // ── KPIs ──────────────────────────────────────────────────────────────────────
@@ -156,7 +310,7 @@ function renderKpis(portfolio, session, livePrices, qqqData) {
   const initial   = Number(portfolio.initial_investment || 10000);
   const openValue = session?.portfolio_open_value ?? initial;
 
-  // Portfolio value: stored close if available, else live computation
+  // Portfolio value
   let currentValue;
   let isLive = false;
   if (session?.portfolio_close_value != null) {
@@ -177,7 +331,7 @@ function renderKpis(portfolio, session, livePrices, qqqData) {
   const todayUsd = currentValue - openValue;
   const todayPct = openValue > 0 ? (todayUsd / openValue) * 100 : 0;
 
-  // QQQ — live fetched data preferred, equity_curve as fallback
+  // QQQ
   let qqqIndexedNow = null;
   let qqqRetPct     = null;
   if (qqqData?.startPrice && qqqData?.livePrice) {
@@ -192,24 +346,20 @@ function renderKpis(portfolio, session, livePrices, qqqData) {
   const vsQqqPct = qqqIndexedNow != null && qqqIndexedNow > 0
     ? (vsQqqUsd / qqqIndexedNow) * 100 : null;
 
-  // Portfolio value
   $('kpiPortfolioValue').textContent = fmtUsd(currentValue);
   $('kpiPortfolioValue').className   = 'kpi-value';
   $('kpiVsInitial').textContent      = `vs ${fmtUsd(initial)} initial${isLive ? ' · live' : ''}`;
 
-  // Total return
   $('kpiTotalReturnUsd').textContent = fmtUsd(totalUsd);
   $('kpiTotalReturnUsd').className   = 'kpi-value ' + colorClass(totalUsd);
   $('kpiTotalReturnPct').textContent = fmtPct(totalPct);
   $('kpiTotalReturnPct').className   = 'kpi-sub ' + colorClass(totalPct);
 
-  // Today's return
   $('kpiTodayReturnUsd').textContent = fmtUsd(todayUsd);
   $('kpiTodayReturnUsd').className   = 'kpi-value ' + colorClass(todayUsd);
   $('kpiTodayReturnPct').textContent = fmtPct(todayPct);
   $('kpiTodayReturnPct').className   = 'kpi-sub ' + colorClass(todayPct);
 
-  // vs NASDAQ — shows dollar alpha, sub shows QQQ's own return so user sees market trend
   if (vsQqqUsd != null) {
     $('kpiVsQqq').textContent    = fmtUsd(vsQqqUsd);
     $('kpiVsQqq').className      = 'kpi-value ' + colorClass(vsQqqUsd);
@@ -234,18 +384,15 @@ function buildChartDatasets(portfolio, session, livePrices, qqqData) {
   const startDate = portfolio.start_date;
   const sessions  = portfolio.sessions || [];
 
-  // Map date → portfolio close value from session history
   const sessionValues = {};
   for (const s of sessions) {
     if (s.portfolio_close_value != null) sessionValues[s.date] = s.portfolio_close_value;
   }
 
-  // Add today's live computed value if session is open
   const today   = new Date().toISOString().slice(0, 10);
   const liveVal = computeLivePortfolioValue(session, livePrices);
   if (liveVal != null) sessionValues[today] = liveVal;
 
-  // Date axis: use QQQ curve dates (dense daily) or fall back to session dates
   let allDates;
   if (qqqData?.curve?.length) {
     allDates = qqqData.curve.map(p => p.date);
@@ -263,7 +410,6 @@ function buildChartDatasets(portfolio, session, livePrices, qqqData) {
 
   if (!allDates.length) return null;
 
-  // Portfolio line: $initial at start_date, carry-forward session closes
   const portfolioPoints = [];
   let lastVal = initial;
   for (const date of allDates) {
@@ -273,7 +419,6 @@ function buildChartDatasets(portfolio, session, livePrices, qqqData) {
     portfolioPoints.push(lastVal);
   }
 
-  // QQQ line: live Yahoo data or equity_curve fallback
   let qqqPoints = [];
   if (qqqData?.curve?.length) {
     const qqqMap = Object.fromEntries(qqqData.curve.map(p => [p.date, p.indexed]));
@@ -409,7 +554,6 @@ async function renderPicksTable(session) {
     `Mode: ${session.mode || '—'}  |  Open: ${fmtUsd(session.portfolio_open_value)}` +
     (isClosed ? `  |  Close: ${fmtUsd(session.portfolio_close_value)}` : '  |  Live prices loading…');
 
-  // Build all rows immediately with price cell showing "fetching…"
   session.picks.forEach(pick => {
     const hasBuy = pick.buy_price > 0;
     const tr = document.createElement('tr');
@@ -445,10 +589,11 @@ async function renderPicksTable(session) {
     tbody.appendChild(tr);
   });
 
-  // Fetch prices one by one — update row + KPIs + chart as each price arrives
+  // Fetch prices; update row + KPIs + chart as each price arrives
   for (const pick of session.picks) {
     if (pick.close_price != null) {
       _livePrices[pick.ticker] = pick.close_price;
+      cacheSet(pick.ticker, pick.close_price);
       continue;
     }
     const price = await fetchPrice(pick.ticker);
@@ -467,7 +612,7 @@ async function renderPicksTable(session) {
     (isClosed ? `  |  Close: ${fmtUsd(session.portfolio_close_value)}` : `  |  Prices as of ${time} — refreshing every 60s`);
 }
 
-// ── Price + QQQ refresh (runs every 60s) ──────────────────────────────────────
+// ── Refresh (every 60s) ───────────────────────────────────────────────────────
 
 async function refreshPrices() {
   if (!_portfolio) return;
@@ -480,10 +625,9 @@ async function refreshPrices() {
     await sleep(REQUEST_DELAY_MS);
   }
 
-  // Refresh QQQ so chart + vs-NASDAQ KPI stay current
   const startDate = _portfolio.start_date || new Date().toISOString().slice(0, 10);
   const initial   = Number(_portfolio.initial_investment || 10000);
-  const fresh = await fetchQqqHistory(startDate, initial);
+  const fresh     = await fetchQqqHistory(startDate, initial);
   if (fresh) _qqqData = fresh;
 
   renderKpis(_portfolio, _session, _livePrices, _qqqData);
@@ -496,7 +640,7 @@ async function refreshPrices() {
   }
 }
 
-// ── Session history table ─────────────────────────────────────────────────────
+// ── Session history ───────────────────────────────────────────────────────────
 
 function renderHistoryTable(sessions) {
   const tbody = $('historyBody');
@@ -543,22 +687,21 @@ async function renderPortfolio(portfolio) {
   const today    = new Date().toISOString().slice(0, 10);
   _session = sessions.find(s => s.date === today) ?? sessions.at(-1) ?? null;
 
-  // Initial paint with stored values (no live data yet)
+  // Initial paint with stored values
   renderKpis(portfolio, _session, {}, null);
   renderChart(portfolio, _session, {}, null);
   renderHistoryTable(sessions);
   $('year').textContent = new Date().getFullYear();
 
-  // Fetch QQQ history and pick prices in parallel
   const startDate = portfolio.start_date || today;
   const initial   = Number(portfolio.initial_investment || 10000);
 
+  // Race QQQ fetch and picks price fetch in parallel
   const [qqqResult] = await Promise.all([
     fetchQqqHistory(startDate, initial),
-    renderPicksTable(_session),   // populates _livePrices as each price arrives
+    renderPicksTable(_session),
   ]);
 
-  // Final update with everything — QQQ + all live prices
   if (qqqResult) _qqqData = qqqResult;
   renderKpis(portfolio, _session, _livePrices, _qqqData);
   renderChart(portfolio, _session, _livePrices, _qqqData);
