@@ -328,8 +328,13 @@ function renderKpis(portfolio, session, livePrices, qqqData) {
 
   const totalUsd = currentValue - initial;
   const totalPct = (totalUsd / initial) * 100;
-  const todayUsd = currentValue - openValue;
-  const todayPct = openValue > 0 ? (todayUsd / openValue) * 100 : 0;
+
+  // Today's return is only meaningful when the active session is actually today.
+  // If we're showing a prior session (e.g. morning before bot runs) return $0.
+  const today = new Date().toISOString().slice(0, 10);
+  const sessionIsToday = session?.date === today;
+  const todayUsd = sessionIsToday ? currentValue - openValue : 0;
+  const todayPct = sessionIsToday && openValue > 0 ? (todayUsd / openValue) * 100 : 0;
 
   // QQQ
   let qqqIndexedNow = null;
@@ -370,7 +375,8 @@ function renderKpis(portfolio, session, livePrices, qqqData) {
     $('kpiVsQqqSub').className   = 'kpi-sub ' + colorClass(vsQqqUsd);
   } else {
     $('kpiVsQqq').textContent    = '—';
-    $('kpiVsQqqSub').textContent = qqqData === null ? 'fetching NASDAQ data…' : 'no NASDAQ data';
+    // null = still fetching on first load; false = tried and got nothing
+    $('kpiVsQqqSub').textContent = qqqData === null ? 'fetching NASDAQ data…' : 'no data yet';
     $('kpiVsQqqSub').className   = 'kpi-sub neutral';
   }
 }
@@ -447,6 +453,10 @@ function renderChart(portfolio, session, livePrices, qqqData) {
 
   const hasQqq = data.qqqPoints.some(v => v != null);
   const sparse = data.labels.length <= 20;
+
+  // Show QQQ legend only when there is actual QQQ data to display
+  const qqqLegend = $('qqqLegend');
+  if (qqqLegend) qqqLegend.style.display = hasQqq ? '' : 'none';
 
   chartInstance = new Chart(canvas.getContext('2d'), {
     type: 'line',
@@ -562,7 +572,6 @@ async function renderPicksTable(session) {
       <td>
         <div class="ticker-cell">
           <a href="${finvizUrl(pick.ticker)}" target="_blank" rel="noopener" class="ticker-link">${pick.ticker}</a>
-          <span class="score-badge">${pick.score}</span>
           <a href="${tvUrl(pick.ticker)}" target="_blank" rel="noopener" class="tv-link" title="TradingView">&#9654;</a>
         </div>
       </td>
@@ -628,7 +637,7 @@ async function refreshPrices() {
   const startDate = _portfolio.start_date || new Date().toISOString().slice(0, 10);
   const initial   = Number(_portfolio.initial_investment || 10000);
   const fresh     = await fetchQqqHistory(startDate, initial);
-  if (fresh) _qqqData = fresh;
+  _qqqData = fresh || false;
 
   renderKpis(_portfolio, _session, _livePrices, _qqqData);
   renderChart(_portfolio, _session, _livePrices, _qqqData);
@@ -678,7 +687,7 @@ async function renderPortfolio(portfolio) {
   _qqqData    = null;
 
   $('modeBadge').textContent = portfolio.sessions?.length
-    ? (portfolio.sessions.at(-1).mode || 'aggressive') : 'no sessions';
+    ? (portfolio.sessions.at(-1).mode || 'aggressive') : 'paper';
   $('updatedAt').textContent = portfolio.updated_at
     ? 'Updated ' + new Date(portfolio.updated_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })
     : '';
@@ -702,7 +711,8 @@ async function renderPortfolio(portfolio) {
     renderPicksTable(_session),
   ]);
 
-  if (qqqResult) _qqqData = qqqResult;
+  // false = tried and got nothing (distinct from null = not yet tried)
+  _qqqData = qqqResult || false;
   renderKpis(portfolio, _session, _livePrices, _qqqData);
   renderChart(portfolio, _session, _livePrices, _qqqData);
 }
