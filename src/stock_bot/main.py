@@ -25,6 +25,7 @@ from stock_bot.data_sources.portfolio_writer import (
     write_session,
     load_portfolio,
     _get_open_value,
+    get_live_account_value,
 )
 
 _CONFIG_DIR = Path(__file__).parent / "config"
@@ -89,10 +90,22 @@ def main():
         disconnect_ib()
         sys.exit(1)
 
-    # TODO: merge current IBKR holdings into excluded_set so the picker
-    #       never re-buys a stock already held in the account.
-    #       e.g. held = [p.contract.symbol for p in ib.positions()]
-    #            excluded_set |= set(held)
+    # Allow IBKR a moment to push account data after connection
+    ib.sleep(2)
+
+    # Exclude tickers already held in the account so we never double-buy
+    held_positions = ib.positions(account=ib_settings.account)
+    held_tickers = {
+        p.contract.symbol
+        for p in held_positions
+        if p.contract.secType == "STK" and p.position != 0
+    }
+    if held_tickers:
+        logger.info(
+            "Excluding %d already-held tickers from picks: %s",
+            len(held_tickers), ", ".join(sorted(held_tickers)),
+        )
+        excluded_set |= held_tickers
 
     # 1. Scan
     universe = get_scanner_universe(ib, config["scanner"])
@@ -201,22 +214,55 @@ def main():
         )
 
     # 7. Execute buy orders via IBKR
-    if picks:
-        _portfolio = load_portfolio(test_mode=test_mode)
+    _portfolio = load_portfolio(test_mode=test_mode)
+
+    # Use actual IBKR account balance as capital base; fall back to JSON history
+    live_balance = get_live_account_value(ib)
+    if live_balance is not None:
+        open_value = live_balance
+        logger.info("Capital base: $%.2f (live from IBKR NetLiquidation)", open_value)
+    else:
         open_value = _get_open_value(_portfolio)
-        logger.info("Executing %d buy orders — portfolio value $%.2f", len(picks), open_value)
+        logger.info("Capital base: $%.2f (from portfolio.json — IBKR balance unavailable)", open_value)
+
+    trades_by_ticker: dict[str, list] = {}
+    if picks:
+        logger.info("Executing %d buy orders — capital base $%.2f", len(picks), open_value)
         for pick in picks:
             alloc_pct = pick.get("allocation_pct") or round(100.0 / len(picks), 1)
             alloc_usd = alloc_pct / 100.0 * open_value
             try:
-                buy_stock(pick["ticker"], ib, dollar_amount=alloc_usd)
+                trades = buy_stock(pick["ticker"], ib, dollar_amount=alloc_usd)
+                trades_by_ticker[pick["ticker"]] = trades
                 logger.info("BUY submitted: %s $%.2f (%.1f%%)", pick["ticker"], alloc_usd, alloc_pct)
             except Exception:
                 logger.error("Buy order failed for %s", pick["ticker"], exc_info=True)
+                trades_by_ticker[pick["ticker"]] = []
+
+        # Wait for market-order fills (normally < 1 s at open; allow 10 s)
+        logger.info("Waiting 10 s for order fills…")
+        ib.sleep(10)
+
+        # Log fill summary
+        for ticker, trades in trades_by_ticker.items():
+            for t in trades[:1]:  # entry order
+                status = getattr(t, "orderStatus", None)
+                if status:
+                    logger.info(
+                        "Fill: %s status=%s filled=%.0f avgPrice=%.4f",
+                        ticker, status.status, status.filled, status.avgFillPrice,
+                    )
 
     # 8. Record session to portfolio.json (or portfolio_test.json in test mode)
     mode_label = "aggressive" if aggressive_mode else "conservative"
-    write_session(picks, ib, mode=mode_label, spy_return=spy_return, test_mode=test_mode)
+    write_session(
+        picks, ib,
+        mode=mode_label,
+        spy_return=spy_return,
+        test_mode=test_mode,
+        trades_by_ticker=trades_by_ticker,
+        open_value_override=open_value,
+    )
 
     disconnect_ib()
     logger.info("Disconnected from IBKR. Shutdown complete.")

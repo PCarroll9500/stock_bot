@@ -8,6 +8,8 @@ from pathlib import Path
 
 from ib_insync import IB, Stock
 
+from stock_bot.config.settings import ib_settings
+
 logger = logging.getLogger(__name__)
 
 _DATA_DIR = Path(__file__).resolve().parents[3] / "docs" / "data"
@@ -18,6 +20,34 @@ _INITIAL_INVESTMENT  = 10_000.0
 
 def _resolve_path(test_mode: bool) -> Path:
     return _PORTFOLIO_JSON_TEST if test_mode else _PORTFOLIO_JSON
+
+
+def get_live_account_value(ib: IB) -> float | None:
+    """Return NetLiquidation (total portfolio value) from the live IBKR account.
+
+    This is the actual account balance — cash + any open positions — and is
+    used as the capital base for allocating buy orders each morning.
+    Returns None if the value cannot be read (e.g. not connected, no account
+    configured).
+    """
+    account = ib_settings.account
+    if not account:
+        logger.warning("portfolio_writer: IB_ACCOUNT not configured — cannot read live balance")
+        return None
+    try:
+        vals = ib.accountValues(account=account)
+        for v in vals:
+            if v.tag == "NetLiquidation" and v.currency == "USD":
+                value = float(v.value)
+                logger.info("portfolio_writer: IBKR NetLiquidation = $%.2f (account %s)", value, account)
+                return value
+        logger.warning(
+            "portfolio_writer: NetLiquidation not found — got %d account values for %s",
+            len(vals), account,
+        )
+    except Exception:
+        logger.warning("portfolio_writer: could not read account value from IBKR", exc_info=True)
+    return None
 
 
 def _get_last_price(ticker: str, ib: IB) -> float | None:
@@ -87,10 +117,25 @@ def write_session(
     mode: str = "aggressive",
     spy_return: float | None = None,
     test_mode: bool = False,
+    trades_by_ticker: dict | None = None,
+    open_value_override: float | None = None,
 ) -> None:
     """
-    Fetch buy prices from IBKR and write today's session to portfolio.json.
-    In test_mode, writes to portfolio_test.json — real data is never touched.
+    Write today's session to portfolio.json using actual IBKR fill data when
+    available, falling back to estimated prices from market data.
+
+    Args:
+        picks: Scored and ranked pick dicts from the AI scorer.
+        ib: Active IB connection.
+        mode: 'aggressive' or 'conservative'.
+        spy_return: SPY day return % (context only).
+        test_mode: If True, writes to portfolio_test.json.
+        trades_by_ticker: {ticker: [Trade, ...]} — actual IBKR trade objects
+            returned by buy_stock().  When a filled trade is present the actual
+            avgFillPrice / filled qty are used instead of estimated prices.
+        open_value_override: Actual account balance from IBKR (NetLiquidation).
+            When supplied this is used as the session open value instead of
+            reading the previous session's close from portfolio.json.
     """
     if not picks:
         logger.info("portfolio_writer: no picks — skipping session write")
@@ -101,31 +146,59 @@ def write_session(
 
     portfolio = load_portfolio(test_mode=test_mode)
     today = date_type.today().isoformat()
-    open_value = _get_open_value(portfolio)
+
+    # Use live IBKR balance when provided; otherwise fall back to JSON history
+    if open_value_override is not None:
+        open_value = open_value_override
+        logger.info("portfolio_writer: open_value = $%.2f (from IBKR)", open_value)
+    else:
+        open_value = _get_open_value(portfolio)
+        logger.info("portfolio_writer: open_value = $%.2f (from portfolio.json)", open_value)
 
     # QQQ as NASDAQ proxy
     qqq_price = _get_last_price("QQQ", ib)
     logger.info("portfolio_writer: QQQ price = %s", qqq_price)
 
-    # Build per-pick entries — use GPT-assigned allocation_pct if present,
-    # fall back to equal weighting only if missing
+    # Build per-pick entries.
+    # Priority: actual IBKR fill → estimated from market data
     pick_entries = []
     for p in picks:
         alloc_pct = p.get("allocation_pct") or round(100.0 / len(picks), 1)
         alloc_usd = alloc_pct / 100 * open_value
 
-        buy_price = _get_last_price(p["ticker"], ib)
-        if buy_price and buy_price > 0:
-            shares = math.floor(alloc_usd / buy_price)
-            buy_value = round(shares * buy_price, 2)
-        else:
-            shares = 0
-            buy_value = 0.0
+        # --- Try to use the actual fill from the Trade object first -----------
+        fill_price: float | None = None
+        fill_qty: int = 0
+        if trades_by_ticker:
+            for trade in (trades_by_ticker.get(p["ticker"]) or [])[:1]:  # entry order only
+                status = getattr(trade, "orderStatus", None)
+                if status and status.filled > 0:
+                    fill_price = float(status.avgFillPrice)
+                    fill_qty = int(status.filled)
+                    break
 
-        logger.info(
-            "portfolio_writer: %s score=%d → %.1f%% ($%.2f, %d shares @ $%.4f)",
-            p["ticker"], p["score"], alloc_pct, buy_value, shares, buy_price or 0,
-        )
+        if fill_price and fill_qty > 0:
+            buy_price = fill_price
+            shares = fill_qty
+            buy_value = round(shares * buy_price, 2)
+            logger.info(
+                "portfolio_writer: %s score=%d → %.1f%% — FILLED %d @ $%.4f = $%.2f",
+                p["ticker"], p["score"], alloc_pct, shares, buy_price, buy_value,
+            )
+        else:
+            # Fall back to estimated price from IBKR market data
+            buy_price = _get_last_price(p["ticker"], ib) or 0.0
+            if buy_price > 0:
+                shares = math.floor(alloc_usd / buy_price)
+                buy_value = round(shares * buy_price, 2)
+            else:
+                shares = 0
+                buy_value = 0.0
+            logger.info(
+                "portfolio_writer: %s score=%d → %.1f%% — ESTIMATED %d @ $%.4f = $%.2f",
+                p["ticker"], p["score"], alloc_pct, shares, buy_price, buy_value,
+            )
+
         pick_entries.append({
             "ticker": p["ticker"],
             "score": p["score"],
