@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 10000,
   "start_date": "2026-02-24",
-  "updated_at": "2026-02-24T09:45:53.673592",
+  "updated_at": "2026-02-24T16:05:08.244164",
   "sessions": [
     {
       "date": "2026-02-24",
@@ -21,9 +21,9 @@
           "shares": 155,
           "buy_price": 26.025,
           "buy_value": 4033.88,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 27.78,
+          "day_return_pct": 6.744,
+          "day_return_usd": 272.03
         },
         {
           "ticker": "SIBN",
@@ -37,9 +37,9 @@
           "shares": 220,
           "buy_price": 16.5,
           "buy_value": 3630.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 15.26,
+          "day_return_pct": -7.515,
+          "day_return_usd": -272.8
         },
         {
           "ticker": "HLX",
@@ -53,9 +53,9 @@
           "shares": 624,
           "buy_price": 9.74,
           "buy_value": 6077.76,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 10.63,
+          "day_return_pct": 9.138,
+          "day_return_usd": 555.36
         },
         {
           "ticker": "ADEA",
@@ -69,9 +69,9 @@
           "shares": 216,
           "buy_price": 19.66,
           "buy_value": 4246.56,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 19.7,
+          "day_return_pct": 0.203,
+          "day_return_usd": 8.64
         },
         {
           "ticker": "UAMY",
@@ -85,25 +85,25 @@
           "shares": 319,
           "buy_price": 7.63,
           "buy_value": 2433.97,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 8.29,
+          "day_return_pct": 8.65,
+          "day_return_usd": 210.54
         }
       ],
       "qqq_buy_price": 602.31,
-      "qqq_close_price": null,
-      "qqq_day_return_pct": null,
+      "qqq_close_price": 607.99,
+      "qqq_day_return_pct": 0.943,
       "portfolio_open_value": 20484.65,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null
+      "portfolio_close_value": 21258.41,
+      "session_return_pct": 3.777,
+      "session_return_usd": 773.76
     }
   ],
   "equity_curve": [
     {
       "date": "2026-02-24",
-      "portfolio_value": 20484.65,
-      "qqq_indexed": 10000.0
+      "portfolio_value": 21258.41,
+      "qqq_indexed": 10094.3
     }
   ]
 }
