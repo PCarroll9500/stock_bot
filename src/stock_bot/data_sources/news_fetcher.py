@@ -54,6 +54,11 @@ def fetch_news_for_tickers(
             news_by_ticker[ticker] = []
             continue
 
+        if headlines is None:
+            logger.warning("news_fetcher: reqHistoricalNews timed out for %s", ticker)
+            news_by_ticker[ticker] = []
+            continue
+
         for hl in headlines:
             try:
                 article = ib.reqNewsArticle(

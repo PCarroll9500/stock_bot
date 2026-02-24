@@ -29,31 +29,34 @@ def liquidate_all() -> None:
     ib: IB = connect_ib()
 
     positions = ib.positions(account=ib_settings.account)
-    long_positions = [
-        p for p in positions if p.contract.secType == "STK" and p.position > 0
+    open_positions = [
+        p for p in positions if p.contract.secType == "STK" and p.position != 0
     ]
 
-    if not long_positions:
-        logger.info("No open long positions found — nothing to sell.")
+    if not open_positions:
+        logger.info("No open positions found — nothing to close.")
         disconnect_ib()
         return
 
-    logger.info("Found %d position(s) to liquidate:", len(long_positions))
-    for p in long_positions:
-        logger.info("  %s  x%.4f shares", p.contract.symbol, p.position)
+    logger.info("Found %d position(s) to close:", len(open_positions))
+    for p in open_positions:
+        direction = "LONG" if p.position > 0 else "SHORT"
+        logger.info("  %s  %s x%.4f shares", p.contract.symbol, direction, p.position)
 
     trades = []
-    for pos in long_positions:
+    for pos in open_positions:
         symbol = pos.contract.symbol
-        shares = float(pos.position)
+        shares = abs(float(pos.position))
+        # Long positions: SELL to close. Short positions: BUY to cover.
+        action = "SELL" if pos.position > 0 else "BUY"
 
         contract = Stock(symbol, ib_settings.exchange, ib_settings.currency)
         ib.qualifyContracts(contract)
 
-        order = MarketOrder("SELL", shares)
+        order = MarketOrder(action, shares)
         trade = ib.placeOrder(contract, order)
-        trades.append((symbol, shares, trade))
-        logger.info("Sell order submitted: %s x%.4f | orderId=%s", symbol, shares, trade.order.orderId)
+        trades.append((symbol, shares, action, trade))
+        logger.info("%s order submitted: %s x%.4f | orderId=%s", action, symbol, shares, trade.order.orderId)
 
     # Give orders a moment to acknowledge
     logger.info("Waiting for order acknowledgements...")
@@ -61,13 +64,13 @@ def liquidate_all() -> None:
 
     logger.info("--- Liquidation summary ---")
     all_ok = True
-    for symbol, shares, trade in trades:
+    for symbol, shares, action, trade in trades:
         status = trade.orderStatus.status
         filled = trade.orderStatus.filled
         avg_fill = trade.orderStatus.avgFillPrice
         logger.info(
-            "  %-8s x%.4f  status=%-12s  filled=%.4f  avgPrice=%.4f",
-            symbol, shares, status, filled, avg_fill,
+            "  %-8s %-4s x%.4f  status=%-12s  filled=%.4f  avgPrice=%.4f",
+            symbol, action, shares, status, filled, avg_fill,
         )
         if status not in ("Filled", "Submitted", "PreSubmitted"):
             all_ok = False

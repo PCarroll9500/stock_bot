@@ -26,17 +26,36 @@ def _qualify(ticker: str, ib: IB) -> Stock:
 def _last_price(contract: Stock, ib: IB) -> float:
     """Return the last-traded (or closing) price for a qualified contract.
 
+    Tries live data first; falls back to delayed-frozen (type 4) which
+    requires no additional market-data subscription.
+
     Raises:
         ValueError: If IBKR cannot return a usable price.
     """
-    (ticker_data,) = ib.reqTickers(contract)
-    price = ticker_data.last or ticker_data.close
-    if price is None or math.isnan(price):
-        raise ValueError(
-            f"Cannot resolve a market price for {contract.symbol}. "
-            "Ensure the market is open or use limit_price explicitly."
-        )
-    return float(price)
+    def _usable(val) -> bool:
+        return val is not None and not math.isnan(val) and val > 0
+
+    # --- attempt 1: live data (type 1) ---
+    ib.reqMarketDataType(1)
+    (td,) = ib.reqTickers(contract)
+    price = td.last if _usable(td.last) else td.close
+    if _usable(price):
+        return float(price)
+
+    # --- attempt 2: delayed-frozen data (type 4, no subscription needed) ---
+    logger.debug("Live price unavailable for %s — trying delayed-frozen", contract.symbol)
+    ib.reqMarketDataType(4)
+    (td,) = ib.reqTickers(contract)
+    price = td.delayedLast if _usable(td.delayedLast) else td.delayedClose
+    ib.reqMarketDataType(1)  # reset for subsequent calls
+    if _usable(price):
+        logger.info("Using delayed price for %s: %.4f", contract.symbol, price)
+        return float(price)
+
+    raise ValueError(
+        f"Cannot resolve a market price for {contract.symbol}. "
+        "Ensure the market is open or use limit_price explicitly."
+    )
 
 
 def _entry_order(action: str, shares: float, limit_price: Optional[float]) -> Order:
