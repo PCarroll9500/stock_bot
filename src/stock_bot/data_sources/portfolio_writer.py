@@ -23,26 +23,29 @@ def _resolve_path(test_mode: bool) -> Path:
 
 
 def get_live_account_value(ib: IB) -> float | None:
-    """Return NetLiquidation (total portfolio value) from the live IBKR account.
+    """Return the available cash balance from the live IBKR account.
 
-    This is the actual account balance — cash + any open positions — and is
-    used as the capital base for allocating buy orders each morning.
-    Returns None if the value cannot be read (e.g. not connected, no account
-    configured).
+    Uses CashBalance (not NetLiquidation or BuyingPower) so the bot never
+    sizes orders against margin — only actual cash on hand is used.
+    Returns None if the value cannot be read.
     """
     account = ib_settings.account
     if not account:
         logger.warning("portfolio_writer: IB_ACCOUNT not configured — cannot read live balance")
         return None
     try:
-        vals = ib.accountValues(account=account)
-        for v in vals:
-            if v.tag == "NetLiquidation" and v.currency == "USD":
-                value = float(v.value)
-                logger.info("portfolio_writer: IBKR NetLiquidation = $%.2f (account %s)", value, account)
-                return value
+        vals = {v.tag: v for v in ib.accountValues(account=account) if v.currency == "USD"}
+        cash = vals.get("CashBalance")
+        net_liq = vals.get("NetLiquidation")
+        if cash is not None:
+            value = float(cash.value)
+            logger.info(
+                "portfolio_writer: CashBalance = $%.2f (NetLiq = $%.2f) — using cash only, no margin",
+                value, float(net_liq.value) if net_liq else 0,
+            )
+            return value
         logger.warning(
-            "portfolio_writer: NetLiquidation not found — got %d account values for %s",
+            "portfolio_writer: CashBalance not found — got %d account values for %s",
             len(vals), account,
         )
     except Exception:
