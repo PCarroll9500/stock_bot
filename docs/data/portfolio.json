@@ -2,7 +2,140 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 10000,
   "start_date": "2026-02-25",
-  "updated_at": "2026-02-25T00:00:00.000000",
-  "sessions": [],
-  "equity_curve": []
+  "updated_at": "2026-02-25T16:05:09.946387",
+  "sessions": [
+    {
+      "date": "2026-02-25",
+      "mode": "aggressive",
+      "spy_return_pct": 0.49,
+      "picks": [
+        {
+          "ticker": "INFQ",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 5.0,
+          "reason": "INFQ has been selected to deliver Quantum Light Engines for NASA's space-based project, providing a strong catalyst for further upside today.",
+          "trend_summary": "1d: +6.7%  1w: -12.8%  1m: -22.9%  3m: -4.0%  1yr: +25.5%",
+          "allocation_pct": 17.1,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "AII",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 5.0,
+          "reason": "Strong earnings report with a special dividend announcement provides a clear catalyst for further upside.",
+          "trend_summary": "1d: +10.8%  1w: +13.2%  1m: +10.1%  3m: +2.0%  1yr: +19.2%",
+          "allocation_pct": 25.6,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "UAMY",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.0,
+          "reason": "Price target raised to $11 by B. Riley and maintained Buy rating, supported by a joint venture announcement.",
+          "trend_summary": "1d: +2.0%  1w: +14.6%  1m: -10.2%  3m: +45.4%  1yr: +492.7%",
+          "allocation_pct": 10.2,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ENPH",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Jefferies upgraded Enphase Energy to Buy with a significant price target increase, indicating potential upside.",
+          "trend_summary": "1d: +0.7%  1w: +8.8%  1m: +27.1%  3m: +86.0%  1yr: -21.4%",
+          "allocation_pct": 17.9,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ARRY",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.0,
+          "reason": "BNP Paribas upgrade to Outperform with a $19 price target provides a fresh catalyst for upside.",
+          "trend_summary": "1d: +6.4%  1w: -2.4%  1m: +2.4%  3m: +60.4%  1yr: +66.5%",
+          "allocation_pct": 13.2,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "SKT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Tanger reported solid FY26 FFO and EPS guidance, and announced $1B liquidity, indicating financial strength.",
+          "trend_summary": "1d: +3.9%  1w: +7.0%  1m: +13.1%  3m: +10.4%  1yr: +4.7%",
+          "allocation_pct": 7.3,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "EOSE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.0,
+          "reason": "The recent approval of the Redbird project under the Joint Development Agreement provides a fresh catalyst for Eos Energy Enterprises, but the stock's weak short-term trend and recent declines limit upside potential.",
+          "trend_summary": "1d: -1.3%  1w: -2.0%  1m: -30.0%  3m: -8.3%  1yr: +164.7%",
+          "allocation_pct": 8.8,
+          "shares": 0,
+          "buy_price": 0,
+          "buy_value": 0.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "qqq_buy_price": 614.01,
+      "qqq_close_price": 616.47,
+      "qqq_day_return_pct": 0.401,
+      "portfolio_open_value": 10000.0,
+      "portfolio_close_value": 10000.0,
+      "session_return_pct": 0.0,
+      "session_return_usd": 0.0
+    }
+  ],
+  "equity_curve": [
+    {
+      "date": "2026-02-25",
+      "portfolio_value": 10000.0,
+      "qqq_indexed": 10040.06
+    }
+  ]
 }
