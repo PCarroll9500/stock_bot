@@ -42,11 +42,11 @@ def _last_price(contract: Stock, ib: IB) -> float:
     if _usable(price):
         return float(price)
 
-    # --- attempt 2: delayed-frozen data (type 4, no subscription needed) ---
-    logger.debug("Live price unavailable for %s — trying delayed-frozen", contract.symbol)
+    # --- attempt 2: delayed data (type 4) — populates same last/close fields ---
+    logger.debug("Live price unavailable for %s — trying delayed", contract.symbol)
     ib.reqMarketDataType(4)
     (td,) = ib.reqTickers(contract)
-    price = td.delayedLast if _usable(td.delayedLast) else td.delayedClose
+    price = td.last if _usable(td.last) else td.close
     ib.reqMarketDataType(1)  # reset for subsequent calls
     if _usable(price):
         logger.info("Using delayed price for %s: %.4f", contract.symbol, price)
@@ -321,21 +321,29 @@ async def _qualify_async(ticker: str, ib: IB) -> Stock:
 
 
 async def _last_price_async(contract: Stock, ib: IB) -> float:
-    """Async version of _last_price."""
+    """Async version of _last_price.
+
+    ib_insync's Ticker stores both live and delayed prices in the same
+    `last`/`close` fields — there are no separate `delayedLast` attributes.
+    When reqMarketDataType(4) is active, IBKR sends delayed ticks into those
+    same fields.
+    """
     def _usable(val) -> bool:
         return val is not None and not math.isnan(val) and val > 0
 
+    # Attempt 1: live data
     ib.reqMarketDataType(1)
     (td,) = await ib.reqTickersAsync(contract)
     price = td.last if _usable(td.last) else td.close
     if _usable(price):
         return float(price)
 
-    logger.debug("Live price unavailable for %s — trying delayed-frozen", contract.symbol)
+    # Attempt 2: delayed data (populates same last/close fields)
+    logger.debug("Live price unavailable for %s — trying delayed", contract.symbol)
     ib.reqMarketDataType(4)
     (td,) = await ib.reqTickersAsync(contract)
-    price = td.delayedLast if _usable(td.delayedLast) else td.delayedClose
-    ib.reqMarketDataType(1)
+    price = td.last if _usable(td.last) else td.close
+    ib.reqMarketDataType(1)  # reset
     if _usable(price):
         logger.info("Using delayed price for %s: %.4f", contract.symbol, price)
         return float(price)

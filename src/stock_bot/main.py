@@ -287,7 +287,26 @@ async def main():
                         ticker, status.status, status.filled, status.avgFillPrice,
                     )
 
-    # 8. Record session to portfolio.json (or portfolio_test.json in test mode)
+    # 8. Pre-fetch QQQ price asynchronously (avoids sync IBKR call inside write_session)
+    from ib_insync import Stock as _Stock
+    qqq_price: float | None = None
+    try:
+        qqq_bars = await ib.reqHistoricalDataAsync(
+            _Stock("QQQ", "SMART", "USD"),
+            endDateTime="",
+            durationStr="1 D",
+            barSizeSetting="1 min",
+            whatToShow="TRADES",
+            useRTH=True,
+            formatDate=2,
+        )
+        if qqq_bars:
+            qqq_price = round(float(qqq_bars[-1].close), 4)
+            logger.info("QQQ close price: $%.4f", qqq_price)
+    except Exception:
+        logger.warning("Could not fetch QQQ price — will be null in portfolio")
+
+    # Record session to portfolio.json (or portfolio_test.json in test mode)
     mode_label = "aggressive" if aggressive_mode else "conservative"
     write_session(
         picks, ib,
@@ -296,6 +315,7 @@ async def main():
         test_mode=test_mode,
         trades_by_ticker=trades_by_ticker,
         open_value_override=open_value,
+        qqq_price_override=qqq_price,
     )
 
     disconnect_ib()

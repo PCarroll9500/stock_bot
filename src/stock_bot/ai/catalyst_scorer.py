@@ -2,10 +2,12 @@
 
 import json
 import logging
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from functools import lru_cache
 from importlib.resources import files
 
+import openai
 from openai import OpenAI
 
 logger = logging.getLogger(__name__)
@@ -65,41 +67,54 @@ def _score_ticker(
         .replace("{trend_summary}", trend_summary)
         .replace("{news_items}", _format_news_items(articles))
     )
-    try:
-        response = client.chat.completions.create(
-            model=MODEL,
-            messages=[{"role": "system", "content": prompt}],
-            temperature=TEMPERATURE,
-            max_tokens=200,
-        )
-        parsed = _parse_json_response(response.choices[0].message.content or "")
-        score         = int(parsed.get("score", 0))
-        direction     = str(parsed.get("direction", "bearish")).lower()
-        risk          = max(1, min(5, int(parsed.get("risk", 3))))
-        expected_gain = float(parsed.get("expected_gain_pct", 0.0))
-        reason        = str(parsed.get("reason", ""))
-        logger.info(
-            "catalyst_scorer: %s score=%d dir=%s risk=%d gain=%.1f%% | %s",
-            ticker, score, direction, risk, expected_gain, reason,
-        )
-        return {
-            "ticker": ticker,
-            "score": score,
-            "direction": direction,
-            "risk": risk,
-            "expected_gain_pct": expected_gain,
-            "reason": reason,
-        }
-    except Exception:
-        logger.warning("catalyst_scorer: failed to score %s — defaulting to 0", ticker, exc_info=True)
-        return {
-            "ticker": ticker,
-            "score": 0,
-            "direction": "bearish",
-            "risk": 5,
-            "expected_gain_pct": 0.0,
-            "reason": "scoring failed",
-        }
+    _default = {
+        "ticker": ticker,
+        "score": 0,
+        "direction": "bearish",
+        "risk": 5,
+        "expected_gain_pct": 0.0,
+        "reason": "scoring failed",
+    }
+    for attempt in range(4):
+        try:
+            response = client.chat.completions.create(
+                model=MODEL,
+                messages=[{"role": "system", "content": prompt}],
+                temperature=TEMPERATURE,
+                max_tokens=200,
+            )
+            parsed = _parse_json_response(response.choices[0].message.content or "")
+            score         = int(parsed.get("score", 0))
+            direction     = str(parsed.get("direction", "bearish")).lower()
+            risk          = max(1, min(5, int(parsed.get("risk", 3))))
+            expected_gain = float(parsed.get("expected_gain_pct", 0.0))
+            reason        = str(parsed.get("reason", ""))
+            logger.info(
+                "catalyst_scorer: %s score=%d dir=%s risk=%d gain=%.1f%% | %s",
+                ticker, score, direction, risk, expected_gain, reason,
+            )
+            return {
+                "ticker": ticker,
+                "score": score,
+                "direction": direction,
+                "risk": risk,
+                "expected_gain_pct": expected_gain,
+                "reason": reason,
+            }
+        except openai.RateLimitError:
+            if attempt < 3:
+                wait = 5 * (2 ** attempt)  # 5s, 10s, 20s
+                logger.warning(
+                    "catalyst_scorer: rate limit hit for %s — retrying in %ds (attempt %d/4)",
+                    ticker, wait, attempt + 1,
+                )
+                time.sleep(wait)
+            else:
+                logger.warning("catalyst_scorer: rate limit — giving up on %s", ticker)
+                return _default
+        except Exception:
+            logger.warning("catalyst_scorer: failed to score %s — defaulting to 0", ticker, exc_info=True)
+            return _default
 
 
 # ── Math-based allocation ─────────────────────────────────────────────────────

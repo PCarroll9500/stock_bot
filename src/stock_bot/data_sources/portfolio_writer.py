@@ -119,6 +119,7 @@ def write_session(
     test_mode: bool = False,
     trades_by_ticker: dict | None = None,
     open_value_override: float | None = None,
+    qqq_price_override: float | None = None,
 ) -> None:
     """
     Write today's session to portfolio.json using actual IBKR fill data when
@@ -155,9 +156,13 @@ def write_session(
         open_value = _get_open_value(portfolio)
         logger.info("portfolio_writer: open_value = $%.2f (from portfolio.json)", open_value)
 
-    # QQQ as NASDAQ proxy
-    qqq_price = _get_last_price("QQQ", ib)
-    logger.info("portfolio_writer: QQQ price = %s", qqq_price)
+    # QQQ as NASDAQ proxy — use pre-fetched value if provided (avoids sync IBKR call)
+    if qqq_price_override is not None:
+        qqq_price = qqq_price_override
+        logger.info("portfolio_writer: QQQ price = %.4f (pre-fetched)", qqq_price)
+    else:
+        qqq_price = _get_last_price("QQQ", ib)
+        logger.info("portfolio_writer: QQQ price = %s", qqq_price)
 
     # Build per-pick entries.
     # Priority: actual IBKR fill → estimated from market data
