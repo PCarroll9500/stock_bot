@@ -1,5 +1,6 @@
 # src/stock_bot/data_sources/trend_checker.py
 
+import asyncio
 import logging
 from datetime import date
 
@@ -384,3 +385,313 @@ def passes_aggressive_filters(ticker: str, ib: IB, max_gap_pct: float) -> bool:
         ticker, gap_pct, (current - prev_close) / prev_close * 100.0,
     )
     return True
+
+
+# ---------------------------------------------------------------------------
+# Async counterparts — use these in async main() for parallelism
+# ---------------------------------------------------------------------------
+
+async def get_spy_day_return_async(ib: IB) -> float | None:
+    """Async version of get_spy_day_return."""
+    contract = Stock("SPY", "SMART", "USD")
+    try:
+        bars = await ib.reqHistoricalDataAsync(
+            contract,
+            endDateTime="",
+            durationStr="2 D",
+            barSizeSetting="1 day",
+            whatToShow="TRADES",
+            useRTH=True,
+            formatDate=1,
+        )
+    except Exception:
+        logger.warning("SPY context check failed — skipping")
+        return None
+
+    if not bars or len(bars) < 2:
+        return None
+
+    prev_close = bars[-2].close
+    today_close = bars[-1].close
+    if not prev_close or prev_close == 0:
+        return None
+    return (today_close - prev_close) / prev_close * 100.0
+
+
+async def passes_aggressive_filters_async(
+    ticker: str, ib: IB, max_gap_pct: float, sem: asyncio.Semaphore,
+) -> bool:
+    """Async version of passes_aggressive_filters. Pass a shared Semaphore to rate-limit."""
+    contract = Stock(ticker, "SMART", "USD")
+    async with sem:
+        try:
+            qualified = await ib.qualifyContractsAsync(contract)
+        except Exception:
+            logger.warning("aggressive_filter: qualifyContracts failed for %s — passing (fail-open)", ticker)
+            return True
+
+        if not qualified:
+            return True
+
+        try:
+            bars = await ib.reqHistoricalDataAsync(
+                qualified[0],
+                endDateTime="",
+                durationStr="2 D",
+                barSizeSetting="1 min",
+                whatToShow="TRADES",
+                useRTH=True,
+                formatDate=2,
+            )
+        except Exception:
+            logger.warning("aggressive_filter: reqHistoricalData failed for %s — passing (fail-open)", ticker)
+            return True
+
+    if not bars or len(bars) < 2:
+        return True
+
+    from datetime import date as date_type
+    today = date_type.today()
+
+    yesterday_bars = [b for b in bars if b.date.date() < today]
+    today_bars = [b for b in bars if b.date.date() == today]
+
+    if not yesterday_bars or not today_bars:
+        logger.info("aggressive_filter: %s — insufficient intraday data, passing", ticker)
+        return True
+
+    prev_close = yesterday_bars[-1].close
+    today_open = today_bars[0].open
+    current = today_bars[-1].close
+
+    if not prev_close or prev_close == 0:
+        return True
+
+    gap_pct = (today_open - prev_close) / prev_close * 100.0
+
+    if gap_pct > max_gap_pct and current < today_open:
+        logger.info(
+            "aggressive_filter: %s REJECTED — fading gap (opened +%.2f%%, now below open)",
+            ticker, gap_pct,
+        )
+        return False
+
+    if current <= prev_close:
+        logger.info(
+            "aggressive_filter: %s REJECTED — red on day (current %.2f <= prev_close %.2f)",
+            ticker, current, prev_close,
+        )
+        return False
+
+    logger.info(
+        "aggressive_filter: %s passed — gap %.2f%%, intraday +%.2f%%",
+        ticker, gap_pct, (current - prev_close) / prev_close * 100.0,
+    )
+    return True
+
+
+async def passes_gap_filter_async(
+    ticker: str, ib: IB, max_gap_pct: float, sem: asyncio.Semaphore,
+) -> bool:
+    """Async version of passes_gap_filter."""
+    contract = Stock(ticker, "SMART", "USD")
+    async with sem:
+        try:
+            qualified = await ib.qualifyContractsAsync(contract)
+        except Exception:
+            logger.warning("gap_filter: qualifyContracts failed for %s — passing (fail-open)", ticker)
+            return True
+
+        if not qualified:
+            return True
+
+        try:
+            bars = await ib.reqHistoricalDataAsync(
+                qualified[0],
+                endDateTime="",
+                durationStr="2 D",
+                barSizeSetting="1 day",
+                whatToShow="TRADES",
+                useRTH=True,
+                formatDate=1,
+            )
+        except Exception:
+            logger.warning("gap_filter: reqHistoricalData failed for %s — passing (fail-open)", ticker)
+            return True
+
+    if not bars or len(bars) < 2:
+        return True
+
+    prev_close = bars[-2].close
+    today_open = bars[-1].open
+
+    if not prev_close or prev_close == 0:
+        return True
+
+    gap_pct = (today_open - prev_close) / prev_close * 100.0
+    if gap_pct > max_gap_pct:
+        logger.info(
+            "gap_filter: %s REJECTED — open gap +%.2f%% > max %.2f%%",
+            ticker, gap_pct, max_gap_pct,
+        )
+        return False
+
+    logger.info("gap_filter: %s passed — open gap %.2f%%", ticker, gap_pct)
+    return True
+
+
+async def get_trend_data_async(ticker: str, ib: IB, sem: asyncio.Semaphore) -> dict | None:
+    """Async version of get_trend_data (10Y daily bars)."""
+    contract = Stock(ticker, "SMART", "USD")
+    async with sem:
+        try:
+            qualified = await ib.qualifyContractsAsync(contract)
+        except Exception:
+            logger.warning("trend_checker: qualifyContracts failed for %s", ticker)
+            return None
+
+        if not qualified:
+            logger.warning("trend_checker: %s not found on IBKR", ticker)
+            return None
+
+        try:
+            bars = await ib.reqHistoricalDataAsync(
+                qualified[0],
+                endDateTime="",
+                durationStr="10 Y",
+                barSizeSetting="1 day",
+                whatToShow="TRADES",
+                useRTH=True,
+                formatDate=1,
+            )
+        except Exception:
+            logger.warning("trend_checker: reqHistoricalData failed for %s", ticker)
+            return None
+
+    if not bars:
+        logger.warning("trend_checker: no bars returned for %s", ticker)
+        return None
+
+    df = util.df(bars)[["date", "close"]].set_index("date")
+    n = len(df)
+    result: dict[str, dict] = {}
+
+    for period, lookback in _PERIOD_LOOKBACKS.items():
+        if n >= lookback:
+            start_price = df["close"].iloc[-lookback]
+            end_price = df["close"].iloc[-1]
+            if start_price and start_price != 0:
+                pct = (end_price - start_price) / start_price * 100.0
+                result[period] = {"pct_change": pct}
+            else:
+                result[period] = {"pct_change": None}
+        else:
+            result[period] = {"pct_change": None}
+
+    ytd_start = date(date.today().year, 1, 1)
+    ytd_df = df[df.index >= ytd_start]
+    if not ytd_df.empty and n >= 1:
+        start_price = ytd_df["close"].iloc[0]
+        end_price = df["close"].iloc[-1]
+        if start_price and start_price != 0:
+            result["ytd"] = {"pct_change": (end_price - start_price) / start_price * 100.0}
+        else:
+            result["ytd"] = {"pct_change": None}
+    else:
+        result["ytd"] = {"pct_change": None}
+
+    if n >= 2:
+        start_price = df["close"].iloc[0]
+        end_price = df["close"].iloc[-1]
+        if start_price and start_price != 0:
+            result["overall"] = {"pct_change": (end_price - start_price) / start_price * 100.0}
+        else:
+            result["overall"] = {"pct_change": None}
+    else:
+        result["overall"] = {"pct_change": None}
+
+    return result
+
+
+async def passes_trend_filters_async(
+    ticker: str, ib: IB, filters_config: dict, sem: asyncio.Semaphore,
+) -> bool:
+    """Async version of passes_trend_filters."""
+    trend_data = await get_trend_data_async(ticker, ib, sem)
+    if trend_data is None:
+        logger.info("trend_checker: no data for %s — passing (fail-open)", ticker)
+        return True
+
+    for period, bounds in filters_config.items():
+        if period.startswith("_"):
+            continue
+        min_val = bounds.get("min")
+        max_val = bounds.get("max")
+        if min_val is None and max_val is None:
+            continue
+        period_data = trend_data.get(period)
+        if period_data is None:
+            continue
+        pct = period_data.get("pct_change")
+        if pct is None:
+            continue
+        if min_val is not None and pct < min_val:
+            logger.info(
+                "trend_checker: %s REJECTED — %s pct_change %.2f%% < min %.2f%%",
+                ticker, period, pct, min_val,
+            )
+            return False
+        if max_val is not None and pct > max_val:
+            logger.info(
+                "trend_checker: %s REJECTED — %s pct_change %.2f%% > max %.2f%%",
+                ticker, period, pct, max_val,
+            )
+            return False
+
+    logger.info("trend_checker: %s passed all trend filters", ticker)
+    return True
+
+
+async def get_trend_for_scoring_async(
+    ticker: str, ib: IB, sem: asyncio.Semaphore,
+) -> dict | None:
+    """Async version of get_trend_for_scoring (1Y daily bars)."""
+    contract = Stock(ticker, "SMART", "USD")
+    async with sem:
+        try:
+            qualified = await ib.qualifyContractsAsync(contract)
+            if not qualified:
+                return None
+            bars = await ib.reqHistoricalDataAsync(
+                qualified[0],
+                endDateTime="",
+                durationStr="1 Y",
+                barSizeSetting="1 day",
+                whatToShow="TRADES",
+                useRTH=True,
+                formatDate=1,
+            )
+        except Exception:
+            logger.warning("trend_checker: trend fetch failed for %s", ticker)
+            return None
+
+    if not bars or len(bars) < 2:
+        return None
+
+    closes = [b.close for b in bars]
+    n = len(closes)
+    last = closes[-1]
+
+    def pct(lookback: int) -> float | None:
+        if n >= lookback:
+            p = closes[-lookback]
+            return round((last - p) / p * 100, 1) if p else None
+        return None
+
+    return {
+        "daily":     pct(2),
+        "weekly":    pct(6),
+        "monthly":   pct(22),
+        "quarterly": pct(min(64, n)),
+        "yearly":    pct(min(253, n)),
+    }

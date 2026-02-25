@@ -1,6 +1,7 @@
 # src/stock_bot/main.py
 
 import argparse
+import asyncio
 import json
 import logging
 import sys
@@ -8,16 +9,16 @@ from pathlib import Path
 
 from stock_bot.core.logging_config import setup_logging
 from stock_bot.config.settings import ib_settings
-from stock_bot.brokers.ib.connect_disconnect import connect_ib, disconnect_ib
-from stock_bot.brokers.ib.buy_stocks import buy_stock
-from stock_bot.data_sources.scanner import get_scanner_universe
-from stock_bot.data_sources.news_fetcher import fetch_news_for_tickers
+from stock_bot.brokers.ib.connect_disconnect import connect_ib_async, disconnect_ib
+from stock_bot.brokers.ib.buy_stocks import buy_stock_async
+from stock_bot.data_sources.scanner import get_scanner_universe_async
+from stock_bot.data_sources.news_fetcher import fetch_news_for_tickers_async
 from stock_bot.data_sources.trend_checker import (
-    passes_trend_filters,
-    passes_gap_filter,
-    passes_aggressive_filters,
-    get_spy_day_return,
-    get_trend_for_scoring,
+    passes_trend_filters_async,
+    passes_gap_filter_async,
+    passes_aggressive_filters_async,
+    get_spy_day_return_async,
+    get_trend_for_scoring_async,
     fmt_trend_for_prompt,
 )
 from stock_bot.ai.catalyst_scorer import score_candidates, filter_and_rank
@@ -43,7 +44,7 @@ def _load_picker_config() -> dict:
         return {}
 
 
-def main():
+async def main():
     parser = argparse.ArgumentParser(description="Inf Money Stock Bot")
     parser.add_argument(
         "--test",
@@ -81,7 +82,7 @@ def main():
         aggressive_mode, num_stocks,
     )
 
-    ib = connect_ib()
+    ib = await connect_ib_async()
 
     if ib.isConnected():
         logger.info("Connected to IBKR")
@@ -91,7 +92,7 @@ def main():
         sys.exit(1)
 
     # Allow IBKR a moment to push account data after connection
-    ib.sleep(2)
+    await asyncio.sleep(2)
 
     # Exclude tickers already held in the account so we never double-buy
     held_positions = ib.positions(account=ib_settings.account)
@@ -107,62 +108,84 @@ def main():
         )
         excluded_set |= held_tickers
 
-    # 1. Scan
-    universe = get_scanner_universe(ib, config["scanner"])
+    # 1. Scan — all 15 scan codes run in parallel (~15 s → ~2 s)
+    universe = await get_scanner_universe_async(ib, config["scanner"])
     universe = [s for s in universe if s["ticker"] not in excluded_set]
     logger.info("Scanner universe: %d unique tickers", len(universe))
 
-    # 2. Filter
+    # Shared semaphore for IBKR historical data requests (pacing: ~50 req/10 s)
+    hist_sem = asyncio.Semaphore(10)
+
+    # 2. Filter — run all per-ticker checks in parallel
     spy_return: float | None = None
     if aggressive_mode:
         effective_min_score = config.get("aggressive_min_score", 9)
 
-        # SPY context check — down market raises the bar
-        spy_return = get_spy_day_return(ib)
+        # SPY check runs concurrently with the aggressive filter batch
+        filter_coros = [
+            passes_aggressive_filters_async(s["ticker"], ib, max_open_gap_pct, hist_sem)
+            for s in universe
+        ]
+        spy_return, *filter_results = await asyncio.gather(
+            get_spy_day_return_async(ib),
+            *filter_coros,
+        )
+
         if spy_return is not None:
             logger.info("SPY day return: %.2f%%", spy_return)
             if spy_return < config.get("spy_down_threshold", -1.0):
                 effective_min_score = 10
                 logger.info("SPY down %.2f%% — raising min_score to 10", spy_return)
 
-        # Skip trend filter entirely — historical trend is irrelevant for binary events
-        survivors = universe
-        logger.info("Aggressive mode: skipping trend filter, %d candidates", len(survivors))
-
-        # Aggressive momentum filter: reject fading gaps and red-on-day stocks
-        survivors = [s for s in survivors if passes_aggressive_filters(s["ticker"], ib, max_open_gap_pct)]
+        survivors = [s for s, passed in zip(universe, filter_results) if passed]
         logger.info("After aggressive filter: %d survivors", len(survivors))
 
     else:
         effective_min_score = min_score
 
-        # Conservative: trend filter then simple gap filter
         if trend_filters:
-            survivors = [s for s in universe if passes_trend_filters(s["ticker"], ib, trend_filters)]
+            trend_filter_results = await asyncio.gather(*[
+                passes_trend_filters_async(s["ticker"], ib, trend_filters, hist_sem)
+                for s in universe
+            ])
+            survivors = [s for s, passed in zip(universe, trend_filter_results) if passed]
         else:
             survivors = universe
         logger.info("After trend filter: %d survivors", len(survivors))
 
-        survivors = [s for s in survivors if passes_gap_filter(s["ticker"], ib, max_open_gap_pct)]
+        gap_results = await asyncio.gather(*[
+            passes_gap_filter_async(s["ticker"], ib, max_open_gap_pct, hist_sem)
+            for s in survivors
+        ])
+        survivors = [s for s, passed in zip(survivors, gap_results) if passed]
         logger.info("After gap filter: %d survivors", len(survivors))
 
-    # 3. News
-    news_by_ticker = fetch_news_for_tickers(survivors, ib, config["news"])
+    # 3. News — all tickers fetched in parallel (up to 5 concurrent)
+    news_by_ticker = await fetch_news_for_tickers_async(survivors, ib, config["news"])
 
-    # 4. Trend data for tickers that have news (used by GPT for context + scoring adjustment)
+    # 4. Trend data — all tickers fetched in parallel
     logger.info("Fetching trend data for %d tickers with news", len(news_by_ticker))
+    trend_sem = asyncio.Semaphore(10)
+    tickers_with_news = list(news_by_ticker.keys())
+    trend_results = await asyncio.gather(*[
+        get_trend_for_scoring_async(ticker, ib, trend_sem)
+        for ticker in tickers_with_news
+    ])
     trend_by_ticker: dict[str, str] = {}
-    for ticker in news_by_ticker:
-        trend = get_trend_for_scoring(ticker, ib)
+    for ticker, trend in zip(tickers_with_news, trend_results):
         trend_by_ticker[ticker] = fmt_trend_for_prompt(trend)
         logger.info("trend: %s — %s", ticker, trend_by_ticker[ticker])
 
-    # 5. Score all candidates once with GPT (no repeated API calls on retry)
-    all_scored = score_candidates(news_by_ticker, excluded_set, trend_by_ticker)
+    # 5. Score all candidates with GPT (run in executor so event loop stays responsive)
+    loop = asyncio.get_running_loop()
+    all_scored = await loop.run_in_executor(
+        None,
+        lambda: score_candidates(news_by_ticker, excluded_set, trend_by_ticker),
+    )
 
-    # 6. Try to fill num_stocks slots — lower aggression threshold until we hit the target
+    # 6. Try to fill num_stocks slots — lower threshold until we hit the target
     picks: list[dict] = []
-    score_floor = config.get("score_floor", 4)  # never go below this
+    score_floor = config.get("score_floor", 4)
     threshold = effective_min_score
 
     while threshold >= score_floor:
@@ -178,8 +201,7 @@ def main():
         )
         threshold -= 1
 
-    # If still short after threshold relaxation, expand the candidate pool to
-    # the broader conservative universe (gap filter only, no aggressive filter)
+    # If still short, expand to conservative candidate pool
     if len(picks) < num_stocks and aggressive_mode:
         logger.info(
             "Still short (%d/%d) — expanding to conservative candidate pool",
@@ -190,14 +212,27 @@ def main():
             s for s in universe
             if s["ticker"] not in already_scored
             and s["ticker"] not in excluded_set
-            and passes_gap_filter(s["ticker"], ib, max_open_gap_pct)
         ]
         if conservative_extras:
-            extra_news = fetch_news_for_tickers(conservative_extras, ib, config["news"])
-            for ticker in extra_news:
-                trend = get_trend_for_scoring(ticker, ib)
+            gap_results2 = await asyncio.gather(*[
+                passes_gap_filter_async(s["ticker"], ib, max_open_gap_pct, hist_sem)
+                for s in conservative_extras
+            ])
+            conservative_extras = [s for s, passed in zip(conservative_extras, gap_results2) if passed]
+
+        if conservative_extras:
+            extra_news = await fetch_news_for_tickers_async(conservative_extras, ib, config["news"])
+            extra_tickers = list(extra_news.keys())
+            extra_trend_results = await asyncio.gather(*[
+                get_trend_for_scoring_async(ticker, ib, trend_sem)
+                for ticker in extra_tickers
+            ])
+            for ticker, trend in zip(extra_tickers, extra_trend_results):
                 trend_by_ticker[ticker] = fmt_trend_for_prompt(trend)
-            extra_scored = score_candidates(extra_news, excluded_set, trend_by_ticker)
+            extra_scored = await loop.run_in_executor(
+                None,
+                lambda: score_candidates(extra_news, excluded_set, trend_by_ticker),
+            )
             all_scored = all_scored + extra_scored
             picks = filter_and_rank(all_scored, num_stocks, min_score=score_floor)
             logger.info(
@@ -216,7 +251,6 @@ def main():
     # 7. Execute buy orders via IBKR
     _portfolio = load_portfolio(test_mode=test_mode)
 
-    # Use actual IBKR account balance as capital base; fall back to JSON history
     live_balance = get_live_account_value(ib)
     if live_balance is not None:
         open_value = live_balance
@@ -232,7 +266,7 @@ def main():
             alloc_pct = pick.get("allocation_pct") or round(100.0 / len(picks), 1)
             alloc_usd = alloc_pct / 100.0 * open_value
             try:
-                trades = buy_stock(pick["ticker"], ib, dollar_amount=alloc_usd)
+                trades = await buy_stock_async(pick["ticker"], ib, dollar_amount=alloc_usd)
                 trades_by_ticker[pick["ticker"]] = trades
                 logger.info("BUY submitted: %s $%.2f (%.1f%%)", pick["ticker"], alloc_usd, alloc_pct)
             except Exception:
@@ -241,7 +275,7 @@ def main():
 
         # Wait for market-order fills (normally < 1 s at open; allow 10 s)
         logger.info("Waiting 10 s for order fills…")
-        ib.sleep(10)
+        await asyncio.sleep(10)
 
         # Log fill summary
         for ticker, trades in trades_by_ticker.items():
@@ -269,4 +303,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

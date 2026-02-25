@@ -8,6 +8,25 @@ logger = logging.getLogger(__name__)
 _ib = IB()
 
 
+async def connect_ib_async() -> IB:
+    if not _ib.isConnected():
+        logger.info(
+            "Connecting to IBKR at %s:%s (client_id=%s)",
+            ib_settings.host,
+            ib_settings.port,
+            ib_settings.client_id,
+        )
+        await _ib.connectAsync(
+            ib_settings.host,
+            ib_settings.port,
+            clientId=ib_settings.client_id,
+            timeout=10,
+        )
+    else:
+        logger.debug("IBKR already connected")
+    return _ib
+
+
 def connect_ib() -> IB:
     if not _ib.isConnected():
         logger.info(
