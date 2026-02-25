@@ -55,11 +55,6 @@
         <div class="kpi-value" id="kpiTodayReturnUsd">—</div>
         <div class="kpi-sub" id="kpiTodayReturnPct">—</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-label">vs NASDAQ (QQQ)</div>
-        <div class="kpi-value" id="kpiVsQqq">—</div>
-        <div class="kpi-sub" id="kpiVsQqqSub">fetching NASDAQ data…</div>
-      </div>
     </section>
 
     <!-- EQUITY CHART -->
@@ -68,9 +63,6 @@
         <div class="card-title">Equity Curve</div>
         <div class="chart-legend">
           <span class="legend-dot green"></span><span>Portfolio</span>
-          <span id="qqqLegend" style="display:none">
-            <span class="legend-dot yellow"></span><span>QQQ (indexed)</span>
-          </span>
         </div>
       </div>
       <div class="chart-wrap">
@@ -120,12 +112,11 @@
               <th>Open Value</th>
               <th>Close Value</th>
               <th>Session Return</th>
-              <th>vs QQQ</th>
               <th>Picks</th>
             </tr>
           </thead>
           <tbody id="historyBody">
-            <tr><td colspan="7" class="empty">No sessions yet.</td></tr>
+            <tr><td colspan="6" class="empty">No sessions yet.</td></tr>
           </tbody>
         </table>
       </div>
