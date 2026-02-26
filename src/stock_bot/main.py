@@ -76,6 +76,7 @@ async def main():
     max_open_gap_pct: float = config.get("max_open_gap_pct", 5.0)
     trend_filters: dict | None = config.get("trend_filters") or None
     aggressive_mode: bool = config.get("aggressive_mode", False)
+    fill_wait_seconds: int = config.get("fill_wait_seconds", 60)
 
     logger.info(
         "Loaded config — aggressive_mode=%s, num_stocks=%d",
@@ -273,19 +274,38 @@ async def main():
                 logger.error("Buy order failed for %s", pick["ticker"], exc_info=True)
                 trades_by_ticker[pick["ticker"]] = []
 
-        # Wait for market-order fills (normally < 1 s at open; allow 10 s)
-        logger.info("Waiting 10 s for order fills…")
-        await asyncio.sleep(10)
+        # Wait for market-order fills
+        logger.info("Waiting %d s for order fills…", fill_wait_seconds)
+        await asyncio.sleep(fill_wait_seconds)
 
-        # Log fill summary
-        for ticker, trades in trades_by_ticker.items():
-            for t in trades[:1]:  # entry order
+        # Verify fills — only record picks that were actually purchased
+        filled_picks: list[dict] = []
+        for pick in picks:
+            ticker = pick["ticker"]
+            confirmed = False
+            for t in (trades_by_ticker.get(ticker) or [])[:1]:  # entry order only
                 status = getattr(t, "orderStatus", None)
                 if status:
                     logger.info(
-                        "Fill: %s status=%s filled=%.0f avgPrice=%.4f",
+                        "Fill check: %s status=%s filled=%.0f avgPrice=%.4f",
                         ticker, status.status, status.filled, status.avgFillPrice,
                     )
+                    if status.filled > 0:
+                        confirmed = True
+            if confirmed:
+                filled_picks.append(pick)
+            else:
+                logger.warning(
+                    "BUY NOT CONFIRMED — %s will NOT be recorded in portfolio", ticker
+                )
+
+        unfilled = len(picks) - len(filled_picks)
+        if unfilled:
+            logger.warning(
+                "%d of %d picks were NOT filled and will be excluded from the portfolio",
+                unfilled, len(picks),
+            )
+        picks = filled_picks
 
     # 8. Pre-fetch QQQ price asynchronously (avoids sync IBKR call inside write_session)
     from ib_insync import Stock as _Stock

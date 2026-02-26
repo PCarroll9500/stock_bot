@@ -10,10 +10,13 @@ Cron entry (add with: crontab -e):
 """
 
 import argparse
+import json
 import logging
 import sys
 from datetime import date as date_type
 from pathlib import Path
+
+from ib_insync import Trade
 
 # Package is installed in the venv via `pip install -e .`
 from stock_bot.core.logging_config import setup_logging
@@ -24,6 +27,15 @@ from stock_bot.data_sources.portfolio_writer import (
     save_portfolio,
     _get_last_price,
 )
+
+_CONFIG_PATH = Path(__file__).resolve().parents[1] / "src" / "stock_bot" / "config" / "picker_config.json"
+
+
+def _load_config() -> dict:
+    try:
+        return json.loads(_CONFIG_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
 
 
 def main() -> None:
@@ -38,6 +50,9 @@ def main() -> None:
 
     setup_logging()
     logger = logging.getLogger(__name__)
+
+    config = _load_config()
+    sell_wait_seconds: int = config.get("sell_wait_seconds", 45)
 
     if test_mode:
         logger.info("*** TEST MODE — using portfolio_test.json ***")
@@ -63,22 +78,65 @@ def main() -> None:
 
     logger.info("close_of_day: updating session for %s", today)
 
-    # Liquidate all open positions before recording final prices
+    # Liquidate all open positions, collecting Trade objects for verification
     logger.info("close_of_day: liquidating all positions")
+    sell_trades: dict[str, Trade] = {}
     for pick in session.get("picks", []):
         if pick.get("shares", 0) > 0:
             try:
-                sell_all_stock(pick["ticker"], ib)
+                trade = sell_all_stock(pick["ticker"], ib)
+                if trade is not None:
+                    sell_trades[pick["ticker"]] = trade
+                else:
+                    logger.warning(
+                        "close_of_day: no open position found for %s — sell skipped",
+                        pick["ticker"],
+                    )
             except Exception:
                 logger.error("close_of_day: sell failed for %s", pick["ticker"], exc_info=True)
-    ib.sleep(5)  # allow market orders to acknowledge
+    logger.info("close_of_day: waiting %d s for sell orders to fill…", sell_wait_seconds)
+    ib.sleep(sell_wait_seconds)  # allow market orders to fill
 
-    # Fetch close prices for every pick
+    # Verify sells — log confirmation or warning for each position
+    for pick in session.get("picks", []):
+        ticker = pick["ticker"]
+        if pick.get("shares", 0) <= 0:
+            continue
+        trade = sell_trades.get(ticker)
+        if trade is None:
+            logger.warning("close_of_day: SELL NOT CONFIRMED — %s (no order placed)", ticker)
+            continue
+        status = getattr(trade, "orderStatus", None)
+        if status and status.filled > 0:
+            logger.info(
+                "close_of_day: SOLD %s — %.0f shares @ $%.4f avg",
+                ticker, status.filled, status.avgFillPrice,
+            )
+        else:
+            logger.warning(
+                "close_of_day: SELL NOT CONFIRMED — %s status=%s filled=%.0f",
+                ticker,
+                getattr(status, "status", "unknown") if status else "no status",
+                getattr(status, "filled", 0) if status else 0,
+            )
+
+    # Record close prices — prefer actual sell fill price, fall back to last bar price
     total_close_value = 0.0
     for pick in session.get("picks", []):
-        close_price = _get_last_price(pick["ticker"], ib)
+        ticker = pick["ticker"]
         buy_price = pick.get("buy_price", 0)
         shares = pick.get("shares", 0)
+
+        # Try actual sell fill price first
+        close_price: float | None = None
+        trade = sell_trades.get(ticker)
+        sell_status = getattr(trade, "orderStatus", None) if trade else None
+        if sell_status and sell_status.filled > 0:
+            close_price = float(sell_status.avgFillPrice)
+
+        # Fall back to last bar price
+        if close_price is None:
+            close_price = _get_last_price(ticker, ib)
 
         if close_price and buy_price > 0 and shares > 0:
             day_return_usd = (close_price - buy_price) * shares
@@ -89,11 +147,11 @@ def main() -> None:
             close_value = close_price * shares
             logger.info(
                 "close_of_day: %s close=%.4f return=%.2f%% ($%.2f)",
-                pick["ticker"], close_price, day_return_pct, day_return_usd,
+                ticker, close_price, day_return_pct, day_return_usd,
             )
         else:
             close_value = pick.get("buy_value", 0)
-            logger.warning("close_of_day: %s — no close price, using buy_value", pick["ticker"])
+            logger.warning("close_of_day: %s — no close price, using buy_value", ticker)
 
         total_close_value += close_value
 

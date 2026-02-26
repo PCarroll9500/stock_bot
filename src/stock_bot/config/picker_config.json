@@ -9,6 +9,9 @@
   "max_open_gap_pct": 5.0,
   "always_exclude": ["NVDA", "TSLA", "BTC"],
 
+  "fill_wait_seconds": 60,
+  "sell_wait_seconds": 45,
+
   "trend_filters": {
     "monthly":   {"min": 5.0, "max": null},
     "quarterly": {"min": 10.0, "max": null},

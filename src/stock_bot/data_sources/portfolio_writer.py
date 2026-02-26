@@ -193,8 +193,16 @@ def write_session(
                 "portfolio_writer: %s score=%d → %.1f%% — FILLED %d @ $%.4f = $%.2f",
                 p["ticker"], p["score"], alloc_pct, shares, buy_price, buy_value,
             )
+        elif trades_by_ticker is not None:
+            # Trade data was provided but this pick has no confirmed fill — skip it.
+            # This is a safety net; main.py should have already filtered these out.
+            logger.warning(
+                "portfolio_writer: %s — no confirmed fill, skipping (not actually purchased)",
+                p["ticker"],
+            )
+            continue
         else:
-            # Fall back to estimated price from IBKR market data
+            # No trade data provided at all — fall back to estimated price
             buy_price = _get_last_price(p["ticker"], ib) or 0.0
             if buy_price > 0:
                 shares = math.floor(alloc_usd / buy_price)
