@@ -153,14 +153,16 @@ def buy_stock(
     # --- Resolve share quantity --------------------------------------------
     if dollar_amount is not None:
         price = _last_price(contract, ib)
-        shares = dollar_amount / price
+        shares = math.floor(dollar_amount / price)
         logger.info(
-            "Dollar amount $%.2f at $%.4f/share → %.4f shares of %s",
+            "Dollar amount $%.2f at $%.4f/share → %d shares of %s",
             dollar_amount,
             price,
             shares,
             ticker,
         )
+    else:
+        shares = math.floor(shares)
 
     if shares <= 0:
         raise ValueError(f"Share count must be > 0, got {shares:.4f}.")
@@ -380,11 +382,13 @@ async def buy_stock_async(
 
     if dollar_amount is not None:
         price = await _last_price_async(contract, ib)
-        shares = dollar_amount / price
+        shares = math.floor(dollar_amount / price)
         logger.info(
-            "Dollar amount $%.2f at $%.4f/share → %.4f shares of %s",
+            "Dollar amount $%.2f at $%.4f/share → %d shares of %s",
             dollar_amount, price, shares, ticker,
         )
+    else:
+        shares = math.floor(shares)
 
     if shares <= 0:
         raise ValueError(f"Share count must be > 0, got {shares:.4f}.")

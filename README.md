@@ -598,16 +598,48 @@ A cron entry fires the wrapper script at 9:31 AM ET on trading days:
 
 The wrapper activates the virtual environment, runs the bot, and commits the updated `portfolio.json` to GitHub so the dashboard updates automatically.
 
-### Manual
+### Manual — paper trading (default)
 
 ```bash
 .venv/bin/python -m stock_bot.main
 ```
 
-### Test mode (writes to `portfolio_test.json`, never touches production data)
+Requires `IB_MODE=paper` (or unset) in `.env`. Connects to IBKR on port `IB_PORT_PAPER` (default `4002`) using `IB_ACCOUNT_PAPER`.
+
+### Manual — live trading (real money)
 
 ```bash
+.venv/bin/python -m stock_bot.main
+```
+
+Set the following in `.env` before running:
+
+```env
+IB_MODE=live
+IB_ACCOUNT_LIVE=your_live_account_id
+```
+
+This connects on port `IB_PORT_LIVE` (default `4001`) and places real market orders.
+
+> **Warning:** Live mode submits real orders immediately. Ensure IBKR Gateway/TWS is running on port 4001, your live account ID is correct, and you have reviewed `picker_config.json` before running.
+
+### CLI flags
+
+| Flag | Effect |
+|------|--------|
+| *(none)* | Normal run — scans, scores, and places real orders (paper or live depending on `IB_MODE`) |
+| `--test` | Dry run — runs the full pipeline but **skips order execution**. Writes output to `portfolio_test.json` instead of `portfolio.json`. Use this to verify the pipeline works before trading real money. |
+| `--sequential` | Processes one ticker at a time instead of running concurrently. Slower but easier to step through in a debugger. Combine with `--test` for safe debugging. |
+
+```bash
+# Dry run — no orders placed, safe to run any time
 .venv/bin/python -m stock_bot.main --test
+
+# Dry run, sequential (easiest to debug)
+.venv/bin/python -m stock_bot.main --test --sequential
+
+# Live run, sequential (useful for monitoring first live trade)
+.venv/bin/python -m stock_bot.main --sequential
 ```
 
 ### Close all positions (paper account only)

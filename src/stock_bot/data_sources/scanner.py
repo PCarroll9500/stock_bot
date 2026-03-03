@@ -68,6 +68,8 @@ async def get_scanner_universe_async(ib: IB, config: dict) -> list[dict]:
     max_per_scan: int = config.get("max_per_scan", 50)
     market_cap_max_b: float | None = config.get("market_cap_max_b")
 
+    sem = asyncio.Semaphore(10)
+
     async def _scan_one(scan_code: str) -> tuple[str, list[dict]]:
         sub = ScannerSubscription(
             instrument="STK",
@@ -79,17 +81,18 @@ async def get_scanner_universe_async(ib: IB, config: dict) -> list[dict]:
         )
         if market_cap_max_b is not None:
             sub.marketCapBelow = market_cap_max_b * 1000
-        try:
-            results = await ib.reqScannerDataAsync(sub)
-            items = []
-            for item in results:
-                contract = item.contractDetails.contract
-                items.append({"ticker": contract.symbol, "conId": contract.conId})
-            logger.info("Scanner %s: %d results", scan_code, len(results))
-            return scan_code, items
-        except Exception:
-            logger.warning("Scanner %s: skipping — scan returned an error", scan_code, exc_info=True)
-            return scan_code, []
+        async with sem:
+            try:
+                results = await ib.reqScannerDataAsync(sub)
+                items = []
+                for item in results:
+                    contract = item.contractDetails.contract
+                    items.append({"ticker": contract.symbol, "conId": contract.conId})
+                logger.info("Scanner %s: %d results", scan_code, len(results))
+                return scan_code, items
+            except Exception:
+                logger.warning("Scanner %s: skipping — scan returned an error", scan_code, exc_info=True)
+                return scan_code, []
 
     all_results = await asyncio.gather(*[_scan_one(sc) for sc in scan_codes])
 

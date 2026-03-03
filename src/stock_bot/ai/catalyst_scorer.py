@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 MODEL       = "gpt-4o"
 TEMPERATURE = 0.3
-MAX_WORKERS = 10
+MAX_WORKERS = 3
 
 _ALLOC_MIN_PCT = 5.0
 _ALLOC_MAX_PCT = 35.0
@@ -171,6 +171,7 @@ def score_candidates(
     news_by_ticker: dict[str, list[dict]],
     excluded: set[str],
     trend_by_ticker: dict[str, str] | None = None,
+    sequential: bool = False,
 ) -> list[dict]:
     """
     Score every ticker in news_by_ticker with GPT in parallel.
@@ -193,7 +194,7 @@ def score_candidates(
     logger.info("catalyst_scorer: scoring %d tickers with news", len(candidates))
 
     results: list[dict] = []
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+    with ThreadPoolExecutor(max_workers=1 if sequential else MAX_WORKERS) as executor:
         futures = {
             executor.submit(
                 _score_ticker,

@@ -287,16 +287,24 @@ def get_spy_day_return(ib: IB) -> float | None:
             useRTH=True,
             formatDate=1,
         )
-    except Exception:
-        logger.warning("SPY context check failed — skipping")
+    except Exception as e:
+        logger.warning("SPY context check failed — skipping. Reason: %s", e, exc_info=True)
         return None
 
-    if not bars or len(bars) < 2:
+    if not bars:
+        logger.warning("SPY context check: no bars returned (market closed or no data for today?)")
+        return None
+
+    if len(bars) < 2:
+        logger.warning("SPY context check: only %d bar(s) returned — need at least 2", len(bars))
         return None
 
     prev_close = bars[-2].close
     today_close = bars[-1].close
+    logger.debug("SPY bars: prev_close=%.4f  today_close=%.4f", prev_close, today_close)
+
     if not prev_close or prev_close == 0:
+        logger.warning("SPY context check: prev_close is zero or missing")
         return None
 
     return (today_close - prev_close) / prev_close * 100.0
@@ -404,17 +412,26 @@ async def get_spy_day_return_async(ib: IB) -> float | None:
             useRTH=True,
             formatDate=1,
         )
-    except Exception:
-        logger.warning("SPY context check failed — skipping")
+    except Exception as e:
+        logger.warning("SPY context check failed — skipping. Reason: %s", e, exc_info=True)
         return None
 
-    if not bars or len(bars) < 2:
+    if not bars:
+        logger.warning("SPY context check: no bars returned (market closed or no data for today?)")
+        return None
+
+    if len(bars) < 2:
+        logger.warning("SPY context check: only %d bar(s) returned — need at least 2", len(bars))
         return None
 
     prev_close = bars[-2].close
     today_close = bars[-1].close
+    logger.debug("SPY bars: prev_close=%.4f  today_close=%.4f", prev_close, today_close)
+
     if not prev_close or prev_close == 0:
+        logger.warning("SPY context check: prev_close is zero or missing")
         return None
+
     return (today_close - prev_close) / prev_close * 100.0
 
 

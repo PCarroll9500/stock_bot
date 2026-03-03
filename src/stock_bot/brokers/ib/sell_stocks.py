@@ -92,6 +92,7 @@ def sell_stock(
     Raises:
         ValueError: On invalid argument combinations or share count.
     """
+    shares = math.floor(shares)
     if shares <= 0:
         raise ValueError(f"shares must be > 0, got {shares}.")
 

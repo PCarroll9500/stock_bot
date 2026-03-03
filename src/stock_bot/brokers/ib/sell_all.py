@@ -1,6 +1,7 @@
 # src/stock_bot/brokers/ib/sell_all.py
 
 import logging
+import math
 from typing import Optional
 
 from ib_insync import IB, Order, Stock, Trade
@@ -45,7 +46,7 @@ def sell_all_stock(
 
     for pos in positions:
         if pos.contract.symbol == ticker and pos.contract.secType == "STK":
-            shares = float(pos.position)
+            shares = math.floor(float(pos.position))
             if shares <= 0:
                 logger.warning(
                     "Position for %s is %.4f (non-positive) — no order placed",

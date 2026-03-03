@@ -6,6 +6,15 @@
   "num_stocks": 10,
   "min_score": 5,
   "score_floor": 4,
+  "max_score_candidates": 30,
+
+  "_pre_score_comment": "Hard trend thresholds applied before GPT — stocks failing any are dropped without an AI call. null = no limit for that direction.",
+  "pre_score_trend_filters": {
+    "weekly":    {"min":  0.0, "max": null},
+    "monthly":   {"min": -5.0, "max": null},
+    "quarterly": {"min": null, "max": null},
+    "yearly":    {"min": null, "max": null}
+  },
   "max_open_gap_pct": 5.0,
   "always_exclude": ["NVDA", "TSLA", "BTC"],
 
@@ -19,7 +28,7 @@
   },
 
   "scanner": {
-    "market_cap_max_b": 10.0,
+    "market_cap_max_b": 500,
     "scan_codes": [
       "TOP_PERC_GAIN", "TOP_OPEN_PERC_GAIN", "HIGH_OPEN_GAP",
       "TOP_AFTER_HOURS_PERC_GAIN", "MOST_ACTIVE", "MOST_ACTIVE_USD",
@@ -34,7 +43,7 @@
   },
 
   "news": {
-    "providers": "FLY+BRFG+DJ-N",
+    "providers": "BRFG+DJ-N",
     "max_articles": 5
   }
 }
