@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 10000,
   "start_date": "2026-03-04",
-  "updated_at": "2026-03-04T09:47:28.254988",
+  "updated_at": "2026-03-04T16:05:50.741799",
   "sessions": [
     {
       "date": "2026-03-04",
@@ -21,9 +21,9 @@
           "shares": 456,
           "buy_price": 10.0,
           "buy_value": 4560.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 11.9035,
+          "day_return_pct": 19.035,
+          "day_return_usd": 868.0
         },
         {
           "ticker": "RCAT",
@@ -37,9 +37,9 @@
           "shares": 247,
           "buy_price": 13.8,
           "buy_value": 3408.6,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 14.64,
+          "day_return_pct": 6.087,
+          "day_return_usd": 207.48
         },
         {
           "ticker": "NOW",
@@ -53,9 +53,9 @@
           "shares": 17,
           "buy_price": 112.79,
           "buy_value": 1917.43,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 114.07,
+          "day_return_pct": 1.135,
+          "day_return_usd": 21.76
         },
         {
           "ticker": "PLTR",
@@ -69,9 +69,9 @@
           "shares": 16,
           "buy_price": 151.09,
           "buy_value": 2417.44,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 153.03,
+          "day_return_pct": 1.284,
+          "day_return_usd": 31.04
         },
         {
           "ticker": "MRNA",
@@ -85,9 +85,9 @@
           "shares": 29,
           "buy_price": 53.1,
           "buy_value": 1539.9,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 57.81,
+          "day_return_pct": 8.87,
+          "day_return_usd": 136.59
         },
         {
           "ticker": "ASTS",
@@ -101,9 +101,9 @@
           "shares": 33,
           "buy_price": 99.82,
           "buy_value": 3294.06,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 105.645,
+          "day_return_pct": 5.836,
+          "day_return_usd": 192.23
         },
         {
           "ticker": "CRWV",
@@ -117,9 +117,9 @@
           "shares": 42,
           "buy_price": 76.69,
           "buy_value": 3220.98,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 79.13,
+          "day_return_pct": 3.182,
+          "day_return_usd": 102.48
         },
         {
           "ticker": "NBIS",
@@ -133,9 +133,9 @@
           "shares": 36,
           "buy_price": 92.0,
           "buy_value": 3312.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 97.81,
+          "day_return_pct": 6.315,
+          "day_return_usd": 209.16
         },
         {
           "ticker": "SOFI",
@@ -149,25 +149,25 @@
           "shares": 86,
           "buy_price": 18.87,
           "buy_value": 1622.82,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 18.67,
+          "day_return_pct": -1.06,
+          "day_return_usd": -17.2
         }
       ],
       "qqq_buy_price": 605.37,
-      "qqq_close_price": null,
-      "qqq_day_return_pct": null,
+      "qqq_close_price": 610.52,
+      "qqq_day_return_pct": 0.851,
       "portfolio_open_value": 30077.79,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null
+      "portfolio_close_value": 31829.32,
+      "session_return_pct": 5.823,
+      "session_return_usd": 1751.53
     }
   ],
   "equity_curve": [
     {
       "date": "2026-03-04",
-      "portfolio_value": 30077.79,
-      "qqq_indexed": 10000.0
+      "portfolio_value": 31829.32,
+      "qqq_indexed": 10085.07
     }
   ]
 }
