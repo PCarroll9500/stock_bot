@@ -1,0 +1,57 @@
+{
+  "aggressive_mode": true,
+  "aggressive_min_score": 8,
+  "spy_down_threshold": -1.0,
+
+  "num_stocks": 6,
+  "min_score": 5,
+  "score_floor": 4,
+  "max_score_candidates": 30,
+
+  "_pre_score_comment": "Hard trend thresholds applied before GPT — stocks failing any are dropped without an AI call. null = no limit for that direction.",
+  "pre_score_trend_filters": {
+    "daily":     {"min":  0.0, "max": null},
+    "weekly":    {"min":  1.0, "max": null},
+    "monthly":   {"min": -5.0, "max": null},
+    "quarterly": {"min": null, "max": null},
+    "yearly":    {"min": null, "max": null}
+  },
+  "max_open_gap_pct": 10.0,
+  "always_exclude": ["NVDA", "TSLA", "BTC"],
+
+  "fill_wait_seconds": 60,
+  "sell_wait_seconds": 45,
+
+  "_bracket_comment": "Bracket orders attached to every buy — take-profit fires at +take_profit_pct, stop-loss at -stop_loss_pct. Set to null to disable.",
+  "take_profit_pct": 8.0,
+  "stop_loss_pct": 3.0,
+
+  "_min_gain_comment": "Minimum expected_gain_pct the AI must forecast before a pick is accepted.",
+  "min_expected_gain_pct": 3.0,
+
+  "trend_filters": {
+    "monthly":   {"min": 5.0, "max": null},
+    "quarterly": {"min": 10.0, "max": null},
+    "overall":   {"min": 10.0, "max": null}
+  },
+
+  "scanner": {
+    "market_cap_max_b": 500,
+    "scan_codes": [
+      "TOP_PERC_GAIN", "TOP_OPEN_PERC_GAIN", "HIGH_OPEN_GAP",
+      "TOP_AFTER_HOURS_PERC_GAIN", "MOST_ACTIVE", "MOST_ACTIVE_USD",
+      "HOT_BY_VOLUME", "TOP_VOLUME_RATE", "TOP_TRADE_COUNT",
+      "HIGH_VS_52W_HL", "HIGH_LAST_VS_EMA20", "HOT_BY_PRICE_RANGE",
+      "HOT_BY_OPT_VOLUME", "TOP_OPT_IMP_VOLAT_GAIN",
+      "SCAN_socialSentimentScoreChange_DESC"
+    ],
+    "price_min": 5.0,
+    "volume_min": 500000,
+    "max_per_scan": 50
+  },
+
+  "news": {
+    "providers": "BRFG+DJ-N",
+    "max_articles": 5
+  }
+}

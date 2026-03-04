@@ -217,6 +217,7 @@ def filter_and_rank(
     scored: list[dict],
     num_stocks: int,
     min_score: int,
+    min_expected_gain_pct: float = 0.0,
 ) -> list[dict]:
     """
     Filter scored results to bullish picks above min_score, sort by score,
@@ -224,9 +225,20 @@ def filter_and_rank(
 
     Returns list of pick dicts with allocation_pct added.
     """
-    bullish = [r for r in scored if r["direction"] == "bullish" and r["score"] >= min_score]
+    bullish = [
+        r for r in scored
+        if r["direction"] == "bullish"
+        and r["score"] >= min_score
+        and r.get("expected_gain_pct", 0.0) >= min_expected_gain_pct
+    ]
     rejected_bearish = [r["ticker"] for r in scored if r["direction"] != "bullish"]
     rejected_score   = [r["ticker"] for r in scored if r["direction"] == "bullish" and r["score"] < min_score]
+    rejected_gain    = [
+        r["ticker"] for r in scored
+        if r["direction"] == "bullish"
+        and r["score"] >= min_score
+        and r.get("expected_gain_pct", 0.0) < min_expected_gain_pct
+    ]
 
     if rejected_bearish:
         logger.info("catalyst_scorer: bearish/neutral filtered: %s", ", ".join(rejected_bearish))
@@ -234,6 +246,11 @@ def filter_and_rank(
         logger.info(
             "catalyst_scorer: below min_score (%d) filtered: %s",
             min_score, ", ".join(rejected_score),
+        )
+    if rejected_gain:
+        logger.info(
+            "catalyst_scorer: below min_expected_gain_pct (%.1f%%) filtered: %s",
+            min_expected_gain_pct, ", ".join(rejected_gain),
         )
 
     bullish.sort(key=lambda x: x["score"], reverse=True)

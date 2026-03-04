@@ -90,6 +90,9 @@ async def main():
     trend_filters: dict | None = config.get("trend_filters") or None
     aggressive_mode: bool = config.get("aggressive_mode", False)
     fill_wait_seconds: int = config.get("fill_wait_seconds", 60)
+    min_expected_gain_pct: float = config.get("min_expected_gain_pct", 0.0)
+    take_profit_pct: float | None = config.get("take_profit_pct")
+    stop_loss_pct: float | None = config.get("stop_loss_pct")
 
     logger.info(
         "Loaded config — aggressive_mode=%s, num_stocks=%d",
@@ -334,7 +337,7 @@ async def main():
     threshold = effective_min_score
 
     while threshold >= score_floor:
-        picks = filter_and_rank(all_scored, num_stocks, min_score=threshold)
+        picks = filter_and_rank(all_scored, num_stocks, min_score=threshold, min_expected_gain_pct=min_expected_gain_pct)
         if len(picks) >= num_stocks:
             logger.info(
                 "Target of %d stocks reached at min_score=%d", num_stocks, threshold
@@ -405,7 +408,7 @@ async def main():
 
             # Merge with original scored list and re-rank at the score floor
             all_scored = all_scored + extra_scored
-            picks = filter_and_rank(all_scored, num_stocks, min_score=score_floor)
+            picks = filter_and_rank(all_scored, num_stocks, min_score=score_floor, min_expected_gain_pct=min_expected_gain_pct)
             logger.info(
                 "After conservative expansion: %d picks (min_score=%d)",
                 len(picks), score_floor,
@@ -455,7 +458,12 @@ async def main():
             alloc_pct = pick.get("allocation_pct") or round(100.0 / len(picks), 1)
             alloc_usd = alloc_pct / 100.0 * open_value
             try:
-                trades = await buy_stock_async(pick["ticker"], ib, dollar_amount=alloc_usd)
+                trades = await buy_stock_async(
+                    pick["ticker"], ib,
+                    dollar_amount=alloc_usd,
+                    take_profit_pct=take_profit_pct,
+                    stop_loss_pct=stop_loss_pct,
+                )
                 trades_by_ticker[pick["ticker"]] = trades
                 logger.info("BUY submitted: %s $%.2f (%.1f%%)", pick["ticker"], alloc_usd, alloc_pct)
             except Exception:
