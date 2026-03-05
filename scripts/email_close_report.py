@@ -76,19 +76,17 @@ def build_email(session: dict, portfolio: dict, errors: list[str]) -> tuple[str,
     )
 
     # ── Plain text ────────────────────────────────────────────────────────────
-    col = "{:<6}  {:>5}  {:>6}  {:>6}  {:>10}  {:>10}  {:>9}  {:>10}"
-    header = col.format("TICKER", "SCORE", "ALLOC", "SHARES", "BUY", "CLOSE", "DAY RTN", "DAY P/L")
+    col = "{:<6}  {:>5}  {:>6}  {:>10}  {:>10}  {:>18}"
+    header = col.format("TICKER", "SCORE", "SHARES", "BUY", "CLOSE", "RETURN")
     divider = "-" * len(header)
     rows_txt = "\n".join(
         col.format(
             p["ticker"],
             p["score"],
-            f"{p['allocation_pct']:.1f}%",
             p["shares"],
             f"${p.get('buy_price', 0):.2f}",
             f"${p.get('close_price', 0):.2f}" if p.get("close_price") else "N/A",
-            f"{signed_pct(p.get('day_return_pct', 0))}",
-            f"{signed(p.get('day_return_usd', 0))}",
+            f"{signed(p.get('day_return_usd', 0))} ({signed_pct(p.get('day_return_pct', 0))})",
         )
         for p in picks
     )
@@ -123,22 +121,19 @@ Dashboard: {DASHBOARD_URL}
 
     # ── HTML ──────────────────────────────────────────────────────────────────
     rows_html = ""
-    for i, p in enumerate(picks, 1):
+    for p in picks:
         ret_pct = p.get("day_return_pct", 0)
         ret_usd = p.get("day_return_usd", 0)
         ret_color = "#27ae60" if ret_usd >= 0 else "#e74c3c"
         close_px = f"${p['close_price']:.2f}" if p.get("close_price") else "N/A"
         rows_html += f"""
         <tr>
-          <td style="color:#888">{i}</td>
           <td><strong>{p['ticker']}</strong></td>
           <td style="text-align:center">{p['score']}</td>
-          <td style="text-align:right">{p['allocation_pct']:.1f}%</td>
           <td style="text-align:right">{p['shares']:,}</td>
           <td style="text-align:right">${p.get('buy_price',0):.2f}</td>
           <td style="text-align:right">{close_px}</td>
-          <td style="text-align:right;color:{ret_color}">{signed_pct(ret_pct)}</td>
-          <td style="text-align:right;color:{ret_color};font-weight:600">{signed(ret_usd)}</td>
+          <td style="text-align:right;color:{ret_color};font-weight:600">{signed(ret_usd)} ({signed_pct(ret_pct)})</td>
         </tr>"""
 
     errors_html = (
@@ -186,8 +181,7 @@ Dashboard: {DASHBOARD_URL}
 <h2>Position Results</h2>
 <table>
   <thead><tr>
-    <th>#</th><th>Ticker</th><th>Score</th><th>Alloc</th>
-    <th>Shares</th><th>Buy Price</th><th>Close Price</th><th>Day Return</th><th>Day P/L</th>
+    <th>Ticker</th><th>Score</th><th>Shares</th><th>Buy</th><th>Close</th><th>Return</th>
   </tr></thead>
   <tbody>{rows_html}</tbody>
 </table>

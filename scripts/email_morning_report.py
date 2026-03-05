@@ -54,14 +54,13 @@ def build_email(session: dict, errors: list[str]) -> tuple[str, str, str]:
     subject = f"[Stock Bot] Morning Picks — {today}"
 
     # ── Plain text ────────────────────────────────────────────────────────────
-    col = "{:<6}  {:>5}  {:>6}  {:>6}  {:>10}  {:>10}"
-    header = col.format("TICKER", "SCORE", "ALLOC", "SHARES", "BUY PRICE", "BUY VALUE")
+    col = "{:<6}  {:>5}  {:>6}  {:>10}  {:>10}"
+    header = col.format("TICKER", "SCORE", "SHARES", "BUY PRICE", "BUY VALUE")
     divider = "-" * len(header)
     rows_txt = "\n".join(
         col.format(
             p["ticker"],
             p["score"],
-            f"{p['allocation_pct']:.1f}%",
             p["shares"],
             f"${p['buy_price']:.2f}",
             f"${p['buy_value']:,.2f}",
@@ -90,19 +89,17 @@ Dashboard: {DASHBOARD_URL}
 
     # ── HTML ──────────────────────────────────────────────────────────────────
     rows_html = ""
-    for i, p in enumerate(picks, 1):
-        direction_color = "#27ae60" if p.get("direction") == "bullish" else "#e74c3c"
+    for p in picks:
         rows_html += f"""
         <tr>
-          <td style="color:#888">{i}</td>
           <td><strong>{p['ticker']}</strong></td>
           <td style="text-align:center">{p['score']}</td>
-          <td style="text-align:right">{p['allocation_pct']:.1f}%</td>
-          <td style="color:{direction_color};text-align:center">{p.get('direction','').capitalize()}</td>
           <td style="text-align:right">{p['shares']:,}</td>
           <td style="text-align:right">${p['buy_price']:.2f}</td>
           <td style="text-align:right">${p['buy_value']:,.2f}</td>
-          <td style="font-size:12px;color:#666;max-width:260px">{p.get('reason','')[:100]}</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="font-size:12px;color:#888;padding-top:0;padding-bottom:10px;border-bottom:1px solid #eee">{p.get('reason','')}</td>
         </tr>"""
 
     errors_html = (
@@ -145,8 +142,7 @@ Dashboard: {DASHBOARD_URL}
 <h2>Picks &amp; Purchases</h2>
 <table>
   <thead><tr>
-    <th>#</th><th>Ticker</th><th>Score</th><th>Alloc</th>
-    <th>Direction</th><th>Shares</th><th>Buy Price</th><th>Buy Value</th><th>Reason</th>
+    <th>Ticker</th><th>Score</th><th>Shares</th><th>Buy Price</th><th>Buy Value</th>
   </tr></thead>
   <tbody>{rows_html}</tbody>
 </table>
