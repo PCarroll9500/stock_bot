@@ -18,16 +18,22 @@ cd "$REPO"
 echo "Pulling latest code from GitHub..."
 git pull origin main || echo "WARNING: git pull failed, continuing with existing code"
 
-# Wait for IBKR Gateway to be ready (retry up to 3 minutes)
+# Wait for IBKR Gateway to be ready (retry up to 20 minutes)
+# Uses a real API handshake — TCP connect alone passes even when the gateway isn't ready (socat is always up)
 echo "Waiting for IBKR Gateway on port 4002..."
 READY=0
-for i in $(seq 1 36); do
+for i in $(seq 1 240); do
     if "$REPO/.venv/bin/python" -c "
 import socket, sys
-s = socket.socket(); s.settimeout(3)
 try:
-    s.connect(('127.0.0.1', 4002)); s.close(); sys.exit(0)
-except: sys.exit(1)
+    s = socket.socket(); s.settimeout(5)
+    s.connect(('127.0.0.1', 4002))
+    s.send(b'API\x00\x00\x00\x00\x09v100..176')
+    data = s.recv(64)
+    s.close()
+    sys.exit(0 if data else 1)
+except:
+    sys.exit(1)
 " 2>/dev/null; then
         echo "Gateway ready after $((i * 5))s"
         READY=1
@@ -37,7 +43,7 @@ except: sys.exit(1)
 done
 
 if [ "$READY" -eq 0 ]; then
-    echo "ERROR: Gateway not ready after 3 minutes — aborting"
+    echo "ERROR: Gateway not ready after 20 minutes — aborting"
     exit 1
 fi
 
