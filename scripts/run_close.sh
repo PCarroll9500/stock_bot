@@ -15,6 +15,15 @@ exec >> "$LOG_FILE" 2>&1
 echo "=== Close-of-day run started: $(date) ==="
 
 cd "$REPO"
+
+# Load env vars (includes GITHUB_PAT for authenticated git push)
+set -a; source "$REPO/.env" 2>/dev/null || true; set +a
+
+# Configure git remote with PAT so push works without interactive credentials
+if [ -n "${GITHUB_PAT:-}" ] && [ -n "${GITHUB_USER:-}" ]; then
+    git remote set-url origin "https://${GITHUB_USER}:${GITHUB_PAT}@github.com/${GITHUB_USER}/stock_bot.git"
+fi
+
 echo "Pulling latest code from GitHub..."
 git pull origin main || echo "WARNING: git pull failed, continuing with existing code"
 
