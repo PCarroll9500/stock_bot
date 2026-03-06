@@ -453,9 +453,16 @@ async def main():
 
     elif picks:
         logger.info("Executing %d buy orders — capital base $%.2f", len(picks), open_value)
-        for pick in picks:
-            # Use AI-suggested allocation if present; otherwise split evenly
-            alloc_pct = pick.get("allocation_pct") or round(100.0 / len(picks), 1)
+
+        # Normalize allocations so they never exceed 100% of cash (prevents margin use)
+        raw_allocs = [p.get("allocation_pct") or round(100.0 / len(picks), 1) for p in picks]
+        total_alloc = sum(raw_allocs)
+        if total_alloc > 100.0:
+            logger.warning(
+                "AI allocations sum to %.1f%% — normalizing to 100%% to avoid margin", total_alloc
+            )
+            raw_allocs = [a / total_alloc * 100.0 for a in raw_allocs]
+        for pick, alloc_pct in zip(picks, raw_allocs):
             alloc_usd = alloc_pct / 100.0 * open_value
             try:
                 trades = await buy_stock_async(
