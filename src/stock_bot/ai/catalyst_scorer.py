@@ -12,7 +12,7 @@ from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
-MODEL       = "gpt-4o"
+MODEL       = "gpt-4o-mini"
 TEMPERATURE = 0.3
 MAX_WORKERS = 3
 
