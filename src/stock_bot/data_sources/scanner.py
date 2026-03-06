@@ -39,15 +39,19 @@ def get_scanner_universe(ib: IB, config: dict) -> list[dict]:
         try:
             results = ib.reqScannerData(sub)
             added = 0
+            skipped_etf = 0
             for item in results:
                 contract = item.contractDetails.contract
                 ticker = contract.symbol
                 con_id = contract.conId
+                if contract.secType and contract.secType != "STK":
+                    skipped_etf += 1
+                    continue
                 if ticker not in seen_tickers:
                     seen_tickers.add(ticker)
                     universe.append({"ticker": ticker, "conId": con_id})
                     added += 1
-            logger.info("Scanner %s: %d results, %d new tickers", scan_code, len(results), added)
+            logger.info("Scanner %s: %d results, %d new tickers, %d ETFs skipped", scan_code, len(results), added, skipped_etf)
         except Exception:
             logger.warning("Scanner %s: skipping — scan returned an error", scan_code, exc_info=True)
 
@@ -85,10 +89,14 @@ async def get_scanner_universe_async(ib: IB, config: dict) -> list[dict]:
             try:
                 results = await ib.reqScannerDataAsync(sub)
                 items = []
+                skipped_etf = 0
                 for item in results:
                     contract = item.contractDetails.contract
+                    if contract.secType and contract.secType != "STK":
+                        skipped_etf += 1
+                        continue
                     items.append({"ticker": contract.symbol, "conId": contract.conId})
-                logger.info("Scanner %s: %d results", scan_code, len(results))
+                logger.info("Scanner %s: %d results, %d ETFs skipped", scan_code, len(results), skipped_etf)
                 return scan_code, items
             except Exception:
                 logger.warning("Scanner %s: skipping — scan returned an error", scan_code, exc_info=True)
