@@ -94,6 +94,20 @@ def main() -> None:
                     )
             except Exception:
                 logger.error("close_of_day: sell failed for %s", pick["ticker"], exc_info=True)
+
+    # Sell any orphaned positions not in today's picks (e.g. from a failed close yesterday)
+    today_tickers = {p["ticker"] for p in session.get("picks", [])}
+    from stock_bot.config.settings import ib_settings as _ib_settings
+    for pos in ib.positions(account=_ib_settings.account):
+        ticker = pos.contract.symbol
+        if pos.contract.secType == "STK" and ticker not in today_tickers and float(pos.position) > 0:
+            logger.warning("close_of_day: orphaned position found — selling %s x%.0f", ticker, pos.position)
+            try:
+                trade = sell_all_stock(ticker, ib)
+                if trade is not None:
+                    sell_trades[ticker] = trade
+            except Exception:
+                logger.error("close_of_day: sell failed for orphan %s", ticker, exc_info=True)
     logger.info("close_of_day: waiting %d s for sell orders to fill…", sell_wait_seconds)
     ib.sleep(sell_wait_seconds)  # allow market orders to fill
 
