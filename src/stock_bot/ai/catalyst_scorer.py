@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 MODEL       = "gpt-4o-mini"
 TEMPERATURE = 0.3
-MAX_WORKERS = 3
+MAX_WORKERS = 1
 
 _ALLOC_MIN_PCT = 5.0
 _ALLOC_MAX_PCT = 35.0
