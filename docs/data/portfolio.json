@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 10000,
   "start_date": "2026-03-04",
-  "updated_at": "2026-03-06T17:14:56.539371",
+  "updated_at": "2026-03-06T19:30:48.603829",
   "sessions": [
     {
       "date": "2026-03-04",
@@ -179,9 +179,9 @@
           "shares": 32,
           "buy_price": 91.79,
           "buy_value": 2937.28,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 90.9,
+          "day_return_pct": -0.97,
+          "day_return_usd": -28.48
         },
         {
           "ticker": "TNGX",
@@ -195,9 +195,9 @@
           "shares": 261,
           "buy_price": 16.37,
           "buy_value": 4272.57,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 16.88,
+          "day_return_pct": 3.115,
+          "day_return_usd": 133.11
         },
         {
           "ticker": "LAR",
@@ -211,9 +211,9 @@
           "shares": 540,
           "buy_price": 6.87,
           "buy_value": 3709.8,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 6.81,
+          "day_return_pct": -0.873,
+          "day_return_usd": -32.4
         },
         {
           "ticker": "AVAV",
@@ -227,9 +227,9 @@
           "shares": 11,
           "buy_price": 227.12,
           "buy_value": 2498.32,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 233.63,
+          "day_return_pct": 2.866,
+          "day_return_usd": 71.61
         },
         {
           "ticker": "DOW",
@@ -243,9 +243,9 @@
           "shares": 77,
           "buy_price": 33.7,
           "buy_value": 2594.9,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 33.78,
+          "day_return_pct": 0.237,
+          "day_return_usd": 6.16
         },
         {
           "ticker": "PBR",
@@ -259,9 +259,9 @@
           "shares": 148,
           "buy_price": 17.57,
           "buy_value": 2600.36,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 17.61,
+          "day_return_pct": 0.228,
+          "day_return_usd": 5.92
         },
         {
           "ticker": "OXY",
@@ -275,9 +275,9 @@
           "shares": 48,
           "buy_price": 53.92,
           "buy_value": 2588.16,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 54.42,
+          "day_return_pct": 0.927,
+          "day_return_usd": 24.0
         },
         {
           "ticker": "CNQ",
@@ -291,9 +291,9 @@
           "shares": 48,
           "buy_price": 46.25,
           "buy_value": 2220.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 46.59,
+          "day_return_pct": 0.735,
+          "day_return_usd": 16.32
         },
         {
           "ticker": "MTDR",
@@ -307,9 +307,9 @@
           "shares": 40,
           "buy_price": 55.53,
           "buy_value": 2221.2,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 56.14,
+          "day_return_pct": 1.099,
+          "day_return_usd": 24.4
         },
         {
           "ticker": "APA",
@@ -323,18 +323,18 @@
           "shares": 79,
           "buy_price": 32.53,
           "buy_value": 2569.87,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 32.99,
+          "day_return_pct": 1.414,
+          "day_return_usd": 36.34
         }
       ],
       "qqq_buy_price": 605.24,
-      "qqq_close_price": null,
-      "qqq_day_return_pct": null,
+      "qqq_close_price": 603.84,
+      "qqq_day_return_pct": -0.231,
       "portfolio_open_value": 28497.64,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null
+      "portfolio_close_value": 28754.62,
+      "session_return_pct": 0.902,
+      "session_return_usd": 256.98
     }
   ],
   "equity_curve": [
@@ -345,8 +345,8 @@
     },
     {
       "date": "2026-03-06",
-      "portfolio_value": 28497.64,
-      "qqq_indexed": 9997.85
+      "portfolio_value": 28754.62,
+      "qqq_indexed": 9974.73
     }
   ]
 }
