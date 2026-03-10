@@ -33,8 +33,7 @@ echo "Running close_of_day.py..."
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -ne 0 ]; then
-    echo "ERROR: close_of_day.py exited with code $EXIT_CODE"
-    exit $EXIT_CODE
+    echo "WARNING: close_of_day.py exited with code $EXIT_CODE — continuing to push and email"
 fi
 
 # Push updated portfolio.json to GitHub

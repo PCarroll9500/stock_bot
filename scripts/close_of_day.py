@@ -109,7 +109,13 @@ def main() -> None:
             except Exception:
                 logger.error("close_of_day: sell failed for orphan %s", ticker, exc_info=True)
     logger.info("close_of_day: waiting %d s for sell orders to fill…", sell_wait_seconds)
-    ib.sleep(sell_wait_seconds)  # allow market orders to fill
+    try:
+        ib.sleep(sell_wait_seconds)  # allow market orders to fill
+    except Exception as e:
+        logger.warning(
+            "close_of_day: lost IB connection during wait (%s) — proceeding with cached order status",
+            e,
+        )
 
     # Verify sells — log confirmation or warning for each position
     for pick in session.get("picks", []):
@@ -209,7 +215,10 @@ def main() -> None:
         equity_curve.append(eq_point)
     portfolio["equity_curve"] = equity_curve
 
-    disconnect_ib()
+    try:
+        disconnect_ib()
+    except Exception:
+        pass
     save_portfolio(portfolio, test_mode=test_mode)
 
     logger.info(
