@@ -115,26 +115,21 @@ async def main():
     # Allow IBKR a moment to push account data after connection
     await asyncio.sleep(2)
 
-    # Immediately close any short positions — this is a cash-only account, shorts should never exist
+    # Sanity check: this is a cash-only account — shorts must never exist
     held_positions = ib.positions(account=ib_settings.account)
     short_positions = [
         p for p in held_positions
         if p.contract.secType == "STK" and p.position < 0
     ]
     if short_positions:
-        logger.warning(
-            "Found %d unexpected short position(s) — covering immediately before scan: %s",
+        logger.error(
+            "CASH-ONLY VIOLATION: %d short position(s) detected — aborting session. "
+            "Run liquidate_paper.py manually to resolve: %s",
             len(short_positions),
             ", ".join(f"{p.contract.symbol} x{abs(p.position):.0f}" for p in short_positions),
         )
-        for pos in short_positions:
-            try:
-                close_position(pos.contract.symbol, ib)
-            except Exception:
-                logger.error("Failed to cover short for %s", pos.contract.symbol, exc_info=True)
-        # Wait for covers to fill before proceeding
-        await asyncio.sleep(5)
-        held_positions = ib.positions(account=ib_settings.account)
+        disconnect_ib()
+        sys.exit(1)
 
     # Exclude tickers already held long in the account so we never double-buy
     held_tickers = {

@@ -96,6 +96,27 @@ def sell_stock(
     if shares <= 0:
         raise ValueError(f"shares must be > 0, got {shares}.")
 
+    # Safety: verify actual held position before placing any sell order.
+    # This prevents creating a short if the position is already flat or smaller
+    # than expected (e.g. partial fill, race condition, duplicate close attempt).
+    positions = ib.positions(account=ib_settings.account)
+    held = 0
+    for pos in positions:
+        if pos.contract.symbol == ticker and pos.contract.secType == "STK":
+            held = math.floor(float(pos.position))
+            break
+    if held <= 0:
+        raise ValueError(
+            f"Cannot sell {ticker}: no long position held (position={held}). "
+            "Refusing to create a short."
+        )
+    if shares > held:
+        logger.warning(
+            "Sell qty %d exceeds held position %d for %s — capping to avoid short",
+            shares, held, ticker,
+        )
+        shares = held
+
     # Validate mutually exclusive price arguments
     price_args = {
         "limit_price": limit_price,
