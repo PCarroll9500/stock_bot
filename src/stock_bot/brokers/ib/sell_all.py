@@ -4,12 +4,40 @@ import logging
 import math
 from typing import Optional
 
-from ib_insync import IB, Order, Stock, Trade
+from ib_insync import IB, MarketOrder, Order, Stock, Trade
 
 from stock_bot.config.settings import ib_settings
 from stock_bot.brokers.ib.sell_stocks import sell_stock
 
 logger = logging.getLogger(__name__)
+
+
+def close_position(ticker: str, ib: IB) -> Optional[Trade]:
+    """Close any open position in ``ticker``, whether long or short.
+
+    Long  (position > 0) → SELL market order
+    Short (position < 0) → BUY to cover market order
+    Flat  (position == 0) → returns None, no order placed
+
+    This is the safe exit for a cash-only account that should never hold shorts.
+    """
+    positions = ib.positions(account=ib_settings.account)
+    for pos in positions:
+        if pos.contract.symbol == ticker and pos.contract.secType == "STK":
+            size = float(pos.position)
+            shares = math.floor(abs(size))
+            if shares == 0:
+                logger.info("Position for %s is already flat — no order placed", ticker)
+                return None
+            action = "SELL" if size > 0 else "BUY"
+            label = "long" if size > 0 else "short"
+            logger.info("Closing %s position: %s %s x%d shares", label, action, ticker, shares)
+            contract = Stock(ticker, ib_settings.exchange, ib_settings.currency)
+            ib.qualifyContracts(contract)
+            order = MarketOrder(action, shares)
+            return ib.placeOrder(contract, order)
+    logger.warning("No open position found for %s — no order placed", ticker)
+    return None
 
 
 def sell_all_stock(

@@ -21,7 +21,7 @@ from ib_insync import Trade
 # Package is installed in the venv via `pip install -e .`
 from stock_bot.core.logging_config import setup_logging
 from stock_bot.brokers.ib.connect_disconnect import connect_ib, disconnect_ib
-from stock_bot.brokers.ib.sell_all import sell_all_stock
+from stock_bot.brokers.ib.sell_all import sell_all_stock, close_position
 from stock_bot.data_sources.portfolio_writer import (
     load_portfolio,
     save_portfolio,
@@ -95,19 +95,26 @@ def main() -> None:
             except Exception:
                 logger.error("close_of_day: sell failed for %s", pick["ticker"], exc_info=True)
 
-    # Sell any orphaned positions not in today's picks (e.g. from a failed close yesterday)
+    # Close any orphaned positions not in today's picks (longs or shorts)
     today_tickers = {p["ticker"] for p in session.get("picks", [])}
     from stock_bot.config.settings import ib_settings as _ib_settings
     for pos in ib.positions(account=_ib_settings.account):
         ticker = pos.contract.symbol
-        if pos.contract.secType == "STK" and ticker not in today_tickers and float(pos.position) > 0:
-            logger.warning("close_of_day: orphaned position found — selling %s x%.0f", ticker, pos.position)
-            try:
-                trade = sell_all_stock(ticker, ib)
-                if trade is not None:
-                    sell_trades[ticker] = trade
-            except Exception:
-                logger.error("close_of_day: sell failed for orphan %s", ticker, exc_info=True)
+        if pos.contract.secType != "STK" or ticker in today_tickers:
+            continue
+        pos_size = float(pos.position)
+        if pos_size > 0:
+            logger.warning("close_of_day: orphaned long — selling %s x%.0f", ticker, pos_size)
+        elif pos_size < 0:
+            logger.warning("close_of_day: orphaned short — covering %s x%.0f (cash-only account)", ticker, abs(pos_size))
+        else:
+            continue
+        try:
+            trade = close_position(ticker, ib)
+            if trade is not None:
+                sell_trades[ticker] = trade
+        except Exception:
+            logger.error("close_of_day: failed to close orphan %s", ticker, exc_info=True)
     logger.info("close_of_day: waiting %d s for sell orders to fill…", sell_wait_seconds)
     try:
         ib.sleep(sell_wait_seconds)  # allow market orders to fill

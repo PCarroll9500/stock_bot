@@ -22,6 +22,7 @@ from stock_bot.data_sources.trend_checker import (
     fmt_trend_for_prompt,
 )
 from stock_bot.ai.catalyst_scorer import score_candidates, filter_and_rank
+from stock_bot.brokers.ib.sell_all import close_position
 from stock_bot.data_sources.portfolio_writer import (
     write_session,
     load_portfolio,
@@ -114,12 +115,32 @@ async def main():
     # Allow IBKR a moment to push account data after connection
     await asyncio.sleep(2)
 
-    # Exclude tickers already held in the account so we never double-buy
+    # Immediately close any short positions — this is a cash-only account, shorts should never exist
     held_positions = ib.positions(account=ib_settings.account)
+    short_positions = [
+        p for p in held_positions
+        if p.contract.secType == "STK" and p.position < 0
+    ]
+    if short_positions:
+        logger.warning(
+            "Found %d unexpected short position(s) — covering immediately before scan: %s",
+            len(short_positions),
+            ", ".join(f"{p.contract.symbol} x{abs(p.position):.0f}" for p in short_positions),
+        )
+        for pos in short_positions:
+            try:
+                close_position(pos.contract.symbol, ib)
+            except Exception:
+                logger.error("Failed to cover short for %s", pos.contract.symbol, exc_info=True)
+        # Wait for covers to fill before proceeding
+        await asyncio.sleep(5)
+        held_positions = ib.positions(account=ib_settings.account)
+
+    # Exclude tickers already held long in the account so we never double-buy
     held_tickers = {
         p.contract.symbol
         for p in held_positions
-        if p.contract.secType == "STK" and p.position != 0
+        if p.contract.secType == "STK" and p.position > 0
     }
     # TODO: Fix, held_tickers should still be included if chosen.
     if held_tickers:
