@@ -159,6 +159,15 @@ def write_session(
         open_value = _get_open_value(portfolio)
         logger.info("portfolio_writer: open_value = $%.2f (from portfolio.json)", open_value)
 
+    # On first-ever session, set initial_investment from the live cash balance
+    # instead of relying on the hardcoded default.
+    if not portfolio.get("sessions") and open_value_override is not None:
+        portfolio["initial_investment"] = round(open_value_override, 2)
+        logger.info(
+            "portfolio_writer: first session — setting initial_investment = $%.2f from live balance",
+            open_value_override,
+        )
+
     # QQQ as NASDAQ proxy — use pre-fetched value if provided (avoids sync IBKR call)
     if qqq_price_override is not None:
         qqq_price = qqq_price_override
