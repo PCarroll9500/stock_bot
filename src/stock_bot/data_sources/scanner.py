@@ -87,7 +87,7 @@ async def get_scanner_universe_async(ib: IB, config: dict) -> list[dict]:
             sub.marketCapBelow = market_cap_max_b * 1000
         async with sem:
             try:
-                results = await ib.reqScannerDataAsync(sub)
+                results = await asyncio.wait_for(ib.reqScannerDataAsync(sub), timeout=30.0)
                 items = []
                 skipped_etf = 0
                 for item in results:
@@ -98,6 +98,9 @@ async def get_scanner_universe_async(ib: IB, config: dict) -> list[dict]:
                     items.append({"ticker": contract.symbol, "conId": contract.conId})
                 logger.info("Scanner %s: %d results, %d ETFs skipped", scan_code, len(results), skipped_etf)
                 return scan_code, items
+            except asyncio.TimeoutError:
+                logger.warning("Scanner %s: timed out after 30s — skipping", scan_code)
+                return scan_code, []
             except Exception:
                 logger.warning("Scanner %s: skipping — scan returned an error", scan_code, exc_info=True)
                 return scan_code, []
