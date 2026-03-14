@@ -63,19 +63,23 @@ def _last_price(contract: Stock, ib: IB) -> float:
 def _entry_order(action: str, shares: float, limit_price: Optional[float]) -> Order:
     """Build a MKT or LMT entry order (transmit=False by default)."""
     if limit_price is not None:
-        return Order(
+        order = Order(
             action=action,
             orderType="LMT",
             totalQuantity=shares,
             lmtPrice=round(limit_price, 2),
             transmit=False,
         )
-    return Order(
-        action=action,
-        orderType="MKT",
-        totalQuantity=shares,
-        transmit=False,
-    )
+    else:
+        order = Order(
+            action=action,
+            orderType="MKT",
+            totalQuantity=shares,
+            transmit=False,
+        )
+    # Bypass PDT rejection on accounts < $25k (paper and live)
+    order.advancedErrorOverride = "DAYTRNG"
+    return order
 
 
 # ---------------------------------------------------------------------------

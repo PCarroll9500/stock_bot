@@ -25,9 +25,18 @@ AWS_REGION = "us-east-1"
 
 def load_today_session(test_mode: bool = False) -> dict | None:
     path = PORTFOLIO_PATH.parent / ("portfolio_test.json" if test_mode else "portfolio.json")
-    portfolio = json.loads(path.read_text())
+    try:
+        portfolio = json.loads(path.read_text())
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
     today = date.today().isoformat()
     return next((s for s in portfolio.get("sessions", []) if s.get("date") == today), None)
+
+
+# Routine IBKR noise — excluded from email alerts
+_NOISE = ("error 162,", "error 10089,", "error 10167,", "error 2104,", "error 2106,",
+          "delayed market data", "market data farm", "sec-def data farm",
+          "hmds data farm", "warning: git")
 
 
 def collect_errors() -> list[str]:
@@ -37,7 +46,8 @@ def collect_errors() -> list[str]:
     if log_file.exists():
         for line in log_file.read_text().splitlines():
             upper = line.upper()
-            if "ERROR" in upper or ("WARNING" in upper and "git pull" not in line.lower()):
+            lower = line.lower()
+            if ("ERROR" in upper or "WARNING" in upper) and not any(n in lower for n in _NOISE):
                 errors.append(line.strip())
     return errors[-20:]
 
