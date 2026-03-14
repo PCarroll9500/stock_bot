@@ -32,18 +32,18 @@ echo "Running close_of_day.py..."
 "$REPO/.venv/bin/python" scripts/close_of_day.py
 EXIT_CODE=$?
 
+# Only push portfolio.json if close_of_day succeeded — prevents corrupting dashboard on failure
 if [ $EXIT_CODE -ne 0 ]; then
-    echo "WARNING: close_of_day.py exited with code $EXIT_CODE — continuing to push and email"
-fi
-
-# Push updated portfolio.json to GitHub
-git add docs/data/portfolio.json
-if ! git diff --staged --quiet; then
-    git commit -m "portfolio: close $(date +%Y-%m-%d)"
-    git push origin main
-    echo "portfolio.json pushed to GitHub"
+    echo "ERROR: close_of_day.py exited with code $EXIT_CODE — skipping portfolio push to avoid corrupt data"
 else
-    echo "No portfolio changes to push"
+    git add docs/data/portfolio.json
+    if ! git diff --staged --quiet; then
+        git commit -m "portfolio: close $(date +%Y-%m-%d)"
+        git push origin main
+        echo "portfolio.json pushed to GitHub"
+    else
+        echo "No portfolio changes to push"
+    fi
 fi
 
 # Send close email report

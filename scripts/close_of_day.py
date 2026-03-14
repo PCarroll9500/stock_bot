@@ -119,10 +119,12 @@ def main() -> None:
     try:
         ib.sleep(sell_wait_seconds)  # allow market orders to fill
     except Exception as e:
-        logger.warning(
-            "close_of_day: lost IB connection during wait (%s) — proceeding with cached order status",
-            e,
-        )
+        logger.warning("close_of_day: lost IB connection during wait (%s) — attempting reconnect", e)
+        try:
+            ib = connect_ib()
+            logger.info("close_of_day: reconnected to IBKR")
+        except Exception:
+            logger.warning("close_of_day: reconnect failed — proceeding with cached order status")
 
     # Verify sells — log confirmation or warning for each position
     for pick in session.get("picks", []):
@@ -184,7 +186,7 @@ def main() -> None:
 
     # Add back uninvested cash (from rounding when computing share counts)
     total_invested = sum(p.get("buy_value", 0) for p in session.get("picks", []))
-    cash = max(0.0, session["portfolio_open_value"] - total_invested)
+    cash = max(0.0, session.get("portfolio_open_value", 0) - total_invested)
     total_close_value += cash
 
     session["portfolio_close_value"] = round(total_close_value, 2)

@@ -25,7 +25,9 @@ if [ -n "${GITHUB_PAT:-}" ] && [ -n "${GITHUB_USER:-}" ]; then
 fi
 
 echo "Pulling latest code from GitHub..."
+git stash 2>/dev/null || true
 git pull origin main || echo "WARNING: git pull failed, continuing with existing code"
+git stash pop 2>/dev/null || git stash drop 2>/dev/null || true
 
 # Wait for IBKR Gateway to be ready (retry up to 20 minutes)
 # Uses a real API handshake written to a temp file — avoids shell quoting issues with -c "..."

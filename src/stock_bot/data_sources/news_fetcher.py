@@ -101,11 +101,17 @@ async def fetch_news_for_tickers_async(
 
     async def _fetch_article(ticker: str, hl) -> dict:
         try:
-            article = await ib.reqNewsArticleAsync(
-                providerCode=hl.providerCode,
-                articleId=hl.articleId,
+            article = await asyncio.wait_for(
+                ib.reqNewsArticleAsync(
+                    providerCode=hl.providerCode,
+                    articleId=hl.articleId,
+                ),
+                timeout=15,
             )
             body = _strip_html(article.articleText) if article and article.articleText else ""
+        except asyncio.TimeoutError:
+            logger.debug("news_fetcher: article fetch timed out for %s/%s", ticker, hl.articleId)
+            body = ""
         except Exception:
             logger.debug("news_fetcher: could not fetch article body for %s/%s", ticker, hl.articleId)
             body = ""
@@ -122,13 +128,19 @@ async def fetch_news_for_tickers_async(
 
         async with sem:
             try:
-                headlines = await ib.reqHistoricalNewsAsync(
-                    conId=con_id,
-                    providerCodes=provider_codes,
-                    startDateTime="",
-                    endDateTime="",
-                    totalResults=max_articles,
+                headlines = await asyncio.wait_for(
+                    ib.reqHistoricalNewsAsync(
+                        conId=con_id,
+                        providerCodes=provider_codes,
+                        startDateTime="",
+                        endDateTime="",
+                        totalResults=max_articles,
+                    ),
+                    timeout=30,
                 )
+            except asyncio.TimeoutError:
+                logger.warning("news_fetcher: reqHistoricalNews timed out for %s (>30s)", ticker)
+                return ticker, []
             except Exception:
                 logger.warning("news_fetcher: reqHistoricalNews failed for %s", ticker, exc_info=True)
                 return ticker, []

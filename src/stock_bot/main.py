@@ -45,6 +45,15 @@ def _load_picker_config() -> dict:
         return {}
 
 
+async def _safe(coro, default=None):
+    """Wrap a coroutine so one failure returns `default` instead of crashing a gather."""
+    try:
+        return await coro
+    except Exception as exc:
+        logger.warning("async task failed (%s: %s) -- using default", type(exc).__name__, exc)
+        return default
+
+
 async def main():
     # ------------------------------------------------------------------ #
     # SETUP — parse flags, initialise logging, read picker_config.json   #
@@ -182,10 +191,11 @@ async def main():
                 passes_aggressive_filters_async(s["ticker"], ib, max_open_gap_pct, hist_sem)
                 for s in universe
             ]
-            spy_return, *filter_results = await asyncio.gather(
-                get_spy_day_return_async(ib),
-                *filter_coros,
+            _gr = await asyncio.gather(
+                _safe(get_spy_day_return_async(ib)),
+                *[_safe(c, False) for c in filter_coros],
             )
+            spy_return, filter_results = _gr[0], list(_gr[1:])
 
         # If SPY is notably down, raise the quality bar to avoid catching
         # falling knives in a broad market sell-off.
@@ -211,7 +221,7 @@ async def main():
                     trend_filter_results.append(result)
             else:
                 trend_filter_results = await asyncio.gather(*[
-                    passes_trend_filters_async(s["ticker"], ib, trend_filters, hist_sem)
+                    _safe(passes_trend_filters_async(s["ticker"], ib, trend_filters, hist_sem), False)
                     for s in universe
                 ])
             survivors = [s for s, passed in zip(universe, trend_filter_results) if passed]
@@ -228,7 +238,7 @@ async def main():
                 gap_results.append(result)
         else:
             gap_results = await asyncio.gather(*[
-                passes_gap_filter_async(s["ticker"], ib, max_open_gap_pct, hist_sem)
+                _safe(passes_gap_filter_async(s["ticker"], ib, max_open_gap_pct, hist_sem), False)
                 for s in survivors
             ])
         survivors = [s for s, passed in zip(survivors, gap_results) if passed]
@@ -259,7 +269,7 @@ async def main():
             trend_results.append(result)
     else:
         trend_results = await asyncio.gather(*[
-            get_trend_for_scoring_async(ticker, ib, trend_sem)
+            _safe(get_trend_for_scoring_async(ticker, ib, trend_sem))
             for ticker in tickers_with_news
         ])
 
@@ -389,7 +399,7 @@ async def main():
                     gap_results2.append(result)
             else:
                 gap_results2 = await asyncio.gather(*[
-                    passes_gap_filter_async(s["ticker"], ib, max_open_gap_pct, hist_sem)
+                    _safe(passes_gap_filter_async(s["ticker"], ib, max_open_gap_pct, hist_sem), False)
                     for s in conservative_extras
                 ])
             conservative_extras = [s for s, passed in zip(conservative_extras, gap_results2) if passed]
@@ -406,7 +416,7 @@ async def main():
                     extra_trend_results.append(result)
             else:
                 extra_trend_results = await asyncio.gather(*[
-                    get_trend_for_scoring_async(ticker, ib, trend_sem)
+                    _safe(get_trend_for_scoring_async(ticker, ib, trend_sem))
                     for ticker in extra_tickers
                 ])
 

@@ -45,9 +45,11 @@ def _last_price(contract: Stock, ib: IB) -> float:
     # --- attempt 2: delayed data (type 4) — populates same last/close fields ---
     logger.debug("Live price unavailable for %s — trying delayed", contract.symbol)
     ib.reqMarketDataType(4)
-    (td,) = ib.reqTickers(contract)
-    price = td.last if _usable(td.last) else td.close
-    ib.reqMarketDataType(1)  # reset for subsequent calls
+    try:
+        (td,) = ib.reqTickers(contract)
+        price = td.last if _usable(td.last) else td.close
+    finally:
+        ib.reqMarketDataType(1)  # always reset for subsequent calls
     if _usable(price):
         logger.info("Using delayed price for %s: %.4f", contract.symbol, price)
         return float(price)
@@ -343,9 +345,11 @@ async def _last_price_async(contract: Stock, ib: IB) -> float:
     # Attempt 2: delayed data (populates same last/close fields)
     logger.debug("Live price unavailable for %s — trying delayed", contract.symbol)
     ib.reqMarketDataType(4)
-    (td,) = await ib.reqTickersAsync(contract)
-    price = td.last if _usable(td.last) else td.close
-    ib.reqMarketDataType(1)  # reset
+    try:
+        (td,) = await ib.reqTickersAsync(contract)
+        price = td.last if _usable(td.last) else td.close
+    finally:
+        ib.reqMarketDataType(1)  # always reset
     if _usable(price):
         logger.info("Using delayed price for %s: %.4f", contract.symbol, price)
         return float(price)
