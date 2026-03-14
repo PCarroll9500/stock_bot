@@ -497,7 +497,9 @@ async def main():
         logger.info("Waiting %d s for order fills…", fill_wait_seconds)
         await asyncio.sleep(fill_wait_seconds)
 
-        # Verify fills — only record picks that were actually purchased
+        # Verify fills — accept filled orders AND orders queued for market open
+        # (PreSubmitted/Submitted = accepted by IBKR, will fill at next open)
+        _QUEUED_STATUSES = {"PreSubmitted", "Submitted", "ApiPending"}
         filled_picks: list[dict] = []
         for pick in picks:
             ticker = pick["ticker"]
@@ -511,11 +513,17 @@ async def main():
                     )
                     if status.filled > 0:
                         confirmed = True
+                    elif status.status in _QUEUED_STATUSES:
+                        confirmed = True
+                        logger.warning(
+                            "Fill check: %s order queued (%s) -- recording with estimated price",
+                            ticker, status.status,
+                        )
             if confirmed:
                 filled_picks.append(pick)
             else:
                 logger.warning(
-                    "BUY NOT CONFIRMED — %s will NOT be recorded in portfolio", ticker
+                    "BUY NOT CONFIRMED -- %s will NOT be recorded in portfolio", ticker
                 )
 
         unfilled = len(picks) - len(filled_picks)

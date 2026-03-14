@@ -203,13 +203,32 @@ def write_session(
                 p["ticker"], p["score"], alloc_pct, shares, buy_price, buy_value,
             )
         elif trades_by_ticker is not None:
-            # Trade data was provided but this pick has no confirmed fill — skip it.
-            # This is a safety net; main.py should have already filtered these out.
-            logger.warning(
-                "portfolio_writer: %s — no confirmed fill, skipping (not actually purchased)",
-                p["ticker"],
-            )
-            continue
+            # Trade data was provided but fill not yet confirmed — order may be queued.
+            # Fall back to estimated price (same as no-trade path) so the session is recorded.
+            # close_of_day will sell via IBKR positions and reconcile actual fill prices.
+            queued_status = None
+            for trade in (trades_by_ticker.get(p["ticker"]) or [])[:1]:
+                st = getattr(trade, "orderStatus", None)
+                if st and st.status in {"PreSubmitted", "Submitted", "ApiPending"}:
+                    queued_status = st.status
+            if queued_status:
+                buy_price = _get_last_price(p["ticker"], ib) or 0.0
+                if buy_price > 0:
+                    shares = math.floor(alloc_usd / buy_price)
+                    buy_value = round(shares * buy_price, 2)
+                else:
+                    shares = 0
+                    buy_value = 0.0
+                logger.warning(
+                    "portfolio_writer: %s order queued (%s) -- estimated %d @ $%.4f = $%.2f",
+                    p["ticker"], queued_status, shares, buy_price, buy_value,
+                )
+            else:
+                logger.warning(
+                    "portfolio_writer: %s -- no confirmed fill, skipping (not actually purchased)",
+                    p["ticker"],
+                )
+                continue
         else:
             # No trade data provided at all — fall back to estimated price
             buy_price = _get_last_price(p["ticker"], ib) or 0.0
