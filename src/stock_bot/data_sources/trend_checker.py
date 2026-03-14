@@ -258,6 +258,8 @@ def passes_gap_filter(ticker: str, ib: IB, max_gap_pct: float) -> bool:
 
     if not prev_close or prev_close == 0:
         return True
+    if not today_open:
+        return True
 
     gap_pct = (today_open - prev_close) / prev_close * 100.0
     if gap_pct > max_gap_pct:
@@ -368,6 +370,8 @@ def passes_aggressive_filters(ticker: str, ib: IB, max_gap_pct: float) -> bool:
     current = today_bars[-1].close
 
     if not prev_close or prev_close == 0:
+        return True
+    if not today_open:
         return True
 
     gap_pct = (today_open - prev_close) / prev_close * 100.0
@@ -483,6 +487,8 @@ async def passes_aggressive_filters_async(
 
     if not prev_close or prev_close == 0:
         return True
+    if not today_open:
+        return True
 
     gap_pct = (today_open - prev_close) / prev_close * 100.0
 
@@ -543,6 +549,8 @@ async def passes_gap_filter_async(
     today_open = bars[-1].open
 
     if not prev_close or prev_close == 0:
+        return True
+    if not today_open:
         return True
 
     gap_pct = (today_open - prev_close) / prev_close * 100.0
