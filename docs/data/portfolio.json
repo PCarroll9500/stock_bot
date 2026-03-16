@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-03-16T10:05:32.450439",
+  "updated_at": "2026-03-16T14:30:50.179576",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -21,9 +21,9 @@
           "shares": 184,
           "buy_price": 27.71,
           "buy_value": 5098.64,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 27.29,
+          "day_return_pct": -1.516,
+          "day_return_usd": -77.28
         },
         {
           "ticker": "AA",
@@ -37,9 +37,9 @@
           "shares": 47,
           "buy_price": 67.44,
           "buy_value": 3169.68,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 66.94,
+          "day_return_pct": -0.741,
+          "day_return_usd": -23.5
         },
         {
           "ticker": "NIO",
@@ -53,9 +53,9 @@
           "shares": 510,
           "buy_price": 6.06,
           "buy_value": 3090.6,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 6.07,
+          "day_return_pct": 0.165,
+          "day_return_usd": 5.1
         },
         {
           "ticker": "CRCL",
@@ -69,9 +69,9 @@
           "shares": 25,
           "buy_price": 123.2,
           "buy_value": 3080.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 126.04,
+          "day_return_pct": 2.305,
+          "day_return_usd": 71.0
         },
         {
           "ticker": "NTR",
@@ -85,9 +85,9 @@
           "shares": 39,
           "buy_price": 79.74,
           "buy_value": 3109.86,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 78.07,
+          "day_return_pct": -2.094,
+          "day_return_usd": -65.13
         },
         {
           "ticker": "NBIS",
@@ -101,9 +101,9 @@
           "shares": 19,
           "buy_price": 128.58,
           "buy_value": 2443.02,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 130.74,
+          "day_return_pct": 1.68,
+          "day_return_usd": 41.04
         },
         {
           "ticker": "ASM",
@@ -117,9 +117,9 @@
           "shares": 433,
           "buy_price": 7.14,
           "buy_value": 3091.62,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 7.05,
+          "day_return_pct": -1.261,
+          "day_return_usd": -38.97
         },
         {
           "ticker": "EQX",
@@ -133,9 +133,9 @@
           "shares": 153,
           "buy_price": 14.98,
           "buy_value": 2291.94,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 14.84,
+          "day_return_pct": -0.935,
+          "day_return_usd": -21.42
         },
         {
           "ticker": "KGC",
@@ -149,9 +149,9 @@
           "shares": 73,
           "buy_price": 31.52,
           "buy_value": 2300.96,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 30.89,
+          "day_return_pct": -1.999,
+          "day_return_usd": -45.99
         },
         {
           "ticker": "GFI",
@@ -165,25 +165,25 @@
           "shares": 56,
           "buy_price": 47.61,
           "buy_value": 2666.16,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 47.31,
+          "day_return_pct": -0.63,
+          "day_return_usd": -16.8
         }
       ],
       "qqq_buy_price": 601.0,
-      "qqq_close_price": null,
-      "qqq_day_return_pct": null,
+      "qqq_close_price": 601.27,
+      "qqq_day_return_pct": 0.045,
       "portfolio_open_value": 30410.62,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null
+      "portfolio_close_value": 30238.67,
+      "session_return_pct": -0.565,
+      "session_return_usd": -171.95
     }
   ],
   "equity_curve": [
     {
       "date": "2026-03-16",
-      "portfolio_value": 30410.62,
-      "qqq_indexed": 30410.62
+      "portfolio_value": 30238.67,
+      "qqq_indexed": 30424.28
     }
   ]
 }
