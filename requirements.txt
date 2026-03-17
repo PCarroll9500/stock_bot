@@ -3,3 +3,5 @@ ib_insync
 pandas
 requests
 openai
+httpx
+beautifulsoup4
