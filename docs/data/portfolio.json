@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-03-18T09:37:08.055214",
+  "updated_at": "2026-03-18T14:30:48.697806",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -195,9 +195,9 @@
           "shares": 743,
           "buy_price": 6.786151,
           "buy_value": 5042.11,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 6.31,
+          "day_return_pct": -7.017,
+          "day_return_usd": -353.78
         },
         {
           "ticker": "M",
@@ -211,9 +211,9 @@
           "shares": 222,
           "buy_price": 17.789009,
           "buy_value": 3949.16,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 17.67,
+          "day_return_pct": -0.669,
+          "day_return_usd": -26.42
         },
         {
           "ticker": "MOS",
@@ -227,9 +227,9 @@
           "shares": 134,
           "buy_price": 28.98,
           "buy_value": 3883.32,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 28.35,
+          "day_return_pct": -2.174,
+          "day_return_usd": -84.42
         },
         {
           "ticker": "USO",
@@ -243,9 +243,9 @@
           "shares": 18,
           "buy_price": 121.62,
           "buy_value": 2189.16,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 118.88,
+          "day_return_pct": -2.253,
+          "day_return_usd": -49.32
         },
         {
           "ticker": "OXY",
@@ -259,9 +259,9 @@
           "shares": 50,
           "buy_price": 58.58,
           "buy_value": 2929.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 58.43,
+          "day_return_pct": -0.256,
+          "day_return_usd": -7.5
         },
         {
           "ticker": "PBR",
@@ -275,9 +275,9 @@
           "shares": 148,
           "buy_price": 19.84,
           "buy_value": 2936.32,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 19.82,
+          "day_return_pct": -0.101,
+          "day_return_usd": -2.96
         },
         {
           "ticker": "CPNG",
@@ -291,9 +291,9 @@
           "shares": 161,
           "buy_price": 20.85,
           "buy_value": 3356.85,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 20.13,
+          "day_return_pct": -3.453,
+          "day_return_usd": -115.92
         },
         {
           "ticker": "MSTR",
@@ -307,9 +307,9 @@
           "shares": 15,
           "buy_price": 145.69,
           "buy_value": 2185.35,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 142.4,
+          "day_return_pct": -2.258,
+          "day_return_usd": -49.35
         },
         {
           "ticker": "NIO",
@@ -323,18 +323,18 @@
           "shares": 489,
           "buy_price": 5.89,
           "buy_value": 2880.21,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 5.89,
+          "day_return_pct": 0.0,
+          "day_return_usd": 0.0
         }
       ],
       "qqq_buy_price": null,
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "portfolio_open_value": 30212.94,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null
+      "portfolio_close_value": 29523.27,
+      "session_return_pct": -2.283,
+      "session_return_usd": -689.67
     }
   ],
   "equity_curve": [
@@ -345,8 +345,8 @@
     },
     {
       "date": "2026-03-18",
-      "portfolio_value": 30212.94,
-      "qqq_indexed": 30410.62
+      "portfolio_value": 29523.27,
+      "qqq_indexed": 30334.72
     }
   ]
 }
