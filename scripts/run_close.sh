@@ -39,7 +39,7 @@ else
     git add docs/data/portfolio.json
     if ! git diff --staged --quiet; then
         git commit -m "portfolio: close $(date +%Y-%m-%d)"
-        git push origin main
+        git push origin deploy
         echo "portfolio.json pushed to GitHub"
     else
         echo "No portfolio changes to push"

@@ -72,7 +72,7 @@ EXIT_CODE=$?
 git add docs/data/portfolio.json
 if ! git diff --staged --quiet; then
     git commit -m "portfolio: morning picks $(date +%Y-%m-%d)"
-    git push origin main
+    git push origin deploy
     echo "portfolio.json pushed to GitHub"
 fi
 
