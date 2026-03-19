@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-03-19T09:36:25.289234",
+  "updated_at": "2026-03-19T14:30:48.818522",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -353,9 +353,9 @@
           "shares": 336,
           "buy_price": 15.49,
           "buy_value": 5204.64,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 14.85,
+          "day_return_pct": -4.132,
+          "day_return_usd": -215.04
         },
         {
           "ticker": "MU",
@@ -369,9 +369,9 @@
           "shares": 10,
           "buy_price": 426.53,
           "buy_value": 4265.3,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 445.41,
+          "day_return_pct": 4.426,
+          "day_return_usd": 188.8
         },
         {
           "ticker": "PLTR",
@@ -385,9 +385,9 @@
           "shares": 26,
           "buy_price": 151.47,
           "buy_value": 3938.22,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 154.14,
+          "day_return_pct": 1.763,
+          "day_return_usd": 69.42
         },
         {
           "ticker": "PBR",
@@ -401,9 +401,9 @@
           "shares": 206,
           "buy_price": 19.84,
           "buy_value": 4087.04,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 19.83,
+          "day_return_pct": -0.05,
+          "day_return_usd": -2.06
         },
         {
           "ticker": "PFE",
@@ -417,9 +417,9 @@
           "shares": 150,
           "buy_price": 27.46,
           "buy_value": 4119.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 27.41,
+          "day_return_pct": -0.182,
+          "day_return_usd": -7.5
         },
         {
           "ticker": "EQNR",
@@ -433,9 +433,9 @@
           "shares": 86,
           "buy_price": 40.85,
           "buy_value": 3513.1,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 40.98,
+          "day_return_pct": 0.318,
+          "day_return_usd": 11.18
         },
         {
           "ticker": "BP",
@@ -449,18 +449,18 @@
           "shares": 77,
           "buy_price": 45.78,
           "buy_value": 3525.06,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 46.17,
+          "day_return_pct": 0.852,
+          "day_return_usd": 30.03
         }
       ],
       "qqq_buy_price": null,
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "portfolio_open_value": 29496.34,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null
+      "portfolio_close_value": 29571.17,
+      "session_return_pct": 0.254,
+      "session_return_usd": 74.83
     }
   ],
   "equity_curve": [
@@ -476,8 +476,8 @@
     },
     {
       "date": "2026-03-19",
-      "portfolio_value": 29496.34,
-      "qqq_indexed": 30410.62
+      "portfolio_value": 29571.17,
+      "qqq_indexed": 29928.4
     }
   ]
 }
