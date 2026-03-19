@@ -347,13 +347,18 @@ async def main():
     # Sequential: one GPT call at a time — easy to step through.          #
     # Parallel:   up to 10 concurrent GPT calls via thread-pool executor. #
     # ------------------------------------------------------------------ #
+    if spy_return is not None:
+        spy_context = f"SPY is {'up' if spy_return >= 0 else 'down'} {abs(spy_return):.2f}% today."
+    else:
+        spy_context = "SPY return unavailable."
+
     if sequential:
-        all_scored = score_candidates(news_by_ticker, excluded_set, trend_by_ticker, sequential=True)
+        all_scored = score_candidates(news_by_ticker, excluded_set, trend_by_ticker, sequential=True, spy_context=spy_context)
     else:
         loop = asyncio.get_running_loop()
         all_scored = await loop.run_in_executor(
             None,
-            lambda: score_candidates(news_by_ticker, excluded_set, trend_by_ticker),
+            lambda: score_candidates(news_by_ticker, excluded_set, trend_by_ticker, spy_context=spy_context),
         )
 
     # ------------------------------------------------------------------ #
@@ -426,16 +431,54 @@ async def main():
                     for ticker in extra_tickers
                 ])
 
+            extra_raw_trend: dict[str, dict] = {}
             for ticker, trend in zip(extra_tickers, extra_trend_results):
+                if trend:
+                    extra_raw_trend[ticker] = trend
                 trend_by_ticker[ticker] = fmt_trend_for_prompt(trend)
 
+            # Apply the same pre-score trend filter to conservative extras so
+            # tickers with bad trends can't enter through the expansion path.
+            if pre_score_filters:
+                filtered_extra_news: dict = {}
+                for ticker, articles in extra_news.items():
+                    raw = extra_raw_trend.get(ticker) or {}
+                    passed = True
+                    for period, bounds in pre_score_filters.items():
+                        if period.startswith("_"):
+                            continue
+                        min_val = bounds.get("min")
+                        max_val = bounds.get("max")
+                        if min_val is None and max_val is None:
+                            continue
+                        val = raw.get(period)
+                        if val is None:
+                            continue
+                        if min_val is not None and val < min_val:
+                            logger.info(
+                                "conservative_expansion pre_score_filter: %s rejected — %s %.1f%% < min %.1f%%",
+                                ticker, period, val, min_val,
+                            )
+                            passed = False
+                            break
+                        if max_val is not None and val > max_val:
+                            logger.info(
+                                "conservative_expansion pre_score_filter: %s rejected — %s %.1f%% > max %.1f%%",
+                                ticker, period, val, max_val,
+                            )
+                            passed = False
+                            break
+                    if passed:
+                        filtered_extra_news[ticker] = articles
+                extra_news = filtered_extra_news
+
             if sequential:
-                extra_scored = score_candidates(extra_news, excluded_set, trend_by_ticker, sequential=True)
+                extra_scored = score_candidates(extra_news, excluded_set, trend_by_ticker, sequential=True, spy_context=spy_context)
             else:
                 loop = asyncio.get_running_loop()
                 extra_scored = await loop.run_in_executor(
                     None,
-                    lambda: score_candidates(extra_news, excluded_set, trend_by_ticker),
+                    lambda: score_candidates(extra_news, excluded_set, trend_by_ticker, spy_context=spy_context),
                 )
 
             # Merge with original scored list and re-rank at the score floor

@@ -12,7 +12,7 @@ from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
-MODEL       = "gpt-4o-mini"
+MODEL       = "gpt-4o"
 TEMPERATURE = 0.3
 MAX_WORKERS = 1
 
@@ -34,7 +34,7 @@ def _format_news_items(articles: list[dict]) -> str:
         return "(no recent news available)"
     lines = []
     for i, a in enumerate(articles, 1):
-        body_snippet = a.get("body", "")[:300].strip()
+        body_snippet = a.get("body", "")[:600].strip()
         lines.append(
             f"{i}. [{a.get('time', '')}] ({a.get('provider', '')}) {a.get('headline', '')}\n"
             f"   {body_snippet}"
@@ -60,12 +60,14 @@ def _score_ticker(
     ticker: str,
     articles: list[dict],
     trend_summary: str,
+    spy_context: str = "unavailable",
 ) -> dict:
     prompt = (
         _load_prompt_template()
         .replace("{ticker}", ticker)
         .replace("{trend_summary}", trend_summary)
         .replace("{news_items}", _format_news_items(articles))
+        .replace("{spy_context}", spy_context)
     )
     _default = {
         "ticker": ticker,
@@ -172,6 +174,7 @@ def score_candidates(
     excluded: set[str],
     trend_by_ticker: dict[str, str] | None = None,
     sequential: bool = False,
+    spy_context: str = "unavailable",
 ) -> list[dict]:
     """
     Score every ticker in news_by_ticker with GPT in parallel.
@@ -202,6 +205,7 @@ def score_candidates(
                 ticker,
                 articles,
                 trend_by_ticker.get(ticker, "unavailable"),
+                spy_context,
             ): ticker
             for ticker, articles in candidates.items()
         }
@@ -230,6 +234,7 @@ def filter_and_rank(
         if r["direction"] == "bullish"
         and r["score"] >= min_score
         and r.get("expected_gain_pct", 0.0) >= min_expected_gain_pct
+        and not (r["risk"] >= 4 and r["score"] < 8)
     ]
     rejected_bearish = [r["ticker"] for r in scored if r["direction"] != "bullish"]
     rejected_score   = [r["ticker"] for r in scored if r["direction"] == "bullish" and r["score"] < min_score]
@@ -238,6 +243,13 @@ def filter_and_rank(
         if r["direction"] == "bullish"
         and r["score"] >= min_score
         and r.get("expected_gain_pct", 0.0) < min_expected_gain_pct
+    ]
+    rejected_risk    = [
+        r["ticker"] for r in scored
+        if r["direction"] == "bullish"
+        and r["score"] >= min_score
+        and r.get("expected_gain_pct", 0.0) >= min_expected_gain_pct
+        and r["risk"] >= 4 and r["score"] < 8
     ]
 
     if rejected_bearish:
@@ -252,8 +264,15 @@ def filter_and_rank(
             "catalyst_scorer: below min_expected_gain_pct (%.1f%%) filtered: %s",
             min_expected_gain_pct, ", ".join(rejected_gain),
         )
+    if rejected_risk:
+        logger.info("catalyst_scorer: high-risk/low-score filtered: %s", ", ".join(rejected_risk))
 
-    bullish.sort(key=lambda x: x["score"], reverse=True)
+    # Rank by conviction = score × expected_gain / risk (same formula as allocation).
+    # This ensures the stocks we select are consistent with how we'd allocate capital.
+    def conviction(r: dict) -> float:
+        return r["score"] * max(r.get("expected_gain_pct", 1.0), 0.5) / max(r["risk"], 1)
+
+    bullish.sort(key=conviction, reverse=True)
     top = bullish[:num_stocks]
 
     if not top:

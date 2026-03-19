@@ -51,6 +51,8 @@ Return a JSON object with five fields:
 
 Ticker: {ticker}
 
+Market context: {spy_context}
+
 Price trend:
 {trend_summary}
 
