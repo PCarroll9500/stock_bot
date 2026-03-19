@@ -290,6 +290,7 @@ async def main():
     # Fail-open: tickers with no trend data are kept (data was unavailable).#
     # ------------------------------------------------------------------ #
     pre_score_filters: dict = config.get("pre_score_trend_filters", {})
+    pre_score_rejected: set[str] = set()  # tickers explicitly failed — never re-enter via expansion
     if pre_score_filters:
         before_count = len(news_by_ticker)
         filtered_news: dict = {}
@@ -322,6 +323,8 @@ async def main():
                     break
             if passed:
                 filtered_news[ticker] = articles
+            else:
+                pre_score_rejected.add(ticker)
         news_by_ticker = filtered_news
         logger.warning(
             "pre_score_filter: %d → %d candidates after trend pre-filter",
@@ -383,12 +386,15 @@ async def main():
             "Still short (%d/%d) — expanding to conservative candidate pool",
             len(picks), num_stocks,
         )
-        # Identify universe members that were never sent to the AI scorer
+        # Identify universe members that were never sent to the AI scorer.
+        # Exclude tickers that were explicitly rejected by the pre-score trend
+        # filter — they failed a hard threshold and should not re-enter here.
         already_scored = {p["ticker"] for p in all_scored}
         conservative_extras = [
             s for s in universe
             if s["ticker"] not in already_scored
             and s["ticker"] not in excluded_set
+            and s["ticker"] not in pre_score_rejected
         ]
         # Still enforce the gap filter on these extras
         if conservative_extras:
