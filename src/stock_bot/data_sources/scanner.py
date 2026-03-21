@@ -61,10 +61,15 @@ def get_scanner_universe(ib: IB, config: dict) -> list[dict]:
 
 async def get_scanner_universe_async(ib: IB, config: dict) -> list[dict]:
     """
-    Run all scan_codes concurrently, collect results, deduplicate.
+    Run all scan_codes concurrently (up to 9 at a time), collect results, deduplicate.
 
     Returns list of {"ticker": str, "conId": int}.
     Runs all scan codes in parallel — typically cuts scan time from ~15 s to ~2 s.
+
+    Uses reqScannerSubscription + cancelScannerSubscription in a try/finally so that
+    IBKR subscriptions are always cleaned up even on timeout. reqScannerDataAsync skips
+    the cancel call when asyncio.wait_for cancels the coroutine, which leaks subscriptions
+    and triggers Error 322 (only 10 simultaneous allowed) for subsequent scanners.
     """
     scan_codes: list[str] = config.get("scan_codes", [])
     price_min: float = config.get("price_min", 5.0)
@@ -72,7 +77,7 @@ async def get_scanner_universe_async(ib: IB, config: dict) -> list[dict]:
     max_per_scan: int = config.get("max_per_scan", 50)
     market_cap_max_b: float | None = config.get("market_cap_max_b")
 
-    sem = asyncio.Semaphore(10)
+    sem = asyncio.Semaphore(9)  # stay under IBKR's 10-simultaneous-subscription limit
 
     async def _scan_one(scan_code: str) -> tuple[str, list[dict]]:
         sub = ScannerSubscription(
@@ -86,17 +91,19 @@ async def get_scanner_universe_async(ib: IB, config: dict) -> list[dict]:
         if market_cap_max_b is not None:
             sub.marketCapBelow = market_cap_max_b * 1000
         async with sem:
+            data_list = ib.reqScannerSubscription(sub)
+            future = ib.wrapper.startReq(data_list.reqId, container=data_list)
             try:
-                results = await asyncio.wait_for(ib.reqScannerDataAsync(sub), timeout=30.0)
+                await asyncio.wait_for(future, timeout=30.0)
                 items = []
                 skipped_etf = 0
-                for item in results:
+                for item in data_list:
                     contract = item.contractDetails.contract
                     if contract.secType and contract.secType != "STK":
                         skipped_etf += 1
                         continue
                     items.append({"ticker": contract.symbol, "conId": contract.conId})
-                logger.info("Scanner %s: %d results, %d ETFs skipped", scan_code, len(results), skipped_etf)
+                logger.info("Scanner %s: %d results, %d ETFs skipped", scan_code, len(data_list), skipped_etf)
                 return scan_code, items
             except asyncio.TimeoutError:
                 logger.warning("Scanner %s: timed out after 30s — skipping", scan_code)
@@ -104,6 +111,8 @@ async def get_scanner_universe_async(ib: IB, config: dict) -> list[dict]:
             except Exception:
                 logger.warning("Scanner %s: skipping — scan returned an error", scan_code, exc_info=True)
                 return scan_code, []
+            finally:
+                ib.cancelScannerSubscription(data_list)
 
     all_results = await asyncio.gather(*[_scan_one(sc) for sc in scan_codes])
 
