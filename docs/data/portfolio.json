@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-03-23T09:43:41.270397",
+  "updated_at": "2026-03-23T14:30:49.965093",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -479,9 +479,9 @@
           "shares": 212,
           "buy_price": 18.78,
           "buy_value": 3981.36,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 20.74,
+          "day_return_pct": 10.437,
+          "day_return_usd": 415.52
         },
         {
           "ticker": "TWO",
@@ -495,9 +495,9 @@
           "shares": 349,
           "buy_price": 11.29,
           "buy_value": 3940.21,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 11.4,
+          "day_return_pct": 0.974,
+          "day_return_usd": 38.39
         },
         {
           "ticker": "VG",
@@ -511,9 +511,9 @@
           "shares": 258,
           "buy_price": 15.67,
           "buy_value": 4042.86,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 15.92,
+          "day_return_pct": 1.595,
+          "day_return_usd": 64.5
         },
         {
           "ticker": "BMNR",
@@ -527,9 +527,9 @@
           "shares": 185,
           "buy_price": 21.34,
           "buy_value": 3947.9,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 21.07,
+          "day_return_pct": -1.265,
+          "day_return_usd": -49.95
         },
         {
           "ticker": "ARM",
@@ -543,9 +543,9 @@
           "shares": 25,
           "buy_price": 137.03,
           "buy_value": 3425.75,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 138.12,
+          "day_return_pct": 0.795,
+          "day_return_usd": 27.25
         },
         {
           "ticker": "LNG",
@@ -559,9 +559,9 @@
           "shares": 10,
           "buy_price": 283.32,
           "buy_value": 2833.2,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 286.6,
+          "day_return_pct": 1.158,
+          "day_return_usd": 32.8
         },
         {
           "ticker": "DVN",
@@ -575,9 +575,9 @@
           "shares": 62,
           "buy_price": 47.92,
           "buy_value": 2971.04,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 48.85,
+          "day_return_pct": 1.941,
+          "day_return_usd": 57.66
         },
         {
           "ticker": "CRGY",
@@ -591,9 +591,9 @@
           "shares": 206,
           "buy_price": 12.61,
           "buy_value": 2597.66,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 12.58,
+          "day_return_pct": -0.238,
+          "day_return_usd": -6.18
         },
         {
           "ticker": "RIVN",
@@ -607,18 +607,18 @@
           "shares": 129,
           "buy_price": 15.65,
           "buy_value": 2018.85,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 15.95,
+          "day_return_pct": 1.917,
+          "day_return_usd": 38.7
         }
       ],
       "qqq_buy_price": null,
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "portfolio_open_value": 29555.58,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null
+      "portfolio_close_value": 30377.52,
+      "session_return_pct": 2.781,
+      "session_return_usd": 821.94
     }
   ],
   "equity_curve": [
@@ -639,8 +639,8 @@
     },
     {
       "date": "2026-03-23",
-      "portfolio_value": 29555.58,
-      "qqq_indexed": 30410.62
+      "portfolio_value": 30377.52,
+      "qqq_indexed": 29833.78
     }
   ]
 }
