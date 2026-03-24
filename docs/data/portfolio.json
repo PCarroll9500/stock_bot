@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-03-23T14:30:49.965093",
+  "updated_at": "2026-03-24T09:41:39.323505",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -619,6 +619,132 @@
       "portfolio_close_value": 30377.52,
       "session_return_pct": 2.781,
       "session_return_usd": 821.94
+    },
+    {
+      "date": "2026-03-24",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "VG",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Morgan Stanley's significant price target raise and upgrade to Overweight, combined with a new LNG purchase agreement, suggest further upside potential.",
+          "trend_summary": "1d: -0.1%  1w: +28.7%  1m: +63.1%  3m: +160.7%  1yr: +37.8%",
+          "allocation_pct": 19.4,
+          "shares": 356,
+          "buy_price": 17.24,
+          "buy_value": 6137.44,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "JHG",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "The increased offer by Trian and General Catalyst for Janus Henderson represents a 25% premium, indicating strong acquisition interest and potential for further upside today.",
+          "trend_summary": "1d: +0.6%  1w: +0.6%  1m: +1.1%  3m: +12.0%  1yr: +33.7%",
+          "allocation_pct": 19.4,
+          "shares": 111,
+          "buy_price": 52.45,
+          "buy_value": 5821.95,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ONDS",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 5.0,
+          "reason": "Ondas reported a 634% revenue increase and raised guidance, with a recent analyst price target raise, indicating strong momentum and potential further upside.",
+          "trend_summary": "1d: +8.3%  1w: +3.5%  1m: +8.7%  3m: +39.7%  1yr: +1130.5%",
+          "allocation_pct": 16.1,
+          "shares": 449,
+          "buy_price": 11.11,
+          "buy_value": 4988.39,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NTGR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.0,
+          "reason": "The FCC ban on foreign-made routers presents a strong catalyst for Netgear, likely increasing demand for its products.",
+          "trend_summary": "1d: +5.9%  1w: +1.0%  1m: +5.7%  3m: -8.0%  1yr: -11.0%",
+          "allocation_pct": 14.5,
+          "shares": 180,
+          "buy_price": 24.85,
+          "buy_value": 4473.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "PBR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Petrobras has signed a substantial 60-month service agreement with Baker Hughes, indicating a strong catalyst for further upside today.",
+          "trend_summary": "1d: +2.5%  1w: +0.5%  1m: +22.0%  3m: +64.4%  1yr: +35.0%",
+          "allocation_pct": 12.1,
+          "shares": 187,
+          "buy_price": 19.64,
+          "buy_value": 3672.68,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CVX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Chevron's CEO highlights underpriced oil supply shock due to Iran conflict, suggesting potential for further price increases.",
+          "trend_summary": "1d: +1.7%  1w: +4.3%  1m: +11.6%  3m: +38.9%  1yr: +23.7%",
+          "allocation_pct": 10.4,
+          "shares": 15,
+          "buy_price": 207.6,
+          "buy_value": 3114.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "RIVN",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Rivian's partnership with Uber provides a significant capital and demand boost, enhancing its autonomous vehicle strategy.",
+          "trend_summary": "1d: +5.8%  1w: +2.9%  1m: +3.3%  3m: -22.2%  1yr: +27.6%",
+          "allocation_pct": 8.1,
+          "shares": 155,
+          "buy_price": 15.76,
+          "buy_value": 2442.8,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "portfolio_open_value": 30153.74,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null
     }
   ],
   "equity_curve": [
@@ -641,6 +767,11 @@
       "date": "2026-03-23",
       "portfolio_value": 30377.52,
       "qqq_indexed": 29833.78
+    },
+    {
+      "date": "2026-03-24",
+      "portfolio_value": 30153.74,
+      "qqq_indexed": 30410.62
     }
   ]
 }
