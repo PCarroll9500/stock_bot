@@ -104,6 +104,7 @@ async def main():
     min_expected_gain_pct: float = config.get("min_expected_gain_pct", 0.0)
     take_profit_pct: float | None = config.get("take_profit_pct")
     stop_loss_pct: float | None = config.get("stop_loss_pct")
+    limit_order_buffer_pct: float | None = config.get("limit_order_buffer_pct")
 
     logger.info(
         "Loaded config — aggressive_mode=%s, num_stocks=%d",
@@ -571,19 +572,24 @@ async def main():
             len(order_plans), projected_cost, open_value,
         )
 
-        for pick, alloc_pct, shares, _ in order_plans:
+        for pick, alloc_pct, shares, preflight_price in order_plans:
             if shares <= 0:
                 logger.warning("Skipping %s — 0 shares after budget check", pick["ticker"])
                 continue
+            limit_price: float | None = None
+            if limit_order_buffer_pct is not None:
+                limit_price = round(preflight_price * (1 + limit_order_buffer_pct / 100), 2)
             try:
                 trades = await buy_stock_async(
                     pick["ticker"], ib,
                     shares=shares,
+                    limit_price=limit_price,
                     take_profit_pct=take_profit_pct,
                     stop_loss_pct=stop_loss_pct,
                 )
                 trades_by_ticker[pick["ticker"]] = trades
-                logger.info("BUY submitted: %s x%d (%.1f%%)", pick["ticker"], shares, alloc_pct)
+                order_type = f"LMT ${limit_price:.2f}" if limit_price else "MKT"
+                logger.info("BUY submitted: %s x%d %s (%.1f%%)", pick["ticker"], shares, order_type, alloc_pct)
             except Exception:
                 logger.error("Buy order failed for %s", pick["ticker"], exc_info=True)
                 trades_by_ticker[pick["ticker"]] = []
