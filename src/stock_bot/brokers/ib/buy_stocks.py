@@ -364,6 +364,12 @@ async def _last_price_async(contract: Stock, ib: IB) -> float:
     )
 
 
+async def get_price_async(ticker: str, ib: IB) -> float:
+    """Fetch the current market price for a ticker (live, falls back to delayed)."""
+    contract = await _qualify_async(ticker, ib)
+    return await _last_price_async(contract, ib)
+
+
 async def buy_stock_async(
     ticker: str,
     ib: IB,

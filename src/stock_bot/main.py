@@ -4,13 +4,14 @@ import argparse
 import asyncio
 import json
 import logging
+import math
 import sys
 from pathlib import Path
 
 from stock_bot.core.logging_config import setup_logging
 from stock_bot.config.settings import ib_settings
 from stock_bot.brokers.ib.connect_disconnect import connect_ib_async, disconnect_ib
-from stock_bot.brokers.ib.buy_stocks import buy_stock_async
+from stock_bot.brokers.ib.buy_stocks import buy_stock_async, get_price_async
 from stock_bot.data_sources.scanner import get_scanner_universe_async
 from stock_bot.data_sources.news_fetcher import fetch_news_for_tickers_async
 from stock_bot.data_sources.trend_checker import (
@@ -537,17 +538,52 @@ async def main():
                 "AI allocations sum to %.1f%% — normalizing to 100%% to avoid margin", total_alloc
             )
             raw_allocs = [a / total_alloc * 100.0 for a in raw_allocs]
+
+        # Pre-flight: fetch current prices and calculate exact share counts so
+        # total committed cash never exceeds the available balance. Using
+        # dollar_amount= inside buy_stock_async sizes shares from a delayed price
+        # that may be stale; the actual fill at the real price can then exceed the
+        # budget. By computing shares here and passing shares= we lock in the cost.
+        order_plans: list[tuple] = []  # (pick, alloc_pct, shares, est_price)
         for pick, alloc_pct in zip(picks, raw_allocs):
             alloc_usd = alloc_pct / 100.0 * open_value
             try:
+                price = await get_price_async(pick["ticker"], ib)
+                shares = math.floor(alloc_usd / price)
+                order_plans.append((pick, alloc_pct, shares, price))
+            except Exception:
+                logger.error("Pre-flight price fetch failed for %s — skipping", pick["ticker"], exc_info=True)
+
+        projected_cost = sum(shares * price for _, _, shares, price in order_plans)
+        if projected_cost > open_value:
+            scale = open_value / projected_cost
+            logger.warning(
+                "Pre-flight: projected cost $%.2f exceeds budget $%.2f — scaling all positions by %.4f",
+                projected_cost, open_value, scale,
+            )
+            order_plans = [
+                (pick, alloc_pct, math.floor(shares * scale), price)
+                for pick, alloc_pct, shares, price in order_plans
+            ]
+            projected_cost = sum(shares * price for _, _, shares, price in order_plans)
+        logger.info(
+            "Pre-flight complete: %d positions, projected cost $%.2f of $%.2f budget",
+            len(order_plans), projected_cost, open_value,
+        )
+
+        for pick, alloc_pct, shares, _ in order_plans:
+            if shares <= 0:
+                logger.warning("Skipping %s — 0 shares after budget check", pick["ticker"])
+                continue
+            try:
                 trades = await buy_stock_async(
                     pick["ticker"], ib,
-                    dollar_amount=alloc_usd,
+                    shares=shares,
                     take_profit_pct=take_profit_pct,
                     stop_loss_pct=stop_loss_pct,
                 )
                 trades_by_ticker[pick["ticker"]] = trades
-                logger.info("BUY submitted: %s $%.2f (%.1f%%)", pick["ticker"], alloc_usd, alloc_pct)
+                logger.info("BUY submitted: %s x%d (%.1f%%)", pick["ticker"], shares, alloc_pct)
             except Exception:
                 logger.error("Buy order failed for %s", pick["ticker"], exc_info=True)
                 trades_by_ticker[pick["ticker"]] = []
