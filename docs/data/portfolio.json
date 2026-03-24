@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-03-24T09:41:39.323505",
+  "updated_at": "2026-03-24T14:30:49.307826",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -637,9 +637,9 @@
           "shares": 356,
           "buy_price": 17.24,
           "buy_value": 6137.44,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 16.93,
+          "day_return_pct": -1.798,
+          "day_return_usd": -110.36
         },
         {
           "ticker": "JHG",
@@ -653,9 +653,9 @@
           "shares": 111,
           "buy_price": 52.45,
           "buy_value": 5821.95,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 52.0,
+          "day_return_pct": -0.858,
+          "day_return_usd": -49.95
         },
         {
           "ticker": "ONDS",
@@ -669,9 +669,9 @@
           "shares": 449,
           "buy_price": 11.11,
           "buy_value": 4988.39,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 10.8,
+          "day_return_pct": -2.79,
+          "day_return_usd": -139.19
         },
         {
           "ticker": "NTGR",
@@ -685,9 +685,9 @@
           "shares": 180,
           "buy_price": 24.85,
           "buy_value": 4473.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 25.46,
+          "day_return_pct": 2.455,
+          "day_return_usd": 109.8
         },
         {
           "ticker": "PBR",
@@ -701,9 +701,9 @@
           "shares": 187,
           "buy_price": 19.64,
           "buy_value": 3672.68,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 19.74,
+          "day_return_pct": 0.509,
+          "day_return_usd": 18.7
         },
         {
           "ticker": "CVX",
@@ -717,9 +717,9 @@
           "shares": 15,
           "buy_price": 207.6,
           "buy_value": 3114.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 207.7,
+          "day_return_pct": 0.048,
+          "day_return_usd": 1.5
         },
         {
           "ticker": "RIVN",
@@ -733,18 +733,18 @@
           "shares": 155,
           "buy_price": 15.76,
           "buy_value": 2442.8,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 15.63,
+          "day_return_pct": -0.825,
+          "day_return_usd": -20.15
         }
       ],
       "qqq_buy_price": null,
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "portfolio_open_value": 30153.74,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null
+      "portfolio_close_value": 30460.61,
+      "session_return_pct": 1.018,
+      "session_return_usd": 306.87
     }
   ],
   "equity_curve": [
@@ -770,8 +770,8 @@
     },
     {
       "date": "2026-03-24",
-      "portfolio_value": 30153.74,
-      "qqq_indexed": 30410.62
+      "portfolio_value": 30460.61,
+      "qqq_indexed": 29568.13
     }
   ]
 }
