@@ -21,6 +21,7 @@
 
   "fill_wait_seconds": 60,
   "sell_wait_seconds": 45,
+  "realloc_fill_wait_seconds": 20,
   "_limit_order_comment": "Caps buy price at pre-flight quote + buffer% for both paper and live (e.g. 0.5 = 0.5% above). null = market orders.",
   "limit_order_buffer_pct": 1.0,
 

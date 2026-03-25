@@ -102,6 +102,7 @@ async def main():
     trend_filters: dict | None = config.get("trend_filters") or None
     aggressive_mode: bool = config.get("aggressive_mode", False)
     fill_wait_seconds: int = config.get("fill_wait_seconds", 60)
+    realloc_fill_wait_seconds: int = config.get("realloc_fill_wait_seconds", 20)
     min_expected_gain_pct: float = config.get("min_expected_gain_pct", 0.0)
     take_profit_pct: float | None = config.get("take_profit_pct")
     stop_loss_pct: float | None = config.get("stop_loss_pct")
@@ -717,7 +718,7 @@ async def main():
 
                 # Wait for round 1 fills then append confirmed trades to
                 # trades_by_ticker so write_session includes the extra shares
-                await asyncio.sleep(30)
+                await asyncio.sleep(realloc_fill_wait_seconds)
                 for ticker, r1_trade_list in realloc_trades.items():
                     for t in (r1_trade_list or [])[:1]:
                         status = getattr(t, "orderStatus", None)
@@ -760,7 +761,7 @@ async def main():
                                 reserve["ticker"], res_shares, order_type, reserve.get("score", 0), res_shares * res_price,
                             )
                             # Wait briefly for fill then verify
-                            await asyncio.sleep(30)
+                            await asyncio.sleep(realloc_fill_wait_seconds)
                             for t in (res_trades or [])[:1]:
                                 status = getattr(t, "orderStatus", None)
                                 if status and status.filled > 0:

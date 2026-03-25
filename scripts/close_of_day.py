@@ -39,7 +39,8 @@ def _retry_ibkr(fn, label: str, ib, connect_fn, logger, *, interval=_RETRY_INTER
     """Call fn(ib) repeatedly until it returns a non-None value or timeout expires.
 
     Attempts reconnection on each retry if IBKR is disconnected.
-    Logs an error and returns None if timeout is reached.
+    Returns (result, ib) so callers always have the live connection reference.
+    Returns (None, ib) if timeout is reached.
     """
     deadline = time.monotonic() + timeout
     attempt = 0
@@ -47,14 +48,14 @@ def _retry_ibkr(fn, label: str, ib, connect_fn, logger, *, interval=_RETRY_INTER
         attempt += 1
         result = fn(ib)
         if result is not None:
-            return result
+            return result, ib
         remaining = deadline - time.monotonic()
         if remaining <= 0:
             logger.error(
                 "close_of_day: %s still unavailable after %d s — giving up",
                 label, timeout,
             )
-            return None
+            return None, ib
         logger.warning(
             "close_of_day: %s unavailable (attempt %d) — retrying in %d s (%.0f s remaining)",
             label, attempt, interval, remaining,
@@ -201,7 +202,7 @@ def main() -> None:
 
         # Fall back to last bar price with retry
         if close_price is None:
-            close_price = _retry_ibkr(
+            close_price, ib = _retry_ibkr(
                 lambda _ib: _get_last_price(ticker, _ib),
                 f"last price for {ticker}", ib, connect_ib, logger,
             )
@@ -221,7 +222,7 @@ def main() -> None:
 
     # Use actual IBKR account value as portfolio_close_value — the ground truth
     # after all positions are liquidated, rather than summing estimated fill prices.
-    actual_close_value = _retry_ibkr(get_net_liquidation, "NetLiquidation", ib, connect_ib, logger)
+    actual_close_value, ib = _retry_ibkr(get_net_liquidation, "NetLiquidation", ib, connect_ib, logger)
     if actual_close_value is not None:
         logger.info("close_of_day: using IBKR NetLiquidation $%.2f as portfolio_close_value", actual_close_value)
         total_close_value = actual_close_value
@@ -244,7 +245,7 @@ def main() -> None:
         session["session_return_pct"] = "ERROR"
 
     # QQQ close price
-    qqq_close = _retry_ibkr(
+    qqq_close, ib = _retry_ibkr(
         lambda _ib: _get_last_price("QQQ", _ib),
         "QQQ close price", ib, connect_ib, logger,
     )
