@@ -3,7 +3,7 @@
   "aggressive_min_score": 7,
   "spy_down_threshold": -1.0,
 
-  "num_stocks": 5,
+  "num_stocks": 10,
   "min_score": 7,
   "score_floor": 7,
   "min_expected_gain_pct": 2.5,
