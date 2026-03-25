@@ -25,6 +25,7 @@ from stock_bot.brokers.ib.sell_all import sell_all_stock, close_position
 from stock_bot.data_sources.portfolio_writer import (
     load_portfolio,
     save_portfolio,
+    get_net_liquidation,
     _get_last_price,
 )
 
@@ -149,21 +150,18 @@ def main() -> None:
                 getattr(status, "filled", 0) if status else 0,
             )
 
-    # Record close prices — prefer actual sell fill price, fall back to last bar price
-    total_close_value = 0.0
+    # Record per-pick close prices for individual P&L tracking
     for pick in session.get("picks", []):
         ticker = pick["ticker"]
         buy_price = pick.get("buy_price", 0)
         shares = pick.get("shares", 0)
 
-        # Try actual sell fill price first
+        # Try actual sell fill price first, fall back to last bar price
         close_price: float | None = None
         trade = sell_trades.get(ticker)
         sell_status = getattr(trade, "orderStatus", None) if trade else None
         if sell_status and sell_status.filled > 0:
             close_price = float(sell_status.avgFillPrice)
-
-        # Fall back to last bar price
         if close_price is None:
             close_price = _get_last_price(ticker, ib)
 
@@ -173,21 +171,29 @@ def main() -> None:
             pick["close_price"] = close_price
             pick["day_return_pct"] = round(day_return_pct, 3)
             pick["day_return_usd"] = round(day_return_usd, 2)
-            close_value = close_price * shares
             logger.info(
                 "close_of_day: %s close=%.4f return=%.2f%% ($%.2f)",
                 ticker, close_price, day_return_pct, day_return_usd,
             )
         else:
-            close_value = pick.get("buy_value", 0)
-            logger.warning("close_of_day: %s — no close price, using buy_value", ticker)
+            logger.warning("close_of_day: %s — no close price, per-pick P&L not recorded", ticker)
 
-        total_close_value += close_value
-
-    # Add back uninvested cash (from rounding when computing share counts)
-    total_invested = sum(p.get("buy_value", 0) for p in session.get("picks", []))
-    cash = max(0.0, session.get("portfolio_open_value", 0) - total_invested)
-    total_close_value += cash
+    # Use actual IBKR account value as portfolio_close_value — the ground truth
+    # after all positions are liquidated, rather than summing estimated fill prices.
+    actual_close_value = get_net_liquidation(ib)
+    if actual_close_value is not None:
+        logger.info("close_of_day: using IBKR NetLiquidation $%.2f as portfolio_close_value", actual_close_value)
+        total_close_value = actual_close_value
+    else:
+        # Fallback: sum fill prices + uninvested cash (old behaviour)
+        logger.warning("close_of_day: NetLiquidation unavailable — falling back to calculated close value")
+        total_close_value = sum(
+            p.get("close_price", p.get("buy_price", 0)) * p.get("shares", 0)
+            for p in session.get("picks", [])
+        )
+        total_invested = sum(p.get("buy_value", 0) for p in session.get("picks", []))
+        cash = max(0.0, session.get("portfolio_open_value", 0) - total_invested)
+        total_close_value += cash
 
     session["portfolio_close_value"] = round(total_close_value, 2)
     session["session_return_usd"] = round(total_close_value - session["portfolio_open_value"], 2)

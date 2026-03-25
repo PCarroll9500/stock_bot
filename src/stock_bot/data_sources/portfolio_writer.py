@@ -53,6 +53,33 @@ def get_live_account_value(ib: IB) -> float | None:
     return None
 
 
+def get_net_liquidation(ib: IB) -> float | None:
+    """Return the NetLiquidation value from the live IBKR account.
+
+    Used after all positions are sold to get the true cash balance as
+    reported by IBKR, rather than calculating from fill prices.
+    Returns None if the value cannot be read.
+    """
+    account = ib_settings.account
+    if not account:
+        logger.warning("portfolio_writer: IB_ACCOUNT not configured — cannot read NetLiquidation")
+        return None
+    try:
+        vals = {v.tag: v for v in ib.accountValues(account=account) if v.currency == "USD"}
+        net_liq = vals.get("NetLiquidation")
+        if net_liq is not None:
+            value = float(net_liq.value)
+            logger.info("portfolio_writer: NetLiquidation = $%.2f", value)
+            return value
+        logger.warning(
+            "portfolio_writer: NetLiquidation not found — got %d account values for %s",
+            len(vals), account,
+        )
+    except Exception:
+        logger.warning("portfolio_writer: could not read NetLiquidation from IBKR", exc_info=True)
+    return None
+
+
 def _get_last_price(ticker: str, ib: IB) -> float | None:
     """Fetch the most recent traded price from IBKR (last 1-min bar)."""
     contract = Stock(ticker, "SMART", "USD")
