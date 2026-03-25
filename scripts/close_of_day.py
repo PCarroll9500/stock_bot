@@ -116,6 +116,26 @@ def main() -> None:
 
     logger.info("close_of_day: updating session for %s", today)
 
+    # Cancel any open orders (stop-loss / take-profit child orders) before
+    # selling so they cannot fire after the position is flat and create shorts.
+    try:
+        open_orders = ib.reqOpenOrders()
+        tickers_to_sell = {p["ticker"] for p in session.get("picks", []) if p.get("shares", 0) > 0}
+        cancelled = 0
+        for trade in open_orders:
+            symbol = getattr(trade.contract, "symbol", None)
+            if symbol in tickers_to_sell:
+                try:
+                    ib.cancelOrder(trade.order)
+                    cancelled += 1
+                except Exception:
+                    logger.warning("close_of_day: could not cancel order for %s", symbol, exc_info=True)
+        if cancelled:
+            logger.info("close_of_day: cancelled %d open orders before liquidation", cancelled)
+            ib.sleep(2)  # brief pause for cancellations to propagate
+    except Exception:
+        logger.warning("close_of_day: failed to fetch/cancel open orders — proceeding anyway", exc_info=True)
+
     # Liquidate all open positions, collecting Trade objects for verification
     logger.info("close_of_day: liquidating all positions")
     sell_trades: dict[str, Trade] = {}
