@@ -133,11 +133,17 @@ def save_portfolio(data: dict, test_mode: bool = False) -> None:
 
 
 def _get_open_value(portfolio: dict, test_mode: bool = False) -> float:
-    """Return the previous session's close value, or the initial investment."""
+    """Return the previous session's close value, or the initial investment.
+
+    Skips sessions where portfolio_close_value is "ERROR" (IBKR unavailable).
+    """
     for session in reversed(portfolio.get("sessions", [])):
         close = session.get("portfolio_close_value")
         if close is not None:
-            return float(close)
+            try:
+                return float(close)
+            except (TypeError, ValueError):
+                continue  # skip ERROR sessions, look further back
     return float(portfolio.get("initial_investment", _INITIAL_INVESTMENT))
 
 
@@ -211,15 +217,21 @@ def write_session(
         alloc_usd = alloc_pct / 100 * open_value
 
         # --- Try to use the actual fill from the Trade object first -----------
+        # Sum all BUY fills for this ticker (handles original + realloc top-ups)
         fill_price: float | None = None
         fill_qty: int = 0
         if trades_by_ticker:
-            for trade in (trades_by_ticker.get(p["ticker"]) or [])[:1]:  # entry order only
+            total_filled = 0
+            total_value = 0.0
+            for trade in (trades_by_ticker.get(p["ticker"]) or []):
                 status = getattr(trade, "orderStatus", None)
-                if status and status.filled > 0:
-                    fill_price = float(status.avgFillPrice)
-                    fill_qty = int(status.filled)
-                    break
+                order_action = getattr(trade.order, "action", "") if getattr(trade, "order", None) else ""
+                if status and status.filled > 0 and order_action == "BUY":
+                    total_filled += int(status.filled)
+                    total_value += status.filled * status.avgFillPrice
+            if total_filled > 0:
+                fill_price = round(total_value / total_filled, 4)
+                fill_qty = total_filled
 
         if fill_price and fill_qty > 0:
             buy_price = fill_price

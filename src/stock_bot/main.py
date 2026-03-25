@@ -540,20 +540,21 @@ async def main():
             )
             raw_allocs = [a / total_alloc * 100.0 for a in raw_allocs]
 
-        # Pre-flight: fetch current prices and calculate exact share counts so
-        # total committed cash never exceeds the available balance. Using
-        # dollar_amount= inside buy_stock_async sizes shares from a delayed price
-        # that may be stale; the actual fill at the real price can then exceed the
-        # budget. By computing shares here and passing shares= we lock in the cost.
+        # Pre-flight: fetch all prices in parallel then calculate exact share
+        # counts so total committed cash never exceeds the available balance.
+        alloc_pairs = list(zip(picks, raw_allocs))
+        price_results = await asyncio.gather(
+            *[get_price_async(pick["ticker"], ib) for pick, _ in alloc_pairs],
+            return_exceptions=True,
+        )
         order_plans: list[tuple] = []  # (pick, alloc_pct, shares, est_price)
-        for pick, alloc_pct in zip(picks, raw_allocs):
+        for (pick, alloc_pct), result in zip(alloc_pairs, price_results):
+            if isinstance(result, Exception):
+                logger.error("Pre-flight price fetch failed for %s — skipping: %s", pick["ticker"], result)
+                continue
             alloc_usd = alloc_pct / 100.0 * open_value
-            try:
-                price = await get_price_async(pick["ticker"], ib)
-                shares = math.floor(alloc_usd / price)
-                order_plans.append((pick, alloc_pct, shares, price))
-            except Exception:
-                logger.error("Pre-flight price fetch failed for %s — skipping", pick["ticker"], exc_info=True)
+            shares = math.floor(alloc_usd / result)
+            order_plans.append((pick, alloc_pct, shares, result))
 
         projected_cost = sum(shares * price for _, _, shares, price in order_plans)
         if projected_cost > open_value:
@@ -671,22 +672,54 @@ async def main():
                 total_filled_cost = sum(s * p for _, s, p in filled_plans) or 1.0
                 realloc_trades: dict[str, list] = {}
                 cash_used = 0.0
+
+                # Fetch fresh prices in parallel for realloc sizing/limits
+                r1_tickers = [fp["ticker"] for fp, _, _ in filled_plans]
+                r1_prices_raw = await asyncio.gather(
+                    *[get_price_async(t, ib) for t in r1_tickers],
+                    return_exceptions=True,
+                )
+                r1_prices = {
+                    t: p for t, p in zip(r1_tickers, r1_prices_raw)
+                    if not isinstance(p, Exception)
+                }
+
                 for fp, fp_shares, fp_price in filled_plans:
+                    fresh_price = r1_prices.get(fp["ticker"], fp_price)
                     weight = (fp_shares * fp_price) / total_filled_cost
                     extra_usd = freed_cash * weight
-                    extra_shares = math.floor(extra_usd / fp_price)
+                    extra_shares = math.floor(extra_usd / fresh_price)
                     if extra_shares <= 0:
                         continue
-                    extra_limit = round(fp_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
+                    extra_limit = round(fresh_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
                     try:
                         t = await buy_stock_async(fp["ticker"], ib, shares=extra_shares, limit_price=extra_limit)
                         realloc_trades[fp["ticker"]] = t
-                        cash_used += extra_shares * fp_price
+                        cash_used += extra_shares * fresh_price
                         order_type = f"LMT ${extra_limit:.2f}" if extra_limit else "MKT"
-                        logger.info("Realloc round 1: %s +%d shares %s ($%.2f)", fp["ticker"], extra_shares, order_type, extra_shares * fp_price)
+                        logger.info("Realloc round 1: %s +%d shares %s ($%.2f)", fp["ticker"], extra_shares, order_type, extra_shares * fresh_price)
                     except Exception:
                         logger.error("Realloc round 1: buy failed for %s", fp["ticker"], exc_info=True)
                 freed_cash -= cash_used
+
+                # Wait for round 1 fills then append confirmed trades to
+                # trades_by_ticker so write_session includes the extra shares
+                await asyncio.sleep(30)
+                for ticker, r1_trade_list in realloc_trades.items():
+                    for t in (r1_trade_list or [])[:1]:
+                        status = getattr(t, "orderStatus", None)
+                        if status and status.filled > 0:
+                            trades_by_ticker.setdefault(ticker, []).append(t)
+                            logger.info(
+                                "Realloc round 1: %s confirmed +%.0f @ $%.4f",
+                                ticker, status.filled, status.avgFillPrice,
+                            )
+                        else:
+                            logger.warning("Realloc round 1: %s did not fill — cancelling", ticker)
+                            try:
+                                ib.cancelOrder(t.order)
+                            except Exception:
+                                pass
 
             # Round 2: one reserve candidate if meaningful cash remains
             if freed_cash >= _MIN_REALLOC_USD:
