@@ -105,10 +105,7 @@ async def main():
     min_expected_gain_pct: float = config.get("min_expected_gain_pct", 0.0)
     take_profit_pct: float | None = config.get("take_profit_pct")
     stop_loss_pct: float | None = config.get("stop_loss_pct")
-    if ib_settings.mode == "live":
-        limit_order_buffer_pct: float | None = config.get("live_limit_order_buffer_pct", 1.0)
-    else:
-        limit_order_buffer_pct = config.get("limit_order_buffer_pct", 0.5)
+    limit_order_buffer_pct: float | None = config.get("limit_order_buffer_pct", 0.5)
     logger.info("Limit order buffer: %.2f%% (%s mode)", limit_order_buffer_pct or 0, ib_settings.mode)
 
     logger.info(

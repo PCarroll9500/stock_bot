@@ -21,9 +21,8 @@
 
   "fill_wait_seconds": 60,
   "sell_wait_seconds": 45,
-  "_limit_order_comment": "Caps buy price at pre-flight quote + buffer%. Paper uses limit_order_buffer_pct, live uses live_limit_order_buffer_pct (wider to account for spread/impact). null = market orders.",
+  "_limit_order_comment": "Caps buy price at pre-flight quote + buffer% for both paper and live (e.g. 0.5 = 0.5% above). null = market orders.",
   "limit_order_buffer_pct": 0.5,
-  "live_limit_order_buffer_pct": 1.0,
 
   "trend_filters": {
     "monthly":   {"min": 5.0, "max": null},
