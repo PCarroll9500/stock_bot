@@ -147,7 +147,7 @@ def main() -> None:
                     sell_trades[pick["ticker"]] = trade
                 else:
                     logger.warning(
-                        "close_of_day: no open position found for %s — sell skipped",
+                        "close_of_day: no open position found for %s — stop-loss likely fired intraday, sell skipped",
                         pick["ticker"],
                     )
             except Exception:

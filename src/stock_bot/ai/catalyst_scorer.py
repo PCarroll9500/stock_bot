@@ -91,9 +91,10 @@ def _score_ticker(
             risk          = max(1, min(5, int(parsed.get("risk", 3))))
             expected_gain = float(parsed.get("expected_gain_pct", 0.0))
             reason        = str(parsed.get("reason", ""))
+            sector        = str(parsed.get("sector", "Unknown"))
             logger.info(
-                "catalyst_scorer: %s score=%d dir=%s risk=%d gain=%.1f%% | %s",
-                ticker, score, direction, risk, expected_gain, reason,
+                "catalyst_scorer: %s score=%d dir=%s risk=%d gain=%.1f%% sector=%s | %s",
+                ticker, score, direction, risk, expected_gain, sector, reason,
             )
             return {
                 "ticker": ticker,
@@ -102,6 +103,7 @@ def _score_ticker(
                 "risk": risk,
                 "expected_gain_pct": expected_gain,
                 "reason": reason,
+                "sector": sector,
             }
         except openai.RateLimitError:
             if attempt < 3:
@@ -222,6 +224,7 @@ def filter_and_rank(
     num_stocks: int,
     min_score: int,
     min_expected_gain_pct: float = 0.0,
+    sector_cap: int | None = None,
 ) -> list[dict]:
     """
     Filter scored results to bullish picks above min_score, sort by score,
@@ -273,7 +276,27 @@ def filter_and_rank(
         return r["score"] * max(r.get("expected_gain_pct", 1.0), 0.5) / max(r["risk"], 1)
 
     bullish.sort(key=conviction, reverse=True)
-    top = bullish[:num_stocks]
+
+    # Apply sector cap: take picks in order, skip any sector that already
+    # has sector_cap picks. This preserves conviction ordering.
+    if sector_cap is not None:
+        sector_counts: dict[str, int] = {}
+        capped: list[dict] = []
+        for r in bullish:
+            sec = r.get("sector", "Unknown")
+            if sector_counts.get(sec, 0) >= sector_cap:
+                logger.info(
+                    "catalyst_scorer: %s dropped — sector '%s' already has %d picks (cap=%d)",
+                    r["ticker"], sec, sector_counts[sec], sector_cap,
+                )
+                continue
+            sector_counts[sec] = sector_counts.get(sec, 0) + 1
+            capped.append(r)
+            if len(capped) == num_stocks:
+                break
+        top = capped
+    else:
+        top = bullish[:num_stocks]
 
     if not top:
         return []

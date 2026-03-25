@@ -49,6 +49,8 @@ Return a JSON object with five fields:
 
 5. "reason": one concise sentence — state the catalyst and your main conviction or risk driver.
 
+6. "sector": one of: Technology, Energy, Healthcare, Financials, Consumer, Industrials, Materials, Utilities, Real Estate, Communication, Crypto
+
 Ticker: {ticker}
 
 Market context: {spy_context}
@@ -60,4 +62,4 @@ Recent news:
 {news_items}
 
 Respond with JSON only — no text outside the JSON:
-{{"score": <1-10>, "direction": "bullish" or "bearish", "risk": <1-5>, "expected_gain_pct": <float>, "reason": "<one sentence>"}}
+{{"score": <1-10>, "direction": "bullish" or "bearish", "risk": <1-5>, "expected_gain_pct": <float>, "reason": "<one sentence>", "sector": "<one of the sectors listed above>"}}

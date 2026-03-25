@@ -104,6 +104,7 @@ async def main():
     fill_wait_seconds: int = config.get("fill_wait_seconds", 60)
     realloc_fill_wait_seconds: int = config.get("realloc_fill_wait_seconds", 20)
     min_expected_gain_pct: float = config.get("min_expected_gain_pct", 0.0)
+    sector_cap: int | None = config.get("sector_cap")
     take_profit_pct: float | None = config.get("take_profit_pct")
     stop_loss_pct: float | None = config.get("stop_loss_pct")
     limit_order_buffer_pct: float | None = config.get("limit_order_buffer_pct", 0.5)
@@ -376,7 +377,7 @@ async def main():
     threshold = effective_min_score
 
     while threshold >= score_floor:
-        picks = filter_and_rank(all_scored, num_stocks, min_score=threshold, min_expected_gain_pct=min_expected_gain_pct)
+        picks = filter_and_rank(all_scored, num_stocks, min_score=threshold, min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap)
         if len(picks) >= num_stocks:
             logger.info(
                 "Target of %d stocks reached at min_score=%d", num_stocks, threshold
@@ -488,7 +489,7 @@ async def main():
 
             # Merge with original scored list and re-rank at the score floor
             all_scored = all_scored + extra_scored
-            picks = filter_and_rank(all_scored, num_stocks, min_score=score_floor, min_expected_gain_pct=min_expected_gain_pct)
+            picks = filter_and_rank(all_scored, num_stocks, min_score=score_floor, min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap)
             logger.info(
                 "After conservative expansion: %d picks (min_score=%d)",
                 len(picks), score_floor,

@@ -8,6 +8,7 @@
   "score_floor": 7,
   "min_expected_gain_pct": 2.5,
   "max_score_candidates": 30,
+  "sector_cap": 4,
 
   "_pre_score_comment": "Hard trend thresholds applied before GPT — stocks failing any are dropped without an AI call. null = no limit for that direction.",
   "pre_score_trend_filters": {
