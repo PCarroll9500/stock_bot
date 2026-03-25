@@ -2,7 +2,8 @@
 # run_close.sh — git pull, run close_of_day.py, push portfolio.json, send email report
 #
 # Cron entry (EC2, UTC):
-#   30 19 * * 1-5 /home/ubuntu/stock_bot/scripts/run_close.sh
+#   30 18 * * 1-5 /home/ubuntu/stock_bot/scripts/run_close.sh
+#   (18:30 UTC = 2:30 PM EDT / 1:30 PM EST — sells ~90 min before close to lock in profits)
 
 set -euo pipefail
 
@@ -25,7 +26,7 @@ if [ -n "${GITHUB_PAT:-}" ] && [ -n "${GITHUB_USER:-}" ]; then
 fi
 
 echo "Pulling latest code from GitHub..."
-git pull origin main || echo "WARNING: git pull failed, continuing with existing code"
+git pull origin deploy || echo "WARNING: git pull failed, continuing with existing code"
 
 # Sell positions and record close prices
 echo "Running close_of_day.py..."

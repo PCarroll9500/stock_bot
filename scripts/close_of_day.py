@@ -2,11 +2,11 @@
 """
 scripts/close_of_day.py
 
-Run at market close (4:05 PM ET) via cron to record end-of-day prices,
-compute session returns, and update the equity curve in portfolio.json.
+Run at 2:30 PM ET via cron to lock in profits ~90 min before close.
+Records close prices, computes session returns, updates portfolio.json.
 
-Cron entry (add with: crontab -e):
-  5 16 * * 1-5 cd /home/patrick/dev/github/stock_bot && .venv/bin/python scripts/close_of_day.py >> logs/close_of_day.log 2>&1
+Cron entry (EC2, UTC — see run_close.sh):
+  30 18 * * 1-5  (18:30 UTC = 2:30 PM EDT / 1:30 PM EST)
 """
 
 import argparse

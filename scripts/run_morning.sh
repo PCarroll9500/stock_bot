@@ -26,7 +26,7 @@ fi
 
 echo "Pulling latest code from GitHub..."
 git stash 2>/dev/null || true
-git pull origin main || echo "WARNING: git pull failed, continuing with existing code"
+git pull origin deploy || echo "WARNING: git pull failed, continuing with existing code"
 git stash pop 2>/dev/null || git stash drop 2>/dev/null || true
 
 # Wait for IBKR Gateway to be ready (retry up to 20 minutes)
