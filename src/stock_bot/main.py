@@ -29,6 +29,7 @@ from stock_bot.data_sources.portfolio_writer import (
     load_portfolio,
     _get_open_value,
     get_live_account_value,
+    get_net_liquidation,
 )
 
 _CONFIG_DIR = Path(__file__).parent / "config"
@@ -506,15 +507,26 @@ async def main():
     # ------------------------------------------------------------------ #
     _portfolio = load_portfolio(test_mode=test_mode)
 
-    # Prefer the live IBKR NetLiquidation value; fall back to last recorded
-    # open_value in portfolio.json if the account query fails.
-    live_balance = get_live_account_value(ib)
-    if live_balance is not None:
-        open_value = live_balance
-        logger.info("Capital base: $%.2f (live from IBKR NetLiquidation)", open_value)
+    # cash_balance  — CashBalance from IBKR: used for order sizing only so we
+    #                 never allocate against margin or unsettled positions.
+    # record_open   — NetLiquidation from IBKR: the true account value recorded
+    #                 as portfolio_open_value. After overnight liquidation these
+    #                 are equal; keeping them separate makes the intent explicit.
+    cash_balance = get_live_account_value(ib)
+    record_open = get_net_liquidation(ib)
+
+    if cash_balance is not None:
+        open_value = cash_balance
+        logger.info("Order sizing base: $%.2f (CashBalance from IBKR)", open_value)
     else:
         open_value = _get_open_value(_portfolio)
-        logger.info("Capital base: $%.2f (from portfolio.json — IBKR balance unavailable)", open_value)
+        logger.info("Order sizing base: $%.2f (from portfolio.json — IBKR unavailable)", open_value)
+
+    if record_open is not None:
+        logger.info("Portfolio open value: $%.2f (NetLiquidation from IBKR)", record_open)
+    else:
+        record_open = open_value
+        logger.warning("Portfolio open value: falling back to CashBalance $%.2f (NetLiquidation unavailable)", record_open)
 
     trades_by_ticker: dict[str, list] = {}
     if picks and test_mode:
@@ -816,7 +828,7 @@ async def main():
         spy_return=spy_return,
         test_mode=test_mode,
         trades_by_ticker=None if test_mode else trades_by_ticker,
-        open_value_override=open_value,
+        open_value_override=record_open,
         qqq_price_override=qqq_price,
     )
 
