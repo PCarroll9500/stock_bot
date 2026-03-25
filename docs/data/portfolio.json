@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-03-25T09:41:57.627566",
+  "updated_at": "2026-03-25T14:30:51.968680",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -763,9 +763,9 @@
           "shares": 85,
           "buy_price": 51.41,
           "buy_value": 4369.85,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 51.38,
+          "day_return_pct": -0.058,
+          "day_return_usd": -2.55
         },
         {
           "ticker": "TERN",
@@ -779,9 +779,9 @@
           "shares": 79,
           "buy_price": 52.61,
           "buy_value": 4156.19,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 52.8,
+          "day_return_pct": 0.361,
+          "day_return_usd": 15.01
         },
         {
           "ticker": "ARM",
@@ -811,9 +811,9 @@
           "shares": 3,
           "buy_price": 805.79,
           "buy_value": 2417.37,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 782.58,
+          "day_return_pct": -2.88,
+          "day_return_usd": -69.63
         },
         {
           "ticker": "GEV",
@@ -859,9 +859,9 @@
           "shares": 48,
           "buy_price": 50.88,
           "buy_value": 2442.24,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 52.19,
+          "day_return_pct": 2.575,
+          "day_return_usd": 62.88
         },
         {
           "ticker": "COHR",
@@ -875,9 +875,9 @@
           "shares": 8,
           "buy_price": 274.69,
           "buy_value": 2197.52,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 274.26,
+          "day_return_pct": -0.157,
+          "day_return_usd": -3.44
         },
         {
           "ticker": "EQNR",
@@ -907,18 +907,18 @@
           "shares": 149,
           "buy_price": 16.19,
           "buy_value": 2412.31,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 17.0,
+          "day_return_pct": 5.003,
+          "day_return_usd": 120.69
         }
       ],
       "qqq_buy_price": null,
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "portfolio_open_value": 29945.76,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null
+      "portfolio_close_value": 29991.09,
+      "session_return_pct": 0.151,
+      "session_return_usd": 45.33
     }
   ],
   "equity_curve": [
@@ -949,8 +949,8 @@
     },
     {
       "date": "2026-03-25",
-      "portfolio_value": 29945.76,
-      "qqq_indexed": 30410.62
+      "portfolio_value": 29991.09,
+      "qqq_indexed": 29807.47
     }
   ]
 }
