@@ -13,6 +13,7 @@ import argparse
 import json
 import logging
 import sys
+import time
 from datetime import date as date_type
 from pathlib import Path
 
@@ -30,6 +31,41 @@ from stock_bot.data_sources.portfolio_writer import (
 )
 
 _CONFIG_PATH = Path(__file__).resolve().parents[1] / "src" / "stock_bot" / "config" / "picker_config.json"
+_RETRY_INTERVAL_S = 30
+_RETRY_TIMEOUT_S = 600  # 10 minutes
+
+
+def _retry_ibkr(fn, label: str, ib, connect_fn, logger, *, interval=_RETRY_INTERVAL_S, timeout=_RETRY_TIMEOUT_S):
+    """Call fn(ib) repeatedly until it returns a non-None value or timeout expires.
+
+    Attempts reconnection on each retry if IBKR is disconnected.
+    Logs an error and returns None if timeout is reached.
+    """
+    deadline = time.monotonic() + timeout
+    attempt = 0
+    while True:
+        attempt += 1
+        result = fn(ib)
+        if result is not None:
+            return result
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            logger.error(
+                "close_of_day: %s still unavailable after %d s — giving up",
+                label, timeout,
+            )
+            return None
+        logger.warning(
+            "close_of_day: %s unavailable (attempt %d) — retrying in %d s (%.0f s remaining)",
+            label, attempt, interval, remaining,
+        )
+        time.sleep(interval)
+        if not ib.isConnected():
+            try:
+                ib = connect_fn()
+                logger.info("close_of_day: reconnected to IBKR for retry")
+            except Exception:
+                logger.warning("close_of_day: reconnect failed — will retry anyway")
 
 
 def _load_config() -> dict:
@@ -156,14 +192,19 @@ def main() -> None:
         buy_price = pick.get("buy_price", 0)
         shares = pick.get("shares", 0)
 
-        # Try actual sell fill price first, fall back to last bar price
+        # Try actual sell fill price first (no retry needed — already in memory)
         close_price: float | None = None
         trade = sell_trades.get(ticker)
         sell_status = getattr(trade, "orderStatus", None) if trade else None
         if sell_status and sell_status.filled > 0:
             close_price = float(sell_status.avgFillPrice)
+
+        # Fall back to last bar price with retry
         if close_price is None:
-            close_price = _get_last_price(ticker, ib)
+            close_price = _retry_ibkr(
+                lambda _ib: _get_last_price(ticker, _ib),
+                f"last price for {ticker}", ib, connect_ib, logger,
+            )
 
         if close_price and buy_price > 0 and shares > 0:
             day_return_usd = (close_price - buy_price) * shares
@@ -180,13 +221,13 @@ def main() -> None:
 
     # Use actual IBKR account value as portfolio_close_value — the ground truth
     # after all positions are liquidated, rather than summing estimated fill prices.
-    actual_close_value = get_net_liquidation(ib)
+    actual_close_value = _retry_ibkr(get_net_liquidation, "NetLiquidation", ib, connect_ib, logger)
     if actual_close_value is not None:
         logger.info("close_of_day: using IBKR NetLiquidation $%.2f as portfolio_close_value", actual_close_value)
         total_close_value = actual_close_value
     else:
         # Fallback: sum fill prices + uninvested cash (old behaviour)
-        logger.warning("close_of_day: NetLiquidation unavailable — falling back to calculated close value")
+        logger.error("close_of_day: NetLiquidation unavailable after retries — falling back to calculated close value")
         total_close_value = sum(
             p.get("close_price", p.get("buy_price", 0)) * p.get("shares", 0)
             for p in session.get("picks", [])
@@ -203,7 +244,10 @@ def main() -> None:
     )
 
     # QQQ close price
-    qqq_close = _get_last_price("QQQ", ib)
+    qqq_close = _retry_ibkr(
+        lambda _ib: _get_last_price("QQQ", _ib),
+        "QQQ close price", ib, connect_ib, logger,
+    )
     qqq_buy = session.get("qqq_buy_price")
     if qqq_close and qqq_buy and qqq_buy > 0:
         session["qqq_close_price"] = qqq_close
