@@ -633,6 +633,110 @@ async def main():
                 "%d of %d picks were NOT filled and will be excluded from the portfolio",
                 unfilled, len(picks),
             )
+
+        # ── Reallocation: redeploy capital from unfilled limit orders ──────
+        # Cancel unfilled orders and calculate freed cash. One pass only:
+        # first try topping up already-filled positions, then one reserve
+        # candidate if meaningful cash still remains.
+        _MIN_REALLOC_USD = 200.0
+        unfilled_plans = [
+            (pick, shares, preflight_price)
+            for pick, _alloc_pct, shares, preflight_price in order_plans
+            if pick not in filled_picks
+        ]
+        freed_cash = sum(shares * price for _, shares, price in unfilled_plans)
+
+        if unfilled_plans and freed_cash >= _MIN_REALLOC_USD:
+            # Cancel the unfilled limit orders so IBKR doesn't fill them later
+            for pick, _, _ in unfilled_plans:
+                for t in (trades_by_ticker.get(pick["ticker"]) or [])[:1]:
+                    try:
+                        ib.cancelOrder(t.order)
+                    except Exception:
+                        logger.warning("Could not cancel order for %s", pick["ticker"])
+
+            logger.info(
+                "Reallocation: freed $%.2f from %d unfilled order(s) — redistributing",
+                freed_cash, len(unfilled_plans),
+            )
+
+            # Round 1: top up existing filled picks proportionally
+            if filled_picks:
+                filled_tickers = {p["ticker"] for p in filled_picks}
+                filled_plans = [
+                    (pick, shares, price)
+                    for pick, _alloc_pct, shares, price in order_plans
+                    if pick["ticker"] in filled_tickers
+                ]
+                total_filled_cost = sum(s * p for _, s, p in filled_plans) or 1.0
+                realloc_trades: dict[str, list] = {}
+                cash_used = 0.0
+                for fp, fp_shares, fp_price in filled_plans:
+                    weight = (fp_shares * fp_price) / total_filled_cost
+                    extra_usd = freed_cash * weight
+                    extra_shares = math.floor(extra_usd / fp_price)
+                    if extra_shares <= 0:
+                        continue
+                    extra_limit = round(fp_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
+                    try:
+                        t = await buy_stock_async(fp["ticker"], ib, shares=extra_shares, limit_price=extra_limit)
+                        realloc_trades[fp["ticker"]] = t
+                        cash_used += extra_shares * fp_price
+                        order_type = f"LMT ${extra_limit:.2f}" if extra_limit else "MKT"
+                        logger.info("Realloc round 1: %s +%d shares %s ($%.2f)", fp["ticker"], extra_shares, order_type, extra_shares * fp_price)
+                    except Exception:
+                        logger.error("Realloc round 1: buy failed for %s", fp["ticker"], exc_info=True)
+                freed_cash -= cash_used
+
+            # Round 2: one reserve candidate if meaningful cash remains
+            if freed_cash >= _MIN_REALLOC_USD:
+                filled_tickers = {p["ticker"] for p in filled_picks}
+                original_tickers = {p["ticker"] for p in picks}
+                reserve_candidates = [
+                    s for s in all_scored
+                    if s["ticker"] not in original_tickers
+                    and s["ticker"] not in filled_tickers
+                    and s.get("score", 0) >= score_floor
+                    and s.get("direction") == "bullish"
+                ]
+                if reserve_candidates:
+                    reserve = reserve_candidates[0]
+                    try:
+                        res_price = await get_price_async(reserve["ticker"], ib)
+                        res_shares = math.floor(freed_cash / res_price)
+                        if res_shares > 0:
+                            res_limit = round(res_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
+                            res_trades = await buy_stock_async(reserve["ticker"], ib, shares=res_shares, limit_price=res_limit)
+                            trades_by_ticker[reserve["ticker"]] = res_trades
+                            order_type = f"LMT ${res_limit:.2f}" if res_limit else "MKT"
+                            logger.info(
+                                "Realloc round 2: reserve pick %s x%d %s (score=%d, $%.2f)",
+                                reserve["ticker"], res_shares, order_type, reserve.get("score", 0), res_shares * res_price,
+                            )
+                            # Wait briefly for fill then verify
+                            await asyncio.sleep(30)
+                            for t in (res_trades or [])[:1]:
+                                status = getattr(t, "orderStatus", None)
+                                if status and status.filled > 0:
+                                    reserve["shares"] = int(status.filled)
+                                    reserve["buy_price"] = round(status.avgFillPrice, 4)
+                                    reserve["buy_value"] = round(status.filled * status.avgFillPrice, 2)
+                                    filled_picks.append(reserve)
+                                    logger.info(
+                                        "Realloc round 2: %s filled %.0f @ $%.4f",
+                                        reserve["ticker"], status.filled, status.avgFillPrice,
+                                    )
+                                else:
+                                    logger.warning("Realloc round 2: %s did not fill — cancelling", reserve["ticker"])
+                                    try:
+                                        ib.cancelOrder(res_trades[0].order)
+                                    except Exception:
+                                        pass
+                    except Exception:
+                        logger.error("Realloc round 2: failed for %s", reserve["ticker"], exc_info=True)
+                else:
+                    logger.info("Realloc round 2: no eligible reserve candidates")
+
         picks = filled_picks
 
     # ------------------------------------------------------------------ #
