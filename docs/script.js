@@ -156,6 +156,7 @@ async function fetchPrice(ticker) {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function $(id) { return document.getElementById(id); }
+function isError(v) { return v === 'ERROR'; }
 
 function fmt(n, decimals = 2) {
   if (n == null || isNaN(n)) return '—';
@@ -180,7 +181,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 // ── Live portfolio value ──────────────────────────────────────────────────────
 
 function computeLivePortfolioValue(session, livePrices) {
-  if (!session || session.portfolio_close_value != null) return null;
+  if (!session || (session.portfolio_close_value != null && !isError(session.portfolio_close_value))) return null;
 
   const openValue = session.portfolio_open_value || 0;
   let totalInvested = 0;
@@ -207,7 +208,7 @@ function renderKpis(portfolio, session, livePrices) {
   // Portfolio value
   let currentValue;
   let isLive = false;
-  if (session?.portfolio_close_value != null) {
+  if (session?.portfolio_close_value != null && !isError(session.portfolio_close_value)) {
     currentValue = session.portfolio_close_value;
   } else {
     const liveVal = computeLivePortfolioValue(session, livePrices);
@@ -255,7 +256,7 @@ function buildChartDatasets(portfolio, session, livePrices) {
 
   const sessionValues = {};
   for (const s of sessions) {
-    if (s.portfolio_close_value != null) sessionValues[s.date] = s.portfolio_close_value;
+    if (s.portfolio_close_value != null && !isError(s.portfolio_close_value)) sessionValues[s.date] = s.portfolio_close_value;
   }
 
   const today   = new Date().toISOString().slice(0, 10);
@@ -481,15 +482,16 @@ function renderHistoryTable(sessions) {
   }
   [...sessions].reverse().forEach(s => {
     const closed = s.portfolio_close_value != null;
+    const closeErr = isError(s.portfolio_close_value);
     const n = s.picks?.length ?? 0;
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${fmtDate(s.date)}</td>
       <td><span class="badge" style="font-size:.7rem">${s.mode || '—'}</span></td>
       <td>${fmtUsd(s.portfolio_open_value)}</td>
-      <td>${closed ? fmtUsd(s.portfolio_close_value) : '<span class="neutral">open</span>'}</td>
+      <td>${closeErr ? '<span class="down" title="IBKR unreachable after close — value unavailable">ERROR</span>' : closed ? fmtUsd(s.portfolio_close_value) : '<span class="neutral">open</span>'}</td>
       <td class="${colorClass(s.session_return_pct)}">
-        ${closed ? fmtPct(s.session_return_pct) + ' (' + fmtUsd(s.session_return_usd) + ')' : '—'}
+        ${closeErr ? '—' : closed ? fmtPct(s.session_return_pct) + ' (' + fmtUsd(s.session_return_usd) + ')' : '—'}
       </td>
       <td>${n} stock${n !== 1 ? 's' : ''}</td>
     `;
