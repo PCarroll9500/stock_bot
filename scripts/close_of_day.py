@@ -227,23 +227,21 @@ def main() -> None:
         total_close_value = actual_close_value
         session.pop("close_value_error", None)
     else:
-        # Fallback: sum fill prices + uninvested cash (old behaviour)
-        logger.error("close_of_day: NetLiquidation unavailable after retries — falling back to calculated close value")
-        total_close_value = sum(
-            p.get("close_price", p.get("buy_price", 0)) * p.get("shares", 0)
-            for p in session.get("picks", [])
-        )
-        total_invested = sum(p.get("buy_value", 0) for p in session.get("picks", []))
-        cash = max(0.0, session.get("portfolio_open_value", 0) - total_invested)
-        total_close_value += cash
-        session["close_value_error"] = round(total_close_value, 2)
+        # NetLiquidation failed — mark as ERROR, do not store a calculated guess
+        logger.error("close_of_day: NetLiquidation unavailable after retries — portfolio_close_value set to ERROR")
+        total_close_value = None
 
-    session["portfolio_close_value"] = round(total_close_value, 2)
-    session["session_return_usd"] = round(total_close_value - session["portfolio_open_value"], 2)
-    open_val = session["portfolio_open_value"]
-    session["session_return_pct"] = (
-        round((total_close_value - open_val) / open_val * 100, 3) if open_val > 0 else 0
-    )
+    if total_close_value is not None:
+        session["portfolio_close_value"] = round(total_close_value, 2)
+        session["session_return_usd"] = round(total_close_value - session["portfolio_open_value"], 2)
+        open_val = session["portfolio_open_value"]
+        session["session_return_pct"] = (
+            round((total_close_value - open_val) / open_val * 100, 3) if open_val > 0 else 0
+        )
+    else:
+        session["portfolio_close_value"] = "ERROR"
+        session["session_return_usd"] = "ERROR"
+        session["session_return_pct"] = "ERROR"
 
     # QQQ close price
     qqq_close = _retry_ibkr(
@@ -264,17 +262,18 @@ def main() -> None:
     )
 
     equity_curve = portfolio.get("equity_curve", [])
-    eq_point = {
-        "date": today,
-        "portfolio_value": round(total_close_value, 2),
-        "qqq_indexed": qqq_indexed,
-    }
-    eq_idx = next((i for i, e in enumerate(equity_curve) if e.get("date") == today), None)
-    if eq_idx is not None:
-        equity_curve[eq_idx] = eq_point
-    else:
-        equity_curve.append(eq_point)
-    portfolio["equity_curve"] = equity_curve
+    if total_close_value is not None:
+        eq_point = {
+            "date": today,
+            "portfolio_value": round(total_close_value, 2),
+            "qqq_indexed": qqq_indexed,
+        }
+        eq_idx = next((i for i, e in enumerate(equity_curve) if e.get("date") == today), None)
+        if eq_idx is not None:
+            equity_curve[eq_idx] = eq_point
+        else:
+            equity_curve.append(eq_point)
+        portfolio["equity_curve"] = equity_curve
 
     try:
         disconnect_ib()
@@ -283,8 +282,8 @@ def main() -> None:
     save_portfolio(portfolio, test_mode=test_mode)
 
     logger.info(
-        "close_of_day: done — portfolio $%.2f (%+.2f%%) | QQQ %+.2f%%",
-        total_close_value,
+        "close_of_day: done — portfolio %s (%s%%) | QQQ %+.2f%%",
+        f"${total_close_value:.2f}" if total_close_value is not None else "ERROR",
         session["session_return_pct"],
         session.get("qqq_day_return_pct") or 0,
     )
