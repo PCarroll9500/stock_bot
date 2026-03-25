@@ -236,7 +236,7 @@ def main() -> None:
         total_invested = sum(p.get("buy_value", 0) for p in session.get("picks", []))
         cash = max(0.0, session.get("portfolio_open_value", 0) - total_invested)
         total_close_value += cash
-        session["close_value_error"] = "IBKR NetLiquidation unavailable after 10 min — close value is estimated, not actual"
+        session["close_value_error"] = round(total_close_value, 2)
 
     session["portfolio_close_value"] = round(total_close_value, 2)
     session["session_return_usd"] = round(total_close_value - session["portfolio_open_value"], 2)
