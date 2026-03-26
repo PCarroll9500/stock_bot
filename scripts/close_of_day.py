@@ -29,6 +29,7 @@ from stock_bot.data_sources.portfolio_writer import (
     get_net_liquidation,
     get_live_account_value,
     _get_last_price,
+    _get_nasdaq_price,
 )
 
 _CONFIG_PATH = Path(__file__).resolve().parents[1] / "src" / "stock_bot" / "config" / "picker_config.json"
@@ -315,6 +316,14 @@ def main() -> None:
     if qqq_close and qqq_buy and qqq_buy > 0:
         session["qqq_close_price"] = qqq_close
         session["qqq_day_return_pct"] = round((qqq_close - qqq_buy) / qqq_buy * 100, 3)
+
+    nasdaq_close = _get_nasdaq_price()
+    nasdaq_buy = session.get("nasdaq_buy_price")
+    if nasdaq_close and nasdaq_buy and nasdaq_buy > 0:
+        session["nasdaq_close_price"] = nasdaq_close
+        session["nasdaq_day_return_pct"] = round((nasdaq_close - nasdaq_buy) / nasdaq_buy * 100, 3)
+        logger.info("close_of_day: NASDAQ %.4f -> %.4f (%.3f%%)",
+                    nasdaq_buy, nasdaq_close, session["nasdaq_day_return_pct"])
 
     # Update equity curve with close value
     initial_investment = float(portfolio.get("initial_investment", 10_000))

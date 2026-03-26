@@ -341,7 +341,7 @@ function buildChartDatasets(portfolio, session, livePrices) {
     if (date < (startDate || '')) { qqqPoints.push(null); continue; }
     if (date === startDate) { qqqPoints.push(initial); continue; }
     const eq = (portfolio.equity_curve || []).find(e => e.date === date);
-    qqqPoints.push(eq?.qqq_indexed ?? null);
+    qqqPoints.push(eq?.nasdaq_indexed ?? eq?.qqq_indexed ?? null);
   }
 
   return { labels: allDates, portfolioPoints, qqqPoints };
@@ -380,7 +380,7 @@ function renderChart(portfolio, session, livePrices) {
           spanGaps: true,
         },
         {
-          label: 'QQQ',
+          label: 'NASDAQ',
           data: data.qqqPoints,
           borderColor: '#fbbf24',
           backgroundColor: 'transparent',
