@@ -668,9 +668,9 @@ async def main():
         # Uses actual IBKR cash balance each round (ground truth).
         # Distributes proportionally to GPT score. Caps any single stock at
         # MAX_POSITION_PCT of total portfolio to maintain redundancy.
-        _MIN_LOT_USD = 50.0
+        _MIN_LOT_USD = 25.0
         _MAX_POSITION_PCT = 0.25
-        _MAX_ROUNDS = 3
+        _MAX_ROUNDS = 5
 
         remaining_cash = get_live_account_value(ib) or 0.0
         logger.info(
