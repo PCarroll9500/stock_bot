@@ -176,7 +176,7 @@ def buy_stock(
     # --- Resolve reference price for risk orders ---------------------------
     needs_ref = stop_loss_pct or take_profit_pct or trailing_stop_pct
     if needs_ref:
-        ref_price = limit_price if limit_price is not None else _last_price(contract, ib)
+        ref_price = _last_price(contract, ib)  # always use market price, not limit
     else:
         ref_price = None  # not needed
 
@@ -409,7 +409,7 @@ async def buy_stock_async(
 
     needs_ref = stop_loss_pct or take_profit_pct or trailing_stop_pct
     if needs_ref:
-        ref_price = limit_price if limit_price is not None else await _last_price_async(contract, ib)
+        ref_price = await _last_price_async(contract, ib)  # always use market price, not limit
     else:
         ref_price = None
 
