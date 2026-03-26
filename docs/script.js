@@ -339,6 +339,7 @@ function buildChartDatasets(portfolio, session, livePrices) {
   const qqqPoints = [];
   for (const date of allDates) {
     if (date < (startDate || '')) { qqqPoints.push(null); continue; }
+    if (date === startDate) { qqqPoints.push(initial); continue; }
     const eq = (portfolio.equity_curve || []).find(e => e.date === date);
     qqqPoints.push(eq?.qqq_indexed ?? null);
   }
