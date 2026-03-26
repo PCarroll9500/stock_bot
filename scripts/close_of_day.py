@@ -205,6 +205,11 @@ def main() -> None:
         if sell_status and sell_status.filled > 0:
             close_price = float(sell_status.avgFillPrice)
 
+        # Try intraday execution price (stop-loss fills)
+        if close_price is None and ticker in exec_map:
+            close_price = exec_map[ticker]
+            logger.info("close_of_day: %s using intraday execution price %.4f", ticker, close_price)
+
         # Fall back to last bar price with retry
         if close_price is None:
             close_price, ib = _retry_ibkr(

@@ -519,8 +519,8 @@ async def main():
     record_open = get_net_liquidation(ib)
 
     if cash_balance is not None:
-        open_value = cash_balance
-        logger.info("Order sizing base: $%.2f (CashBalance from IBKR)", open_value)
+        open_value = cash_balance * 0.97  # 3% reserve against fill-price slippage
+        logger.info("Order sizing base: $%.2f (97%% of $%.2f CashBalance)", open_value, cash_balance)
     else:
         open_value = _get_open_value(_portfolio)
         logger.info("Order sizing base: $%.2f (from portfolio.json — IBKR unavailable)", open_value)
@@ -786,6 +786,18 @@ async def main():
                     logger.info("Realloc round 2: no eligible reserve candidates")
 
         picks = filled_picks
+
+        # Hard cancel any orders still open after all fill waits and reallocation.
+        # Ensures no limit order survives past the buy phase.
+        for _ticker, _trade_list in trades_by_ticker.items():
+            for _t in (_trade_list or []):
+                _status = getattr(_t, "orderStatus", None)
+                if _status and _status.filled == 0 and _status.status not in ("Filled", "Cancelled", "Inactive"):
+                    try:
+                        ib.cancelOrder(_t.order)
+                        logger.info("Cancelled unfilled %s order for %s", _status.status, _ticker)
+                    except Exception:
+                        logger.warning("Could not cancel unfilled order for %s", _ticker)
 
     # ------------------------------------------------------------------ #
     # STEP 8 — BENCHMARK PRICE                                             #

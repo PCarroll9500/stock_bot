@@ -69,10 +69,14 @@ def build_message(session: dict, portfolio: dict, errors: list[str]) -> tuple[st
     total_return_usd = close_val - initial
     total_return_pct = (total_return_usd / initial * 100) if initial else 0
 
-    def signed(val: float) -> str:
+    def signed(val) -> str:
+        if val is None:
+            return "N/A"
         return f"+${val:,.2f}" if val >= 0 else f"-${abs(val):,.2f}"
 
-    def signed_pct(val: float) -> str:
+    def signed_pct(val) -> str:
+        if val is None:
+            return "N/A"
         return f"+{val:.2f}%" if val >= 0 else f"{val:.2f}%"
 
     subject = (
