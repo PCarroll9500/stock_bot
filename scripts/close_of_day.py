@@ -27,6 +27,7 @@ from stock_bot.data_sources.portfolio_writer import (
     load_portfolio,
     save_portfolio,
     get_net_liquidation,
+    get_live_account_value,
     _get_last_price,
 )
 
@@ -284,6 +285,14 @@ def main() -> None:
         # NetLiquidation failed — mark as ERROR, do not store a calculated guess
         logger.error("close_of_day: NetLiquidation unavailable after retries — portfolio_close_value set to ERROR")
         total_close_value = None
+
+    # Record actual CashBalance from IBKR — ground truth for uninvested cash
+    cash_close = get_live_account_value(ib)
+    if cash_close is not None:
+        session["cash_balance_close"] = round(cash_close, 2)
+        logger.info("close_of_day: CashBalance at close = $%.2f", cash_close)
+    else:
+        logger.warning("close_of_day: CashBalance unavailable at close")
 
     if total_close_value is not None:
         session["portfolio_close_value"] = round(total_close_value, 2)

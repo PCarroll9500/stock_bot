@@ -243,6 +243,28 @@ function renderKpis(portfolio, session, livePrices) {
   $('kpiTodayReturnUsd').className   = 'kpi-value ' + colorClass(todayUsd);
   $('kpiTodayReturnPct').textContent = fmtPct(todayPct);
   $('kpiTodayReturnPct').className   = 'kpi-sub ' + colorClass(todayPct);
+
+  // Uninvested cash — from stored field or computed live
+  let cashVal;
+  const isClosed = session?.portfolio_close_value != null && !isError(session.portfolio_close_value);
+  if (isClosed) {
+    // After close: use actual IBKR CashBalance if recorded, else 0 (all sold)
+    cashVal = session.cash_balance_close ?? 0;
+  } else {
+    // Intraday: use stored uninvested or compute from buy_values
+    if (session?.cash_uninvested != null) {
+      cashVal = session.cash_uninvested;
+    } else {
+      const totalInvested = (session?.picks || [])
+        .filter(p => p.shares > 0 && p.buy_price > 0)
+        .reduce((sum, p) => sum + (p.buy_value || p.buy_price * p.shares), 0);
+      cashVal = Math.max(0, (session?.portfolio_open_value || 0) - totalInvested);
+    }
+  }
+  const cashPct = currentValue > 0 ? (cashVal / currentValue) * 100 : 0;
+  $('kpiCash').textContent    = fmtUsd(cashVal);
+  $('kpiCash').className      = 'kpi-value';
+  $('kpiCashSub').textContent = fmtPct(cashPct, false) + ' of portfolio';
 }
 
 // ── Chart ─────────────────────────────────────────────────────────────────────

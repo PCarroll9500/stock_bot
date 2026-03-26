@@ -282,7 +282,7 @@ def write_session(
                 p["ticker"], p["score"], alloc_pct, shares, buy_price, buy_value,
             )
 
-        pick_entries.append({
+        entry = {
             "ticker": p["ticker"],
             "score": p["score"],
             "direction": p["direction"],
@@ -297,7 +297,10 @@ def write_session(
             "close_price": None,
             "day_return_pct": None,
             "day_return_usd": None,
-        })
+        }
+        if p.get("hold_until"):
+            entry["hold_until"] = p["hold_until"]
+        pick_entries.append(entry)
 
     # Compute QQQ indexed to initial investment
     sessions = portfolio.get("sessions", [])
@@ -307,6 +310,9 @@ def write_session(
         if (initial_qqq and qqq_price and initial_qqq > 0) else
         float(portfolio["initial_investment"])
     )
+
+    cash_uninvested = round(open_value - sum(e["buy_value"] for e in pick_entries), 2)
+    logger.info("portfolio_writer: uninvested cash = $%.2f (of $%.2f open)", cash_uninvested, open_value)
 
     session = {
         "date": today,
@@ -320,6 +326,8 @@ def write_session(
         "portfolio_close_value": None,
         "session_return_pct": None,
         "session_return_usd": None,
+        "cash_uninvested": cash_uninvested,
+        "cash_balance_close": None,
     }
 
     # Replace today's session if it already exists (re-run scenario)
