@@ -345,3 +345,95 @@ footer {
   border-top: 1px solid var(--card-border);
   margin-top: 1rem;
 }
+
+/* ── Stats Bar ── */
+.stats-bar {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: .85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .15rem;
+}
+.stat-label {
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #fff;
+}
+.stat-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--card-border);
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .stats-bar { justify-content: flex-start; gap: 1.25rem; }
+  .stat-divider { display: none; }
+}
+
+/* ── Score badge colours ── */
+.score-badge.score-high { background: rgba(34,211,160,0.15); color: var(--green); border-color: rgba(34,211,160,0.35); }
+.score-badge.score-mid  { background: rgba(251,191,36,0.12);  color: var(--yellow); border-color: rgba(251,191,36,0.3); }
+.score-badge.score-low  { background: rgba(251,146,60,0.12);  color: #fb923c; border-color: rgba(251,146,60,0.3); }
+
+/* ── P&L bar inside return cell ── */
+.ret-cell-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+.pnl-bar-bg {
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.pnl-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width .4s ease;
+}
+
+/* ── Clickable history rows ── */
+#historyTable tbody tr { cursor: pointer; }
+#historyTable tbody tr.active-session td { background: rgba(99,102,241,0.1); }
+
+/* ── View Today button ── */
+.view-today-btn {
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .2rem .6rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-dim);
+  color: #a5b4fc;
+  border: 1px solid rgba(99,102,241,.35);
+  cursor: pointer;
+}
+.view-today-btn:hover { background: rgba(99,102,241,.3); }
+.view-today-btn.hidden { display: none; }
+
+/* ── Refresh countdown ── */
+.refresh-countdown {
+  font-size: .75rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
