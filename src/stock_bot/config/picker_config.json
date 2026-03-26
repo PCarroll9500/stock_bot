@@ -2,7 +2,7 @@
   "aggressive_mode": true,
   "aggressive_min_score": 7,
   "spy_down_threshold": -1.0,
-  "num_stocks": 10,
+  "num_stocks": 15,
   "min_score": 7,
   "score_floor": 7,
   "min_expected_gain_pct": 2.5,
@@ -39,7 +39,6 @@
   "_limit_order_comment": "Caps buy price at pre-flight quote + buffer% for both paper and live (e.g. 0.5 = 0.5% above). null = market orders.",
   "limit_order_buffer_pct": 3.0,
   "_bracket_comment": "Stop-loss fires at -stop_loss_pct% below fill price. take_profit_pct locks in gains at +take_profit_pct%. Set either to null to disable.",
-  "stop_loss_pct": 2.5,
   "take_profit_pct": null,
   "trend_filters": {
     "monthly": {
@@ -81,5 +80,8 @@
   "news": {
     "providers": "BRFG+DJ-N",
     "max_articles": 5
-  }
+  },
+  "trailing_stop_pct": 2.5,
+  "multi_day_hold_min_score": 9,
+  "multi_day_max_days": 3
 }

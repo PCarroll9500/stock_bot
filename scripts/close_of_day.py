@@ -109,6 +109,15 @@ def main() -> None:
         logger.info("close_of_day: session for %s already closed — skipping", today)
         return
 
+    # Picks with hold_until > today are multi-day holds — skip selling them
+    held_tickers: set[str] = set()
+    for _p in session.get("picks", []):
+        _hold = _p.get("hold_until")
+        if _hold and _hold > today:
+            held_tickers.add(_p["ticker"])
+    if held_tickers:
+        logger.info("close_of_day: multi-day holds (skipping sell today): %s", sorted(held_tickers))
+
     ib = connect_ib()
     if not ib.isConnected():
         logger.error("close_of_day: failed to connect to IBKR")
@@ -123,6 +132,10 @@ def main() -> None:
         cancelled = 0
         for trade in open_orders:
             symbol = getattr(trade.contract, "symbol", "?")
+            # Keep stop/trail orders alive for multi-day holds
+            if symbol in held_tickers and getattr(trade.order, "orderType", "") in ("STP", "TRAIL"):
+                logger.info("close_of_day: keeping %s order for multi-day hold %s", trade.order.orderType, symbol)
+                continue
             try:
                 ib.cancelOrder(trade.order)
                 cancelled += 1
@@ -151,6 +164,9 @@ def main() -> None:
     for pos in live_positions:
         ticker = pos.contract.symbol
         shares = float(pos.position)
+        if ticker in held_tickers:
+            logger.info("close_of_day: skipping sell for multi-day hold %s x%.0f", ticker, shares)
+            continue
         logger.info("close_of_day: selling %s x%.0f shares", ticker, shares)
         try:
             trade = close_position(ticker, ib)
@@ -195,6 +211,9 @@ def main() -> None:
     # Record per-pick close prices for individual P&L tracking
     for pick in session.get("picks", []):
         ticker = pick["ticker"]
+        if ticker in held_tickers:
+            logger.info("close_of_day: skipping P&L for multi-day hold %s", ticker)
+            continue
         buy_price = pick.get("buy_price", 0)
         shares = pick.get("shares", 0)
 

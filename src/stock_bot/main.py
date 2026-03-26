@@ -107,6 +107,7 @@ async def main():
     sector_cap: int | None = config.get("sector_cap")
     take_profit_pct: float | None = config.get("take_profit_pct")
     stop_loss_pct: float | None = config.get("stop_loss_pct")
+    trailing_stop_pct: float | None = config.get("trailing_stop_pct")
     limit_order_buffer_pct: float | None = config.get("limit_order_buffer_pct", 0.5)
     logger.info("Limit order buffer: %.2f%% (%s mode)", limit_order_buffer_pct or 0, ib_settings.mode)
 
@@ -503,6 +504,32 @@ async def main():
             p.get("expected_gain_pct", 0), p.get("allocation_pct", 0), p["reason"],
         )
 
+    # Score^2 allocation re-weighting — concentrates capital on highest-conviction picks
+    if picks:
+        _sq_total = sum(max(p.get("score", 1), 1) ** 2 for p in picks)
+        for p in picks:
+            p["allocation_pct"] = round(max(p.get("score", 1), 1) ** 2 / _sq_total * 100, 1)
+        logger.info("Allocations re-weighted (score^2): %s",
+                    {p["ticker"]: f'{p["allocation_pct"]:.1f}%' for p in picks})
+
+    # Multi-day hold: flag high-conviction picks to skip EOD liquidation
+    _multi_day_min = config.get("multi_day_hold_min_score", 0)
+    _multi_day_days = config.get("multi_day_max_days", 3)
+    if _multi_day_min:
+        from datetime import date as _dt, timedelta as _td
+        _today = _dt.today()
+        _days_added, _hold_date = 0, _today
+        while _days_added < _multi_day_days:
+            _hold_date += _td(days=1)
+            if _hold_date.weekday() < 5:
+                _days_added += 1
+        _hold_until = _hold_date.isoformat()
+        for _p in picks:
+            if _p.get("score", 0) >= _multi_day_min:
+                _p["hold_until"] = _hold_until
+                logger.info("Multi-day hold: %s score=%d — holding until %s",
+                            _p["ticker"], _p["score"], _hold_until)
+
     # ------------------------------------------------------------------ #
     # STEP 7 — ORDER EXECUTION                                             #
     # Determine capital base, size each position by allocation_pct, submit #
@@ -602,6 +629,7 @@ async def main():
                     limit_price=limit_price,
                     take_profit_pct=take_profit_pct,
                     stop_loss_pct=stop_loss_pct,
+                    trailing_stop_pct=trailing_stop_pct,
                 )
                 trades_by_ticker[pick["ticker"]] = trades
                 order_type = f"LMT ${limit_price:.2f}" if limit_price else "MKT"
