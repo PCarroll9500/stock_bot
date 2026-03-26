@@ -1,7 +1,6 @@
 """One-shot script: sell every open position on the paper trading account."""
 
 import sys
-import time
 
 sys.path.insert(0, "src")  # allow running from repo root without install
 
@@ -16,6 +15,9 @@ import logging
 setup_logging()
 logger = logging.getLogger(__name__)
 
+# How long to wait for market orders to fill (seconds)
+_FILL_WAIT = 15
+
 
 def liquidate_all() -> None:
     if ib_settings.mode != "paper":
@@ -27,6 +29,28 @@ def liquidate_all() -> None:
         sys.exit(1)
 
     ib: IB = connect_ib()
+
+    # Wait for gateway to fully establish exchange connections before doing anything.
+    # reqCurrentTime() is a synchronous round-trip to the TWS/Gateway — if it
+    # returns successfully the session is ready to route orders.
+    logger.info("Waiting for gateway to be ready...")
+    ib.sleep(3)
+    try:
+        ib.reqCurrentTime()
+        logger.info("Gateway ready.")
+    except Exception:
+        logger.warning("reqCurrentTime failed — proceeding anyway")
+
+    # Cancel all open orders first so stop-losses / brackets don't interfere.
+    open_trades = ib.openTrades()
+    if open_trades:
+        logger.info("Cancelling %d open order(s) before liquidating...", len(open_trades))
+        for t in open_trades:
+            try:
+                ib.cancelOrder(t.order)
+            except Exception:
+                logger.warning("Could not cancel order %s for %s", t.order.orderId, t.contract.symbol)
+        ib.sleep(2)  # let cancellations propagate
 
     positions = ib.positions(account=ib_settings.account)
     open_positions = [
@@ -58,12 +82,12 @@ def liquidate_all() -> None:
         trades.append((symbol, shares, action, trade))
         logger.info("%s order submitted: %s x%.4f | orderId=%s", action, symbol, shares, trade.order.orderId)
 
-    # Give orders a moment to acknowledge
-    logger.info("Waiting for order acknowledgements...")
-    ib.sleep(3)
+    # Wait for fills
+    logger.info("Waiting up to %ds for fills...", _FILL_WAIT)
+    ib.sleep(_FILL_WAIT)
 
     logger.info("--- Liquidation summary ---")
-    all_ok = True
+    all_filled = True
     for symbol, shares, action, trade in trades:
         status = trade.orderStatus.status
         filled = trade.orderStatus.filled
@@ -72,14 +96,21 @@ def liquidate_all() -> None:
             "  %-8s %-4s x%.4f  status=%-12s  filled=%.4f  avgPrice=%.4f",
             symbol, action, shares, status, filled, avg_fill,
         )
-        if status not in ("Filled", "Submitted", "PreSubmitted"):
-            all_ok = False
-            logger.warning("  ^ unexpected status for %s", symbol)
+        if status != "Filled":
+            all_filled = False
+            if status == "PreSubmitted":
+                logger.warning(
+                    "  ^ %s is PreSubmitted — gateway may not be fully connected to the exchange. "
+                    "Order is queued and will execute at next market open.",
+                    symbol,
+                )
+            elif status not in ("Submitted",):
+                logger.warning("  ^ unexpected status for %s", symbol)
 
-    if all_ok:
-        logger.info("All sell orders submitted successfully.")
+    if all_filled:
+        logger.info("All positions liquidated successfully.")
     else:
-        logger.warning("Some orders may have issues — check TWS for details.")
+        logger.warning("Some orders did not fill — check TWS for details.")
 
     disconnect_ib()
 
