@@ -771,7 +771,7 @@ async def main():
                         _res_shares = math.floor(_deployable / _res_price)
                         if _res_shares > 0:
                             _res_lmt = round(_res_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
-                            _res_trades = await buy_stock_async(_res["ticker"], ib, shares=_res_shares, limit_price=_res_lmt)
+                            _res_trades = await buy_stock_async(_res["ticker"], ib, shares=_res_shares, limit_price=_res_lmt, stop_loss_pct=stop_loss_pct)
                             trades_by_ticker[_res["ticker"]] = _res_trades
                             _otype = f"LMT ${_res_lmt:.2f}" if _res_lmt else "MKT"
                             logger.info(
@@ -829,7 +829,7 @@ async def main():
                     continue
                 _lmt = round(_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
                 try:
-                    _trades = await buy_stock_async(_tkr, ib, shares=_extra_shares, limit_price=_lmt)
+                    _trades = await buy_stock_async(_tkr, ib, shares=_extra_shares, limit_price=_lmt, stop_loss_pct=stop_loss_pct)
                     _rt[_tkr] = _trades
                     _otype = f"LMT ${_lmt:.2f}" if _lmt else "MKT"
                     logger.info(
