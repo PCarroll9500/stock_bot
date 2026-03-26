@@ -107,6 +107,10 @@ async def main():
     sector_cap: int | None = config.get("sector_cap")
     take_profit_pct: float | None = config.get("take_profit_pct")
     stop_loss_pct: float | None = config.get("stop_loss_pct")
+    trailing_stop_pct: float | None = config.get("trailing_stop_pct")
+    if trailing_stop_pct is not None and (stop_loss_pct is not None or take_profit_pct is not None):
+        logger.error("Config error: trailing_stop_pct cannot be combined with stop_loss_pct or take_profit_pct")
+        sys.exit(1)
     limit_order_buffer_pct: float | None = config.get("limit_order_buffer_pct", 0.5)
     logger.info("Limit order buffer: %.2f%% (%s mode)", limit_order_buffer_pct or 0, ib_settings.mode)
 
@@ -495,6 +499,18 @@ async def main():
                 len(picks), score_floor,
             )
 
+    # Min-picks safety net: if still below minimum, relax score floor one step at a time
+    min_picks = config.get("min_picks", 5)
+    _fallback_floor = score_floor - 1
+    while len(picks) < min_picks and _fallback_floor >= 6:
+        picks = filter_and_rank(all_scored, num_stocks, min_score=_fallback_floor,
+                                min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap)
+        logger.warning(
+            "min_picks fallback: %d picks at min_score=%d (need %d)",
+            len(picks), _fallback_floor, min_picks,
+        )
+        _fallback_floor -= 1
+
     logger.warning("Final picks (%d/%d):", len(picks), num_stocks)
     for p in picks:
         logger.warning(
@@ -502,6 +518,32 @@ async def main():
             p["ticker"], p["score"], p.get("risk", 0),
             p.get("expected_gain_pct", 0), p.get("allocation_pct", 0), p["reason"],
         )
+
+    # Score^2 allocation re-weighting — concentrates capital on highest-conviction picks
+    if picks:
+        _sq_total = sum(max(p.get("score", 1), 1) ** 2 for p in picks)
+        for p in picks:
+            p["allocation_pct"] = round(max(p.get("score", 1), 1) ** 2 / _sq_total * 100, 1)
+        logger.info("Allocations re-weighted (score^2): %s",
+                    {p["ticker"]: f'{p["allocation_pct"]:.1f}%' for p in picks})
+
+    # Multi-day hold: flag high-conviction picks to skip EOD liquidation
+    _multi_day_min = config.get("multi_day_hold_min_score", 0)
+    _multi_day_days = config.get("multi_day_max_days", 3)
+    if _multi_day_min:
+        from datetime import date as _dt, timedelta as _td
+        _today = _dt.today()
+        _days_added, _hold_date = 0, _today
+        while _days_added < _multi_day_days:
+            _hold_date += _td(days=1)
+            if _hold_date.weekday() < 5:
+                _days_added += 1
+        _hold_until = _hold_date.isoformat()
+        for _p in picks:
+            if _p.get("score", 0) >= _multi_day_min:
+                _p["hold_until"] = _hold_until
+                logger.info("Multi-day hold: %s score=%d — holding until %s",
+                            _p["ticker"], _p["score"], _hold_until)
 
     # ------------------------------------------------------------------ #
     # STEP 7 — ORDER EXECUTION                                             #
@@ -519,8 +561,8 @@ async def main():
     record_open = get_net_liquidation(ib)
 
     if cash_balance is not None:
-        open_value = cash_balance
-        logger.info("Order sizing base: $%.2f (CashBalance from IBKR)", open_value)
+        open_value = cash_balance * 0.97  # 3% reserve against fill-price slippage
+        logger.info("Order sizing base: $%.2f (97%% of $%.2f CashBalance)", open_value, cash_balance)
     else:
         open_value = _get_open_value(_portfolio)
         logger.info("Order sizing base: $%.2f (from portfolio.json — IBKR unavailable)", open_value)
@@ -571,8 +613,11 @@ async def main():
             shares = math.floor(alloc_usd / result)
             order_plans.append((pick, alloc_pct, shares, result))
 
+        if not order_plans:
+            logger.error("Pre-flight: no valid prices — cannot place any orders")
+            picks = []
         projected_cost = sum(shares * price for _, _, shares, price in order_plans)
-        if projected_cost > open_value:
+        if order_plans and projected_cost > open_value:
             scale = open_value / projected_cost
             logger.warning(
                 "Pre-flight: projected cost $%.2f exceeds budget $%.2f — scaling all positions by %.4f",
@@ -602,6 +647,7 @@ async def main():
                     limit_price=limit_price,
                     take_profit_pct=take_profit_pct,
                     stop_loss_pct=stop_loss_pct,
+                    trailing_stop_pct=trailing_stop_pct,
                 )
                 trades_by_ticker[pick["ticker"]] = trades
                 order_type = f"LMT ${limit_price:.2f}" if limit_price else "MKT"
@@ -650,142 +696,186 @@ async def main():
                 unfilled, len(picks),
             )
 
-        # ── Reallocation: redeploy capital from unfilled limit orders ──────
-        # Cancel unfilled orders and calculate freed cash. One pass only:
-        # first try topping up already-filled positions, then one reserve
-        # candidate if meaningful cash still remains.
-        _MIN_REALLOC_USD = 200.0
-        unfilled_plans = [
-            (pick, shares, preflight_price)
-            for pick, _alloc_pct, shares, preflight_price in order_plans
-            if pick not in filled_picks
-        ]
-        freed_cash = sum(shares * price for _, shares, price in unfilled_plans)
-
-        if unfilled_plans and freed_cash >= _MIN_REALLOC_USD:
-            # Cancel the unfilled limit orders so IBKR doesn't fill them later
-            for pick, _, _ in unfilled_plans:
-                for t in (trades_by_ticker.get(pick["ticker"]) or [])[:1]:
+        # ── Cancel any unfilled initial orders to free up accurate cash balance ──
+        _initial_unfilled = []
+        for _pick, _alloc_pct, _init_shares, _preflight in order_plans:
+            if _pick not in filled_picks:
+                for _t in (trades_by_ticker.get(_pick["ticker"]) or [])[:1]:
                     try:
-                        ib.cancelOrder(t.order)
+                        ib.cancelOrder(_t.order)
                     except Exception:
-                        logger.warning("Could not cancel order for %s", pick["ticker"])
+                        pass
+                _initial_unfilled.append(_pick["ticker"])
+        if _initial_unfilled:
+            logger.info("Realloc: cancelled %d unfilled initial order(s): %s", len(_initial_unfilled), _initial_unfilled)
+            await asyncio.sleep(1)
 
-            logger.info(
-                "Reallocation: freed $%.2f from %d unfilled order(s) — redistributing",
-                freed_cash, len(unfilled_plans),
-            )
+        # ── Smart reallocation: score-weighted, per-stock cap, up to 3 rounds ──
+        # Uses actual IBKR cash balance each round (ground truth).
+        # Distributes proportionally to GPT score. Caps any single stock at
+        # MAX_POSITION_PCT of total portfolio to maintain redundancy.
+        _MIN_LOT_USD = 25.0
+        _MAX_POSITION_PCT = 0.25
+        _MAX_ROUNDS = 5
 
-            # Round 1: top up existing filled picks proportionally
-            if filled_picks:
-                filled_tickers = {p["ticker"] for p in filled_picks}
-                filled_plans = [
-                    (pick, shares, price)
-                    for pick, _alloc_pct, shares, price in order_plans
-                    if pick["ticker"] in filled_tickers
-                ]
-                total_filled_cost = sum(s * p for _, s, p in filled_plans) or 1.0
-                realloc_trades: dict[str, list] = {}
-                cash_used = 0.0
+        remaining_cash = get_live_account_value(ib) or 0.0
+        logger.info(
+            "Realloc: $%.2f remaining cash to deploy across %d filled pick(s)",
+            remaining_cash, len(filled_picks),
+        )
 
-                # Fetch fresh prices in parallel for realloc sizing/limits
-                r1_tickers = [fp["ticker"] for fp, _, _ in filled_plans]
-                r1_prices_raw = await asyncio.gather(
-                    *[get_price_async(t, ib) for t in r1_tickers],
-                    return_exceptions=True,
-                )
-                r1_prices = {
-                    t: p for t, p in zip(r1_tickers, r1_prices_raw)
-                    if not isinstance(p, Exception)
-                }
+        for _round in range(1, _MAX_ROUNDS + 1):
+            if remaining_cash < _MIN_LOT_USD or not filled_picks:
+                break
+            # Apply 3% reserve so 3% limit buffer never overshoots actual balance
+            _deployable = remaining_cash * 0.97
 
-                for fp, fp_shares, fp_price in filled_plans:
-                    fresh_price = r1_prices.get(fp["ticker"], fp_price)
-                    weight = (fp_shares * fp_price) / total_filled_cost
-                    extra_usd = freed_cash * weight
-                    extra_shares = math.floor(extra_usd / fresh_price)
-                    if extra_shares <= 0:
-                        continue
-                    extra_limit = round(fresh_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
-                    try:
-                        t = await buy_stock_async(fp["ticker"], ib, shares=extra_shares, limit_price=extra_limit, stop_loss_pct=stop_loss_pct)
-                        realloc_trades[fp["ticker"]] = t
-                        cash_used += extra_shares * fresh_price
-                        order_type = f"LMT ${extra_limit:.2f}" if extra_limit else "MKT"
-                        logger.info("Realloc round 1: %s +%d shares %s ($%.2f)", fp["ticker"], extra_shares, order_type, extra_shares * fresh_price)
-                    except Exception:
-                        logger.error("Realloc round 1: buy failed for %s", fp["ticker"], exc_info=True)
-                freed_cash -= cash_used
+            # Current market value invested per stock
+            _pos_val: dict[str, float] = {}
+            for _fp in filled_picks:
+                _tkr = _fp["ticker"]
+                _v = 0.0
+                for _t in (trades_by_ticker.get(_tkr) or []):
+                    _s = getattr(_t, "orderStatus", None)
+                    if _s and _s.filled > 0:
+                        _v += _s.filled * _s.avgFillPrice
+                _pos_val[_tkr] = _v
 
-                # Wait for round 1 fills then append confirmed trades to
-                # trades_by_ticker so write_session includes the extra shares
-                await asyncio.sleep(realloc_fill_wait_seconds)
-                for ticker, r1_trade_list in realloc_trades.items():
-                    for t in (r1_trade_list or [])[:1]:
-                        status = getattr(t, "orderStatus", None)
-                        if status and status.filled > 0:
-                            trades_by_ticker.setdefault(ticker, []).append(t)
-                            logger.info(
-                                "Realloc round 1: %s confirmed +%.0f @ $%.4f",
-                                ticker, status.filled, status.avgFillPrice,
-                            )
-                        else:
-                            logger.warning("Realloc round 1: %s did not fill — cancelling", ticker)
-                            try:
-                                ib.cancelOrder(t.order)
-                            except Exception:
-                                pass
+            _total_portfolio = sum(_pos_val.values()) + remaining_cash
+            _max_pos_usd = _total_portfolio * _MAX_POSITION_PCT
 
-            # Round 2: one reserve candidate if meaningful cash remains
-            if freed_cash >= _MIN_REALLOC_USD:
-                filled_tickers = {p["ticker"] for p in filled_picks}
-                original_tickers = {p["ticker"] for p in picks}
-                reserve_candidates = [
+            # Score-weighted allocation per pick, capped by per-stock headroom
+            _total_score = sum(max(_fp.get("score", 1), 1) for _fp in filled_picks)
+            _top_ups: list[tuple[dict, float]] = []
+            for _fp in sorted(filled_picks, key=lambda x: x.get("score", 0), reverse=True):
+                _tkr = _fp["ticker"]
+                _weight = max(_fp.get("score", 1), 1) / _total_score
+                _headroom = max(0.0, _max_pos_usd - _pos_val.get(_tkr, 0.0))
+                _extra = min(_deployable * _weight, _headroom)
+                if _extra >= _MIN_LOT_USD:
+                    _top_ups.append((_fp, _extra))
+
+            if not _top_ups:
+                # All picks are at their cap -- try a reserve candidate
+                _orig_tickers = {_fp["ticker"] for _fp in filled_picks}
+                _reserve_pool = [
                     s for s in all_scored
-                    if s["ticker"] not in original_tickers
-                    and s["ticker"] not in filled_tickers
+                    if s["ticker"] not in _orig_tickers
                     and s.get("score", 0) >= score_floor
                     and s.get("direction") == "bullish"
                 ]
-                if reserve_candidates:
-                    reserve = reserve_candidates[0]
+                if _reserve_pool and _deployable >= _MIN_LOT_USD:
+                    _res = _reserve_pool[0]
                     try:
-                        res_price = await get_price_async(reserve["ticker"], ib)
-                        res_shares = math.floor(freed_cash / res_price)
-                        if res_shares > 0:
-                            res_limit = round(res_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
-                            res_trades = await buy_stock_async(reserve["ticker"], ib, shares=res_shares, limit_price=res_limit, stop_loss_pct=stop_loss_pct)
-                            trades_by_ticker[reserve["ticker"]] = res_trades
-                            order_type = f"LMT ${res_limit:.2f}" if res_limit else "MKT"
+                        _res_price = await get_price_async(_res["ticker"], ib)
+                        _res_shares = math.floor(_deployable / _res_price)
+                        if _res_shares > 0:
+                            _res_lmt = round(_res_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
+                            _res_trades = await buy_stock_async(_res["ticker"], ib, shares=_res_shares, limit_price=_res_lmt)
+                            trades_by_ticker[_res["ticker"]] = _res_trades
+                            _otype = f"LMT ${_res_lmt:.2f}" if _res_lmt else "MKT"
                             logger.info(
-                                "Realloc round 2: reserve pick %s x%d %s (score=%d, $%.2f)",
-                                reserve["ticker"], res_shares, order_type, reserve.get("score", 0), res_shares * res_price,
+                                "Realloc r%d (reserve): %s x%d %s ($%.0f, score=%d)",
+                                _round, _res["ticker"], _res_shares, _otype,
+                                _res_shares * _res_price, _res.get("score", 0),
                             )
-                            # Wait briefly for fill then verify
                             await asyncio.sleep(realloc_fill_wait_seconds)
-                            for t in (res_trades or [])[:1]:
-                                status = getattr(t, "orderStatus", None)
-                                if status and status.filled > 0:
-                                    reserve["shares"] = int(status.filled)
-                                    reserve["buy_price"] = round(status.avgFillPrice, 4)
-                                    reserve["buy_value"] = round(status.filled * status.avgFillPrice, 2)
-                                    filled_picks.append(reserve)
+                            for _t in (_res_trades or [])[:1]:
+                                _st = getattr(_t, "orderStatus", None)
+                                if _st and _st.filled > 0:
+                                    _res["shares"] = int(_st.filled)
+                                    _res["buy_price"] = round(_st.avgFillPrice, 4)
+                                    _res["buy_value"] = round(_st.filled * _st.avgFillPrice, 2)
+                                    filled_picks.append(_res)
                                     logger.info(
-                                        "Realloc round 2: %s filled %.0f @ $%.4f",
-                                        reserve["ticker"], status.filled, status.avgFillPrice,
+                                        "Realloc r%d (reserve): %s filled %.0f @ $%.4f",
+                                        _round, _res["ticker"], _st.filled, _st.avgFillPrice,
                                     )
                                 else:
-                                    logger.warning("Realloc round 2: %s did not fill — cancelling", reserve["ticker"])
+                                    logger.warning("Realloc r%d (reserve): %s did not fill -- cancelling", _round, _res["ticker"])
                                     try:
-                                        ib.cancelOrder(res_trades[0].order)
+                                        ib.cancelOrder(_t.order)
                                     except Exception:
                                         pass
                     except Exception:
-                        logger.error("Realloc round 2: failed for %s", reserve["ticker"], exc_info=True)
+                        logger.error("Realloc r%d (reserve): failed for %s", _round, _res["ticker"], exc_info=True)
                 else:
-                    logger.info("Realloc round 2: no eligible reserve candidates")
+                    logger.info("Realloc r%d: all picks at cap, no reserve candidates -- done", _round)
+                    break
+                # Reserve attempt done (filled or not) -- re-query cash and continue loop
+                remaining_cash = get_live_account_value(ib) or 0.0
+                continue
+
+            # Fetch fresh prices in parallel for all top-up candidates
+            _tu_tickers = [_fp["ticker"] for _fp, _ in _top_ups]
+            _prices_raw = await asyncio.gather(
+                *[get_price_async(_tkr, ib) for _tkr in _tu_tickers],
+                return_exceptions=True,
+            )
+            _fresh: dict[str, float] = {
+                _tkr: _pr for _tkr, _pr in zip(_tu_tickers, _prices_raw)
+                if isinstance(_pr, float)
+            }
+
+            # Place all top-up orders simultaneously
+            _rt: dict[str, list] = {}
+            for _fp, _extra_usd in _top_ups:
+                _tkr = _fp["ticker"]
+                _price = _fresh.get(_tkr)
+                if not _price:
+                    continue
+                _extra_shares = math.floor(_extra_usd / _price)
+                if _extra_shares <= 0:
+                    continue
+                _lmt = round(_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
+                try:
+                    _trades = await buy_stock_async(_tkr, ib, shares=_extra_shares, limit_price=_lmt)
+                    _rt[_tkr] = _trades
+                    _otype = f"LMT ${_lmt:.2f}" if _lmt else "MKT"
+                    logger.info(
+                        "Realloc r%d: %s +%d %s (~$%.0f, score=%d)",
+                        _round, _tkr, _extra_shares, _otype,
+                        _extra_shares * _price, _fp.get("score", 0),
+                    )
+                except Exception:
+                    logger.error("Realloc r%d: buy failed for %s", _round, _tkr, exc_info=True)
+
+            # Wait for fills
+            await asyncio.sleep(realloc_fill_wait_seconds)
+
+            # Confirm fills, cancel anything that didn't fill
+            for _tkr, _trade_list in _rt.items():
+                for _t in (_trade_list or [])[:1]:
+                    _st = getattr(_t, "orderStatus", None)
+                    if _st and _st.filled > 0:
+                        trades_by_ticker.setdefault(_tkr, []).append(_t)
+                        logger.info(
+                            "Realloc r%d: %s confirmed +%.0f @ $%.4f",
+                            _round, _tkr, _st.filled, _st.avgFillPrice,
+                        )
+                    else:
+                        logger.warning("Realloc r%d: %s did not fill -- cancelling", _round, _tkr)
+                        try:
+                            ib.cancelOrder(_t.order)
+                        except Exception:
+                            pass
+
+            remaining_cash = get_live_account_value(ib) or 0.0
+            logger.info("Realloc r%d done: $%.2f remaining", _round, remaining_cash)
 
         picks = filled_picks
+
+        # Hard cancel any orders still open after all fill waits and reallocation.
+        # Ensures no limit order survives past the buy phase.
+        for _ticker, _trade_list in trades_by_ticker.items():
+            for _t in (_trade_list or []):
+                _status = getattr(_t, "orderStatus", None)
+                if _status and _status.filled == 0 and _status.status not in ("Filled", "Cancelled", "Inactive"):
+                    try:
+                        ib.cancelOrder(_t.order)
+                        logger.info("Cancelled unfilled %s order for %s", _status.status, _ticker)
+                    except Exception:
+                        logger.warning("Could not cancel unfilled order for %s", _ticker)
 
     # ------------------------------------------------------------------ #
     # STEP 8 — BENCHMARK PRICE                                             #

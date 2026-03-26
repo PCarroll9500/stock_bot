@@ -55,6 +55,39 @@
         <div class="kpi-value" id="kpiTodayReturnUsd">—</div>
         <div class="kpi-sub" id="kpiTodayReturnPct">—</div>
       </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Uninvested Cash</div>
+        <div class="kpi-value" id="kpiCash">—</div>
+        <div class="kpi-sub" id="kpiCashSub">of portfolio</div>
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="stats-bar" id="statsBar" style="display:none">
+      <div class="stat-item">
+        <div class="stat-label">Win Rate</div>
+        <div class="stat-value" id="statWinRate">—</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-label">Avg Day</div>
+        <div class="stat-value" id="statAvgReturn">—</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-label">Best Day</div>
+        <div class="stat-value" id="statBestDay">—</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-label">Worst Day</div>
+        <div class="stat-value" id="statWorstDay">—</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-label">Days Run</div>
+        <div class="stat-value neutral" id="statTotalDays">—</div>
+      </div>
     </section>
 
     <!-- EQUITY CHART -->
@@ -63,6 +96,7 @@
         <div class="card-title">Equity Curve</div>
         <div class="chart-legend">
           <span class="legend-dot green"></span><span>Portfolio</span>
+          <span class="legend-dot yellow" style="margin-left:.75rem"></span><span>QQQ</span>
         </div>
       </div>
       <div class="chart-wrap">
@@ -74,7 +108,11 @@
     <section class="card" id="todaySection">
       <div class="card-header">
         <div class="card-title" id="todayTitle">Today's Picks</div>
-        <div class="card-sub" id="todayMeta">—</div>
+        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+          <div class="card-sub" id="todayMeta">—</div>
+          <button id="viewTodayBtn" class="view-today-btn hidden" onclick="viewToday()">&#8592; Today</button>
+          <span class="refresh-countdown" id="refreshCountdown"></span>
+        </div>
       </div>
       <div class="table-wrap">
         <table id="picksTable">

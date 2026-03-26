@@ -22,12 +22,14 @@ from ib_insync import Trade
 # Package is installed in the venv via `pip install -e .`
 from stock_bot.core.logging_config import setup_logging
 from stock_bot.brokers.ib.connect_disconnect import connect_ib, disconnect_ib
-from stock_bot.brokers.ib.sell_all import sell_all_stock, close_position
+from stock_bot.brokers.ib.sell_all import close_position
 from stock_bot.data_sources.portfolio_writer import (
     load_portfolio,
     save_portfolio,
     get_net_liquidation,
+    get_live_account_value,
     _get_last_price,
+    _get_nasdaq_price,
 )
 
 _CONFIG_PATH = Path(__file__).resolve().parents[1] / "src" / "stock_bot" / "config" / "picker_config.json"
@@ -109,6 +111,17 @@ def main() -> None:
         logger.info("close_of_day: session for %s already closed — skipping", today)
         return
 
+    # Picks with hold_until > today are multi-day holds — skip selling them.
+    # Check ALL sessions so holds from previous days are respected.
+    held_tickers: set[str] = set()
+    for _s in portfolio.get("sessions", []):
+        for _p in _s.get("picks", []):
+            _hold = _p.get("hold_until")
+            if _hold and _hold > today:
+                held_tickers.add(_p["ticker"])
+    if held_tickers:
+        logger.info("close_of_day: multi-day holds (skipping sell today): %s", sorted(held_tickers))
+
     ib = connect_ib()
     if not ib.isConnected():
         logger.error("close_of_day: failed to connect to IBKR")
@@ -116,63 +129,57 @@ def main() -> None:
 
     logger.info("close_of_day: updating session for %s", today)
 
-    # Cancel any open orders (stop-loss / take-profit child orders) before
-    # selling so they cannot fire after the position is flat and create shorts.
+    # Cancel ALL open orders (stop-losses, limit buys, child orders) before
+    # selling so nothing fires after positions are flat.
     try:
         open_orders = ib.reqOpenOrders()
-        tickers_to_sell = {p["ticker"] for p in session.get("picks", []) if p.get("shares", 0) > 0}
         cancelled = 0
         for trade in open_orders:
-            symbol = getattr(trade.contract, "symbol", None)
-            if symbol in tickers_to_sell:
-                try:
-                    ib.cancelOrder(trade.order)
-                    cancelled += 1
-                except Exception:
-                    logger.warning("close_of_day: could not cancel order for %s", symbol, exc_info=True)
+            symbol = getattr(trade.contract, "symbol", "?")
+            # Keep stop/trail orders alive for multi-day holds
+            if symbol in held_tickers and getattr(trade.order, "orderType", "") in ("STP", "TRAIL"):
+                logger.info("close_of_day: keeping %s order for multi-day hold %s", trade.order.orderType, symbol)
+                continue
+            try:
+                ib.cancelOrder(trade.order)
+                cancelled += 1
+                logger.info("close_of_day: cancelling open order for %s (%s)", symbol, trade.order.orderType)
+            except Exception:
+                logger.warning("close_of_day: could not cancel order for %s", symbol, exc_info=True)
         if cancelled:
             logger.info("close_of_day: cancelled %d open orders before liquidation", cancelled)
             ib.sleep(2)  # brief pause for cancellations to propagate
+        else:
+            logger.info("close_of_day: no open orders to cancel")
     except Exception:
-        logger.warning("close_of_day: failed to fetch/cancel open orders — proceeding anyway", exc_info=True)
+        logger.warning("close_of_day: failed to fetch/cancel open orders -- proceeding anyway", exc_info=True)
 
-    # Liquidate all open positions, collecting Trade objects for verification
+    # Liquidate ALL actual IBKR positions -- source of truth is the account,
+    # not portfolio.json (which may be stale for late-filling limit orders).
+    from stock_bot.config.settings import ib_settings as _ib_settings
     logger.info("close_of_day: liquidating all positions")
     sell_trades: dict[str, Trade] = {}
-    for pick in session.get("picks", []):
-        if pick.get("shares", 0) > 0:
-            try:
-                trade = sell_all_stock(pick["ticker"], ib)
-                if trade is not None:
-                    sell_trades[pick["ticker"]] = trade
-                else:
-                    logger.warning(
-                        "close_of_day: no open position found for %s — stop-loss likely fired intraday, sell skipped",
-                        pick["ticker"],
-                    )
-            except Exception:
-                logger.error("close_of_day: sell failed for %s", pick["ticker"], exc_info=True)
-
-    # Close any orphaned positions not in today's picks (longs or shorts)
-    today_tickers = {p["ticker"] for p in session.get("picks", [])}
-    from stock_bot.config.settings import ib_settings as _ib_settings
-    for pos in ib.positions(account=_ib_settings.account):
+    live_positions = [
+        pos for pos in ib.positions(account=_ib_settings.account)
+        if pos.contract.secType == "STK" and float(pos.position) > 0
+    ]
+    if not live_positions:
+        logger.info("close_of_day: no open positions to sell")
+    for pos in live_positions:
         ticker = pos.contract.symbol
-        if pos.contract.secType != "STK" or ticker in today_tickers:
+        shares = float(pos.position)
+        if ticker in held_tickers:
+            logger.info("close_of_day: skipping sell for multi-day hold %s x%.0f", ticker, shares)
             continue
-        pos_size = float(pos.position)
-        if pos_size > 0:
-            logger.warning("close_of_day: orphaned long — selling %s x%.0f", ticker, pos_size)
-        elif pos_size < 0:
-            logger.warning("close_of_day: orphaned short — covering %s x%.0f (cash-only account)", ticker, abs(pos_size))
-        else:
-            continue
+        logger.info("close_of_day: selling %s x%.0f shares", ticker, shares)
         try:
             trade = close_position(ticker, ib)
             if trade is not None:
                 sell_trades[ticker] = trade
+            else:
+                logger.warning("close_of_day: close_position returned None for %s -- already flat?", ticker)
         except Exception:
-            logger.error("close_of_day: failed to close orphan %s", ticker, exc_info=True)
+            logger.error("close_of_day: sell failed for %s", ticker, exc_info=True)
     logger.info("close_of_day: waiting %d s for sell orders to fill…", sell_wait_seconds)
     try:
         ib.sleep(sell_wait_seconds)  # allow market orders to fill
@@ -184,32 +191,55 @@ def main() -> None:
         except Exception:
             logger.warning("close_of_day: reconnect failed — proceeding with cached order status")
 
-    # Verify sells — log confirmation or warning for each position
-    for pick in session.get("picks", []):
-        ticker = pick["ticker"]
-        if pick.get("shares", 0) <= 0:
-            continue
-        trade = sell_trades.get(ticker)
-        if trade is None:
-            logger.warning("close_of_day: SELL NOT CONFIRMED — %s (no order placed)", ticker)
-            continue
+    # Verify sells -- log confirmation for every sell order placed
+    for ticker, trade in sell_trades.items():
         status = getattr(trade, "orderStatus", None)
         if status and status.filled > 0:
             logger.info(
-                "close_of_day: SOLD %s — %.0f shares @ $%.4f avg",
+                "close_of_day: SOLD %s -- %.0f shares @ $%.4f avg",
                 ticker, status.filled, status.avgFillPrice,
             )
         else:
             logger.warning(
-                "close_of_day: SELL NOT CONFIRMED — %s status=%s filled=%.0f",
+                "close_of_day: SELL NOT CONFIRMED -- %s status=%s filled=%.0f",
                 ticker,
                 getattr(status, "status", "unknown") if status else "no status",
                 getattr(status, "filled", 0) if status else 0,
             )
+    # Note any picks whose stop-loss fired intraday (no position at close)
+    sold_tickers = set(sell_trades.keys())
+    for pick in session.get("picks", []):
+        if pick.get("shares", 0) > 0 and pick["ticker"] not in sold_tickers:
+            logger.info("close_of_day: %s -- stop-loss likely fired intraday", pick["ticker"])
+
+    # Build a map of intraday sell prices from IBKR execution history.
+    # Used as a fallback for picks whose stop-loss fired intraday.
+    exec_map: dict[str, float] = {}
+    try:
+        executions = ib.reqExecutions()
+        _fills_by_ticker: dict[str, list[tuple[float, float]]] = {}
+        for _fill in executions:
+            if _fill.execution.side == "SLD":
+                _sym = _fill.contract.symbol
+                _fills_by_ticker.setdefault(_sym, []).append(
+                    (_fill.execution.shares, _fill.execution.price)
+                )
+        for _sym, _fills in _fills_by_ticker.items():
+            _total = sum(s for s, _ in _fills)
+            if _total > 0:
+                exec_map[_sym] = round(sum(s * p for s, p in _fills) / _total, 4)
+        if exec_map:
+            logger.info("close_of_day: execution map built for %d ticker(s): %s",
+                        len(exec_map), list(exec_map.keys()))
+    except Exception:
+        logger.warning("close_of_day: could not fetch executions for stop-loss price lookup", exc_info=True)
 
     # Record per-pick close prices for individual P&L tracking
     for pick in session.get("picks", []):
         ticker = pick["ticker"]
+        if ticker in held_tickers:
+            logger.info("close_of_day: skipping P&L for multi-day hold %s", ticker)
+            continue
         buy_price = pick.get("buy_price", 0)
         shares = pick.get("shares", 0)
 
@@ -219,6 +249,11 @@ def main() -> None:
         sell_status = getattr(trade, "orderStatus", None) if trade else None
         if sell_status and sell_status.filled > 0:
             close_price = float(sell_status.avgFillPrice)
+
+        # Try intraday execution price (stop-loss fills)
+        if close_price is None and ticker in exec_map:
+            close_price = exec_map[ticker]
+            logger.info("close_of_day: %s using intraday execution price %.4f", ticker, close_price)
 
         # Fall back to last bar price with retry
         if close_price is None:
@@ -252,6 +287,14 @@ def main() -> None:
         logger.error("close_of_day: NetLiquidation unavailable after retries — portfolio_close_value set to ERROR")
         total_close_value = None
 
+    # Record actual CashBalance from IBKR — ground truth for uninvested cash
+    cash_close = get_live_account_value(ib)
+    if cash_close is not None:
+        session["cash_balance_close"] = round(cash_close, 2)
+        logger.info("close_of_day: CashBalance at close = $%.2f", cash_close)
+    else:
+        logger.warning("close_of_day: CashBalance unavailable at close")
+
     if total_close_value is not None:
         session["portfolio_close_value"] = round(total_close_value, 2)
         session["session_return_usd"] = round(total_close_value - session["portfolio_open_value"], 2)
@@ -273,6 +316,14 @@ def main() -> None:
     if qqq_close and qqq_buy and qqq_buy > 0:
         session["qqq_close_price"] = qqq_close
         session["qqq_day_return_pct"] = round((qqq_close - qqq_buy) / qqq_buy * 100, 3)
+
+    nasdaq_close = _get_nasdaq_price()
+    nasdaq_buy = session.get("nasdaq_buy_price")
+    if nasdaq_close and nasdaq_buy and nasdaq_buy > 0:
+        session["nasdaq_close_price"] = nasdaq_close
+        session["nasdaq_day_return_pct"] = round((nasdaq_close - nasdaq_buy) / nasdaq_buy * 100, 3)
+        logger.info("close_of_day: NASDAQ %.4f -> %.4f (%.3f%%)",
+                    nasdaq_buy, nasdaq_close, session["nasdaq_day_return_pct"])
 
     # Update equity curve with close value
     initial_investment = float(portfolio.get("initial_investment", 10_000))

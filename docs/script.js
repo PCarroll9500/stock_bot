@@ -172,6 +172,11 @@ function fmtDate(iso) {
   const d = new Date(iso.length <= 10 ? iso + 'T00:00:00' : iso);
   return isNaN(d) ? iso : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
+function scoreClass(n) {
+  if (n >= 9) return 'score-high';
+  if (n >= 7) return 'score-mid';
+  return 'score-low';
+}
 function colorClass(n) {
   if (n == null || isNaN(n)) return 'neutral';
   return n >= 0 ? 'up' : 'down';
@@ -243,11 +248,61 @@ function renderKpis(portfolio, session, livePrices) {
   $('kpiTodayReturnUsd').className   = 'kpi-value ' + colorClass(todayUsd);
   $('kpiTodayReturnPct').textContent = fmtPct(todayPct);
   $('kpiTodayReturnPct').className   = 'kpi-sub ' + colorClass(todayPct);
+
+  // Uninvested cash — from stored field or computed live
+  let cashVal;
+  const isClosed = session?.portfolio_close_value != null && !isError(session.portfolio_close_value);
+  if (isClosed) {
+    // After close: use actual IBKR CashBalance if recorded, else 0 (all sold)
+    cashVal = session.cash_balance_close ?? 0;
+  } else {
+    // Intraday: use stored uninvested or compute from buy_values
+    if (session?.cash_uninvested != null) {
+      cashVal = session.cash_uninvested;
+    } else {
+      const totalInvested = (session?.picks || [])
+        .filter(p => p.shares > 0 && p.buy_price > 0)
+        .reduce((sum, p) => sum + (p.buy_value || p.buy_price * p.shares), 0);
+      cashVal = Math.max(0, (session?.portfolio_open_value || 0) - totalInvested);
+    }
+  }
+  const cashPct = currentValue > 0 ? (cashVal / currentValue) * 100 : 0;
+  $('kpiCash').textContent    = fmtUsd(cashVal);
+  $('kpiCash').className      = 'kpi-value';
+  $('kpiCashSub').textContent = fmtPct(cashPct, false) + ' of portfolio';
+}
+
+// ── Stats bar ──────────────────────────────────────────────────────────────────────────
+
+function renderStats(sessions) {
+  const closed = (sessions || []).filter(s =>
+    typeof s.session_return_pct === 'number' &&
+    s.portfolio_close_value != null &&
+    s.portfolio_close_value !== 'ERROR'
+  );
+  const bar = $('statsBar');
+  if (!closed.length) { if (bar) bar.style.display = 'none'; return; }
+
+  const returns = closed.map(s => s.session_return_pct);
+  const wins    = returns.filter(r => r > 0).length;
+  const winRate = (wins / returns.length) * 100;
+  const avgRet  = returns.reduce((a, b) => a + b, 0) / returns.length;
+  const best    = Math.max(...returns);
+  const worst   = Math.min(...returns);
+
+  if (bar) bar.style.display = '';
+  const set = (id, txt, cls) => { const el = $(id); if (el) { el.textContent = txt; if (cls) el.className = 'stat-value ' + cls; } };
+  set('statWinRate',   fmtPct(winRate, false), winRate >= 50 ? 'up' : 'down');
+  set('statAvgReturn', fmtPct(avgRet),         colorClass(avgRet));
+  set('statBestDay',   fmtPct(best),           'up');
+  set('statWorstDay',  fmtPct(worst),          'down');
+  set('statTotalDays', closed.length,          'neutral');
 }
 
 // ── Chart ─────────────────────────────────────────────────────────────────────
 
-let chartInstance = null;
+let chartInstance  = null;
+let _nextRefreshAt = 0;
 
 function buildChartDatasets(portfolio, session, livePrices) {
   const initial   = Number(portfolio.initial_investment || 10000);
@@ -281,7 +336,15 @@ function buildChartDatasets(portfolio, session, livePrices) {
     portfolioPoints.push(lastVal);
   }
 
-  return { labels: allDates, portfolioPoints };
+  const qqqPoints = [];
+  for (const date of allDates) {
+    if (date < (startDate || '')) { qqqPoints.push(null); continue; }
+    if (date === startDate) { qqqPoints.push(initial); continue; }
+    const eq = (portfolio.equity_curve || []).find(e => e.date === date);
+    qqqPoints.push(eq?.nasdaq_indexed ?? eq?.qqq_indexed ?? null);
+  }
+
+  return { labels: allDates, portfolioPoints, qqqPoints };
 }
 
 function renderChart(portfolio, session, livePrices) {
@@ -315,6 +378,19 @@ function renderChart(portfolio, session, livePrices) {
           fill: true,
           tension: 0.3,
           spanGaps: true,
+        },
+        {
+          label: 'NASDAQ',
+          data: data.qqqPoints,
+          borderColor: '#fbbf24',
+          backgroundColor: 'transparent',
+          borderWidth: 1.5,
+          pointRadius: sparse ? 3 : 0,
+          pointHoverRadius: 4,
+          fill: false,
+          tension: 0.3,
+          spanGaps: true,
+          borderDash: [4, 3],
         },
       ],
     },
@@ -369,8 +445,13 @@ function updatePriceCell(pick, livePrice) {
 
   row.querySelector('.price-cell').innerHTML =
     (price != null ? fmtUsd(price) : '<span class="neutral">—</span>') + ' ' + badge;
-  row.querySelector('.ret-pct').className = `ret-pct ${colorClass(retPct)}`;
-  row.querySelector('.ret-pct').textContent = fmtPct(retPct);
+  const _retSpan = row.querySelector('.ret-pct span');
+  if (_retSpan) { _retSpan.className = colorClass(retPct); _retSpan.textContent = fmtPct(retPct); }
+  const _pnlBar = row.querySelector('.pnl-bar');
+  if (_pnlBar) {
+    _pnlBar.style.width = Math.min(Math.abs(retPct || 0) / 5 * 100, 100) + '%';
+    _pnlBar.style.background = (retPct || 0) >= 0 ? 'var(--green)' : 'var(--red)';
+  }
   row.querySelector('.ret-usd').className = `ret-usd ${colorClass(retUsd)}`;
   row.querySelector('.ret-usd').textContent = retUsd != null ? fmtUsd(retUsd) : '—';
 }
@@ -386,6 +467,9 @@ async function renderPicksTable(session) {
   }
 
   const isClosed = session.portfolio_close_value != null;
+  const _todayStr2 = new Date().toISOString().slice(0, 10);
+  const _viewBtn = $('viewTodayBtn');
+  if (_viewBtn) _viewBtn.classList.toggle('hidden', session.date === _todayStr2);
   $('todayTitle').textContent = fmtDate(session.date) + ' Picks';
   $('todayMeta').textContent =
     `Mode: ${session.mode || '—'}  |  Open: ${fmtUsd(session.portfolio_open_value)}` +
@@ -402,7 +486,7 @@ async function renderPicksTable(session) {
           <a href="${tvUrl(pick.ticker)}" target="_blank" rel="noopener" class="tv-link" title="TradingView">&#9654;</a>
         </div>
       </td>
-      <td>${pick.score}/10</td>
+      <td><span class="score-badge ${scoreClass(pick.score)}">${pick.score}/10</span></td>
       <td>
         <div class="alloc-bar-wrap">
           ${fmt(pick.allocation_pct, 1)}%
@@ -418,7 +502,12 @@ async function renderPicksTable(session) {
           ? fmtUsd(pick.close_price) + ' <span class="closed-badge">CLOSE</span>'
           : '<span class="loading-price">fetching…</span>'}
       </td>
-      <td class="ret-pct ${colorClass(pick.day_return_pct)}">${fmtPct(pick.day_return_pct)}</td>
+      <td class="ret-pct">
+        <div class="ret-cell-wrap">
+          <span class="${colorClass(pick.day_return_pct)}">${fmtPct(pick.day_return_pct)}</span>
+          <div class="pnl-bar-bg"><div class="pnl-bar" style="width:${Math.min(Math.abs(pick.day_return_pct||0)/5*100,100)}%;background:${(pick.day_return_pct||0)>=0?'var(--green)':'var(--red)'}"></div></div>
+        </div>
+      </td>
       <td class="ret-usd ${colorClass(pick.day_return_usd)}">${pick.day_return_usd != null ? fmtUsd(pick.day_return_usd) : '—'}</td>
       <td class="reason-cell">${pick.reason || '—'}</td>
     `;
@@ -452,6 +541,7 @@ async function renderPicksTable(session) {
 
 async function refreshPrices() {
   if (!_portfolio) return;
+  _nextRefreshAt = Date.now() + PRICE_REFRESH_MS;
   const openPicks = (_session?.picks || []).filter(p => p.close_price == null);
 
   for (const pick of openPicks) {
@@ -480,11 +570,21 @@ function renderHistoryTable(sessions) {
     tbody.innerHTML = '<tr><td colspan="6" class="empty">No sessions yet.</td></tr>';
     return;
   }
+  const _todayDate = new Date().toISOString().slice(0, 10);
   [...sessions].reverse().forEach(s => {
     const closed = s.portfolio_close_value != null;
     const closeErr = isError(s.portfolio_close_value);
     const n = s.picks?.length ?? 0;
     const tr = document.createElement('tr');
+    if (s.date === (_session?.date ?? _todayDate)) tr.classList.add('active-session');
+    tr.addEventListener('click', () => {
+      document.querySelectorAll('#historyTable tbody tr').forEach(r => r.classList.remove('active-session'));
+      tr.classList.add('active-session');
+      _livePrices = {};
+      renderPicksTable(s);
+      renderKpis(_portfolio, s, {});
+      $('todaySection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
     tr.innerHTML = `
       <td>${fmtDate(s.date)}</td>
       <td><span class="badge" style="font-size:.7rem">${s.mode || '—'}</span></td>
@@ -497,6 +597,20 @@ function renderHistoryTable(sessions) {
     `;
     tbody.appendChild(tr);
   });
+}
+
+// ── View-today helper ─────────────────────────────────────────────────────────────
+
+function viewToday() {
+  if (!_portfolio) return;
+  const today = new Date().toISOString().slice(0, 10);
+  const s = (_portfolio.sessions || []).find(s => s.date === today)
+         ?? (_portfolio.sessions || []).at(-1)
+         ?? null;
+  _livePrices = {};
+  renderPicksTable(s);
+  renderKpis(_portfolio, s, {});
+  document.querySelectorAll('#historyTable tbody tr').forEach(r => r.classList.remove('active-session'));
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
@@ -517,6 +631,7 @@ async function renderPortfolio(portfolio) {
 
   // Initial paint with stored values
   renderKpis(portfolio, _session, {});
+  renderStats(sessions);
   renderChart(portfolio, _session, {});
   renderHistoryTable(sessions);
   $('year').textContent = new Date().getFullYear();
@@ -561,5 +676,14 @@ if (location.protocol === 'file:') {
   enableLocalFileMode();
 } else {
   loadFromServer();
+  _nextRefreshAt = Date.now() + PRICE_REFRESH_MS;
   setInterval(refreshPrices, PRICE_REFRESH_MS);
+  setInterval(() => {
+    const el = $('refreshCountdown');
+    if (!el) return;
+    const openPicks = (_session?.picks || []).filter(p => p.close_price == null);
+    if (!openPicks.length) { el.textContent = ''; return; }
+    const secs = Math.max(0, Math.ceil((_nextRefreshAt - Date.now()) / 1000));
+    el.textContent = secs > 0 ? 'refresh in ' + secs + 's' : 'refreshing…';
+  }, 1000);
 }

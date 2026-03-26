@@ -6,6 +6,7 @@ import math
 from datetime import datetime, date as date_type
 from pathlib import Path
 
+import urllib.request
 from ib_insync import IB, Stock
 
 from stock_bot.config.settings import ib_settings
@@ -100,6 +101,28 @@ def _get_last_price(ticker: str, ib: IB) -> float | None:
             return round(float(bars[-1].close), 4)
     except Exception:
         logger.warning("portfolio_writer: price fetch failed for %s", ticker)
+    return None
+
+
+
+def _get_nasdaq_price() -> float | None:
+    """Fetch the NASDAQ Composite (^IXIC) closing price from Yahoo Finance."""
+    url = 'https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC?interval=1d&range=5d'
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            import json as _json
+            data = _json.loads(resp.read())
+        result = data['chart']['result'][0]
+        price = result['meta'].get('regularMarketPrice')
+        if price:
+            return round(float(price), 2)
+        closes = result['indicators']['quote'][0].get('close', [])
+        for p in reversed(closes):
+            if p is not None:
+                return round(float(p), 2)
+    except Exception:
+        logger.warning('portfolio_writer: NASDAQ price fetch failed', exc_info=True)
     return None
 
 
@@ -209,6 +232,10 @@ def write_session(
         qqq_price = _get_last_price("QQQ", ib)
         logger.info("portfolio_writer: QQQ price = %s", qqq_price)
 
+    # NASDAQ Composite (^IXIC) — fetched from Yahoo Finance for chart benchmark
+    nasdaq_price = _get_nasdaq_price()
+    logger.info("portfolio_writer: NASDAQ Composite = %s", nasdaq_price)
+
     # Build per-pick entries.
     # Priority: actual IBKR fill → estimated from market data
     pick_entries = []
@@ -282,7 +309,7 @@ def write_session(
                 p["ticker"], p["score"], alloc_pct, shares, buy_price, buy_value,
             )
 
-        pick_entries.append({
+        entry = {
             "ticker": p["ticker"],
             "score": p["score"],
             "direction": p["direction"],
@@ -297,7 +324,10 @@ def write_session(
             "close_price": None,
             "day_return_pct": None,
             "day_return_usd": None,
-        })
+        }
+        if p.get("hold_until"):
+            entry["hold_until"] = p["hold_until"]
+        pick_entries.append(entry)
 
     # Compute QQQ indexed to initial investment
     sessions = portfolio.get("sessions", [])
@@ -308,6 +338,16 @@ def write_session(
         float(portfolio["initial_investment"])
     )
 
+    # Compute NASDAQ Composite indexed to initial investment
+    initial_nasdaq = sessions[0].get("nasdaq_buy_price") if sessions else nasdaq_price
+    nasdaq_indexed = (
+        round((nasdaq_price / initial_nasdaq) * float(portfolio["initial_investment"]), 2)
+        if (initial_nasdaq and nasdaq_price and initial_nasdaq > 0) else None
+    )
+
+    cash_uninvested = round(open_value - sum(e["buy_value"] for e in pick_entries), 2)
+    logger.info("portfolio_writer: uninvested cash = $%.2f (of $%.2f open)", cash_uninvested, open_value)
+
     session = {
         "date": today,
         "mode": mode,
@@ -316,10 +356,15 @@ def write_session(
         "qqq_buy_price": qqq_price,
         "qqq_close_price": None,
         "qqq_day_return_pct": None,
+        "nasdaq_buy_price": nasdaq_price,
+        "nasdaq_close_price": None,
+        "nasdaq_day_return_pct": None,
         "portfolio_open_value": round(open_value, 2),
         "portfolio_close_value": None,
         "session_return_pct": None,
         "session_return_usd": None,
+        "cash_uninvested": cash_uninvested,
+        "cash_balance_close": None,
     }
 
     # Replace today's session if it already exists (re-run scenario)
@@ -333,7 +378,7 @@ def write_session(
 
     # Equity curve — record open value for today
     equity_curve = portfolio.get("equity_curve", [])
-    eq_point = {"date": today, "portfolio_value": round(open_value, 2), "qqq_indexed": qqq_indexed}
+    eq_point = {"date": today, "portfolio_value": round(open_value, 2), "qqq_indexed": qqq_indexed, "nasdaq_indexed": nasdaq_indexed}
     eq_idx = next((i for i, e in enumerate(equity_curve) if e.get("date") == today), None)
     if eq_idx is not None:
         equity_curve[eq_idx] = eq_point

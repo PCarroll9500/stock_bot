@@ -63,6 +63,10 @@ if [ "$READY" -eq 0 ]; then
     exit 1
 fi
 
+# Clear any leftover positions/orders from previous session before running
+echo "Running open_market_liquidate.py..."
+"$REPO/.venv/bin/python" "$REPO/scripts/open_market_liquidate.py" || echo "WARNING: open_market_liquidate failed"
+
 # Run the bot
 echo "Running main.py..."
 "$REPO/.venv/bin/python" -m stock_bot.main
