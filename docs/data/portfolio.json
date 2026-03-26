@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-03-25T14:30:51.968680",
+  "updated_at": "2026-03-26T09:44:12.890214",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -919,6 +919,106 @@
       "portfolio_close_value": 29991.09,
       "session_return_pct": 0.151,
       "session_return_usd": 45.33
+    },
+    {
+      "date": "2026-03-26",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "TERN",
+          "score": 9,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 5.0,
+          "reason": "Merck's acquisition of Terns Pharmaceuticals at a premium provides a strong catalyst for further upside.",
+          "trend_summary": "1d: +5.7%  1w: +10.6%  1m: +27.5%  3m: +30.1%  1yr: +1594.2%",
+          "allocation_pct": 27.7,
+          "shares": 152,
+          "buy_price": 52.87,
+          "buy_value": 8036.24,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null,
+          "hold_until": "2026-03-31"
+        },
+        {
+          "ticker": "DXYZ",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 5.0,
+          "reason": "DXYZ reported a significant increase in net asset value, indicating strong financial performance.",
+          "trend_summary": "1d: +15.3%  1w: +17.8%  1m: +12.5%  3m: -6.9%  1yr: -24.0%",
+          "allocation_pct": 16.8,
+          "shares": 161,
+          "buy_price": 31.7891,
+          "buy_value": 5118.05,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ARM",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Arm Holdings received significant analyst upgrades and price target raises, indicating strong institutional confidence.",
+          "trend_summary": "1d: +16.4%  1w: +22.4%  1m: +22.6%  3m: +38.6%  1yr: +39.7%",
+          "allocation_pct": 21.9,
+          "shares": 41,
+          "buy_price": 159.7461,
+          "buy_value": 6549.59,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TSEM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Tower Semiconductor received a significant price target raise from Benchmark and announced expansion plans in Japan, indicating strong demand and growth potential.",
+          "trend_summary": "1d: +4.4%  1w: +33.0%  1m: +49.8%  3m: +59.5%  1yr: +413.9%",
+          "allocation_pct": 16.8,
+          "shares": 27,
+          "buy_price": 182.6233,
+          "buy_value": 4930.83,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "DOW",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Dow Inc. announced a significant price hike in plastic resins due to supply disruptions, which could lead to increased revenue.",
+          "trend_summary": "1d: +3.4%  1w: +5.1%  1m: +27.6%  3m: +69.2%  1yr: +12.4%",
+          "allocation_pct": 16.8,
+          "shares": 130,
+          "buy_price": 39.5925,
+          "buy_value": 5147.03,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 21709.27,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 29950.36,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 168.62,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -951,6 +1051,12 @@
       "date": "2026-03-25",
       "portfolio_value": 29991.09,
       "qqq_indexed": 29807.47
+    },
+    {
+      "date": "2026-03-26",
+      "portfolio_value": 29950.36,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
