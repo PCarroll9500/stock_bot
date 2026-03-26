@@ -1,17 +1,17 @@
 {
   "aggressive_mode": true,
-  "aggressive_min_score": 7,
+  "aggressive_min_score": 8,
   "spy_down_threshold": -1.0,
   "num_stocks": 15,
   "min_score": 7,
   "score_floor": 7,
   "min_expected_gain_pct": 2.5,
-  "max_score_candidates": 30,
+  "max_score_candidates": 50,
   "sector_cap": 4,
   "_pre_score_comment": "Hard trend thresholds applied before GPT \u2014 stocks failing any are dropped without an AI call. null = no limit for that direction.",
   "pre_score_trend_filters": {
     "weekly": {
-      "min": 0.0,
+      "min": 1.0,
       "max": null
     },
     "monthly": {
