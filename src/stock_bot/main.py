@@ -708,7 +708,7 @@ async def main():
                         continue
                     extra_limit = round(fresh_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
                     try:
-                        t = await buy_stock_async(fp["ticker"], ib, shares=extra_shares, limit_price=extra_limit)
+                        t = await buy_stock_async(fp["ticker"], ib, shares=extra_shares, limit_price=extra_limit, stop_loss_pct=stop_loss_pct)
                         realloc_trades[fp["ticker"]] = t
                         cash_used += extra_shares * fresh_price
                         order_type = f"LMT ${extra_limit:.2f}" if extra_limit else "MKT"
@@ -754,7 +754,7 @@ async def main():
                         res_shares = math.floor(freed_cash / res_price)
                         if res_shares > 0:
                             res_limit = round(res_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
-                            res_trades = await buy_stock_async(reserve["ticker"], ib, shares=res_shares, limit_price=res_limit)
+                            res_trades = await buy_stock_async(reserve["ticker"], ib, shares=res_shares, limit_price=res_limit, stop_loss_pct=stop_loss_pct)
                             trades_by_ticker[reserve["ticker"]] = res_trades
                             order_type = f"LMT ${res_limit:.2f}" if res_limit else "MKT"
                             logger.info(
