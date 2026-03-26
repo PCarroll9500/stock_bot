@@ -499,7 +499,7 @@ async def main():
     # Min-picks safety net: if still below minimum, relax score floor one step at a time
     min_picks = config.get("min_picks", 5)
     _fallback_floor = score_floor - 1
-    while len(picks) < min_picks and _fallback_floor >= 5:
+    while len(picks) < min_picks and _fallback_floor >= 6:
         picks = filter_and_rank(all_scored, num_stocks, min_score=_fallback_floor,
                                 min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap)
         logger.warning(
