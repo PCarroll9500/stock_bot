@@ -109,12 +109,14 @@ def main() -> None:
         logger.info("close_of_day: session for %s already closed — skipping", today)
         return
 
-    # Picks with hold_until > today are multi-day holds — skip selling them
+    # Picks with hold_until > today are multi-day holds — skip selling them.
+    # Check ALL sessions so holds from previous days are respected.
     held_tickers: set[str] = set()
-    for _p in session.get("picks", []):
-        _hold = _p.get("hold_until")
-        if _hold and _hold > today:
-            held_tickers.add(_p["ticker"])
+    for _s in portfolio.get("sessions", []):
+        for _p in _s.get("picks", []):
+            _hold = _p.get("hold_until")
+            if _hold and _hold > today:
+                held_tickers.add(_p["ticker"])
     if held_tickers:
         logger.info("close_of_day: multi-day holds (skipping sell today): %s", sorted(held_tickers))
 
@@ -207,6 +209,28 @@ def main() -> None:
     for pick in session.get("picks", []):
         if pick.get("shares", 0) > 0 and pick["ticker"] not in sold_tickers:
             logger.info("close_of_day: %s -- stop-loss likely fired intraday", pick["ticker"])
+
+    # Build a map of intraday sell prices from IBKR execution history.
+    # Used as a fallback for picks whose stop-loss fired intraday.
+    exec_map: dict[str, float] = {}
+    try:
+        executions = ib.reqExecutions()
+        _fills_by_ticker: dict[str, list[tuple[float, float]]] = {}
+        for _fill in executions:
+            if _fill.execution.side == "SLD":
+                _sym = _fill.contract.symbol
+                _fills_by_ticker.setdefault(_sym, []).append(
+                    (_fill.execution.shares, _fill.execution.price)
+                )
+        for _sym, _fills in _fills_by_ticker.items():
+            _total = sum(s for s, _ in _fills)
+            if _total > 0:
+                exec_map[_sym] = round(sum(s * p for s, p in _fills) / _total, 4)
+        if exec_map:
+            logger.info("close_of_day: execution map built for %d ticker(s): %s",
+                        len(exec_map), list(exec_map.keys()))
+    except Exception:
+        logger.warning("close_of_day: could not fetch executions for stop-loss price lookup", exc_info=True)
 
     # Record per-pick close prices for individual P&L tracking
     for pick in session.get("picks", []):

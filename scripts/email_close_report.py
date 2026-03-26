@@ -59,22 +59,36 @@ def build_message(session: dict, portfolio: dict, errors: list[str]) -> tuple[st
     mode = session.get("mode", "").upper()
     today = session.get("date", date.today().isoformat())
 
-    open_val = session.get("portfolio_open_value", 0)
-    close_val = session.get("portfolio_close_value", 0)
-    day_return_usd = session.get("session_return_usd", 0)
-    day_return_pct = session.get("session_return_pct", 0)
+    open_val = session.get("portfolio_open_value") or 0
+    _raw_close = session.get("portfolio_close_value")
+    close_val = float(_raw_close) if _raw_close not in (None, "ERROR") else 0.0
+    day_return_usd = session.get("session_return_usd")
+    day_return_pct = session.get("session_return_pct")
+    if day_return_usd == "ERROR": day_return_usd = None
+    if day_return_pct == "ERROR": day_return_pct = None
     qqq_pct = session.get("qqq_day_return_pct") or 0
 
     initial = float(portfolio.get("initial_investment", 10_000))
     total_return_usd = close_val - initial
     total_return_pct = (total_return_usd / initial * 100) if initial else 0
 
+    def _safe_float(val):
+        """Return float or None; treats the string 'ERROR' as None."""
+        if val is None or val == "ERROR":
+            return None
+        try:
+            return float(val)
+        except (TypeError, ValueError):
+            return None
+
     def signed(val) -> str:
+        val = _safe_float(val)
         if val is None:
             return "N/A"
         return f"+${val:,.2f}" if val >= 0 else f"-${abs(val):,.2f}"
 
     def signed_pct(val) -> str:
+        val = _safe_float(val)
         if val is None:
             return "N/A"
         return f"+{val:.2f}%" if val >= 0 else f"{val:.2f}%"

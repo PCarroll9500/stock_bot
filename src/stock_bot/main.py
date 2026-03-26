@@ -108,6 +108,9 @@ async def main():
     take_profit_pct: float | None = config.get("take_profit_pct")
     stop_loss_pct: float | None = config.get("stop_loss_pct")
     trailing_stop_pct: float | None = config.get("trailing_stop_pct")
+    if trailing_stop_pct is not None and (stop_loss_pct is not None or take_profit_pct is not None):
+        logger.error("Config error: trailing_stop_pct cannot be combined with stop_loss_pct or take_profit_pct")
+        sys.exit(1)
     limit_order_buffer_pct: float | None = config.get("limit_order_buffer_pct", 0.5)
     logger.info("Limit order buffer: %.2f%% (%s mode)", limit_order_buffer_pct or 0, ib_settings.mode)
 
@@ -610,8 +613,11 @@ async def main():
             shares = math.floor(alloc_usd / result)
             order_plans.append((pick, alloc_pct, shares, result))
 
+        if not order_plans:
+            logger.error("Pre-flight: no valid prices — cannot place any orders")
+            picks = []
         projected_cost = sum(shares * price for _, _, shares, price in order_plans)
-        if projected_cost > open_value:
+        if order_plans and projected_cost > open_value:
             scale = open_value / projected_cost
             logger.warning(
                 "Pre-flight: projected cost $%.2f exceeds budget $%.2f — scaling all positions by %.4f",
