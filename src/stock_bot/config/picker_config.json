@@ -83,5 +83,6 @@
   },
   "trailing_stop_pct": 2.5,
   "multi_day_hold_min_score": 9,
-  "multi_day_max_days": 3
+  "multi_day_max_days": 3,
+  "min_picks": 5
 }
