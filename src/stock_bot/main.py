@@ -681,6 +681,8 @@ async def main():
         for _round in range(1, _MAX_ROUNDS + 1):
             if remaining_cash < _MIN_LOT_USD or not filled_picks:
                 break
+            # Apply 3% reserve so 3% limit buffer never overshoots actual balance
+            _deployable = remaining_cash * 0.97
 
             # Current market value invested per stock
             _pos_val: dict[str, float] = {}
@@ -703,7 +705,7 @@ async def main():
                 _tkr = _fp["ticker"]
                 _weight = max(_fp.get("score", 1), 1) / _total_score
                 _headroom = max(0.0, _max_pos_usd - _pos_val.get(_tkr, 0.0))
-                _extra = min(remaining_cash * _weight, _headroom)
+                _extra = min(_deployable * _weight, _headroom)
                 if _extra >= _MIN_LOT_USD:
                     _top_ups.append((_fp, _extra))
 
@@ -716,11 +718,11 @@ async def main():
                     and s.get("score", 0) >= score_floor
                     and s.get("direction") == "bullish"
                 ]
-                if _reserve_pool and remaining_cash >= _MIN_LOT_USD:
+                if _reserve_pool and _deployable >= _MIN_LOT_USD:
                     _res = _reserve_pool[0]
                     try:
                         _res_price = await get_price_async(_res["ticker"], ib)
-                        _res_shares = math.floor(remaining_cash / _res_price)
+                        _res_shares = math.floor(_deployable / _res_price)
                         if _res_shares > 0:
                             _res_lmt = round(_res_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
                             _res_trades = await buy_stock_async(_res["ticker"], ib, shares=_res_shares, limit_price=_res_lmt)
@@ -753,7 +755,10 @@ async def main():
                         logger.error("Realloc r%d (reserve): failed for %s", _round, _res["ticker"], exc_info=True)
                 else:
                     logger.info("Realloc r%d: all picks at cap, no reserve candidates -- done", _round)
-                break
+                    break
+                # Reserve attempt done (filled or not) -- re-query cash and continue loop
+                remaining_cash = get_live_account_value(ib) or 0.0
+                continue
 
             # Fetch fresh prices in parallel for all top-up candidates
             _tu_tickers = [_fp["ticker"] for _fp, _ in _top_ups]
