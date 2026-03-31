@@ -253,7 +253,8 @@ def main() -> None:
         # Try intraday execution price (stop-loss fills)
         if close_price is None and ticker in exec_map:
             close_price = exec_map[ticker]
-            logger.info("close_of_day: %s using intraday execution price %.4f", ticker, close_price)
+            pick["stop_loss_triggered"] = True
+            logger.info("close_of_day: %s stop-loss triggered intraday @ %.4f", ticker, close_price)
 
         # Fall back to last bar price with retry
         if close_price is None:

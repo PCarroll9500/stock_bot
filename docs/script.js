@@ -441,7 +441,7 @@ function updatePriceCell(pick, livePrice) {
     : (price != null && hasBuy && pick.shares > 0 ? (price - pick.buy_price) * pick.shares : null);
 
   const badge = isLive ? '<span class="live-badge">LIVE</span>'
-    : hasClosed ? '<span class="closed-badge">CLOSE</span>' : '';
+    : hasClosed ? `<span class="${pick.stop_loss_triggered ? 'stop-badge' : 'closed-badge'}">${pick.stop_loss_triggered ? 'STOP' : 'CLOSE'}</span>` : '';
 
   row.querySelector('.price-cell').innerHTML =
     (price != null ? fmtUsd(price) : '<span class="neutral">—</span>') + ' ' + badge;
@@ -499,7 +499,7 @@ async function renderPicksTable(session) {
       <td>${hasBuy ? fmtUsd(pick.buy_price) : '<span class="neutral">—</span>'}</td>
       <td class="price-cell">
         ${pick.close_price != null
-          ? fmtUsd(pick.close_price) + ' <span class="closed-badge">CLOSE</span>'
+          ? fmtUsd(pick.close_price) + ` <span class="${pick.stop_loss_triggered ? 'stop-badge' : 'closed-badge'}">${pick.stop_loss_triggered ? 'STOP' : 'CLOSE'}</span>`
           : '<span class="loading-price">fetching…</span>'}
       </td>
       <td class="ret-pct">

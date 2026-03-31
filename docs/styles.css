@@ -293,6 +293,17 @@ tbody tr:hover td { background: rgba(255,255,255,0.03); }
   vertical-align: middle;
   margin-left: .3rem;
 }
+.stop-badge {
+  font-size: .65rem;
+  font-weight: 700;
+  padding: .1rem .35rem;
+  border-radius: 4px;
+  background: rgba(251,146,60,0.15);
+  color: #fb923c;
+  border: 1px solid rgba(251,146,60,0.3);
+  vertical-align: middle;
+  margin-left: .3rem;
+}
 
 /* ── Colors ── */
 .up   { color: var(--green); }

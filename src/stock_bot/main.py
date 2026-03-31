@@ -866,12 +866,15 @@ async def main():
 
         picks = filled_picks
 
-        # Hard cancel any orders still open after all fill waits and reallocation.
-        # Ensures no limit order survives past the buy phase.
+        # Hard cancel any BUY orders still open after all fill waits and reallocation.
+        # Ensures no limit buy order survives past the buy phase.
+        # SELL orders (trailing stops, stop-losses) are intentionally left alive on IBKR.
         for _ticker, _trade_list in trades_by_ticker.items():
             for _t in (_trade_list or []):
                 _status = getattr(_t, "orderStatus", None)
-                if _status and _status.filled == 0 and _status.status not in ("Filled", "Cancelled", "Inactive"):
+                _action = getattr(_t.order, "action", "") if getattr(_t, "order", None) else ""
+                if (_action == "BUY" and _status and _status.filled == 0
+                        and _status.status not in ("Filled", "Cancelled", "Inactive")):
                     try:
                         ib.cancelOrder(_t.order)
                         logger.info("Cancelled unfilled %s order for %s", _status.status, _ticker)
