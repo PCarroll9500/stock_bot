@@ -1,9 +1,11 @@
 # src/stock_bot/data_sources/news_fetcher.py
 
 import asyncio
+import email.utils
 import logging
 import re
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone, timedelta
 
 import httpx
 from bs4 import BeautifulSoup
@@ -13,6 +15,50 @@ logger = logging.getLogger(__name__)
 
 _HTML_TAG_RE = re.compile(r"<[^>]+>")
 _FINVIZ_SEM  = asyncio.Semaphore(4)   # avoid Finviz rate-limit
+
+# Eastern Time offset — UTC-4 during EDT (Mar–Nov), UTC-5 during EST.
+# Finviz timestamps have no timezone; assume ET.
+_ET = timezone(timedelta(hours=-4))
+
+
+def _parse_article_time(time_str: str) -> datetime | None:
+    """Parse a news article timestamp into a UTC-aware datetime.
+
+    Handles:
+    - RFC 2822  (Yahoo / Google RSS): "Thu, 26 Mar 2026 13:35:04 +0000"
+    - ISO 8601  (ib_insync):          "2026-03-26 13:35:04+00:00"
+    - Finviz    (local ET):           "Mar 26 08:32AM"
+    Returns None if the string cannot be parsed.
+    """
+    if not time_str or not time_str.strip():
+        return None
+    s = time_str.strip()
+
+    # RFC 2822
+    try:
+        return email.utils.parsedate_to_datetime(s)
+    except Exception:
+        pass
+
+    # ISO 8601 / ib_insync datetime strings
+    try:
+        return datetime.fromisoformat(s)
+    except Exception:
+        pass
+
+    # Finviz: "Mar 26 08:32AM" (no year, no timezone — assume ET, current year)
+    now = datetime.now(_ET)
+    for fmt in ("%b %d %I:%M%p", "%b %d  %I:%M%p"):
+        try:
+            dt = datetime.strptime(s, fmt).replace(year=now.year, tzinfo=_ET)
+            # If the date is in the future (e.g. "Dec 31" parsed in January), use last year
+            if dt > now + timedelta(hours=2):
+                dt = dt.replace(year=now.year - 1)
+            return dt
+        except Exception:
+            pass
+
+    return None
 
 _SCRAPER_HEADERS = {
     "User-Agent": (
@@ -59,8 +105,10 @@ async def _scrape_finviz(ticker: str, client: httpx.AsyncClient) -> list[dict]:
             a_tag = tds[1].find("a")
             if not a_tag:
                 continue
+            raw_time = f"{last_date} {time_part}".strip()
             articles.append({
-                "time": f"{last_date} {time_part}".strip(),
+                "time": raw_time,
+                "published_dt": _parse_article_time(raw_time),
                 "provider": "finviz",
                 "headline": a_tag.text.strip(),
                 "body": "",
@@ -90,6 +138,7 @@ async def _scrape_yahoo(ticker: str, client: httpx.AsyncClient) -> list[dict]:
             if title:
                 articles.append({
                     "time": pub,
+                    "published_dt": _parse_article_time(pub),
                     "provider": "yahoo",
                     "headline": title,
                     "body": desc,
@@ -119,6 +168,7 @@ async def _scrape_google(ticker: str, client: httpx.AsyncClient) -> list[dict]:
             if title:
                 articles.append({
                     "time": pub,
+                    "published_dt": _parse_article_time(pub),
                     "provider": "google_news",
                     "headline": title,
                     "body": desc,
@@ -205,8 +255,10 @@ async def _fetch_ibkr_batch(
             body = ""
         except Exception:
             body = ""
+        raw_time = str(hl.time)
         return {
-            "time": str(hl.time),
+            "time": raw_time,
+            "published_dt": _parse_article_time(raw_time),
             "provider": hl.providerCode,
             "headline": hl.headline,
             "body": body,

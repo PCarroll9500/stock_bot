@@ -57,12 +57,13 @@ Return a JSON object with five fields:
 
 Ticker: {ticker}
 
+Today: {today_date}
 Market context: {spy_context}
 
 Price trend:
 {trend_summary}
 
-Recent news:
+Recent news (age shown as time since publication — e.g. "2h ago" is very fresh, "1d ago" is yesterday, "3d ago" is stale):
 {news_items}
 
 Respond with JSON only — no text outside the JSON:

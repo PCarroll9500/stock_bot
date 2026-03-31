@@ -4,6 +4,7 @@ import json
 import logging
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timezone
 from functools import lru_cache
 from importlib.resources import files
 
@@ -16,8 +17,9 @@ MODEL       = "gpt-4o"
 TEMPERATURE = 0.3
 MAX_WORKERS = 1
 
-_ALLOC_MIN_PCT = 5.0
-_ALLOC_MAX_PCT = 35.0
+_ALLOC_MIN_PCT    = 5.0
+_ALLOC_MAX_PCT    = 35.0
+_MAX_NEWS_AGE_HRS = 72  # articles older than this are dropped before scoring
 
 
 # ── Prompt template ────────────────────────────────────────────────────────────
@@ -29,14 +31,49 @@ def _load_prompt_template() -> str:
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
+def _age_label(published_dt: datetime | None) -> str:
+    """Return a human-readable age string like '2h ago' or '3d ago'."""
+    if published_dt is None:
+        return "age unknown"
+    now = datetime.now(timezone.utc)
+    if published_dt.tzinfo is None:
+        published_dt = published_dt.replace(tzinfo=timezone.utc)
+    delta_s = (now - published_dt).total_seconds()
+    if delta_s < 0:
+        return "just now"
+    if delta_s < 3600:
+        return f"{int(delta_s / 60)}m ago"
+    if delta_s < 86400:
+        return f"{int(delta_s / 3600)}h ago"
+    return f"{int(delta_s / 86400)}d ago"
+
+
+def _filter_stale_articles(articles: list[dict]) -> list[dict]:
+    """Drop articles older than _MAX_NEWS_AGE_HRS. Articles with no parsed
+    timestamp are kept so we never silently discard news we can't date."""
+    now = datetime.now(timezone.utc)
+    fresh = []
+    for a in articles:
+        dt = a.get("published_dt")
+        if dt is None:
+            fresh.append(a)
+            continue
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        if (now - dt).total_seconds() / 3600 <= _MAX_NEWS_AGE_HRS:
+            fresh.append(a)
+    return fresh
+
+
 def _format_news_items(articles: list[dict]) -> str:
     if not articles:
         return "(no recent news available)"
     lines = []
     for i, a in enumerate(articles, 1):
         body_snippet = a.get("body", "")[:600].strip()
+        age = _age_label(a.get("published_dt"))
         lines.append(
-            f"{i}. [{a.get('time', '')}] ({a.get('provider', '')}) {a.get('headline', '')}\n"
+            f"{i}. [{age}] ({a.get('provider', '')}) {a.get('headline', '')}\n"
             f"   {body_snippet}"
         )
     return "\n\n".join(lines)
@@ -62,12 +99,14 @@ def _score_ticker(
     trend_summary: str,
     spy_context: str = "unavailable",
 ) -> dict:
+    today_date = datetime.now(timezone.utc).strftime("%A, %B %d, %Y")
     prompt = (
         _load_prompt_template()
         .replace("{ticker}", ticker)
         .replace("{trend_summary}", trend_summary)
         .replace("{news_items}", _format_news_items(articles))
         .replace("{spy_context}", spy_context)
+        .replace("{today_date}", today_date)
     )
     _default = {
         "ticker": ticker,
@@ -190,11 +229,21 @@ def score_candidates(
     client = OpenAI()
     trend_by_ticker = trend_by_ticker or {}
 
-    candidates = {
-        ticker: articles
-        for ticker, articles in news_by_ticker.items()
-        if ticker not in excluded and articles
-    }
+    candidates: dict[str, list[dict]] = {}
+    stale_skipped: list[str] = []
+    for ticker, articles in news_by_ticker.items():
+        if ticker in excluded or not articles:
+            continue
+        fresh = _filter_stale_articles(articles)
+        if not fresh:
+            stale_skipped.append(ticker)
+            continue
+        candidates[ticker] = fresh
+    if stale_skipped:
+        logger.info(
+            "catalyst_scorer: skipped %d ticker(s) — all news older than %dh: %s",
+            len(stale_skipped), _MAX_NEWS_AGE_HRS, ", ".join(stale_skipped),
+        )
 
     logger.info("catalyst_scorer: scoring %d tickers with news", len(candidates))
 
