@@ -1,9 +1,9 @@
 #!/bin/bash
 # run_close.sh — git pull, run close_of_day.py, push portfolio.json, send email report
 #
-# Cron entry (EC2, UTC):
-#   30 18 * * 1-5 /home/ubuntu/stock_bot/scripts/run_close.sh
-#   (18:30 UTC = 2:30 PM EDT / 1:30 PM EST — sells ~90 min before close to lock in profits)
+# Cron entry (EC2, ET — America/New_York):
+#   30 14 * * 1-5 /home/ubuntu/stock_bot/scripts/run_close.sh
+#   (2:30 PM ET — sells ~90 min before market close, before EventBridge stops instance at 3:30 PM)
 
 set -euo pipefail
 
