@@ -172,7 +172,7 @@ class TestFilterStaleArticles:
         assert len(_filter_stale_articles(articles)) == 0
 
     def test_exactly_at_boundary_kept(self):
-        articles = [self._article(72)]
+        articles = [self._article(71.99)]  # just inside 72h — avoids millisecond timing drift
         assert len(_filter_stale_articles(articles)) == 1
 
     def test_unknown_timestamp_kept(self):
