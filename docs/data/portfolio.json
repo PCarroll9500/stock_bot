@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-03-26T09:44:12.890214",
+  "updated_at": "2026-04-01T09:40:28.299159",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1019,6 +1019,57 @@
       "session_return_usd": null,
       "cash_uninvested": 168.62,
       "cash_balance_close": null
+    },
+    {
+      "date": "2026-04-01",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "MRVL",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Nvidia's $2 billion investment in Marvell for AI chip collaboration is a strong catalyst, aligning Marvell with Nvidia's AI ecosystem.",
+          "trend_summary": "1d: +12.8%  1w: +7.2%  1m: +22.5%  3m: +15.5%  1yr: +56.7%",
+          "allocation_pct": 100.0,
+          "shares": 273,
+          "buy_price": 103.77,
+          "buy_value": 28329.21,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NIO",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "NIO reported a significant increase in March deliveries, up 136% year over year, indicating strong sales momentum.",
+          "trend_summary": "1d: +9.4%  1w: +5.2%  1m: +27.8%  3m: +12.9%  1yr: +58.7%",
+          "allocation_pct": 50.0,
+          "shares": 45,
+          "buy_price": 6.27,
+          "buy_value": 282.15,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 21837.7,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28614.95,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 3.59,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -1055,6 +1106,12 @@
     {
       "date": "2026-03-26",
       "portfolio_value": 29950.36,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
+    },
+    {
+      "date": "2026-04-01",
+      "portfolio_value": 28614.95,
       "qqq_indexed": 30410.62,
       "nasdaq_indexed": null
     }
