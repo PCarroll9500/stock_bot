@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-01T09:40:28.299159",
+  "updated_at": "2026-04-01T14:30:48.482135",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1037,9 +1037,10 @@
           "shares": 273,
           "buy_price": 103.77,
           "buy_value": 28329.21,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 105.1273,
+          "day_return_pct": 1.308,
+          "day_return_usd": 370.54,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "NIO",
@@ -1053,23 +1054,23 @@
           "shares": 45,
           "buy_price": 6.27,
           "buy_value": 282.15,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 6.16,
+          "day_return_pct": -1.754,
+          "day_return_usd": -4.95
         }
       ],
       "qqq_buy_price": null,
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 21837.7,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 21797.85,
+      "nasdaq_day_return_pct": -0.182,
       "portfolio_open_value": 28614.95,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28975.76,
+      "session_return_pct": 1.261,
+      "session_return_usd": 360.81,
       "cash_uninvested": 3.59,
-      "cash_balance_close": null
+      "cash_balance_close": 28985.54
     }
   ],
   "equity_curve": [
@@ -1111,9 +1112,8 @@
     },
     {
       "date": "2026-04-01",
-      "portfolio_value": 28614.95,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28975.76,
+      "qqq_indexed": 29582.3
     }
   ]
 }
