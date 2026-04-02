@@ -14,9 +14,10 @@ A fully automated, catalyst-driven day-trading engine powered by Python, Interac
 4. [Configuration Reference](#configuration-reference)
 5. [Environment Variables](#environment-variables)
 6. [Project Structure](#project-structure)
-7. [Setup & Installation](#setup--installation)
-8. [Running the Bot](#running-the-bot)
-9. [Dashboard](#dashboard)
+7. [API Keys & Account Setup](#api-keys--account-setup)
+8. [Setup & Installation](#setup--installation)
+9. [Running the Bot](#running-the-bot)
+10. [Dashboard](#dashboard)
 
 ---
 
@@ -502,6 +503,7 @@ Copy `.env.example` to `.env` and fill in your values.
 | Variable | Default | Required | Description |
 |----------|---------|----------|-------------|
 | `OPENAI_API_KEY` | — | Yes | OpenAI API key for GPT-4o scoring |
+| `FINNHUB_API_KEY` | — | Recommended | Finnhub API key — used as news fallback when IBKR is unavailable |
 | `IB_MODE` | `paper` | No | `paper` or `live` — controls which port and account are used |
 | `IB_HOST` | `127.0.0.1` | No | TWS or IB Gateway host |
 | `IB_PORT_PAPER` | `4002` | No | Port for the paper trading Gateway |
@@ -560,12 +562,75 @@ stock_bot/
 
 ---
 
+## API Keys & Account Setup
+
+This bot requires three external services. Set each one up before running.
+
+---
+
+### 1. Interactive Brokers (IBKR)
+
+IBKR provides the brokerage account, market data, news feed, and order execution.
+
+| Step | Link |
+|------|------|
+| Open an account | [interactivebrokers.com — Open Account](https://www.interactivebrokers.com/en/pagemap/pagemap_newaccounts_v3.php) |
+| Download IB Gateway (recommended, headless) | [interactivebrokers.com — IB Gateway Stable](https://www.interactivebrokers.com/en/trading/ibgateway-stable.php) |
+| Download TWS (full desktop app) | [interactivebrokers.com — TWS Download](https://www.interactivebrokers.com/en/trading/download-tws.php) |
+
+**Setup steps:**
+1. Open an IBKR account and enable paper trading (free, available immediately after account approval)
+2. Download and install **IB Gateway** (lighter than TWS, designed for automated use)
+3. Log in to IB Gateway — select **Paper Trading** and note your paper account ID (format: `DU123456`)
+4. In IB Gateway settings: enable **API access** on port `4002` (paper) or `4001` (live), and add `127.0.0.1` to trusted IPs
+5. Set `IB_ACCOUNT_PAPER` in your `.env` to your paper account ID
+
+> The bot uses IB Gateway, not TWS. Both work but Gateway is the recommended choice for automated/headless trading.
+
+---
+
+### 2. OpenAI (GPT-4o)
+
+Used for AI catalyst scoring in Stage 5 of the pipeline.
+
+| Step | Link |
+|------|------|
+| Create an account & get an API key | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) |
+
+**Setup steps:**
+1. Sign up or log in at [platform.openai.com](https://platform.openai.com)
+2. Go to **API Keys** and create a new secret key
+3. Set `OPENAI_API_KEY` in your `.env` to this key
+4. Ensure your account has GPT-4o access (requires a paid tier — add billing at [platform.openai.com/settings/billing](https://platform.openai.com/settings/billing))
+
+> Each morning run scores ~20–50 tickers. At GPT-4o pricing this costs approximately **$0.05–$0.20 per day**.
+
+---
+
+### 3. Finnhub (News API — fallback)
+
+Used as the news source when IBKR's newswire is unavailable (after hours, weekend testing). Free tier is sufficient.
+
+| Step | Link |
+|------|------|
+| Create a free account & get an API key | [finnhub.io/register](https://finnhub.io/register) |
+| View your key after login | [finnhub.io/dashboard](https://finnhub.io/dashboard) |
+
+**Setup steps:**
+1. Sign up at [finnhub.io/register](https://finnhub.io/register) — no credit card required
+2. Your API key is shown immediately on the dashboard
+3. Set `FINNHUB_API_KEY` in your `.env` to this key
+
+> The free tier allows 60 API calls/minute, which is sufficient for this bot's usage pattern. Finnhub is only called when IBKR news is unavailable — during market hours IBKR is always used instead.
+
+---
+
 ## Setup & Installation
 
 ### Prerequisites
 
 - Python 3.10+
-- IBKR Trader Workstation (TWS) or IB Gateway running locally
+- IBKR IB Gateway running locally (see [API Keys & Account Setup](#api-keys--account-setup) above)
 - An IBKR paper trading account enabled
 - OpenAI API key with GPT-4o access
 
@@ -581,7 +646,7 @@ pip install -e ".[dev,ib]"
 
 ```bash
 cp .env.example .env
-# Edit .env with your IBKR account IDs and OpenAI key
+# Edit .env with your IBKR account IDs, OpenAI key, and Finnhub key
 ```
 
 ---
