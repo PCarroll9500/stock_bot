@@ -598,9 +598,9 @@ function renderHistoryTable(sessions) {
       <td>${fmtDate(s.date)}</td>
       <td><span class="badge" style="font-size:.7rem">${s.mode || '—'}</span></td>
       <td>${fmtUsd(s.portfolio_open_value)}</td>
-      <td>${closeErr ? '<span class="down" title="IBKR unreachable after close — value unavailable">ERROR</span>' : closed ? fmtUsd(s.portfolio_close_value) : '<span class="neutral">open</span>'}</td>
+      <td>${s.no_picks ? '<span class="neutral">—</span>' : closeErr ? '<span class="down" title="IBKR unreachable after close — value unavailable">ERROR</span>' : closed ? fmtUsd(s.portfolio_close_value) : '<span class="neutral">open</span>'}</td>
       <td class="${colorClass(s.session_return_pct)}">
-        ${closeErr ? '—' : closed ? fmtPct(s.session_return_pct) + ' (' + fmtUsd(s.session_return_usd) + ')' : '—'}
+        ${s.no_picks ? '<span class="neutral">—</span>' : closeErr ? '—' : closed ? fmtPct(s.session_return_pct) + ' (' + fmtUsd(s.session_return_usd) + ')' : '—'}
       </td>
       <td>${s.no_picks ? '<span class="neutral" style="font-size:.75rem">no picks</span>' : `${n} stock${n !== 1 ? 's' : ''}`}</td>
     `;

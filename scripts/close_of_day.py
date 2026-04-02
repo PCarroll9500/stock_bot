@@ -111,6 +111,10 @@ def main() -> None:
         logger.info("close_of_day: session for %s already closed — skipping", today)
         return
 
+    if session.get("no_picks"):
+        logger.info("close_of_day: no-picks day — skipping liquidation, close value left as null")
+        return
+
     # Picks with hold_until > today are multi-day holds — skip selling them.
     # Check ALL sessions so holds from previous days are respected.
     held_tickers: set[str] = set()
