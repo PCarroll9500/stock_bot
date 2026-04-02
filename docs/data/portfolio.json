@@ -1071,6 +1071,13 @@
       "session_return_usd": 360.81,
       "cash_uninvested": 3.59,
       "cash_balance_close": 28985.54
+    },
+    {
+      "date": "2026-04-02",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "portfolio_open_value": 28985.54
     }
   ],
   "equity_curve": [

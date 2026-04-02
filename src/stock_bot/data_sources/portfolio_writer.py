@@ -198,7 +198,25 @@ def write_session(
             reading the previous session's close from portfolio.json.
     """
     if not picks:
-        logger.info("portfolio_writer: no picks — skipping session write")
+        logger.info("portfolio_writer: no picks — writing no-pick stub to portfolio.json")
+        portfolio = load_portfolio(test_mode=test_mode)
+        today = date_type.today().isoformat()
+        open_value = open_value_override if open_value_override is not None else _get_open_value(portfolio)
+        stub: dict = {
+            "date": today,
+            "mode": mode,
+            "no_picks": True,
+            "picks": [],
+            "portfolio_open_value": open_value,
+        }
+        sessions = portfolio.get("sessions", [])
+        idx = next((i for i, s in enumerate(sessions) if s.get("date") == today), None)
+        if idx is not None:
+            sessions[idx] = stub
+        else:
+            sessions.append(stub)
+        portfolio["sessions"] = sessions
+        save_portfolio(portfolio, test_mode=test_mode)
         return
 
     if test_mode:

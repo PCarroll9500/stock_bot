@@ -187,6 +187,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 function computeLivePortfolioValue(session, livePrices) {
   if (!session || (session.portfolio_close_value != null && !isError(session.portfolio_close_value))) return null;
+  if (session.no_picks) return session.portfolio_open_value || 0;
 
   const openValue = session.portfolio_open_value || 0;
   let totalInvested = 0;
@@ -462,7 +463,15 @@ async function renderPicksTable(session) {
   tbody.innerHTML = '';
 
   if (!session?.picks?.length) {
-    tbody.innerHTML = '<tr><td colspan="9" class="empty">No picks for this session.</td></tr>';
+    if (session?.no_picks) {
+      $('todayTitle').textContent = fmtDate(session.date) + ' Picks';
+      $('todayMeta').textContent  = `Mode: ${session.mode || '—'}  |  Open: ${fmtUsd(session.portfolio_open_value)}`;
+      tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;padding:2rem 1rem">
+        <div style="color:var(--muted);font-size:.95rem">No qualifying picks found — market conditions did not meet scoring thresholds.</div>
+      </td></tr>`;
+    } else {
+      tbody.innerHTML = '<tr><td colspan="9" class="empty">No picks for this session.</td></tr>';
+    }
     return;
   }
 
@@ -593,7 +602,7 @@ function renderHistoryTable(sessions) {
       <td class="${colorClass(s.session_return_pct)}">
         ${closeErr ? '—' : closed ? fmtPct(s.session_return_pct) + ' (' + fmtUsd(s.session_return_usd) + ')' : '—'}
       </td>
-      <td>${n} stock${n !== 1 ? 's' : ''}</td>
+      <td>${s.no_picks ? '<span class="neutral" style="font-size:.75rem">no picks</span>' : `${n} stock${n !== 1 ? 's' : ''}`}</td>
     `;
     tbody.appendChild(tr);
   });
