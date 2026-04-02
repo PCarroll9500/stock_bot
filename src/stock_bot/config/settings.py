@@ -53,3 +53,10 @@ def load_logging_settings() -> LoggingSettings:
 
 ib_settings = load_ib_settings()
 logging_settings = load_logging_settings()
+
+
+def load_finnhub_api_key() -> str:
+    return os.getenv("FINNHUB_API_KEY", "")
+
+
+finnhub_api_key: str = load_finnhub_api_key()

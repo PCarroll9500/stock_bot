@@ -2,6 +2,7 @@
 
 import asyncio
 import email.utils
+import html as html_mod
 import logging
 import re
 import xml.etree.ElementTree as ET
@@ -10,6 +11,8 @@ from datetime import datetime, timezone, timedelta
 import httpx
 from bs4 import BeautifulSoup
 from ib_insync import IB
+
+from stock_bot.config.settings import finnhub_api_key as _FINNHUB_KEY
 
 logger = logging.getLogger(__name__)
 
@@ -299,6 +302,66 @@ async def _fetch_ibkr_batch(
     return dict(results)
 
 
+# ── Finnhub fetcher ────────────────────────────────────────────────────────────
+
+_FINNHUB_RATE_DELAY = 1.1   # free tier: 60 calls/min → 1 call/sec
+_FINNHUB_DAYS_BACK  = 3
+
+
+async def _fetch_finnhub_all(tickers: list[dict], max_articles: int) -> dict[str, list[dict]]:
+    """Fetch news from Finnhub for each ticker sequentially to respect the
+    free-tier rate limit (60 calls/min).  Returns empty dict if no API key."""
+    if not _FINNHUB_KEY:
+        return {}
+
+    today     = datetime.now(timezone.utc).date()
+    date_from = (today - timedelta(days=_FINNHUB_DAYS_BACK)).isoformat()
+    date_to   = today.isoformat()
+    results   = {}
+
+    async with httpx.AsyncClient(timeout=10) as client:
+        for entry in tickers:
+            ticker = entry["ticker"]
+            try:
+                r = await client.get(
+                    "https://finnhub.io/api/v1/company-news",
+                    params={
+                        "symbol": ticker,
+                        "from":   date_from,
+                        "to":     date_to,
+                        "token":  _FINNHUB_KEY,
+                    },
+                )
+                if r.status_code == 429:
+                    logger.warning("news_fetcher: Finnhub rate-limited on %s — skipping", ticker)
+                    results[ticker] = []
+                elif r.status_code != 200:
+                    logger.warning("news_fetcher: Finnhub HTTP %d for %s", r.status_code, ticker)
+                    results[ticker] = []
+                else:
+                    articles = []
+                    for item in r.json()[:max_articles]:
+                        ts = item.get("datetime", 0)
+                        dt = datetime.fromtimestamp(ts, tz=timezone.utc) if ts else None
+                        body = html_mod.unescape(item.get("summary", "")).strip()
+                        articles.append({
+                            "time":         str(dt) if dt else "",
+                            "published_dt": dt,
+                            "provider":     item.get("source", "finnhub"),
+                            "headline":     html_mod.unescape(item.get("headline", "")),
+                            "body":         body,
+                        })
+                    logger.info("news_fetcher: %s — %d article(s) from Finnhub", ticker, len(articles))
+                    results[ticker] = articles
+            except Exception:
+                logger.warning("news_fetcher: Finnhub failed for %s", ticker, exc_info=True)
+                results[ticker] = []
+
+            await asyncio.sleep(_FINNHUB_RATE_DELAY)
+
+    return results
+
+
 # ── Public API ─────────────────────────────────────────────────────────────────
 
 _PROBE_SIZE = 5   # Tickers to probe before declaring IBKR news service down
@@ -344,11 +407,19 @@ async def fetch_news_for_tickers_async(
     timeouts = sum(1 for v in probe_results.values() if not v)
 
     if timeouts == len(probe):
-        logger.warning(
-            "news: IBKR probe — all %d timed out -> falling back to web scrapers (finviz+yahoo+google)",
-            len(probe),
-        )
-        return await _fetch_web_all(tickers, max_articles)
+        # IBKR unavailable — try Finnhub first, fall back to web scrapers
+        if _FINNHUB_KEY:
+            logger.warning(
+                "news: IBKR probe — all %d timed out -> falling back to Finnhub",
+                len(probe),
+            )
+            return await _fetch_finnhub_all(tickers, max_articles)
+        else:
+            logger.warning(
+                "news: IBKR probe — all %d timed out -> no Finnhub key, falling back to web scrapers",
+                len(probe),
+            )
+            return await _fetch_web_all(tickers, max_articles)
 
     logger.info(
         "news: IBKR probe — %d/%d succeeded -> continuing with IBKR",
