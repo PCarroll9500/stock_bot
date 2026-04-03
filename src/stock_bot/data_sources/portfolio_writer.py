@@ -179,6 +179,7 @@ def write_session(
     trades_by_ticker: dict | None = None,
     open_value_override: float | None = None,
     qqq_price_override: float | None = None,
+    runner_ups: list[dict] | None = None,
 ) -> None:
     """
     Write today's session to portfolio.json using actual IBKR fill data when
@@ -207,6 +208,7 @@ def write_session(
             "mode": mode,
             "no_picks": True,
             "picks": [],
+            "runner_ups": runner_ups or [],
             "portfolio_open_value": open_value,
         }
         sessions = portfolio.get("sessions", [])
@@ -371,6 +373,7 @@ def write_session(
         "mode": mode,
         "spy_return_pct": round(spy_return, 3) if spy_return is not None else None,
         "picks": pick_entries,
+        "runner_ups": runner_ups or [],
         "qqq_buy_price": qqq_price,
         "qqq_close_price": None,
         "qqq_day_return_pct": None,

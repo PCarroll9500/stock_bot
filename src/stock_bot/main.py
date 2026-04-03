@@ -520,6 +520,16 @@ async def main():
             p.get("expected_gain_pct", 0), p.get("allocation_pct", 0), p["reason"],
         )
 
+    # Runner-ups: scored bullish stocks not in final picks, top 10 by score
+    _picked_tickers = {p["ticker"] for p in picks}
+    runner_ups = [
+        {"ticker": s["ticker"], "score": s["score"], "direction": s["direction"],
+         "risk": s.get("risk"), "expected_gain_pct": s.get("expected_gain_pct"),
+         "reason": s["reason"], "trend_summary": s.get("trend_summary", "")}
+        for s in sorted(all_scored, key=lambda x: x.get("score", 0), reverse=True)
+        if s["ticker"] not in _picked_tickers and s.get("direction") == "bullish"
+    ][:10]
+
     # Score^2 allocation re-weighting — concentrates capital on highest-conviction picks
     if picks:
         _sq_total = sum(max(p.get("score", 1), 1) ** 2 for p in picks)
@@ -927,6 +937,7 @@ async def main():
         trades_by_ticker=None if test_mode else trades_by_ticker,
         open_value_override=record_open,
         qqq_price_override=qqq_price,
+        runner_ups=runner_ups,
     )
 
     # ------------------------------------------------------------------ #

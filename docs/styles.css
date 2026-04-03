@@ -448,3 +448,61 @@ footer {
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
+
+/* ── Runner-ups section ─────────────────────────────────────────────────────── */
+
+.runner-ups-section {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border, rgba(255,255,255,0.08));
+  padding-top: 1.25rem;
+}
+
+.runner-ups-section.hidden { display: none; }
+
+.runner-ups-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-bottom: .9rem;
+}
+
+.not-picked-badge {
+  display: inline-block;
+  background: rgba(248, 113, 113, 0.15);
+  color: var(--red);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 4px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  padding: .2rem .5rem;
+  text-transform: uppercase;
+}
+
+.runner-ups-title {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.runner-ups-sub {
+  font-size: .78rem;
+  color: var(--muted);
+  opacity: .7;
+}
+
+#runnerUpsTable thead th {
+  color: var(--muted);
+  opacity: .75;
+  font-size: .72rem;
+}
+
+#runnerUpsTable tbody tr td {
+  opacity: .8;
+}
+
+#runnerUpsTable tbody tr:hover td {
+  opacity: 1;
+  background: rgba(248, 113, 113, 0.04);
+}

@@ -472,6 +472,7 @@ async function renderPicksTable(session) {
     } else {
       tbody.innerHTML = '<tr><td colspan="9" class="empty">No picks for this session.</td></tr>';
     }
+    renderRunnerUps(session);
     return;
   }
 
@@ -544,6 +545,39 @@ async function renderPicksTable(session) {
   $('todayMeta').textContent =
     `Mode: ${session.mode || '—'}  |  Open: ${fmtUsd(session.portfolio_open_value)}` +
     (isClosed ? `  |  Close: ${fmtUsd(session.portfolio_close_value)}` : `  |  Prices as of ${time} — refreshing every 60s`);
+  renderRunnerUps(session);
+}
+
+
+// ── Runner-ups ────────────────────────────────────────────────────────────────
+
+function renderRunnerUps(session) {
+  const section = $('runnerUpsSection');
+  const tbody   = $('runnerUpsBody');
+  if (!section || !tbody) return;
+  const runners = session?.runner_ups || [];
+  if (!runners.length) {
+    section.classList.add('hidden');
+    return;
+  }
+  tbody.innerHTML = '';
+  runners.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>
+        <div class="ticker-cell">
+          <a href="${finvizUrl(r.ticker)}" target="_blank" rel="noopener" class="ticker-link">${r.ticker}</a>
+          <a href="${tvUrl(r.ticker)}" target="_blank" rel="noopener" class="tv-link" title="TradingView">&#9654;</a>
+        </div>
+      </td>
+      <td><span class="score-badge ${scoreClass(r.score)}">${r.score}/10</span></td>
+      <td>${r.expected_gain_pct != null ? r.expected_gain_pct.toFixed(1) + '%' : '—'}</td>
+      <td class="${r.risk >= 4 ? 'down' : r.risk <= 2 ? 'up' : 'neutral'}">${r.risk ?? '—'}</td>
+      <td class="reason-cell">${r.reason || '—'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  section.classList.remove('hidden');
 }
 
 // ── Refresh (every 60s) ───────────────────────────────────────────────────────
