@@ -19,7 +19,11 @@ def _inject(watchlist: list[str], survivors: list[dict], excluded: set[str]) -> 
     watchlist_upper = [t.upper() for t in watchlist]
     survivor_tickers = {s["ticker"] for s in survivors}
     injected = []
+    seen: set[str] = set()
     for ticker in watchlist_upper:
+        if ticker in seen:
+            continue
+        seen.add(ticker)
         if ticker not in excluded and ticker not in survivor_tickers:
             survivors.append({"ticker": ticker})
             injected.append(ticker)
