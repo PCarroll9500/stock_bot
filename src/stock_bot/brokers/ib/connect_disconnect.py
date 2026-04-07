@@ -20,7 +20,7 @@ async def connect_ib_async() -> IB:
             ib_settings.host,
             ib_settings.port,
             clientId=ib_settings.client_id,
-            timeout=10,
+            timeout=30,
         )
     else:
         logger.debug("IBKR already connected")
@@ -39,7 +39,7 @@ def connect_ib() -> IB:
             ib_settings.host,
             ib_settings.port,
             clientId=ib_settings.client_id,
-            timeout=10,
+            timeout=30,
         )
     else:
         logger.debug("IBKR already connected")
