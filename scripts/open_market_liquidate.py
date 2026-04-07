@@ -29,6 +29,9 @@ def main() -> None:
         logger.error("open_market_liquidate: failed to connect to IBKR -- aborting")
         sys.exit(1)
 
+    # Cap all blocking IB requests so a non-responsive Gateway can't hang the process
+    ib.RequestTimeout = 30
+
     # 1. Cancel all open orders
     try:
         open_orders = ib.reqOpenOrders()

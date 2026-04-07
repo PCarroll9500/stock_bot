@@ -64,8 +64,9 @@ if [ "$READY" -eq 0 ]; then
 fi
 
 # Clear any leftover positions/orders from previous session before running
+# Hard 2-minute timeout prevents a hung Gateway from blocking main.py all day
 echo "Running open_market_liquidate.py..."
-"$REPO/.venv/bin/python" "$REPO/scripts/open_market_liquidate.py" || echo "WARNING: open_market_liquidate failed"
+timeout 120 "$REPO/.venv/bin/python" "$REPO/scripts/open_market_liquidate.py" || echo "WARNING: open_market_liquidate failed or timed out after 120s"
 
 # Run the bot
 echo "Running main.py..."
