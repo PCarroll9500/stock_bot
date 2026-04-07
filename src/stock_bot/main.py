@@ -276,6 +276,8 @@ async def main():
         if ticker not in excluded_set and ticker not in survivor_tickers:
             survivors.append({"ticker": ticker})
             injected.append(ticker)
+    # Track which tickers came from the watchlist so downstream filters can exempt them
+    watchlist_set: set[str] = set(injected) | (survivor_tickers & set(watchlist))
     if injected:
         logger.info("Watchlist inject: added %d ticker(s) bypassing filters: %s", len(injected), injected)
 
@@ -330,6 +332,9 @@ async def main():
         before_count = len(news_by_ticker)
         filtered_news: dict = {}
         for ticker, articles in news_by_ticker.items():
+            if ticker in watchlist_set:
+                filtered_news[ticker] = articles  # watchlist always goes to GPT
+                continue
             raw = raw_trend_by_ticker.get(ticker) or {}
             passed = True
             for period, bounds in pre_score_filters.items():
@@ -367,15 +372,22 @@ async def main():
         )
 
     # Cap to the most-newsworthy tickers to keep the scoring phase short.
-    # More articles = richer context for GPT and a stronger catalyst signal.
+    # Watchlist tickers are always preserved — the cap only applies to scanner picks.
     max_candidates: int = config.get("max_score_candidates", 30)
-    if len(news_by_ticker) > max_candidates:
-        news_by_ticker = dict(
-            sorted(news_by_ticker.items(), key=lambda kv: len(kv[1]), reverse=True)[:max_candidates]
+    watchlist_news = {t: a for t, a in news_by_ticker.items() if t in watchlist_set}
+    scanner_news = {t: a for t, a in news_by_ticker.items() if t not in watchlist_set}
+    remaining_slots = max(0, max_candidates - len(watchlist_news))
+    if len(scanner_news) > remaining_slots:
+        scanner_news = dict(
+            sorted(scanner_news.items(), key=lambda kv: len(kv[1]), reverse=True)[:remaining_slots]
         )
         logger.warning(
-            "Capped scoring candidates to top %d by article count (had more)", max_candidates
+            "Capped scanner candidates to top %d by article count (%d watchlist tickers always included)",
+            remaining_slots, len(watchlist_news),
         )
+    news_by_ticker = {**watchlist_news, **scanner_news}
+    logger.info("Scoring pool: %d watchlist + %d scanner = %d total candidates",
+                len(watchlist_news), len(scanner_news), len(news_by_ticker))
 
     # ------------------------------------------------------------------ #
     # STEP 5 — AI SCORING                                                  #
