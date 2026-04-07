@@ -29,8 +29,10 @@ echo "Pulling latest code from GitHub..."
 git pull origin deploy || echo "WARNING: git pull failed, continuing with existing code"
 
 # Sell positions and record close prices
+# Hard 45-min timeout — EventBridge stops the instance at 3:30 PM (1h after this runs)
+# so close_of_day must finish with time to spare for the git push.
 echo "Running close_of_day.py..."
-"$REPO/.venv/bin/python" scripts/close_of_day.py
+timeout 2700 "$REPO/.venv/bin/python" scripts/close_of_day.py
 EXIT_CODE=$?
 
 # Only push portfolio.json if close_of_day succeeded — prevents corrupting dashboard on failure

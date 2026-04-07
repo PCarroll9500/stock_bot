@@ -69,8 +69,10 @@ echo "Running open_market_liquidate.py..."
 timeout 120 "$REPO/.venv/bin/python" "$REPO/scripts/open_market_liquidate.py" || echo "WARNING: open_market_liquidate failed or timed out after 120s"
 
 # Run the bot
+# Hard 1-hour timeout — main.py should complete in well under an hour.
+# Guards against an asyncio hang blocking the entire trading session.
 echo "Running main.py..."
-"$REPO/.venv/bin/python" -m stock_bot.main
+timeout 3600 "$REPO/.venv/bin/python" -m stock_bot.main
 EXIT_CODE=$?
 
 # Push morning picks to GitHub

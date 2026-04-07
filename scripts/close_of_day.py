@@ -34,7 +34,7 @@ from stock_bot.data_sources.portfolio_writer import (
 
 _CONFIG_PATH = Path(__file__).resolve().parents[1] / "src" / "stock_bot" / "config" / "picker_config.json"
 _RETRY_INTERVAL_S = 30
-_RETRY_TIMEOUT_S = 600  # 10 minutes
+_RETRY_TIMEOUT_S = 120  # 2 minutes — keeps total close_of_day runtime well under the 1-hr window
 
 
 def _retry_ibkr(fn, label: str, ib, connect_fn, logger, *, interval=_RETRY_INTERVAL_S, timeout=_RETRY_TIMEOUT_S):
@@ -112,7 +112,31 @@ def main() -> None:
         return
 
     if session.get("no_picks"):
-        logger.info("close_of_day: no-picks day — skipping liquidation, close value left as null")
+        # Still connect and liquidate any IBKR positions — orders may have slipped through
+        # even on a no-picks day (e.g. failed write, queued orders that filled late).
+        logger.info("close_of_day: no-picks session — checking IBKR for any open positions to clear")
+        ib = connect_ib()
+        if ib.isConnected():
+            ib.RequestTimeout = 30
+            from stock_bot.config.settings import ib_settings as _ib_settings_nopicks
+            stray = [
+                pos for pos in ib.positions(account=_ib_settings_nopicks.account)
+                if pos.contract.secType == "STK" and float(pos.position) > 0
+            ]
+            if stray:
+                logger.warning(
+                    "close_of_day: found %d stray position(s) on a no-picks day — liquidating: %s",
+                    len(stray), [p.contract.symbol for p in stray],
+                )
+                for pos in stray:
+                    try:
+                        close_position(pos.contract.symbol, ib)
+                    except Exception:
+                        logger.error("close_of_day: stray sell failed for %s", pos.contract.symbol, exc_info=True)
+                ib.sleep(45)
+            else:
+                logger.info("close_of_day: no stray positions — nothing to do")
+            disconnect_ib()
         return
 
     # Picks with hold_until > today are multi-day holds — skip selling them.
@@ -130,6 +154,9 @@ def main() -> None:
     if not ib.isConnected():
         logger.error("close_of_day: failed to connect to IBKR")
         sys.exit(1)
+
+    # Cap all blocking IB requests — prevents any single call from hanging the process
+    ib.RequestTimeout = 30
 
     logger.info("close_of_day: updating session for %s", today)
 

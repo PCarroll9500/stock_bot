@@ -3,6 +3,7 @@
 import json
 import logging
 import math
+import os
 from datetime import datetime, date as date_type
 from pathlib import Path
 
@@ -147,11 +148,13 @@ def load_portfolio(test_mode: bool = False) -> dict:
 
 
 def save_portfolio(data: dict, test_mode: bool = False) -> None:
-    """Write portfolio dict to JSON."""
+    """Write portfolio dict to JSON atomically (tmp → rename) to prevent corruption on crash."""
     path = _resolve_path(test_mode)
     data["updated_at"] = datetime.now().isoformat()
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    os.replace(tmp, path)  # atomic on Linux — no partial-write corruption
     logger.info("portfolio_writer: saved → %s", path)
 
 
