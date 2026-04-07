@@ -112,6 +112,16 @@ async def main():
         logger.error("Config error: trailing_stop_pct cannot be combined with stop_loss_pct or take_profit_pct")
         sys.exit(1)
     limit_order_buffer_pct: float | None = config.get("limit_order_buffer_pct", 0.5)
+
+    # Validate required config sections early — a missing key would crash deep
+    # in the pipeline after IBKR is connected but before any portfolio entry is written.
+    for _required_key in ("scanner", "news"):
+        if _required_key not in config:
+            logger.error(
+                "Config error: picker_config.json is missing required key '%s' — aborting",
+                _required_key,
+            )
+            sys.exit(1)
     logger.info("Limit order buffer: %.2f%% (%s mode)", limit_order_buffer_pct or 0, ib_settings.mode)
 
     logger.info(
