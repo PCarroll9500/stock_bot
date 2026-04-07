@@ -33,7 +33,12 @@
     "TSLA",
     "BTC"
   ],
-  "watchlist": [],
+  "watchlist": [
+    "NBIS", "NVDA", "LITE", "SNDK", "GEV", "VRT", "MPWR", "LYV", "MV",
+    "STX", "CAT", "TSM", "HWM", "GOOG", "TER", "DELL", "META", "AMAT",
+    "TSLA", "LHX", "NXPI", "KLAC", "MKSI", "UI", "CRDO", "CW", "DE",
+    "VLVLY", "NTES"
+  ],
   "fill_wait_seconds": 30,
   "sell_wait_seconds": 45,
   "realloc_fill_wait_seconds": 20,
