@@ -43,7 +43,7 @@ class TestConfigValues:
         assert _config()["aggressive_min_score"] == 8
 
     def test_min_expected_gain(self):
-        assert _config()["min_expected_gain_pct"] == 2.5
+        assert _config()["min_expected_gain_pct"] == 1.5
 
     def test_limit_order_buffer(self):
         assert _config()["limit_order_buffer_pct"] == 3.0
