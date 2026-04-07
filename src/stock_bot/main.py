@@ -265,6 +265,21 @@ async def main():
         logger.info("After gap filter: %d survivors", len(survivors))
 
     # ------------------------------------------------------------------ #
+    # WATCHLIST INJECT                                                     #
+    # Tickers listed under "watchlist" in picker_config.json bypass the   #
+    # scanner and all filters and are always sent to news + scoring.      #
+    # ------------------------------------------------------------------ #
+    watchlist: list[str] = [t.upper() for t in config.get("watchlist", [])]
+    survivor_tickers = {s["ticker"] for s in survivors}
+    injected = []
+    for ticker in watchlist:
+        if ticker not in excluded_set and ticker not in survivor_tickers:
+            survivors.append({"ticker": ticker})
+            injected.append(ticker)
+    if injected:
+        logger.info("Watchlist inject: added %d ticker(s) bypassing filters: %s", len(injected), injected)
+
+    # ------------------------------------------------------------------ #
     # STEP 3 — NEWS                                                        #
     # Sequential: fetch one ticker at a time.                              #
     # Parallel:   up to 5 tickers fetched concurrently.                   #

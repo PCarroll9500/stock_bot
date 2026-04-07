@@ -33,6 +33,7 @@
     "TSLA",
     "BTC"
   ],
+  "watchlist": [],
   "fill_wait_seconds": 30,
   "sell_wait_seconds": 45,
   "realloc_fill_wait_seconds": 20,
