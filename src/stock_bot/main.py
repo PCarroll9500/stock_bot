@@ -226,8 +226,8 @@ async def main():
         if spy_return is not None:
             logger.info("SPY day return: %.2f%%", spy_return)
             if spy_return < config.get("spy_down_threshold", -1.0):
-                effective_min_score = 10
-                logger.info("SPY down %.2f%% — raising min_score to 10", spy_return)
+                effective_min_score = config.get("spy_down_min_score", 8)
+                logger.info("SPY down %.2f%% — raising min_score to %d", spy_return, effective_min_score)
 
         survivors = [s for s, passed in zip(universe, filter_results) if passed]
         logger.info("After aggressive filter: %d survivors", len(survivors))
