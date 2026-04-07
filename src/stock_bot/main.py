@@ -272,7 +272,11 @@ async def main():
     watchlist: list[str] = [t.upper() for t in config.get("watchlist", [])]
     survivor_tickers = {s["ticker"] for s in survivors}
     injected = []
+    seen = set()
     for ticker in watchlist:
+        if ticker in seen:
+            continue
+        seen.add(ticker)
         if ticker not in excluded_set and ticker not in survivor_tickers:
             survivors.append({"ticker": ticker})
             injected.append(ticker)
