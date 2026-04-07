@@ -75,12 +75,17 @@ echo "Running main.py..."
 timeout 3600 "$REPO/.venv/bin/python" -m stock_bot.main
 EXIT_CODE=$?
 
-# Push morning picks to GitHub
-git add docs/data/portfolio.json
-if ! git diff --staged --quiet; then
-    git commit -m "portfolio: morning picks $(date +%Y-%m-%d)"
-    git push origin deploy
-    echo "portfolio.json pushed to GitHub"
+# Only push portfolio.json if main.py succeeded — mirrors run_close.sh behaviour.
+# A failed/timed-out run must not overwrite the dashboard with a partial session.
+if [ $EXIT_CODE -ne 0 ]; then
+    echo "WARNING: main.py exited with code $EXIT_CODE — skipping portfolio push"
+else
+    git add docs/data/portfolio.json
+    if ! git diff --staged --quiet; then
+        git commit -m "portfolio: morning picks $(date +%Y-%m-%d)"
+        git push origin deploy
+        echo "portfolio.json pushed to GitHub"
+    fi
 fi
 
 # Send morning email report

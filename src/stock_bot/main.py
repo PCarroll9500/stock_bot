@@ -33,6 +33,7 @@ from stock_bot.data_sources.portfolio_writer import (
 )
 
 _CONFIG_DIR = Path(__file__).parent / "config"
+logger = logging.getLogger(__name__)  # module-level so _safe() can use it before main() runs
 
 
 def _load_picker_config() -> dict:
@@ -140,6 +141,9 @@ async def main():
         logger.error("Failed to connect to IBKR")
         disconnect_ib()
         sys.exit(1)
+
+    # Cap all blocking IB requests so a slow data server can't hang the pipeline
+    ib.RequestTimeout = 30
 
     # Allow IBKR a moment to push account data after connection
     await asyncio.sleep(2)
