@@ -48,7 +48,11 @@ def _retry_ibkr(fn, label: str, ib, connect_fn, logger, *, interval=_RETRY_INTER
     attempt = 0
     while True:
         attempt += 1
-        result = fn(ib)
+        try:
+            result = fn(ib)
+        except Exception as exc:
+            logger.warning("close_of_day: %s raised %s — will retry", label, type(exc).__name__)
+            result = None
         if result is not None:
             return result, ib
         remaining = deadline - time.monotonic()

@@ -545,10 +545,10 @@ async def main():
             )
 
     # Min-picks safety net: if still below minimum, relax score floor one step at a time.
-    # Never drops below score_floor — hold cash rather than buying weak picks.
+    # Will not go below max(1, score_floor - 3) to avoid buying very weak picks.
     min_picks = config.get("min_picks", 5)
     _fallback_floor = score_floor - 1
-    while len(picks) < min_picks and _fallback_floor >= score_floor:
+    while len(picks) < min_picks and _fallback_floor >= max(1, score_floor - 3):
         picks = filter_and_rank(all_scored, num_stocks, min_score=_fallback_floor,
                                 min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap)
         logger.warning(
@@ -826,7 +826,7 @@ async def main():
                         _res_price = await get_price_async(_res["ticker"], ib)
                         _res_shares = math.floor(_deployable / _res_price)
                         if _res_shares > 0:
-                            _res_lmt = round(_res_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
+                            _res_lmt = round(_res_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct is not None else None
                             _res_trades = await buy_stock_async(_res["ticker"], ib, shares=_res_shares, limit_price=_res_lmt, stop_loss_pct=stop_loss_pct)
                             trades_by_ticker[_res["ticker"]] = _res_trades
                             _otype = f"LMT ${_res_lmt:.2f}" if _res_lmt else "MKT"
@@ -883,7 +883,7 @@ async def main():
                 _extra_shares = math.floor(_extra_usd / _price)
                 if _extra_shares <= 0:
                     continue
-                _lmt = round(_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct else None
+                _lmt = round(_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct is not None else None
                 try:
                     _trades = await buy_stock_async(_tkr, ib, shares=_extra_shares, limit_price=_lmt, stop_loss_pct=stop_loss_pct)
                     _rt[_tkr] = _trades

@@ -244,6 +244,23 @@ async def _fetch_ibkr_batch(
     max_articles: int   = config.get("max_articles", 5)
     sem = asyncio.Semaphore(5)
 
+    # Resolve conId for any entries that don't have one (e.g. watchlist-injected tickers).
+    missing = [e for e in tickers if not e.get("conId")]
+    if missing:
+        from ib_insync import Stock
+        from stock_bot.config.settings import ib_settings
+
+        async def _resolve_con_id(entry: dict) -> None:
+            contract = Stock(entry["ticker"], ib_settings.exchange, ib_settings.currency)
+            try:
+                qualified = await ib.qualifyContractsAsync(contract)
+                if qualified:
+                    entry["conId"] = qualified[0].conId
+            except Exception:
+                logger.warning("news_fetcher: qualifyContracts failed for %s — skipping IBKR news", entry["ticker"])
+
+        await asyncio.gather(*[_resolve_con_id(e) for e in missing])
+
     async def _fetch_article(ticker: str, hl) -> dict:
         try:
             article = await asyncio.wait_for(
@@ -269,7 +286,14 @@ async def _fetch_ibkr_batch(
 
     async def _fetch_one(entry: dict) -> tuple[str, list[dict]]:
         ticker = entry["ticker"]
-        con_id = entry["conId"]
+        con_id = entry.get("conId")
+        if not con_id:
+            logger.warning("news_fetcher: no conId for %s — falling back to Finnhub/web", ticker)
+            if _FINNHUB_KEY:
+                fallback = await _fetch_finnhub_all([entry], max_articles)
+            else:
+                fallback = await _fetch_web_all([entry], max_articles)
+            return ticker, fallback.get(ticker, [])
         async with sem:
             try:
                 headlines = await asyncio.wait_for(
