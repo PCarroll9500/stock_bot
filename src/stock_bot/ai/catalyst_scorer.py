@@ -13,9 +13,9 @@ from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
-MODEL       = "gpt-4o"
+MODEL       = "gpt-5.4-mini"
 TEMPERATURE = 0.3
-MAX_WORKERS = 1
+MAX_WORKERS = 3
 
 _ALLOC_MIN_PCT    = 5.0
 _ALLOC_MAX_PCT    = 35.0
@@ -122,7 +122,7 @@ def _score_ticker(
                 model=MODEL,
                 messages=[{"role": "system", "content": prompt}],
                 temperature=TEMPERATURE,
-                max_tokens=200,
+                max_completion_tokens=200,
             )
             parsed = _parse_json_response(response.choices[0].message.content or "")
             score         = int(parsed.get("score", 0))
