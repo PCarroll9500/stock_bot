@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-08T09:46:57.757576",
+  "updated_at": "2026-04-08T14:30:48.817567",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1123,9 +1123,9 @@
           "shares": 128,
           "buy_price": 56.4278,
           "buy_value": 7222.76,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 58.63,
+          "day_return_pct": 3.903,
+          "day_return_usd": 281.88
         },
         {
           "ticker": "AMAT",
@@ -1139,9 +1139,9 @@
           "shares": 15,
           "buy_price": 386.1427,
           "buy_value": 5792.14,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 384.53,
+          "day_return_pct": -0.418,
+          "day_return_usd": -24.19
         },
         {
           "ticker": "BMNR",
@@ -1155,9 +1155,9 @@
           "shares": 335,
           "buy_price": 21.5878,
           "buy_value": 7231.91,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 21.15,
+          "day_return_pct": -2.028,
+          "day_return_usd": -146.66
         },
         {
           "ticker": "LEVI",
@@ -1171,9 +1171,9 @@
           "shares": 325,
           "buy_price": 22.2565,
           "buy_value": 7233.36,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 21.95,
+          "day_return_pct": -1.377,
+          "day_return_usd": -99.61
         }
       ],
       "runner_ups": [
@@ -1188,17 +1188,17 @@
         }
       ],
       "qqq_buy_price": 607.71,
-      "qqq_close_price": null,
-      "qqq_day_return_pct": null,
+      "qqq_close_price": 606.92,
+      "qqq_day_return_pct": -0.13,
       "nasdaq_buy_price": 22706.34,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 22631.74,
+      "nasdaq_day_return_pct": -0.329,
       "portfolio_open_value": 28987.3,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28644.97,
+      "session_return_pct": -1.181,
+      "session_return_usd": -342.33,
       "cash_uninvested": 1507.13,
-      "cash_balance_close": null
+      "cash_balance_close": 28635.05
     }
   ],
   "equity_curve": [
@@ -1256,9 +1256,8 @@
     },
     {
       "date": "2026-04-08",
-      "portfolio_value": 28987.3,
-      "qqq_indexed": 30750.15,
-      "nasdaq_indexed": null
+      "portfolio_value": 28644.97,
+      "qqq_indexed": 30710.17
     }
   ]
 }
