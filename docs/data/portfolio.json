@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-07T19:29:48.295219",
+  "updated_at": "2026-04-08T09:46:57.757576",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1105,6 +1105,100 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 28979.0
+    },
+    {
+      "date": "2026-04-08",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "INTC",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 2.5,
+          "reason": "Intel's partnership with Elon Musk's companies for the Terafab project is a strong catalyst, driving further upside potential.",
+          "trend_summary": "1d: +4.2%  1w: +28.5%  1m: +21.9%  3m: +34.4%  1yr: +145.8%",
+          "allocation_pct": 24.9,
+          "shares": 128,
+          "buy_price": 56.4278,
+          "buy_value": 7222.76,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "AMAT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 2.5,
+          "reason": "Applied Materials introduced new deposition systems for advanced logic chips, enhancing AI computing capabilities.",
+          "trend_summary": "1d: +0.5%  1w: +9.7%  1m: +9.1%  3m: +24.6%  1yr: +136.6%",
+          "allocation_pct": 20.0,
+          "shares": 15,
+          "buy_price": 386.1427,
+          "buy_value": 5792.14,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BMNR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 5.0,
+          "reason": "BMNR has been approved for uplisting to the NYSE, which is a significant catalyst for further upside today.",
+          "trend_summary": "1d: -2.1%  1w: +10.2%  1m: +6.8%  3m: -39.5%  1yr: +205.6%",
+          "allocation_pct": 24.9,
+          "shares": 335,
+          "buy_price": 21.5878,
+          "buy_value": 7231.91,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "LEVI",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Levi Strauss reported market-beating revenue growth and upgraded guidance, indicating strong consumer demand and effective cost management.",
+          "trend_summary": "1d: +0.3%  1w: +8.5%  1m: +0.6%  3m: -7.1%  1yr: +32.0%",
+          "allocation_pct": 25.0,
+          "shares": 325,
+          "buy_price": 22.2565,
+          "buy_value": 7233.36,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "RIO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Concerns over aluminum supply squeeze due to Middle East disruptions could drive further upside in aluminum stocks.",
+          "trend_summary": "1d: +0.7%  1w: +6.6%  1m: +4.9%  3m: +13.8%  1yr: +70.2%"
+        }
+      ],
+      "qqq_buy_price": 607.71,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 22706.34,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28987.3,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 1507.13,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -1159,6 +1253,12 @@
       "date": "2026-04-03",
       "portfolio_value": 28979.0,
       "qqq_indexed": 29601.02
+    },
+    {
+      "date": "2026-04-08",
+      "portfolio_value": 28987.3,
+      "qqq_indexed": 30750.15,
+      "nasdaq_indexed": null
     }
   ]
 }
