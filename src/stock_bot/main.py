@@ -575,12 +575,16 @@ async def main():
         if s["ticker"] not in _picked_tickers and s.get("direction") == "bullish"
     ][:10]
 
-    # Score^2 allocation re-weighting — concentrates capital on highest-conviction picks
+    # Score^2 allocation re-weighting — concentrates capital on highest-conviction picks.
+    # Risk=3 picks use half their score for weighting (acts as a ~75% allocation penalty).
     if picks:
-        _sq_total = sum(max(p.get("score", 1), 1) ** 2 for p in picks)
+        def _alloc_score(p: dict) -> float:
+            s = max(p.get("score", 1), 1)
+            return s * 0.5 if p.get("risk", 1) >= 3 else s
+        _sq_total = sum(_alloc_score(p) ** 2 for p in picks)
         for p in picks:
-            p["allocation_pct"] = round(max(p.get("score", 1), 1) ** 2 / _sq_total * 100, 1)
-        logger.info("Allocations re-weighted (score^2): %s",
+            p["allocation_pct"] = round(_alloc_score(p) ** 2 / _sq_total * 100, 1)
+        logger.info("Allocations re-weighted (score^2, risk3=half-weight): %s",
                     {p["ticker"]: f'{p["allocation_pct"]:.1f}%' for p in picks})
 
     # Multi-day hold: flag high-conviction picks to skip EOD liquidation
