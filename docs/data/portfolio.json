@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-09T09:42:11.298534",
+  "updated_at": "2026-04-09T14:30:50.875382",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1217,9 +1217,9 @@
           "shares": 32,
           "buy_price": 91.9466,
           "buy_value": 2942.29,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 92.37,
+          "day_return_pct": 0.46,
+          "day_return_usd": 13.55
         },
         {
           "ticker": "SLB",
@@ -1233,9 +1233,9 @@
           "shares": 107,
           "buy_price": 52.024,
           "buy_value": 5566.57,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 52.5,
+          "day_return_pct": 0.915,
+          "day_return_usd": 50.93
         },
         {
           "ticker": "VRT",
@@ -1249,9 +1249,9 @@
           "shares": 15,
           "buy_price": 283.8687,
           "buy_value": 4258.03,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 287.8,
+          "day_return_pct": 1.385,
+          "day_return_usd": 58.97
         },
         {
           "ticker": "AMAT",
@@ -1265,9 +1265,9 @@
           "shares": 11,
           "buy_price": 391.9245,
           "buy_value": 4311.17,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 394.53,
+          "day_return_pct": 0.665,
+          "day_return_usd": 28.66
         },
         {
           "ticker": "WSR",
@@ -1281,9 +1281,9 @@
           "shares": 378,
           "buy_price": 18.9,
           "buy_value": 7144.2,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 18.92,
+          "day_return_pct": 0.106,
+          "day_return_usd": 7.56
         },
         {
           "ticker": "AMD",
@@ -1297,9 +1297,9 @@
           "shares": 18,
           "buy_price": 232.7228,
           "buy_value": 4189.01,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 235.23,
+          "day_return_pct": 1.077,
+          "day_return_usd": 45.13
         }
       ],
       "runner_ups": [
@@ -1353,14 +1353,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 22638.28,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 22742.96,
+      "nasdaq_day_return_pct": 0.462,
       "portfolio_open_value": 28646.63,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28798.27,
+      "session_return_pct": 0.529,
+      "session_return_usd": 151.64,
       "cash_uninvested": 235.36,
-      "cash_balance_close": null
+      "cash_balance_close": 28786.69
     }
   ],
   "equity_curve": [
@@ -1423,9 +1423,8 @@
     },
     {
       "date": "2026-04-09",
-      "portfolio_value": 28646.63,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28798.27,
+      "qqq_indexed": 30776.96
     }
   ]
 }
