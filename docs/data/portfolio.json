@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-08T14:30:48.817567",
+  "updated_at": "2026-04-09T09:42:11.298534",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1199,6 +1199,168 @@
       "session_return_usd": -342.33,
       "cash_uninvested": 1507.13,
       "cash_balance_close": 28635.05
+    },
+    {
+      "date": "2026-04-09",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "CRWV",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "CoreWeave has a fresh, concrete $21B expanded Meta deal that supports the move, but with the stock already up on the news and a strong multi-month run, much of the easy upside is likely in.",
+          "trend_summary": "1d: +4.3%  1w: +14.8%  1m: +19.5%  3m: +14.1%  1yr: +110.7%",
+          "allocation_pct": 10.3,
+          "shares": 32,
+          "buy_price": 91.9466,
+          "buy_value": 2942.29,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "SLB",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh OneSubsea contract wins and supportive oil-services relative strength give SLB a real but already partly priced-in catalyst, with modest additional upside left today rather than a breakout move.",
+          "trend_summary": "1d: +3.0%  1w: +1.0%  1m: +9.9%  3m: +18.9%  1yr: +59.4%",
+          "allocation_pct": 19.4,
+          "shares": 107,
+          "buy_price": 52.024,
+          "buy_value": 5566.57,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Vertiv is benefiting from a fresh momentum/IBD-style mention as an Nvidia partner in a strong multi-timeframe uptrend, but the stock is already up 7% today so much of the easy upside is likely priced in.",
+          "trend_summary": "1d: +7.1%  1w: +12.2%  1m: +6.3%  3m: +60.6%  1yr: +314.9%",
+          "allocation_pct": 14.9,
+          "shares": 15,
+          "buy_price": 283.8687,
+          "buy_value": 4258.03,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "AMAT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Applied Materials is a quality large-cap momentum name with fresh sector support from the AI/semi leadership list, but the move is already extended and the news is market-context rather than a stock-specific hard catalyst.",
+          "trend_summary": "1d: +8.9%  1w: +12.9%  1m: +13.8%  3m: +30.3%  1yr: +179.0%",
+          "allocation_pct": 15.0,
+          "shares": 11,
+          "buy_price": 391.9245,
+          "buy_value": 4311.17,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "WSR",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "WSR has a fresh all-cash takeout at $19/share, but with the stock already up on the announcement and the deal premium only 12% to the prior close, most of the upside is likely priced in today.",
+          "trend_summary": "1d: +1.4%  1w: +4.9%  1m: +4.6%  3m: +20.9%  1yr: +33.5%",
+          "allocation_pct": 24.9,
+          "shares": 378,
+          "buy_price": 18.9,
+          "buy_value": 7144.2,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "AMD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "AMD has a real AI/semiconductor tailwind from BofA\u2019s bullish chip forecast and sector strength, but the move is already partly priced in after a 4.6% day and there is no fresh company-specific catalyst today.",
+          "trend_summary": "1d: +4.6%  1w: +14.0%  1m: +14.4%  3m: +8.2%  1yr: +161.4%",
+          "allocation_pct": 14.6,
+          "shares": 18,
+          "buy_price": 232.7228,
+          "buy_value": 4189.01,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "COHR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "COHR is benefiting from a fresh market-risk-on tape and is being highlighted as a leading breakout candidate, but there is no company-specific catalyst and the stock is already up 10.5% today, limiting remaining upside.",
+          "trend_summary": "1d: +10.5%  1w: +18.3%  1m: +11.7%  3m: +45.2%  1yr: +408.3%"
+        },
+        {
+          "ticker": "QQQ",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "QQQ is benefiting from a fresh risk-on breadth rebound and ceasefire-driven relief rally, but with the index already up 3% today most of the easy upside is likely priced in.",
+          "trend_summary": "1d: +3.0%  1w: +5.0%  1m: -0.3%  3m: -2.8%  1yr: +35.8%"
+        },
+        {
+          "ticker": "PANW",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "PANW has a fresh AI-security alliance catalyst with Project Glasswing and solid multi-timeframe momentum, but the stock already moved on the news so remaining upside today looks modest rather than explosive.",
+          "trend_summary": "1d: +2.3%  1w: +8.4%  1m: +5.3%  3m: -6.5%  1yr: +3.3%"
+        },
+        {
+          "ticker": "UCO",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 1.5,
+          "reason": "UCO is a leveraged oil ETF reacting to fresh Hormuz/geopolitical supply-risk headlines, but the move looks partially priced in after the recent oil spike and the prior-day ceasefire selloff.",
+          "trend_summary": "1d: -2.8%  1w: +1.3%  1m: +22.1%  3m: +110.0%  1yr: +97.5%"
+        },
+        {
+          "ticker": "IWM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "IWM is benefiting from broad risk-on breadth expansion and a ceasefire-driven rebound, but this is a macro move that already had a strong 1-day run and likely has limited additional upside today.",
+          "trend_summary": "1d: +3.0%  1w: +5.0%  1m: +2.7%  3m: +1.7%  1yr: +43.3%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 22638.28,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28646.63,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 235.36,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -1258,6 +1420,12 @@
       "date": "2026-04-08",
       "portfolio_value": 28644.97,
       "qqq_indexed": 30710.17
+    },
+    {
+      "date": "2026-04-09",
+      "portfolio_value": 28646.63,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
