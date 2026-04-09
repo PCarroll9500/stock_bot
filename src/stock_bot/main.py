@@ -800,16 +800,23 @@ async def main():
             _total_portfolio = sum(_pos_val.values()) + remaining_cash
             _max_pos_usd = _total_portfolio * _MAX_POSITION_PCT
 
-            # Score-weighted allocation per pick, capped by per-stock headroom
-            _total_score = sum(max(_fp.get("score", 1), 1) for _fp in filled_picks)
-            _top_ups: list[tuple[dict, float]] = []
-            for _fp in sorted(filled_picks, key=lambda x: x.get("score", 0), reverse=True):
+            # Score-weighted allocation per pick, capped by per-stock headroom.
+            # Two-pass: eligible stocks absorb budget from capped ones.
+            _sorted_picks = sorted(filled_picks, key=lambda x: x.get("score", 0), reverse=True)
+            _eligible: list[tuple[dict, float]] = []  # (pick, headroom)
+            for _fp in _sorted_picks:
                 _tkr = _fp["ticker"]
-                _weight = max(_fp.get("score", 1), 1) / _total_score
                 _headroom = max(0.0, _max_pos_usd - _pos_val.get(_tkr, 0.0))
-                _extra = min(_deployable * _weight, _headroom)
-                if _extra >= _MIN_LOT_USD:
-                    _top_ups.append((_fp, _extra))
+                if _headroom >= _MIN_LOT_USD:
+                    _eligible.append((_fp, _headroom))
+            _top_ups: list[tuple[dict, float]] = []
+            if _eligible:
+                _eligible_score = sum(max(_fp.get("score", 1), 1) for _fp, _ in _eligible)
+                for _fp, _headroom in _eligible:
+                    _weight = max(_fp.get("score", 1), 1) / _eligible_score
+                    _extra = min(_deployable * _weight, _headroom)
+                    if _extra >= _MIN_LOT_USD:
+                        _top_ups.append((_fp, _extra))
 
             if not _top_ups:
                 # All picks are at their cap -- try a reserve candidate
