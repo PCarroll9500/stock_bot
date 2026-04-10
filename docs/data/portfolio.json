@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-09T14:30:50.875382",
+  "updated_at": "2026-04-10T09:41:40.305413",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1361,6 +1361,143 @@
       "session_return_usd": 151.64,
       "cash_uninvested": 235.36,
       "cash_balance_close": 28786.69
+    },
+    {
+      "date": "2026-04-10",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "OGN",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.5,
+          "reason": "Fresh takeover report that Sun Pharma is preparing a binding bid for OGN is a real M&A catalyst with meaningful remaining upside today, though the stock has already gapped hard and some premium is likely priced in.",
+          "trend_summary": "1d: +17.9%  1w: +12.5%  1m: +6.6%  3m: -15.6%  1yr: -38.2%",
+          "allocation_pct": 13.3,
+          "shares": 472,
+          "buy_price": 8.0989,
+          "buy_value": 3822.68,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TSM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh monthly sales and Q1 revenue growth confirm AI-chip demand remains strong, but TSM is a large-cap already up on the news so most of the move is likely partly priced in.",
+          "trend_summary": "1d: -0.1%  1w: +7.0%  1m: +5.3%  3m: +14.7%  1yr: +132.7%",
+          "allocation_pct": 31.4,
+          "shares": 24,
+          "buy_price": 376.42,
+          "buy_value": 9034.08,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "VRT is a quality large-cap momentum name with fresh IBD/Nvidia-partner attention and a strong multi-timeframe uptrend, but the move is modest and likely partly priced in already.",
+          "trend_summary": "1d: +2.4%  1w: +10.9%  1m: +6.5%  3m: +67.7%  1yr: +313.2%",
+          "allocation_pct": 23.3,
+          "shares": 23,
+          "buy_price": 292.36,
+          "buy_value": 6724.28,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CRWV",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.2,
+          "reason": "Fresh Anthropic multi-year AI cloud deal plus the Meta partnership keeps the AI-infrastructure catalyst live today, but the upsized notes offering and already-extended multi-timeframe run limit remaining upside.",
+          "trend_summary": "1d: +3.5%  1w: +17.3%  1m: +22.8%  3m: +19.2%  1yr: +110.3%",
+          "allocation_pct": 9.5,
+          "shares": 29,
+          "buy_price": 94.2279,
+          "buy_value": 2732.61,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "META",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Meta has a fresh AI-product catalyst from the Muse Spark release and a supportive 1-week uptrend, but the move is modest and the legal overhang limits meaningful additional upside from current levels today.",
+          "trend_summary": "1d: +2.6%  1w: +8.5%  1m: -3.9%  3m: -3.1%  1yr: +15.6%",
+          "allocation_pct": 22.1,
+          "shares": 10,
+          "buy_price": 636.47,
+          "buy_value": 6364.7,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "LITE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh AI-demand/Bloomberg catalyst plus JPM target raises support LITE, but it is already up about 5% premarket and the move is likely partly priced in.",
+          "trend_summary": "1d: -0.2%  1w: +16.9%  1m: +33.1%  3m: +127.6%  1yr: +1644.0%"
+        },
+        {
+          "ticker": "SNAP",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Snap\u2019s Qualcomm multi-year Specs collaboration is a real product/platform catalyst, but it\u2019s a strategic partnership rather than a hard revenue event and the stock has already reacted premarket, limiting remaining upside today.",
+          "trend_summary": "1d: +4.7%  1w: +1.0%  1m: +0.8%  3m: -42.6%  1yr: -37.8%"
+        },
+        {
+          "ticker": "PANW",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "PANW is benefiting from fresh AI-cybersecurity sentiment after Anthropic-related coverage, but the move looks sector-driven and partially priced in after yesterday\u2019s weakness, limiting remaining upside today.",
+          "trend_summary": "1d: -3.9%  1w: +3.9%  1m: +0.9%  3m: -13.9%  1yr: -0.8%"
+        },
+        {
+          "ticker": "STM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "STM is getting a modest sector lift from strong TSMC sales and broader semiconductor strength, but this is a soft, mostly macro-driven catalyst with limited remaining upside after a 3.1% move today.",
+          "trend_summary": "1d: +3.1%  1w: +13.4%  1m: +16.8%  3m: +35.5%  1yr: +91.4%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 22925.42,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28799.92,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 121.57,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -1425,6 +1562,12 @@
       "date": "2026-04-09",
       "portfolio_value": 28798.27,
       "qqq_indexed": 30776.96
+    },
+    {
+      "date": "2026-04-10",
+      "portfolio_value": 28799.92,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
