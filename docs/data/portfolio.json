@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-10T09:41:40.305413",
+  "updated_at": "2026-04-10T14:30:51.138908",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1379,9 +1379,9 @@
           "shares": 472,
           "buy_price": 8.0989,
           "buy_value": 3822.68,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 8.55,
+          "day_return_pct": 5.57,
+          "day_return_usd": 212.92
         },
         {
           "ticker": "TSM",
@@ -1395,9 +1395,9 @@
           "shares": 24,
           "buy_price": 376.42,
           "buy_value": 9034.08,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 372.74,
+          "day_return_pct": -0.978,
+          "day_return_usd": -88.32
         },
         {
           "ticker": "VRT",
@@ -1411,9 +1411,9 @@
           "shares": 23,
           "buy_price": 292.36,
           "buy_value": 6724.28,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 295.97,
+          "day_return_pct": 1.235,
+          "day_return_usd": 83.03
         },
         {
           "ticker": "CRWV",
@@ -1427,9 +1427,9 @@
           "shares": 29,
           "buy_price": 94.2279,
           "buy_value": 2732.61,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 104.14,
+          "day_return_pct": 10.519,
+          "day_return_usd": 287.45
         },
         {
           "ticker": "META",
@@ -1443,9 +1443,9 @@
           "shares": 10,
           "buy_price": 636.47,
           "buy_value": 6364.7,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 625.14,
+          "day_return_pct": -1.78,
+          "day_return_usd": -113.3
         }
       ],
       "runner_ups": [
@@ -1490,14 +1490,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 22925.42,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 22888.19,
+      "nasdaq_day_return_pct": -0.162,
       "portfolio_open_value": 28799.92,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28846.14,
+      "session_return_pct": 0.16,
+      "session_return_usd": 46.22,
       "cash_uninvested": 121.57,
-      "cash_balance_close": null
+      "cash_balance_close": 28832.91
     }
   ],
   "equity_curve": [
@@ -1565,9 +1565,8 @@
     },
     {
       "date": "2026-04-10",
-      "portfolio_value": 28799.92,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28846.14,
+      "qqq_indexed": 30895.37
     }
   ]
 }
