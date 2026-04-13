@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-13T09:41:29.381030",
+  "updated_at": "2026-04-13T14:30:51.543124",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1516,9 +1516,9 @@
           "shares": 107,
           "buy_price": 67.6979,
           "buy_value": 7243.68,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 64.72,
+          "day_return_pct": -4.399,
+          "day_return_usd": -318.64
         },
         {
           "ticker": "VRT",
@@ -1532,9 +1532,9 @@
           "shares": 24,
           "buy_price": 298.3121,
           "buy_value": 7159.49,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 298.47,
+          "day_return_pct": 0.053,
+          "day_return_usd": 3.79
         },
         {
           "ticker": "META",
@@ -1548,9 +1548,9 @@
           "shares": 11,
           "buy_price": 627.3182,
           "buy_value": 6900.5,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 631.19,
+          "day_return_pct": 0.617,
+          "day_return_usd": 42.59
         }
       ],
       "runner_ups": [
@@ -1568,14 +1568,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 22823.0,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 23050.02,
+      "nasdaq_day_return_pct": 0.995,
       "portfolio_open_value": 28847.76,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28621.37,
+      "session_return_pct": -0.785,
+      "session_return_usd": -226.39,
       "cash_uninvested": 7544.09,
-      "cash_balance_close": null
+      "cash_balance_close": 28606.52
     }
   ],
   "equity_curve": [
@@ -1648,9 +1648,8 @@
     },
     {
       "date": "2026-04-13",
-      "portfolio_value": 28847.76,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28621.37,
+      "qqq_indexed": 31083.09
     }
   ]
 }
