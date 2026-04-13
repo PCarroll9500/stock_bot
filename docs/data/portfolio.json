@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-10T14:30:51.138908",
+  "updated_at": "2026-04-13T09:41:29.381030",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1498,6 +1498,84 @@
       "session_return_usd": 46.22,
       "cash_uninvested": 121.57,
       "cash_balance_close": 28832.91
+    },
+    {
+      "date": "2026-04-13",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "SYRE",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 8.5,
+          "reason": "Fresh positive Phase 2 ulcerative colitis data is a real biotech catalyst and the stock is still in the early post-news phase, though the move is already large so some upside is priced in.",
+          "trend_summary": "1d: -0.9%  1w: +7.8%  1m: +23.6%  3m: +70.2%  1yr: +293.9%",
+          "allocation_pct": 25.1,
+          "shares": 107,
+          "buy_price": 67.6979,
+          "buy_value": 7243.68,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Vertiv announced a fresh acquisition that modestly strengthens its AI data-center infrastructure story, but VRT is already extended on a strong multi-month uptrend so most of the move is likely priced in today.",
+          "trend_summary": "1d: +2.6%  1w: +12.9%  1m: +10.0%  3m: +83.5%  1yr: +312.3%",
+          "allocation_pct": 24.8,
+          "shares": 24,
+          "buy_price": 298.3121,
+          "buy_value": 7159.49,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "META",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Meta has a fresh, credible fundamental tailwind from WSJ/Emarketer saying it may overtake Google in digital-ad revenue, but the stock is only modestly up and the move looks mostly priced in for today.",
+          "trend_summary": "1d: +0.2%  1w: +9.6%  1m: -3.8%  3m: -2.5%  1yr: +18.5%",
+          "allocation_pct": 23.9,
+          "shares": 11,
+          "buy_price": 627.3182,
+          "buy_value": 6900.5,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh crypto-treasury update showing $11.8B in holdings and 4.875M ETH is a real catalyst, but BMNR is already a high-volatility name and the move looks partially priced in after the announcement.",
+          "trend_summary": "1d: +0.9%  1w: +9.4%  1m: +1.1%  3m: -32.0%  1yr: +166.0%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 22823.0,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28847.76,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 7544.09,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -1567,6 +1645,12 @@
       "date": "2026-04-10",
       "portfolio_value": 28846.14,
       "qqq_indexed": 30895.37
+    },
+    {
+      "date": "2026-04-13",
+      "portfolio_value": 28847.76,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
