@@ -12,7 +12,7 @@
   "_pre_score_comment": "Hard trend thresholds applied before GPT \u2014 stocks failing any are dropped without an AI call. null = no limit for that direction.",
   "pre_score_trend_filters": {
     "weekly": {
-      "min": 1.0,
+      "min": 0.0,
       "max": null
     },
     "monthly": {
@@ -44,7 +44,7 @@
   "sell_wait_seconds": 45,
   "realloc_fill_wait_seconds": 20,
   "_limit_order_comment": "Caps buy price at pre-flight quote + buffer% for both paper and live (e.g. 0.5 = 0.5% above). null = market orders.",
-  "limit_order_buffer_pct": 3.0,
+  "limit_order_buffer_pct": 5.0,
   "_bracket_comment": "Stop-loss fires at -stop_loss_pct% below fill price. take_profit_pct locks in gains at +take_profit_pct%. Set either to null to disable.",
   "take_profit_pct": null,
   "trend_filters": {
@@ -91,5 +91,5 @@
   "trailing_stop_pct": 2.5,
   "multi_day_hold_min_score": 9,
   "multi_day_max_days": 3,
-  "min_picks": 5
+  "min_picks": 3
 }

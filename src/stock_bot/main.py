@@ -577,14 +577,22 @@ async def main():
 
     # Score^2 allocation re-weighting — concentrates capital on highest-conviction picks.
     # Risk=3 picks use half their score for weighting (acts as a ~75% allocation penalty).
+    # Exception: when fewer than 3 picks cleared the original score threshold (i.e. most
+    # picks came from the min_picks fallback), suppress the risk penalty for genuine picks
+    # so they aren't diluted by weak fallback fills.
     if picks:
+        _genuine_count = sum(1 for p in picks if p.get("score", 0) >= score_floor)
+
         def _alloc_score(p: dict) -> float:
             s = max(p.get("score", 1), 1)
+            if _genuine_count < 3 and p.get("score", 0) >= score_floor:
+                return s  # protect genuine picks from risk penalty when pool is thin
             return s * 0.5 if p.get("risk", 1) >= 3 else s
         _sq_total = sum(_alloc_score(p) ** 2 for p in picks)
         for p in picks:
             p["allocation_pct"] = round(_alloc_score(p) ** 2 / _sq_total * 100, 1)
-        logger.info("Allocations re-weighted (score^2, risk3=half-weight): %s",
+        logger.info("Allocations re-weighted (score^2, risk3=half-weight, %d genuine): %s",
+                    _genuine_count,
                     {p["ticker"]: f'{p["allocation_pct"]:.1f}%' for p in picks})
 
     # Multi-day hold: flag high-conviction picks to skip EOD liquidation
