@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-07T20:39:34.356879",
+  "updated_at": "2026-04-14T09:40:08.264807",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1105,6 +1105,105 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 28979.0
+    },
+    {
+      "date": "2026-04-14",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "AVNS",
+          "score": 10,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.0,
+          "reason": "AVNS has a fresh announced take-private deal at a 72% premium, but with the stock already near the deal price the remaining upside today is limited and mostly arbitrage spread.",
+          "trend_summary": "1d: +2.5%  1w: +5.1%  1m: +8.2%  3m: +17.7%  1yr: +20.8%"
+        },
+        {
+          "ticker": "GSAT",
+          "score": 10,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 0.8,
+          "reason": "Amazon\u2019s announced $11.57B acquisition of Globalstar is a definitive fresh takeover catalyst, but GSAT is already essentially at deal value so remaining upside from current price is minimal and mostly capped by the offer terms.",
+          "trend_summary": "1d: -0.4%  1w: +0.3%  1m: +27.6%  3m: +21.5%  1yr: +269.8%"
+        },
+        {
+          "ticker": "ROLR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.5,
+          "reason": "Fresh 1h-old Crypto.com prediction markets agreement is a real new catalyst with speculative upside still in play, but the stock is already up sharply today so some of the move is likely priced in.",
+          "trend_summary": "1d: +18.6%  1w: +34.7%  1m: +29.5%  3m: +93.5%  1yr: +79.2%"
+        },
+        {
+          "ticker": "RDW",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "Fresh $20M Navy/Marine Corps follow-on orders are a real defense-contract catalyst and the stock is already up on the news, but without volume confirmation and with a 7.5% pre-existing move, upside is likely capped to a few more points today.",
+          "trend_summary": "1d: +7.5%  1w: +0.8%  1m: +5.4%  3m: -9.0%  1yr: -1.9%"
+        },
+        {
+          "ticker": "TSM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "TSM has a fresh earnings-preview setup ahead of Thursday\u2019s results and is benefiting from sector-wide semiconductor strength, but the move is modest and likely partly priced in already.",
+          "trend_summary": "1d: -0.3%  1w: +8.1%  1m: +9.8%  3m: +14.2%  1yr: +134.9%"
+        },
+        {
+          "ticker": "META",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Meta has a fresh quality-large-cap momentum setup on WSJ coverage that it may overtake Google in digital ad revenue, but with no hard earnings/event catalyst and only modest current-day move, upside looks limited rather than explosive.",
+          "trend_summary": "1d: +0.7%  1w: +10.7%  1m: -0.6%  3m: -2.8%  1yr: +21.7%"
+        },
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh crypto-treasury/ETH-holdings update and NYSE uplist are real catalysts, but the news is already 1 day old and the stock is only modestly up today, so remaining upside looks limited.",
+          "trend_summary": "1d: +1.1%  1w: +4.4%  1m: +4.7%  3m: -28.4%  1yr: +168.9%"
+        },
+        {
+          "ticker": "MU",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "MU remains in a strong multi-month uptrend and the Barron\u2019s/KeyBanc AI-memory thesis is supportive, but today\u2019s move is modest and the only fresh item is an insider sale, so upside looks limited rather than explosive.",
+          "trend_summary": "1d: +1.4%  1w: +12.9%  1m: +5.2%  3m: +23.6%  1yr: +500.5%"
+        },
+        {
+          "ticker": "RKLB",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh product-launch news and continued space-sector attention support RKLB, but the move is modest, volume is unavailable, and the stock is already extended on a strong long-term run so upside today looks limited.",
+          "trend_summary": "1d: +3.8%  1w: +4.4%  1m: +3.3%  3m: -16.8%  1yr: +269.2%"
+        },
+        {
+          "ticker": "MSTR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "MSTR is getting a fresh crypto-beta lift on Bitcoin optimism, but this is a broad sympathy move rather than a company-specific catalyst and the upside from here looks modest after the early pop.",
+          "trend_summary": "1d: +2.9%  1w: +3.7%  1m: -3.6%  3m: -15.9%  1yr: -57.4%"
+        }
+      ],
+      "portfolio_open_value": 28626.29
     }
   ],
   "equity_curve": [
