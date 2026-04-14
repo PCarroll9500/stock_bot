@@ -146,12 +146,23 @@ def get_trend_for_scoring(ticker: str, ib: IB) -> dict | None:
             return round((last - p) / p * 100, 1) if p else None
         return None
 
+    # Volume ratio: most recent complete bar vs 30-day average.
+    # Uses the last bar IBKR returns (may be today partial or yesterday).
+    volumes = [b.volume for b in bars if b.volume and b.volume > 0]
+    volume_ratio: float | None = None
+    if len(volumes) >= 10:
+        recent_vol = volumes[-1]
+        avg_vol = sum(volumes[-31:-1]) / len(volumes[-31:-1]) if len(volumes) >= 2 else None
+        if avg_vol and avg_vol > 0:
+            volume_ratio = round(recent_vol / avg_vol, 1)
+
     return {
-        "daily":     pct(2),
-        "weekly":    pct(6),
-        "monthly":   pct(22),
-        "quarterly": pct(min(64, n)),
-        "yearly":    pct(min(253, n)),
+        "daily":        pct(2),
+        "weekly":       pct(6),
+        "monthly":      pct(22),
+        "quarterly":    pct(min(64, n)),
+        "yearly":       pct(min(253, n)),
+        "volume_ratio": volume_ratio,
     }
 
 
@@ -167,6 +178,24 @@ def fmt_trend_for_prompt(trend: dict | None) -> str:
         if val is not None:
             parts.append(f"{label}: {'+' if val >= 0 else ''}{val:.1f}%")
     return "  ".join(parts) if parts else "unavailable"
+
+
+def fmt_volume_for_prompt(trend: dict | None) -> str:
+    """Return a human-readable volume-vs-average string for GPT prompt injection."""
+    if not trend:
+        return "unavailable"
+    ratio = trend.get("volume_ratio")
+    if ratio is None:
+        return "unavailable"
+    if ratio >= 3.0:
+        label = "very elevated"
+    elif ratio >= 1.5:
+        label = "elevated"
+    elif ratio >= 0.8:
+        label = "normal"
+    else:
+        label = "below average"
+    return f"{ratio}x 30-day avg ({label})"
 
 
 def passes_trend_filters(ticker: str, ib: IB, filters_config: dict) -> bool:

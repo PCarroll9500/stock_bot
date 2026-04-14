@@ -21,6 +21,7 @@ from stock_bot.data_sources.trend_checker import (
     get_spy_day_return_async,
     get_trend_for_scoring_async,
     fmt_trend_for_prompt,
+    fmt_volume_for_prompt,
 )
 from stock_bot.ai.catalyst_scorer import score_candidates, filter_and_rank
 from stock_bot.brokers.ib.sell_all import close_position
@@ -318,13 +319,15 @@ async def main():
             for ticker in tickers_with_news
         ])
 
-    # Keep both the raw dict (for filtering) and the formatted string (for GPT).
+    # Keep both the raw dict (for filtering) and the formatted strings (for GPT).
     raw_trend_by_ticker: dict[str, dict] = {}
     trend_by_ticker: dict[str, str] = {}
+    volume_by_ticker: dict[str, str] = {}
     for ticker, trend in zip(tickers_with_news, trend_results):
         if trend:
             raw_trend_by_ticker[ticker] = trend
         trend_by_ticker[ticker] = fmt_trend_for_prompt(trend)
+        volume_by_ticker[ticker] = fmt_volume_for_prompt(trend)
         logger.info("trend: %s — %s", ticker, trend_by_ticker[ticker])
 
     # ------------------------------------------------------------------ #
@@ -408,12 +411,12 @@ async def main():
         spy_context = "SPY return unavailable."
 
     if sequential:
-        all_scored = score_candidates(news_by_ticker, excluded_set, trend_by_ticker, sequential=True, spy_context=spy_context)
+        all_scored = score_candidates(news_by_ticker, excluded_set, trend_by_ticker, sequential=True, spy_context=spy_context, volume_by_ticker=volume_by_ticker)
     else:
         loop = asyncio.get_running_loop()
         all_scored = await loop.run_in_executor(
             None,
-            lambda: score_candidates(news_by_ticker, excluded_set, trend_by_ticker, spy_context=spy_context),
+            lambda: score_candidates(news_by_ticker, excluded_set, trend_by_ticker, spy_context=spy_context, volume_by_ticker=volume_by_ticker),
         )
 
     # ------------------------------------------------------------------ #
@@ -491,6 +494,7 @@ async def main():
                 if trend:
                     extra_raw_trend[ticker] = trend
                 trend_by_ticker[ticker] = fmt_trend_for_prompt(trend)
+                volume_by_ticker[ticker] = fmt_volume_for_prompt(trend)
 
             # Apply the same pre-score trend filter to conservative extras so
             # tickers with bad trends can't enter through the expansion path.
@@ -528,12 +532,12 @@ async def main():
                 extra_news = filtered_extra_news
 
             if sequential:
-                extra_scored = score_candidates(extra_news, excluded_set, trend_by_ticker, sequential=True, spy_context=spy_context)
+                extra_scored = score_candidates(extra_news, excluded_set, trend_by_ticker, sequential=True, spy_context=spy_context, volume_by_ticker=volume_by_ticker)
             else:
                 loop = asyncio.get_running_loop()
                 extra_scored = await loop.run_in_executor(
                     None,
-                    lambda: score_candidates(extra_news, excluded_set, trend_by_ticker, spy_context=spy_context),
+                    lambda: score_candidates(extra_news, excluded_set, trend_by_ticker, spy_context=spy_context, volume_by_ticker=volume_by_ticker),
                 )
 
             # Merge with original scored list and re-rank at the score floor

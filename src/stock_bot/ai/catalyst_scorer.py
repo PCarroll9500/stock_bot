@@ -98,6 +98,7 @@ def _score_ticker(
     articles: list[dict],
     trend_summary: str,
     spy_context: str = "unavailable",
+    volume_context: str = "unavailable",
 ) -> dict:
     today_date = datetime.now(timezone.utc).strftime("%A, %B %d, %Y")
     prompt = (
@@ -107,6 +108,7 @@ def _score_ticker(
         .replace("{news_items}", _format_news_items(articles))
         .replace("{spy_context}", spy_context)
         .replace("{today_date}", today_date)
+        .replace("{volume_context}", volume_context)
     )
     _default = {
         "ticker": ticker,
@@ -216,6 +218,7 @@ def score_candidates(
     trend_by_ticker: dict[str, str] | None = None,
     sequential: bool = False,
     spy_context: str = "unavailable",
+    volume_by_ticker: dict[str, str] | None = None,
 ) -> list[dict]:
     """
     Score every ticker in news_by_ticker with GPT in parallel.
@@ -228,6 +231,7 @@ def score_candidates(
     """
     client = OpenAI()
     trend_by_ticker = trend_by_ticker or {}
+    volume_by_ticker = volume_by_ticker or {}
 
     candidates: dict[str, list[dict]] = {}
     stale_skipped: list[str] = []
@@ -257,6 +261,7 @@ def score_candidates(
                 articles,
                 trend_by_ticker.get(ticker, "unavailable"),
                 spy_context,
+                volume_by_ticker.get(ticker, "unavailable"),
             ): ticker
             for ticker, articles in candidates.items()
         }
