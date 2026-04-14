@@ -46,7 +46,7 @@ class TestConfigValues:
         assert _config()["min_expected_gain_pct"] == 1.5
 
     def test_limit_order_buffer(self):
-        assert _config()["limit_order_buffer_pct"] == 3.0
+        assert _config()["limit_order_buffer_pct"] == 5.0
 
     def test_fill_wait_seconds(self):
         assert _config()["fill_wait_seconds"] == 30
@@ -58,7 +58,7 @@ class TestConfigValues:
         assert _config()["realloc_fill_wait_seconds"] == 20
 
     def test_min_picks(self):
-        assert _config()["min_picks"] == 5
+        assert _config()["min_picks"] == 3
 
     def test_multi_day_hold_min_score(self):
         assert _config()["multi_day_hold_min_score"] == 9
