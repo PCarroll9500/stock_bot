@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-14T09:40:08.264807",
+  "updated_at": "2026-04-15T09:39:43.240753",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1204,6 +1204,78 @@
         }
       ],
       "portfolio_open_value": 28626.29
+    },
+    {
+      "date": "2026-04-15",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "SNAP",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Snap\u2019s 16% workforce cut is a fresh cost-cutting catalyst and the stock is already up on it, but the move is likely partly priced in and upside from here looks limited to a modest continuation today.",
+          "trend_summary": "1d: +8.7%  1w: +16.7%  1m: +22.8%  3m: -31.6%  1yr: -27.6%"
+        },
+        {
+          "ticker": "BAC",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Bank of America has a fresh premarket earnings beat with net income up 17%, but the stock is only modestly higher and likely has limited same-day upside left from current levels.",
+          "trend_summary": "1d: +0.0%  1w: +6.1%  1m: +14.2%  3m: -3.3%  1yr: +42.9%"
+        },
+        {
+          "ticker": "TSM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "TSMC is benefiting from fresh AI/semiconductor demand commentary and sector strength, but the move is modest and already partly reflected after a 2.8% day and strong multi-month run.",
+          "trend_summary": "1d: +2.8%  1w: +10.0%  1m: +12.3%  3m: +14.5%  1yr: +150.5%"
+        },
+        {
+          "ticker": "EOSE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh 1h-old partnership announcement for AI power infrastructure is a real catalyst, but EOSE is already extended on a volatile small-cap tape and the move looks more like a continuation than a fresh 5%+ setup from current price.",
+          "trend_summary": "1d: +2.6%  1w: +41.1%  1m: +10.7%  3m: -60.8%  1yr: +29.2%"
+        },
+        {
+          "ticker": "LUMN",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh AWS partnership press release is a real positive catalyst for Lumen\u2019s AI/networking narrative, but it\u2019s a soft commercial announcement with no hard revenue numbers and likely only modest same-day upside left.",
+          "trend_summary": "1d: +0.1%  1w: +14.5%  1m: +17.5%  3m: -1.9%  1yr: +137.8%"
+        },
+        {
+          "ticker": "NOK",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.8,
+          "reason": "Fresh AI-RAN collaboration news with Orange/NVIDIA is a real positive catalyst, but Nokia has already been trending up for weeks and the move looks partially priced in rather than offering 5%+ remaining upside today.",
+          "trend_summary": "1d: -0.2%  1w: +16.9%  1m: +25.6%  3m: +57.3%  1yr: +103.7%"
+        },
+        {
+          "ticker": "JD",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "JD has a fresh pre-earnings improvement theme with multiple analyst notes lifting estimates, but the move is already partly priced in after an 8% day and the catalyst is still only a soft analyst-driven setup.",
+          "trend_summary": "1d: +8.0%  1w: +9.8%  1m: +10.3%  3m: +1.7%  1yr: -11.5%"
+        }
+      ],
+      "portfolio_open_value": 28627.93
     }
   ],
   "equity_curve": [
