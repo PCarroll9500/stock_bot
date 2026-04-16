@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-15T09:39:43.240753",
+  "updated_at": "2026-04-16T09:43:40.469664",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1276,6 +1276,245 @@
         }
       ],
       "portfolio_open_value": 28627.93
+    },
+    {
+      "date": "2026-04-16",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "SCHW",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh launch of Schwab Crypto spot trading is a real new-growth catalyst for a large-cap financial platform, with the move still early and likely to attract incremental institutional and retail interest today.",
+          "trend_summary": "1d: +1.9%  1w: +3.7%  1m: +7.1%  3m: -0.9%  1yr: +31.7%",
+          "allocation_pct": 18.2,
+          "shares": 54,
+          "buy_price": 96.4322,
+          "buy_value": 5207.34,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "PEP",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "PepsiCo delivered a fresh Q1 earnings and revenue beat with management reaffirming 2026 organic growth guidance, which supports modest additional upside today despite the already-mature large-cap move.",
+          "trend_summary": "1d: -0.6%  1w: +0.0%  1m: -1.8%  3m: +7.9%  1yr: +8.4%",
+          "allocation_pct": 18.0,
+          "shares": 33,
+          "buy_price": 155.7376,
+          "buy_value": 5139.34,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "KEY",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "KeyCorp\u2019s fresh Q1 earnings release plus a sizable $389M buyback supports continued institutional interest, but as a large-cap bank the move is likely measured rather than explosive.",
+          "trend_summary": "1d: -0.3%  1w: +1.3%  1m: +13.8%  3m: +3.5%  1yr: +51.2%",
+          "allocation_pct": 15.3,
+          "shares": 199,
+          "buy_price": 21.9585,
+          "buy_value": 4369.74,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TSM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "TSMC\u2019s strong Q1 profit and commentary that AI chip demand remains tight support continued semiconductor momentum today, though the move is already partly priced in and upside looks modest from current levels.",
+          "trend_summary": "1d: -1.3%  1w: +2.5%  1m: +10.2%  3m: +13.3%  1yr: +147.2%",
+          "allocation_pct": 12.9,
+          "shares": 10,
+          "buy_price": 368.41,
+          "buy_value": 3684.1,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "LHX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh billion-dollar rocket motor capacity expansion is a real defense catalyst for LHX, but it is already ~21 hours old and the stock has not shown a strong intraday breakout, so remaining upside looks modest rather than explosive.",
+          "trend_summary": "1d: +0.1%  1w: -1.7%  1m: -2.8%  3m: +4.3%  1yr: +63.1%",
+          "allocation_pct": 12.5,
+          "shares": 10,
+          "buy_price": 357.8,
+          "buy_value": 3578.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "USB",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "USB posted a modest earnings beat with higher profit and revenue this morning, which is a fresh quality-large-cap catalyst, but the move is likely mostly priced in given the stock is only up slightly today and upside from here looks limited to a few percent.",
+          "trend_summary": "1d: +0.5%  1w: +1.8%  1m: +10.2%  3m: +4.3%  1yr: +47.6%",
+          "allocation_pct": 14.5,
+          "shares": 74,
+          "buy_price": 56.1007,
+          "buy_value": 4151.45,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "HOOD",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "HOOD is benefiting from a fresh crypto-risk-on tape and broad speculative growth strength, but the move is already partially extended after a 10%+ day so remaining upside looks moderate rather than explosive.",
+          "trend_summary": "1d: +10.4%  1w: +21.6%  1m: +15.9%  3m: -27.4%  1yr: +112.0%",
+          "allocation_pct": 3.7,
+          "shares": 12,
+          "buy_price": 87.225,
+          "buy_value": 1046.7,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TEM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Tempus has a fresh commercial partnership catalyst with Predicta Biosciences and the stock already reacted strongly, but with no volume data and the move partly priced in, upside likely remains modest rather than explosive.",
+          "trend_summary": "1d: +13.9%  1w: +18.8%  1m: +10.9%  3m: -16.0%  1yr: +39.5%",
+          "allocation_pct": 3.8,
+          "shares": 20,
+          "buy_price": 55.084,
+          "buy_value": 1101.68,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "TER",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Teradyne\u2019s fresh acquisition of TestInsight is a real strategic catalyst for AI/data-center test software, but as a large-cap already in a strong multi-month uptrend the move is likely only modestly extendable today.",
+          "trend_summary": "1d: -0.2%  1w: +1.9%  1m: +22.4%  3m: +59.2%  1yr: +412.2%"
+        },
+        {
+          "ticker": "OKLO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Oklo has a fresh nuclear-sector momentum catalyst from management/board changes and strong peer action, but the stock is already up sharply on the week and the move looks partly priced in.",
+          "trend_summary": "1d: +8.1%  1w: +26.2%  1m: +6.1%  3m: -34.8%  1yr: +188.2%"
+        },
+        {
+          "ticker": "BABA",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Alibaba has a fresh AI-world-model launch and supportive China tech momentum, but the move is already partially extended and the news looks more like a sector-tailwind catalyst than a true 5%+ intraday breakout from here.",
+          "trend_summary": "1d: +1.5%  1w: +6.4%  1m: -2.5%  3m: -20.2%  1yr: +22.4%"
+        },
+        {
+          "ticker": "NFLX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Netflix has a fresh after-hours earnings catalyst pending today with a strong multi-month uptrend, but the move is still pre-earnings and upside from the current price is likely modest until results/guidance hit.",
+          "trend_summary": "1d: +1.3%  1w: +8.4%  1m: +13.1%  3m: +19.3%  1yr: +10.7%"
+        },
+        {
+          "ticker": "DELL",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Goldman Sachs reiterated Buy and raised Dell\u2019s target to $215 this morning, which is a real but soft catalyst for a large-cap name with modest remaining upside after the recent run.",
+          "trend_summary": "1d: -3.9%  1w: -4.4%  1m: +13.2%  3m: +48.2%  1yr: +109.1%"
+        },
+        {
+          "ticker": "GOOG",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "GOOG has a fresh but modest catalyst mix of a small analyst target raise and positive Google Cloud collaboration news, but the move is likely mostly priced in and upside from current levels looks limited today.",
+          "trend_summary": "1d: +1.2%  1w: +6.3%  1m: +9.9%  3m: -0.6%  1yr: +118.1%"
+        },
+        {
+          "ticker": "HIMS",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh regulatory-pivot news on peptides is a real catalyst, but HIMS already gapped hard (+13.7% today) and the analyst target raise is only a soft secondary tailwind, so most of the easy upside looks partially priced in.",
+          "trend_summary": "1d: +13.7%  1w: +25.3%  1m: -2.4%  3m: -24.6%  1yr: -10.8%"
+        },
+        {
+          "ticker": "ADBE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Adobe\u2019s fresh Firefly AI/Claude integration and upcoming investor session are real catalysts, but the move is already partially priced in after a 3.8% day and the news is now ~1 day old.",
+          "trend_summary": "1d: +3.8%  1w: +2.2%  1m: -2.9%  3m: -21.1%  1yr: -29.9%"
+        },
+        {
+          "ticker": "UEC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "UEC is benefiting from a fresh uranium-sector sympathy move after the Sweetwater royalty deal and renewed energy-security interest, but the catalyst is indirect and the stock is already up on the day so remaining upside looks limited.",
+          "trend_summary": "1d: +4.9%  1w: +6.2%  1m: +9.8%  3m: -4.7%  1yr: +193.5%"
+        },
+        {
+          "ticker": "NVO",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Novo has a fresh AI partnership headline and GLP-1 demand tailwinds, but the news is already a day old and volume confirmation is lacking, so upside today looks modest rather than explosive.",
+          "trend_summary": "1d: +3.8%  1w: +8.5%  1m: +5.8%  3m: -31.6%  1yr: -29.7%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 23993.35,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28629.55,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 351.2,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -1330,6 +1569,12 @@
       "date": "2026-04-03",
       "portfolio_value": 28979.0,
       "qqq_indexed": 29601.02
+    },
+    {
+      "date": "2026-04-16",
+      "portfolio_value": 28629.55,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
