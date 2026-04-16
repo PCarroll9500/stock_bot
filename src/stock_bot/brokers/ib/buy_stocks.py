@@ -381,6 +381,31 @@ async def get_price_async(ticker: str, ib: IB) -> float:
     return await _last_price_async(contract, ib)
 
 
+async def place_trailing_stop_async(
+    ticker: str,
+    ib: IB,
+    shares: int,
+    trailing_pct: float,
+) -> "Trade":
+    """Place a standalone trailing-stop SELL order for an existing filled position.
+
+    Used when the entry was a MKT order — IBKR does not allow trailing stops
+    as bracket children of market orders (Error 328), so we place them
+    separately after confirming the fill.
+    """
+    contract = await _qualify_async(ticker, ib)
+    order = Order(
+        action="SELL",
+        orderType="TRAIL",
+        totalQuantity=shares,
+        trailingPercent=trailing_pct,
+        transmit=True,
+    )
+    trade = ib.placeOrder(contract, order)
+    logger.info("Trail stop placed: SELL %s x%d TRAIL %.1f%%", ticker, shares, trailing_pct)
+    return trade
+
+
 async def buy_stock_async(
     ticker: str,
     ib: IB,

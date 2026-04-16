@@ -21,7 +21,7 @@ class TestConfigValues:
     """Verify picker_config.json has the expected values."""
 
     def test_trailing_stop_set(self):
-        assert _config()["trailing_stop_pct"] == 2.5
+        assert _config()["trailing_stop_pct"] == 3.0
 
     def test_stop_loss_not_set(self):
         """stop_loss_pct removed in favour of trailing_stop_pct."""

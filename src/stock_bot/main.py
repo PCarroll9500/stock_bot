@@ -11,7 +11,7 @@ from pathlib import Path
 from stock_bot.core.logging_config import setup_logging
 from stock_bot.config.settings import ib_settings
 from stock_bot.brokers.ib.connect_disconnect import connect_ib_async, disconnect_ib
-from stock_bot.brokers.ib.buy_stocks import buy_stock_async, get_price_async
+from stock_bot.brokers.ib.buy_stocks import buy_stock_async, get_price_async, place_trailing_stop_async
 from stock_bot.data_sources.scanner import get_scanner_universe_async
 from stock_bot.data_sources.news_fetcher import fetch_news_for_tickers_async
 from stock_bot.data_sources.trend_checker import (
@@ -768,6 +768,21 @@ async def main():
                 unfilled, len(picks),
             )
 
+        # ── Post-fill trailing stops (MKT orders only) ──────────────────────────
+        # IBKR Error 328 prevents trailing stops as bracket children of MKT orders,
+        # so we place them as standalone orders now that fills are confirmed.
+        if trailing_stop_pct is not None and limit_order_buffer_pct is None:
+            for _fp in filled_picks:
+                _tkr = _fp["ticker"]
+                _entry = next(iter(trades_by_ticker.get(_tkr) or []), None)
+                _st = getattr(_entry, "orderStatus", None) if _entry else None
+                if _st and _st.filled > 0:
+                    try:
+                        _trail = await place_trailing_stop_async(_tkr, ib, int(_st.filled), trailing_stop_pct)
+                        trades_by_ticker[_tkr].append(_trail)
+                    except Exception:
+                        logger.error("Failed to place trailing stop for %s", _tkr, exc_info=True)
+
         # ── Cancel any unfilled initial orders to free up accurate cash balance ──
         _initial_unfilled = []
         for _pick, _alloc_pct, _init_shares, _preflight in order_plans:
@@ -870,6 +885,11 @@ async def main():
                                         "Realloc r%d (reserve): %s filled %.0f @ $%.4f",
                                         _round, _res["ticker"], _st.filled, _st.avgFillPrice,
                                     )
+                                    if trailing_stop_pct is not None and limit_order_buffer_pct is None:
+                                        try:
+                                            await place_trailing_stop_async(_res["ticker"], ib, int(_st.filled), trailing_stop_pct)
+                                        except Exception:
+                                            logger.error("Failed to place trailing stop for reserve %s", _res["ticker"], exc_info=True)
                                 else:
                                     logger.warning("Realloc r%d (reserve): %s did not fill -- cancelling", _round, _res["ticker"])
                                     try:
@@ -932,6 +952,11 @@ async def main():
                             "Realloc r%d: %s confirmed +%.0f @ $%.4f",
                             _round, _tkr, _st.filled, _st.avgFillPrice,
                         )
+                        if trailing_stop_pct is not None and limit_order_buffer_pct is None:
+                            try:
+                                await place_trailing_stop_async(_tkr, ib, int(_st.filled), trailing_stop_pct)
+                            except Exception:
+                                logger.error("Failed to place trailing stop for realloc %s", _tkr, exc_info=True)
                     else:
                         logger.warning("Realloc r%d: %s did not fill -- cancelling", _round, _tkr)
                         try:
