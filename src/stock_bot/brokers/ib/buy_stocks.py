@@ -229,18 +229,29 @@ def buy_stock(
 
     elif trailing_stop_pct is not None:
         parent = _entry_order("BUY", shares, limit_price)
-        parent_trade = ib.placeOrder(contract, parent)
-        trades.append(parent_trade)
-
-        trail_order = Order(
-            action="SELL",
-            orderType="TRAIL",
-            trailingPercent=trailing_stop_pct,
-            totalQuantity=shares,
-            parentId=parent_trade.order.orderId,
-            transmit=True,
-        )
-        trades.append(ib.placeOrder(contract, trail_order))
+        if limit_price is None:
+            # IBKR Error 328: trailing stops can only attach to LMT/STP-LMT parents,
+            # not MKT orders. Transmit the market buy standalone; trailing stop skipped.
+            logger.warning(
+                "Trailing stop skipped for %s — IBKR does not allow trailing stops "
+                "on MKT orders (Error 328). Submitting plain MKT buy.",
+                ticker,
+            )
+            parent.transmit = True
+            parent_trade = ib.placeOrder(contract, parent)
+            trades.append(parent_trade)
+        else:
+            parent_trade = ib.placeOrder(contract, parent)
+            trades.append(parent_trade)
+            trail_order = Order(
+                action="SELL",
+                orderType="TRAIL",
+                trailingPercent=trailing_stop_pct,
+                totalQuantity=shares,
+                parentId=parent_trade.order.orderId,
+                transmit=True,
+            )
+            trades.append(ib.placeOrder(contract, trail_order))
         logger.info(
             "BUY %s x%.4f %s | trailing stop %.2f%%",
             ticker,
@@ -442,13 +453,25 @@ async def buy_stock_async(
 
     elif trailing_stop_pct is not None:
         parent = _entry_order("BUY", shares, limit_price)
-        parent_trade = ib.placeOrder(contract, parent)
-        trades.append(parent_trade)
-        trail_order = Order(
-            action="SELL", orderType="TRAIL", trailingPercent=trailing_stop_pct,
-            totalQuantity=shares, parentId=parent_trade.order.orderId, transmit=True,
-        )
-        trades.append(ib.placeOrder(contract, trail_order))
+        if limit_price is None:
+            # IBKR Error 328: trailing stops can only attach to LMT/STP-LMT parents,
+            # not MKT orders. Transmit the market buy standalone; trailing stop skipped.
+            logger.warning(
+                "Trailing stop skipped for %s — IBKR does not allow trailing stops "
+                "on MKT orders (Error 328). Submitting plain MKT buy.",
+                ticker,
+            )
+            parent.transmit = True
+            parent_trade = ib.placeOrder(contract, parent)
+            trades.append(parent_trade)
+        else:
+            parent_trade = ib.placeOrder(contract, parent)
+            trades.append(parent_trade)
+            trail_order = Order(
+                action="SELL", orderType="TRAIL", trailingPercent=trailing_stop_pct,
+                totalQuantity=shares, parentId=parent_trade.order.orderId, transmit=True,
+            )
+            trades.append(ib.placeOrder(contract, trail_order))
         logger.info(
             "BUY %s x%.4f %s | trailing stop %.2f%%",
             ticker, shares,

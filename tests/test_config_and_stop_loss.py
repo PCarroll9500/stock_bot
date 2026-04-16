@@ -46,7 +46,7 @@ class TestConfigValues:
         assert _config()["min_expected_gain_pct"] == 1.5
 
     def test_limit_order_buffer(self):
-        assert _config()["limit_order_buffer_pct"] == 5.0
+        assert _config()["limit_order_buffer_pct"] is None
 
     def test_fill_wait_seconds(self):
         assert _config()["fill_wait_seconds"] == 30
