@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-16T09:43:40.469664",
+  "updated_at": "2026-04-16T14:30:50.747023",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1294,9 +1294,10 @@
           "shares": 54,
           "buy_price": 96.4322,
           "buy_value": 5207.34,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 94.1,
+          "day_return_pct": -2.418,
+          "day_return_usd": -125.94,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "PEP",
@@ -1310,9 +1311,9 @@
           "shares": 33,
           "buy_price": 155.7376,
           "buy_value": 5139.34,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 157.26,
+          "day_return_pct": 0.978,
+          "day_return_usd": 50.24
         },
         {
           "ticker": "KEY",
@@ -1326,9 +1327,9 @@
           "shares": 199,
           "buy_price": 21.9585,
           "buy_value": 4369.74,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 21.77,
+          "day_return_pct": -0.858,
+          "day_return_usd": -37.51
         },
         {
           "ticker": "TSM",
@@ -1342,9 +1343,9 @@
           "shares": 10,
           "buy_price": 368.41,
           "buy_value": 3684.1,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 361.08,
+          "day_return_pct": -1.99,
+          "day_return_usd": -73.3
         },
         {
           "ticker": "LHX",
@@ -1358,9 +1359,9 @@
           "shares": 10,
           "buy_price": 357.8,
           "buy_value": 3578.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 355.2,
+          "day_return_pct": -0.727,
+          "day_return_usd": -26.0
         },
         {
           "ticker": "USB",
@@ -1374,9 +1375,9 @@
           "shares": 74,
           "buy_price": 56.1007,
           "buy_value": 4151.45,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 55.79,
+          "day_return_pct": -0.554,
+          "day_return_usd": -22.99
         },
         {
           "ticker": "HOOD",
@@ -1390,9 +1391,10 @@
           "shares": 12,
           "buy_price": 87.225,
           "buy_value": 1046.7,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 85.26,
+          "day_return_pct": -2.253,
+          "day_return_usd": -23.58,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "TEM",
@@ -1406,9 +1408,10 @@
           "shares": 20,
           "buy_price": 55.084,
           "buy_value": 1101.68,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 53.52,
+          "day_return_pct": -2.839,
+          "day_return_usd": -31.28,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -1507,14 +1510,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 23993.35,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 24008.9,
+      "nasdaq_day_return_pct": 0.065,
       "portfolio_open_value": 28629.55,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28310.09,
+      "session_return_pct": -1.116,
+      "session_return_usd": -319.46,
       "cash_uninvested": 351.2,
-      "cash_balance_close": null
+      "cash_balance_close": 28287.06
     }
   ],
   "equity_curve": [
@@ -1572,9 +1575,8 @@
     },
     {
       "date": "2026-04-16",
-      "portfolio_value": 28629.55,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28310.09,
+      "qqq_indexed": 32325.83
     }
   ]
 }
