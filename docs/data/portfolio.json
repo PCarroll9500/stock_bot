@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-16T14:30:50.747023",
+  "updated_at": "2026-04-17T09:41:46.735716",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1518,6 +1518,163 @@
       "session_return_usd": -319.46,
       "cash_uninvested": 351.2,
       "cash_balance_close": 28287.06
+    },
+    {
+      "date": "2026-04-17",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "CRML",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.5,
+          "reason": "Fresh Greenland approval gives CRML control of a major rare-earth asset and the stock already showed strong premarket demand, but as a small-cap miner the move is likely partially priced in and can reverse quickly.",
+          "trend_summary": "1d: +4.3%  1w: +5.7%  1m: +1.1%  3m: -48.3%  1yr: +304.8%",
+          "allocation_pct": 43.1,
+          "shares": 1005,
+          "buy_price": 12.1453,
+          "buy_value": 12206.03,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TSM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "TSMC delivered a fresh earnings beat with raised guidance and upbeat AI demand commentary, but the U.S. shares already sold off on the report so remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: -3.1%  1w: -0.6%  1m: +5.0%  3m: +11.1%  1yr: +145.7%",
+          "allocation_pct": 31.7,
+          "shares": 24,
+          "buy_price": 374.29,
+          "buy_value": 8982.96,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "STM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.2,
+          "reason": "Mizuho\u2019s upgrade to Outperform with a $48 target is a real but soft catalyst for this large-cap semiconductor name, and the fresh sector tailwind helps, though most of the move is likely already partially priced in.",
+          "trend_summary": "1d: +2.2%  1w: +6.2%  1m: +23.0%  3m: +49.1%  1yr: +107.7%",
+          "allocation_pct": 24.9,
+          "shares": 162,
+          "buy_price": 43.4928,
+          "buy_value": 7045.83,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VACI",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh SPAC merger announcement with a fully committed $30M PIPE and $300M pre-money valuation is a real catalyst, but VACI is a small-cap deal stock and the move may already be partially priced in.",
+          "trend_summary": "1d: +0.0%  1w: +0.0%  1m: +1.0%  3m: +1.1%  1yr: +1.0%",
+          "allocation_pct": 0.1,
+          "shares": 4,
+          "buy_price": 10.17,
+          "buy_value": 40.68,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "VACI",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh SPAC merger announcement with a fully committed $30M PIPE and $300M pre-money valuation is a real catalyst, but VACI is a small-cap deal stock and the move may already be partially priced in.",
+          "trend_summary": "1d: +0.0%  1w: +0.0%  1m: +1.0%  3m: +1.1%  1yr: +1.0%"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "GE Vernova has a fresh pair of major analyst target raises and an ongoing data-center power-demand tailwind, but this is a soft catalyst on a large-cap that has already had a strong multi-month run, so upside today looks limited.",
+          "trend_summary": "1d: -0.8%  1w: +1.1%  1m: +15.9%  3m: +51.9%  1yr: +212.5%"
+        },
+        {
+          "ticker": "TER",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Teradyne has a fresh acquisition catalyst and a large-cap uptrend, but the move is modest, the news is already a day old, and the analyst action is only a price-target raise/neutral maintenance so most upside looks priced in.",
+          "trend_summary": "1d: +0.3%  1w: +0.5%  1m: +22.2%  3m: +59.0%  1yr: +424.2%"
+        },
+        {
+          "ticker": "DAL",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "DAL has a fresh macro tailwind from the Strait of Hormuz reopening that supports airline margins, but the move is partly offset by a standalone Evercore target raise and the setup looks more like a modest continuation than a 5%+ breakout from here.",
+          "trend_summary": "1d: -2.9%  1w: +3.0%  1m: +7.8%  3m: +2.0%  1yr: +77.1%"
+        },
+        {
+          "ticker": "AFRM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "AFRM has a fresh pre-investor-day catalyst from Citi\u2019s Catalyst Watch and medium-term target refresh expectations, but the move is already extended on a 1-week/1-month run and this is still only an analyst-driven setup rather than a hard fundamental event.",
+          "trend_summary": "1d: +1.1%  1w: +23.0%  1m: +26.7%  3m: -17.0%  1yr: +48.3%"
+        },
+        {
+          "ticker": "TEM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Tempus has a real but now 1\u20132 day old commercial partnership catalyst, yet the move looks partially priced in and without volume confirmation the remaining upside today is likely modest.",
+          "trend_summary": "1d: -3.5%  1w: +23.2%  1m: +7.0%  3m: -21.4%  1yr: +32.8%"
+        },
+        {
+          "ticker": "AAOI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "AAOI has a fresh capacity-expansion press release that supports the AI/optical growth story, but the stock is already sharply extended and the move looks partially priced in without volume confirmation.",
+          "trend_summary": "1d: +10.4%  1w: +18.0%  1m: +82.2%  3m: +356.4%  1yr: +1465.4%"
+        },
+        {
+          "ticker": "EFOI",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.0,
+          "reason": "Fresh data-center infrastructure progress update is a real catalyst for this small-cap, but the news is vague and likely already partially priced in without volume confirmation.",
+          "trend_summary": "1d: -1.2%  1w: +4.5%  1m: +11.8%  3m: -9.1%  1yr: +14.2%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 24349.84,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28311.7,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 36.2,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -1577,6 +1734,12 @@
       "date": "2026-04-16",
       "portfolio_value": 28310.09,
       "qqq_indexed": 32325.83
+    },
+    {
+      "date": "2026-04-17",
+      "portfolio_value": 28311.7,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
