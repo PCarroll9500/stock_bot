@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-17T09:41:46.735716",
+  "updated_at": "2026-04-17T14:30:50.650258",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1536,9 +1536,10 @@
           "shares": 1005,
           "buy_price": 12.1453,
           "buy_value": 12206.03,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 12.1,
+          "day_return_pct": -0.373,
+          "day_return_usd": -45.53,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "TSM",
@@ -1552,9 +1553,9 @@
           "shares": 24,
           "buy_price": 374.29,
           "buy_value": 8982.96,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 368.13,
+          "day_return_pct": -1.646,
+          "day_return_usd": -147.84
         },
         {
           "ticker": "STM",
@@ -1568,9 +1569,9 @@
           "shares": 162,
           "buy_price": 43.4928,
           "buy_value": 7045.83,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 44.09,
+          "day_return_pct": 1.373,
+          "day_return_usd": 96.75
         },
         {
           "ticker": "VACI",
@@ -1584,9 +1585,9 @@
           "shares": 4,
           "buy_price": 10.17,
           "buy_value": 40.68,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 10.13,
+          "day_return_pct": -0.393,
+          "day_return_usd": -0.16
         }
       ],
       "runner_ups": [
@@ -1667,14 +1668,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 24349.84,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 24434.84,
+      "nasdaq_day_return_pct": 0.349,
       "portfolio_open_value": 28311.7,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28198.22,
+      "session_return_pct": -0.401,
+      "session_return_usd": -113.48,
       "cash_uninvested": 36.2,
-      "cash_balance_close": null
+      "cash_balance_close": 28173.57
     }
   ],
   "equity_curve": [
@@ -1737,9 +1738,8 @@
     },
     {
       "date": "2026-04-17",
-      "portfolio_value": 28311.7,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28198.22,
+      "qqq_indexed": 32760.49
     }
   ]
 }
