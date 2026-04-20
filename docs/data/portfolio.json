@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-17T14:30:50.650258",
+  "updated_at": "2026-04-20T09:37:31.649923",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1676,6 +1676,58 @@
       "session_return_usd": -113.48,
       "cash_uninvested": 36.2,
       "cash_balance_close": 28173.57
+    },
+    {
+      "date": "2026-04-20",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "GOOG",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "KeyBanc\u2019s reiterated Overweight and modest target raise, plus fresh AI-chip partnership chatter with Marvell, support continued institutional interest, though the move is already partly priced in.",
+          "trend_summary": "1d: +2.0%  1w: +7.5%  1m: +10.8%  3m: +1.9%  1yr: +126.5%",
+          "allocation_pct": 55.1,
+          "shares": 46,
+          "buy_price": 337.56,
+          "buy_value": 15527.76,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "VRT is a quality large-cap industrial/tech infrastructure name with strong multi-timeframe momentum, but today\u2019s news is generic macro manufacturing commentary rather than a stock-specific catalyst, so upside likely remains modest.",
+          "trend_summary": "1d: +4.5%  1w: +4.1%  1m: +16.1%  3m: +78.1%  1yr: +354.8%",
+          "allocation_pct": 40.3,
+          "shares": 37,
+          "buy_price": 306.91,
+          "buy_value": 11355.67,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 24426.07,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28199.84,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 1316.41,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -1740,6 +1792,12 @@
       "date": "2026-04-17",
       "portfolio_value": 28198.22,
       "qqq_indexed": 32760.49
+    },
+    {
+      "date": "2026-04-20",
+      "portfolio_value": 28199.84,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
