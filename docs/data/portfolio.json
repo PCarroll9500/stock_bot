@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-21T09:43:02.311775",
+  "updated_at": "2026-04-21T14:30:50.568345",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1746,9 +1746,10 @@
           "shares": 502,
           "buy_price": 14.39,
           "buy_value": 7223.78,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 14.34,
+          "day_return_pct": -0.347,
+          "day_return_usd": -25.1,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "UNH",
@@ -1762,9 +1763,10 @@
           "shares": 20,
           "buy_price": 352.9515,
           "buy_value": 7059.03,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 346.8,
+          "day_return_pct": -1.743,
+          "day_return_usd": -123.03,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "ALAB",
@@ -1778,9 +1780,10 @@
           "shares": 32,
           "buy_price": 187.7672,
           "buy_value": 6008.55,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 190.34,
+          "day_return_pct": 1.37,
+          "day_return_usd": 82.33,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "VRT",
@@ -1794,9 +1797,9 @@
           "shares": 18,
           "buy_price": 320.4667,
           "buy_value": 5768.4,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 315.01,
+          "day_return_pct": -1.703,
+          "day_return_usd": -98.22
         },
         {
           "ticker": "MSTR",
@@ -1810,9 +1813,10 @@
           "shares": 11,
           "buy_price": 168.9927,
           "buy_value": 1858.92,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 167.7,
+          "day_return_pct": -0.765,
+          "day_return_usd": -14.22,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -1902,14 +1906,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 24431.94,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 24309.8,
+      "nasdaq_day_return_pct": -0.5,
       "portfolio_open_value": 28441.49,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28238.54,
+      "session_return_pct": -0.714,
+      "session_return_usd": -202.95,
       "cash_uninvested": 522.81,
-      "cash_balance_close": null
+      "cash_balance_close": 28207.5
     }
   ],
   "equity_curve": [
@@ -1982,9 +1986,8 @@
     },
     {
       "date": "2026-04-21",
-      "portfolio_value": 28441.49,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28238.54,
+      "qqq_indexed": 32700.78
     }
   ]
 }
