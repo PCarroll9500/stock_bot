@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-20T14:30:49.966027",
+  "updated_at": "2026-04-21T09:43:02.311775",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1728,6 +1728,188 @@
       "session_return_usd": 236.88,
       "cash_uninvested": 1316.41,
       "cash_balance_close": 28410.44
+    },
+    {
+      "date": "2026-04-21",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "PBI",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh preliminary Q1 beat with raised full-year guidance is a real catalyst, but PBI is already up on the news and the remaining upside from current levels looks moderate rather than explosive.",
+          "trend_summary": "1d: +2.7%  1w: +14.0%  1m: +29.6%  3m: +25.5%  1yr: +63.0%",
+          "allocation_pct": 25.4,
+          "shares": 502,
+          "buy_price": 14.39,
+          "buy_value": 7223.78,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "UNH",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh earnings beat with raised full-year guidance on a large-cap turnaround name supports continued upside today, though the 7% premarket jump means much of the initial reaction is already priced in.",
+          "trend_summary": "1d: -0.4%  1w: +3.3%  1m: +15.3%  3m: -2.3%  1yr: -24.3%",
+          "allocation_pct": 24.8,
+          "shares": 20,
+          "buy_price": 352.9515,
+          "buy_value": 7059.03,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ALAB",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Astera Labs is getting a fresh AI-networking tailwind from the Amazon/Anthropic deal, and the stock is already showing premarket strength, but with only a modest 1d move and no hard company-specific news the upside is likely incremental rather than explosive.",
+          "trend_summary": "1d: +1.0%  1w: +5.4%  1m: +39.3%  3m: -3.4%  1yr: +217.8%",
+          "allocation_pct": 21.1,
+          "shares": 32,
+          "buy_price": 187.7672,
+          "buy_value": 6008.55,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "VRT is a quality large-cap infrastructure/thermal management name with a strong multi-timeframe uptrend, and the manufacturing revival backdrop supports continued institutional momentum today despite the move already being partially extended.",
+          "trend_summary": "1d: +2.3%  1w: +4.8%  1m: +16.8%  3m: +77.7%  1yr: +337.8%",
+          "allocation_pct": 20.3,
+          "shares": 18,
+          "buy_price": 320.4667,
+          "buy_value": 5768.4,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "MSTR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh analyst target raise plus a supportive Bitcoin breakout and Strategy buying keep the crypto momentum intact, but the move is already partially extended so upside is likely moderate rather than explosive.",
+          "trend_summary": "1d: +2.6%  1w: +29.0%  1m: +23.6%  3m: -1.7%  1yr: -50.2%",
+          "allocation_pct": 6.5,
+          "shares": 11,
+          "buy_price": 168.9927,
+          "buy_value": 1858.92,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "CSCO",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "CSCO is showing quality large-cap momentum with a fresh push toward a record close and a strong multi-timeframe uptrend, but the move is already partially extended so remaining upside today looks modest rather than explosive.",
+          "trend_summary": "1d: +1.7%  1w: +6.5%  1m: +11.7%  3m: +16.7%  1yr: +59.4%"
+        },
+        {
+          "ticker": "MRVL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Marvell is getting a fresh AI-networking sympathy bid from Amazon\u2019s Anthropic deal, but the move is already partially priced in after a 5.8% day and the catalyst is indirect rather than company-specific.",
+          "trend_summary": "1d: +5.8%  1w: +12.6%  1m: +65.1%  3m: +83.7%  1yr: +192.1%"
+        },
+        {
+          "ticker": "HOOD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "HOOD has a fresh premarket analyst target raise to $110 plus a supportive crypto tape, but this is a soft catalyst and the stock is already extended on a strong multi-week run, limiting same-day upside.",
+          "trend_summary": "1d: +0.6%  1w: +27.4%  1m: +23.1%  3m: -16.1%  1yr: +116.9%"
+        },
+        {
+          "ticker": "COIN",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "COIN has a fresh analyst target raise to $250 plus a supportive Bitcoin breakout, but this is a soft catalyst and the stock is already up on the week so upside today looks limited.",
+          "trend_summary": "1d: +2.6%  1w: +21.3%  1m: +4.3%  3m: -12.2%  1yr: +11.4%"
+        },
+        {
+          "ticker": "INFQ",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh DARPA contract/newsflow is a real quantum catalyst, but INFQ is already extended on the week/month and the $2M award is modest, so upside today looks limited rather than explosive.",
+          "trend_summary": "1d: -8.2%  1w: +27.1%  1m: +66.3%  3m: -7.2%  1yr: +56.6%"
+        },
+        {
+          "ticker": "CRDO",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "CRDO is riding a fresh AI-networking sympathy bid from Amazon/Anthropic-related demand, but the move is already extended and the news is indirect rather than a company-specific hard catalyst.",
+          "trend_summary": "1d: +8.6%  1w: +29.9%  1m: +63.0%  3m: +15.6%  1yr: +371.4%"
+        },
+        {
+          "ticker": "AMAT",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Fresh partnership/newsflow with Advantest supports the semiconductor equipment theme, but it is not a hard revenue catalyst and AMAT\u2019s move is likely mostly priced in already.",
+          "trend_summary": "1d: -1.3%  1w: -1.0%  1m: +9.6%  3m: +19.8%  1yr: +183.2%"
+        },
+        {
+          "ticker": "KDP",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Fresh partnership extension with Nestl\u00e9/Starbucks K-Cup distribution is a real positive catalyst, but for a large-cap consumer name it looks like a modest incremental upside move rather than a 5%+ breakout from here.",
+          "trend_summary": "1d: -0.1%  1w: +1.8%  1m: -2.4%  3m: -3.3%  1yr: -25.3%"
+        },
+        {
+          "ticker": "TER",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh legal win for Teradyne Robotics is a real positive, but TER is a large-cap quality name and this IP injunction is a modest catalyst with limited same-day upside remaining.",
+          "trend_summary": "1d: -1.4%  1w: +1.4%  1m: +24.1%  3m: +64.5%  1yr: +426.3%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 24431.94,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28441.49,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 522.81,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -1797,6 +1979,12 @@
       "date": "2026-04-20",
       "portfolio_value": 28436.72,
       "qqq_indexed": 32698.75
+    },
+    {
+      "date": "2026-04-21",
+      "portfolio_value": 28441.49,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
