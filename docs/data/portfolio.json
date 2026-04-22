@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-21T14:30:50.568345",
+  "updated_at": "2026-04-22T09:44:04.576906",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1914,6 +1914,213 @@
       "session_return_usd": -202.95,
       "cash_uninvested": 522.81,
       "cash_balance_close": 28207.5
+    },
+    {
+      "date": "2026-04-22",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "GEV",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "GE Vernova delivered a clear beat-and-raise quarter with strong electrification/data-center demand and minimal Iran disruption, but after an 8% premarket gap much of the easy upside is already priced in.",
+          "trend_summary": "1d: +0.1%  1w: +0.4%  1m: +16.5%  3m: +44.7%  1yr: +195.0%",
+          "allocation_pct": 19.9,
+          "shares": 5,
+          "buy_price": 1121.176,
+          "buy_value": 5605.88,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRT",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Vertiv reported a fresh Q1 earnings beat with slightly raised revenue/guidance and remains in a strong multi-month AI infrastructure uptrend, though the move is likely partially priced in already.",
+          "trend_summary": "1d: -0.6%  1w: +0.6%  1m: +22.1%  3m: +78.4%  1yr: +300.6%",
+          "allocation_pct": 24.9,
+          "shares": 23,
+          "buy_price": 305.4165,
+          "buy_value": 7024.58,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "AGPU",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.5,
+          "reason": "Fresh 1h-old $260M, 36-month enterprise GPU contract is a real catalyst with meaningful remaining upside today, though the stock is already up on the week and month so some of the move is likely priced in.",
+          "trend_summary": "1d: +5.6%  1w: +40.6%  1m: +180.5%  3m: -18.5%  1yr: -63.5%",
+          "allocation_pct": 11.3,
+          "shares": 355,
+          "buy_price": 8.9825,
+          "buy_value": 3188.79,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "KYTX",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.5,
+          "reason": "Fresh positive Phase 2/3 trial data and an 8-K this morning create a real biotech catalyst, but the move is already partially priced in after the premarket spike and the stock is still highly volatile.",
+          "trend_summary": "1d: -13.7%  1w: +3.7%  1m: +22.3%  3m: +7.6%  1yr: +355.9%",
+          "allocation_pct": 8.6,
+          "shares": 259,
+          "buy_price": 9.3847,
+          "buy_value": 2430.64,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "UNH",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.0,
+          "reason": "UNH has a fresh earnings beat with raised guidance and a supportive analyst target hike, but the stock is already up 7% today so much of the initial reaction is likely priced in.",
+          "trend_summary": "1d: +7.0%  1w: +10.1%  1m: +25.6%  3m: +2.2%  1yr: -19.1%",
+          "allocation_pct": 24.9,
+          "shares": 20,
+          "buy_price": 351.987,
+          "buy_value": 7039.74,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "GOOG",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh AI-chip and cloud partnership news supports continued institutional interest in Alphabet, but as a mega-cap already in a strong multi-month uptrend the remaining intraday upside is likely modest rather than explosive.",
+          "trend_summary": "1d: -1.5%  1w: +-0.0%  1m: +10.6%  3m: +2.6%  1yr: +109.5%",
+          "allocation_pct": 18.9,
+          "shares": 16,
+          "buy_price": 333.9381,
+          "buy_value": 5343.01,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "INBX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh clinical update with interim CRC data and planned FDA meeting supports a real biotech catalyst, but the move is already partly priced in and volume confirmation is unavailable.",
+          "trend_summary": "1d: +2.1%  1w: +1.1%  1m: +38.0%  3m: +15.3%  1yr: +591.4%"
+        },
+        {
+          "ticker": "STX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Barclays\u2019 upgrade to Overweight with a large price-target raise is a fresh large-cap catalyst for STX, but the stock has already run hard over the past month and the move is likely partially priced in.",
+          "trend_summary": "1d: +3.7%  1w: +5.0%  1m: +36.2%  3m: +71.8%  1yr: +617.0%"
+        },
+        {
+          "ticker": "MKSI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Cantor\u2019s fresh $300 to $400 target raise and Overweight reiteration on MKSI is a real large-cap-style catalyst, but it\u2019s still just an analyst action with limited remaining upside from current levels.",
+          "trend_summary": "1d: -2.2%  1w: -0.1%  1m: +20.5%  3m: +30.0%  1yr: +303.1%"
+        },
+        {
+          "ticker": "ARM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "ARM is a quality large-cap momentum name with a fresh AI/CPU renaissance analyst tailwind and strong multi-timeframe uptrend, but the news is already 1 day old and the stock has largely digested it. ",
+          "trend_summary": "1d: +0.2%  1w: +8.9%  1m: +32.6%  3m: +63.7%  1yr: +66.9%"
+        },
+        {
+          "ticker": "CSCO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "CSCO is a quality large-cap in a strong multi-timeframe uptrend and is pressing toward a record close, but the move is modest and appears mostly technical rather than driven by a fresh, high-impact catalyst.",
+          "trend_summary": "1d: +2.3%  1w: +8.6%  1m: +15.5%  3m: +22.3%  1yr: +61.2%"
+        },
+        {
+          "ticker": "IBKR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "IBKR is getting a fresh pair of analyst upgrades and price-target raises this morning, which is a real but soft catalyst for a quality large-cap; upside remains, but the move is likely modest and partially priced in without earnings or guidance news.",
+          "trend_summary": "1d: -2.0%  1w: +3.3%  1m: +21.6%  3m: +11.3%  1yr: +96.9%"
+        },
+        {
+          "ticker": "CRDO",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "CRDO is still benefiting from the Amazon/Anthropic AI-networking tailwind, but the move is already partially priced in after a strong 1d/1m run and the only fresh item is a broad sector read-through rather than a company-specific hard catalyst.",
+          "trend_summary": "1d: +5.0%  1w: +14.9%  1m: +77.3%  3m: +19.6%  1yr: +352.8%"
+        },
+        {
+          "ticker": "META",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "META has a fresh UBS target raise and maintained Buy rating plus supportive AI-sector sentiment, but this is a soft catalyst and the move is likely mostly priced in already.",
+          "trend_summary": "1d: -0.3%  1w: +1.0%  1m: +12.7%  3m: +10.7%  1yr: +28.6%"
+        },
+        {
+          "ticker": "USAR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "USAR has a fresh M&A catalyst and a recent Canaccord target raise, but the stock is already heavily extended on the week/month and the standalone analyst action is mostly priced in.",
+          "trend_summary": "1d: +1.2%  1w: +34.5%  1m: +40.7%  3m: +19.0%  1yr: +110.0%"
+        },
+        {
+          "ticker": "MSTR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "MSTR is trading with the crypto complex on Bitcoin strength, but the move is mostly macro-driven and the prior-day price target raise is already largely priced in.",
+          "trend_summary": "1d: -4.0%  1w: +19.3%  1m: +20.9%  3m: +2.3%  1yr: -52.6%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 24454.68,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28240.12,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": -2392.52,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -1988,6 +2195,12 @@
       "date": "2026-04-21",
       "portfolio_value": 28238.54,
       "qqq_indexed": 32700.78
+    },
+    {
+      "date": "2026-04-22",
+      "portfolio_value": 28240.12,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
