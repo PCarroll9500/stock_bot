@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-22T09:44:04.576906",
+  "updated_at": "2026-04-22T14:30:51.005536",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -1932,9 +1932,10 @@
           "shares": 5,
           "buy_price": 1121.176,
           "buy_value": 5605.88,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 1107.13,
+          "day_return_pct": -1.253,
+          "day_return_usd": -70.23,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "VRT",
@@ -1948,9 +1949,10 @@
           "shares": 23,
           "buy_price": 305.4165,
           "buy_value": 7024.58,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 303.33,
+          "day_return_pct": -0.683,
+          "day_return_usd": -47.99,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "AGPU",
@@ -1964,9 +1966,10 @@
           "shares": 355,
           "buy_price": 8.9825,
           "buy_value": 3188.79,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 8.946,
+          "day_return_pct": -0.406,
+          "day_return_usd": -12.96,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "KYTX",
@@ -1980,9 +1983,10 @@
           "shares": 259,
           "buy_price": 9.3847,
           "buy_value": 2430.64,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 9.1746,
+          "day_return_pct": -2.239,
+          "day_return_usd": -54.42,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "UNH",
@@ -1996,9 +2000,9 @@
           "shares": 20,
           "buy_price": 351.987,
           "buy_value": 7039.74,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 352.41,
+          "day_return_pct": 0.12,
+          "day_return_usd": 8.46
         },
         {
           "ticker": "GOOG",
@@ -2012,9 +2016,9 @@
           "shares": 16,
           "buy_price": 333.9381,
           "buy_value": 5343.01,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 336.31,
+          "day_return_pct": 0.71,
+          "day_return_usd": 37.95
         }
       ],
       "runner_ups": [
@@ -2113,14 +2117,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 24454.68,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 24572.36,
+      "nasdaq_day_return_pct": 0.481,
       "portfolio_open_value": 28240.12,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28055.2,
+      "session_return_pct": -0.655,
+      "session_return_usd": -184.92,
       "cash_uninvested": -2392.52,
-      "cash_balance_close": null
+      "cash_balance_close": 28022.58
     }
   ],
   "equity_curve": [
@@ -2198,9 +2202,8 @@
     },
     {
       "date": "2026-04-22",
-      "portfolio_value": 28240.12,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28055.2,
+      "qqq_indexed": 33076.74
     }
   ]
 }
