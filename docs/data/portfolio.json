@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-23T09:43:48.411840",
+  "updated_at": "2026-04-23T14:30:51.482742",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -2160,9 +2160,10 @@
           "shares": 59,
           "buy_price": 49.331,
           "buy_value": 2910.53,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 49.82,
+          "day_return_pct": 0.991,
+          "day_return_usd": 28.85,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "CMCSA",
@@ -2176,9 +2177,9 @@
           "shares": 94,
           "buy_price": 31.1194,
           "buy_value": 2925.22,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 31.86,
+          "day_return_pct": 2.38,
+          "day_return_usd": 69.62
         },
         {
           "ticker": "HBAN",
@@ -2192,9 +2193,9 @@
           "shares": 174,
           "buy_price": 16.5501,
           "buy_value": 2879.72,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 16.59,
+          "day_return_pct": 0.241,
+          "day_return_usd": 6.94
         },
         {
           "ticker": "LHX",
@@ -2208,9 +2209,9 @@
           "shares": 8,
           "buy_price": 331.26,
           "buy_value": 2650.08,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 329.17,
+          "day_return_pct": -0.631,
+          "day_return_usd": -16.72
         },
         {
           "ticker": "MBLY",
@@ -2224,9 +2225,10 @@
           "shares": 97,
           "buy_price": 9.0178,
           "buy_value": 874.73,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 8.75,
+          "day_return_pct": -2.97,
+          "day_return_usd": -25.98,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "KDP",
@@ -2240,9 +2242,9 @@
           "shares": 82,
           "buy_price": 27.8387,
           "buy_value": 2282.77,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 28.5,
+          "day_return_pct": 2.375,
+          "day_return_usd": 54.23
         },
         {
           "ticker": "TAL",
@@ -2256,9 +2258,10 @@
           "shares": 199,
           "buy_price": 10.9046,
           "buy_value": 2170.02,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 10.63,
+          "day_return_pct": -2.518,
+          "day_return_usd": -54.65,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "GEV",
@@ -2272,9 +2275,9 @@
           "shares": 2,
           "buy_price": 1143.0,
           "buy_value": 2286.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 1162.24,
+          "day_return_pct": 1.683,
+          "day_return_usd": 38.48
         },
         {
           "ticker": "VLY",
@@ -2288,9 +2291,9 @@
           "shares": 169,
           "buy_price": 13.5393,
           "buy_value": 2288.14,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 13.7,
+          "day_return_pct": 1.187,
+          "day_return_usd": 27.16
         },
         {
           "ticker": "DELL",
@@ -2304,9 +2307,10 @@
           "shares": 9,
           "buy_price": 216.56,
           "buy_value": 1949.04,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 212.5,
+          "day_return_pct": -1.875,
+          "day_return_usd": -36.54,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "TZOO",
@@ -2320,9 +2324,10 @@
           "shares": 72,
           "buy_price": 10.3411,
           "buy_value": 744.56,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 10.0761,
+          "day_return_pct": -2.563,
+          "day_return_usd": -19.08,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "TLRY",
@@ -2336,9 +2341,10 @@
           "shares": 25,
           "buy_price": 8.27,
           "buy_value": 206.75,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 8.03,
+          "day_return_pct": -2.902,
+          "day_return_usd": -6.0,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -2437,14 +2443,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 24600.7,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 24455.7,
+      "nasdaq_day_return_pct": -0.589,
       "portfolio_open_value": 28056.8,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28123.55,
+      "session_return_pct": 0.238,
+      "session_return_usd": 66.75,
       "cash_uninvested": 102.73,
-      "cash_balance_close": null
+      "cash_balance_close": 28089.33
     }
   ],
   "equity_curve": [
@@ -2527,9 +2533,8 @@
     },
     {
       "date": "2026-04-23",
-      "portfolio_value": 28056.8,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28123.55,
+      "qqq_indexed": 32946.19
     }
   ]
 }
