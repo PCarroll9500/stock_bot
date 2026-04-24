@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-23T14:30:51.482742",
+  "updated_at": "2026-04-24T09:42:57.254723",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -2451,6 +2451,241 @@
       "session_return_usd": 66.75,
       "cash_uninvested": 102.73,
       "cash_balance_close": 28089.33
+    },
+    {
+      "date": "2026-04-24",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "MXL",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.2,
+          "reason": "Fresh Q1 earnings beat with much higher guidance plus multiple analyst upgrades/target raises today support continued momentum, though the stock is already heavily extended on the week and year so upside is likely limited to a few more percent.",
+          "trend_summary": "1d: +1.1%  1w: +46.7%  1m: +94.2%  3m: +76.7%  1yr: +237.8%",
+          "allocation_pct": 4.3,
+          "shares": 21,
+          "buy_price": 57.66,
+          "buy_value": 1210.86,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "EW",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "EW has a fresh earnings beat with raised full-year guidance and multiple premarket analyst target nudges, but as a large-cap the move is likely mostly underway and remaining upside today looks modest rather than explosive.",
+          "trend_summary": "1d: -2.2%  1w: +0.8%  1m: -2.4%  3m: -5.6%  1yr: +4.8%",
+          "allocation_pct": 14.5,
+          "shares": 48,
+          "buy_price": 84.7213,
+          "buy_value": 4066.62,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NOK",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh earnings-driven re-rating with raised guidance, margin beat, and strong AI/data-center demand keeps momentum intact, though the stock has already moved and upside is likely modest from here today.",
+          "trend_summary": "1d: +4.8%  1w: +0.4%  1m: +25.2%  3m: +58.9%  1yr: +107.0%",
+          "allocation_pct": 14.8,
+          "shares": 388,
+          "buy_price": 10.7426,
+          "buy_value": 4168.13,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "META",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh AWS Graviton expansion into Meta is a real large-cap AI infrastructure catalyst, but with Meta already a quality mega-cap and the news just hitting premarket, the remaining upside today looks modest rather than explosive.",
+          "trend_summary": "1d: -2.3%  1w: -2.6%  1m: +11.2%  3m: +1.8%  1yr: +20.4%",
+          "allocation_pct": 9.4,
+          "shares": 4,
+          "buy_price": 660.47,
+          "buy_value": 2641.88,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BKR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Baker Hughes posted a clean Q1 earnings and revenue beat with industrial/energy technology growth, and as a large-cap quality name the fresh results can still support modest continuation today despite the move already being partially priced in.",
+          "trend_summary": "1d: +3.1%  1w: +6.4%  1m: +1.6%  3m: +18.4%  1yr: +76.9%",
+          "allocation_pct": 11.3,
+          "shares": 47,
+          "buy_price": 67.5521,
+          "buy_value": 3174.95,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "FLG",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh 1Q earnings release from Flagstar Bank shows a modest beat and the stock remains in a constructive multi-month uptrend, but without volume confirmation the remaining upside looks limited rather than explosive.",
+          "trend_summary": "1d: +0.8%  1w: +0.7%  1m: +9.2%  3m: +8.1%  1yr: +22.3%",
+          "allocation_pct": 11.7,
+          "shares": 223,
+          "buy_price": 14.8026,
+          "buy_value": 3300.98,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "GEV",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "GE Vernova has a fresh post-earnings upgrade wave after a strong beat and raised guidance, but the stock has already run hard and the standalone analyst target hikes are likely partly priced in.",
+          "trend_summary": "1d: +1.9%  1w: +17.5%  1m: +26.4%  3m: +73.7%  1yr: +208.7%",
+          "allocation_pct": 8.2,
+          "shares": 2,
+          "buy_price": 1152.5,
+          "buy_value": 2305.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "PG",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "P&G delivered a solid earnings beat with broad-based organic sales growth, but the move is already partially priced in and management only guided to the low end of outlook, limiting remaining upside today.",
+          "trend_summary": "1d: +2.0%  1w: +1.8%  1m: +1.8%  3m: -2.8%  1yr: -9.5%",
+          "allocation_pct": 10.7,
+          "shares": 20,
+          "buy_price": 150.2415,
+          "buy_value": 3004.83,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CMCSA",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh earnings beat with improving broadband trends and Peacock strength is driving a quality large-cap momentum move, though the stock is already up 7%+ so most of the easy upside is likely in.",
+          "trend_summary": "1d: +7.7%  1w: +7.8%  1m: +8.3%  3m: +8.2%  1yr: -0.4%",
+          "allocation_pct": 11.1,
+          "shares": 103,
+          "buy_price": 30.1996,
+          "buy_value": 3110.56,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "STM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh earnings-driven upside remains after a strong quarter and raised sales outlook, but the stock is already up 10%+ today and the move is partly priced in.",
+          "trend_summary": "1d: +10.8%  1w: +19.6%  1m: +55.6%  3m: +71.2%  1yr: +113.5%",
+          "allocation_pct": 3.1,
+          "shares": 17,
+          "buy_price": 50.7871,
+          "buy_value": 863.38,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "NXPI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "NXPI is benefiting from the broad semiconductor sympathy move after Texas Instruments\u2019 strong outlook, but the catalyst is indirect and the stock is already up sharply over the past week, limiting fresh upside today.",
+          "trend_summary": "1d: +6.8%  1w: +12.8%  1m: +22.8%  3m: +1.9%  1yr: +24.6%"
+        },
+        {
+          "ticker": "OKLO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Oklo has a fresh Nvidia/Los Alamos partnership plus a recent HSBC Buy/target raise, but the move is already partially priced in after a 5.6% day and the catalyst is more narrative than hard revenue.",
+          "trend_summary": "1d: +5.6%  1w: +19.1%  1m: +39.1%  3m: -15.9%  1yr: +222.1%"
+        },
+        {
+          "ticker": "ONDS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "ONDS has a fresh merger-closing catalyst announced today, but the concurrent equity issuance and its speculative small-cap profile make the move prone to dilution-driven fade after the initial pop.",
+          "trend_summary": "1d: -4.7%  1w: +3.3%  1m: -1.3%  3m: -16.5%  1yr: +1373.9%"
+        },
+        {
+          "ticker": "LHX",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "The $1B Department of War investment in the missile solutions business is a real defense catalyst, but it was announced yesterday and LHX is already a mature large-cap with limited remaining intraday upside after the initial reaction.",
+          "trend_summary": "1d: -0.4%  1w: -6.6%  1m: -6.0%  3m: -7.2%  1yr: +52.8%"
+        },
+        {
+          "ticker": "SOUN",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "The Casey\u2019s partnership expansion is a real commercial catalyst for SOUN, but it\u2019s already 1 day old, analyst items are soft, and the stock has likely partially priced it in with limited same-day upside left.",
+          "trend_summary": "1d: -4.9%  1w: +1.6%  1m: +23.0%  3m: -28.3%  1yr: -17.9%"
+        },
+        {
+          "ticker": "HBAN",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "HBAN has a fresh earnings-related catalyst with a $3B buyback and steady dividend, but the move is already mostly reflected and this looks like modest residual upside rather than a 5%+ day-trade setup.",
+          "trend_summary": "1d: +0.1%  1w: +1.6%  1m: +8.7%  3m: -4.6%  1yr: +16.9%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 24617.43,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28125.14,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 277.95,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -2535,6 +2770,12 @@
       "date": "2026-04-23",
       "portfolio_value": 28123.55,
       "qqq_indexed": 32946.19
+    },
+    {
+      "date": "2026-04-24",
+      "portfolio_value": 28125.14,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
