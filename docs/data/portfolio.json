@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-27T09:40:23.595201",
+  "updated_at": "2026-04-27T14:30:51.033591",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -2708,9 +2708,10 @@
           "shares": 39,
           "buy_price": 86.6777,
           "buy_value": 3380.43,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 86.35,
+          "day_return_pct": -0.378,
+          "day_return_usd": -12.78,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "RMAX",
@@ -2724,9 +2725,10 @@
           "shares": 392,
           "buy_price": 9.897,
           "buy_value": 3879.62,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 9.7217,
+          "day_return_pct": -1.771,
+          "day_return_usd": -68.72,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "OGN",
@@ -2740,9 +2742,9 @@
           "shares": 284,
           "buy_price": 13.1999,
           "buy_value": 3748.77,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 13.17,
+          "day_return_pct": -0.227,
+          "day_return_usd": -8.49
         },
         {
           "ticker": "SHEL",
@@ -2756,9 +2758,10 @@
           "shares": 155,
           "buy_price": 89.11,
           "buy_value": 13812.05,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 86.29,
+          "day_return_pct": -3.165,
+          "day_return_usd": -437.1,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "CORZ",
@@ -2772,9 +2775,9 @@
           "shares": 136,
           "buy_price": 21.2479,
           "buy_value": 2889.71,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 21.0,
+          "day_return_pct": -1.167,
+          "day_return_usd": -33.71
         }
       ],
       "runner_ups": [
@@ -2864,14 +2867,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 24796.67,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 24881.42,
+      "nasdaq_day_return_pct": 0.342,
       "portfolio_open_value": 27804.17,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 27170.07,
+      "session_return_pct": -2.281,
+      "session_return_usd": -634.1,
       "cash_uninvested": 93.59,
-      "cash_balance_close": null
+      "cash_balance_close": 27132.7
     }
   ],
   "equity_curve": [
@@ -2964,9 +2967,8 @@
     },
     {
       "date": "2026-04-27",
-      "portfolio_value": 27804.17,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 27170.07,
+      "qqq_indexed": 33598.42
     }
   ]
 }
