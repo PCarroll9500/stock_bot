@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-27T14:30:51.033591",
+  "updated_at": "2026-04-28T09:41:55.248364",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -2875,6 +2875,125 @@
       "session_return_usd": -634.1,
       "cash_uninvested": 93.59,
       "cash_balance_close": 27132.7
+    },
+    {
+      "date": "2026-04-28",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "CNC",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Centene delivered a strong Q1 earnings beat and raised full-year EPS/revenue guidance this morning, and with the stock only up modestly the catalyst still has room to work today despite some pricing-in risk.",
+          "trend_summary": "1d: +4.0%  1w: +13.5%  1m: +29.6%  3m: -6.0%  1yr: -26.6%",
+          "allocation_pct": 34.6,
+          "shares": 208,
+          "buy_price": 45.16,
+          "buy_value": 9393.28,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "AMKR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Needham\u2019s buy reiteration and $65 to $90 target raise plus the fresh buyback/earnings release support modest continuation, but this is a standalone analyst-action catalyst and much of the move is likely already priced in.",
+          "trend_summary": "1d: -3.2%  1w: +8.9%  1m: +67.5%  3m: +50.1%  1yr: +344.3%",
+          "allocation_pct": 21.5,
+          "shares": 81,
+          "buy_price": 72.243,
+          "buy_value": 5851.68,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "WDC",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Western Digital has a fresh large-cap momentum catalyst from BofA reiterating Buy and lifting its target to $495 ahead of earnings, but the move is already extended and likely offers only modest additional upside today.",
+          "trend_summary": "1d: -0.8%  1w: +7.1%  1m: +46.6%  3m: +66.4%  1yr: +886.5%",
+          "allocation_pct": 18.5,
+          "shares": 13,
+          "buy_price": 386.65,
+          "buy_value": 5026.45,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BP",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "BP\u2019s Q1 profit beat on stronger oil trading is a fresh, real catalyst, but the stock is only modestly higher and this looks like a large-cap session move with limited remaining upside from current levels.",
+          "trend_summary": "1d: -0.6%  1w: +1.9%  1m: -0.4%  3m: +25.1%  1yr: +63.8%",
+          "allocation_pct": 20.3,
+          "shares": 119,
+          "buy_price": 46.3072,
+          "buy_value": 5510.56,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.0,
+          "reason": "Oracle\u2019s Project Jupiter deal is a real multi-gigawatt fuel-cell catalyst for Bloom Energy, but it broke after-hours yesterday and the stock is already extended, so remaining upside today looks limited.",
+          "trend_summary": "1d: +1.5%  1w: +7.5%  1m: +75.8%  3m: +68.1%  1yr: +1141.0%",
+          "allocation_pct": 4.3,
+          "shares": 5,
+          "buy_price": 232.0,
+          "buy_value": 1160.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "VRT",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Vertiv\u2019s acquisition of Strategic Thermal Labs is a real but modest strategic catalyst for liquid-cooling capability, yet it\u2019s already 1 day old and VRT\u2019s strong multi-month run suggests limited remaining upside today.",
+          "trend_summary": "1d: -0.3%  1w: +2.6%  1m: +27.7%  3m: +77.9%  1yr: +274.1%"
+        },
+        {
+          "ticker": "ON",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "ON has a fresh strategic EV partnership expansion with Geely, but it\u2019s a quality large-cap already extended on strong multi-timeframe gains and the move looks mostly incremental rather than a fresh breakout catalyst.",
+          "trend_summary": "1d: -0.4%  1w: +14.6%  1m: +61.1%  3m: +60.4%  1yr: +152.3%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 24679.53,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27174.78,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 232.81,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -2969,6 +3088,12 @@
       "date": "2026-04-27",
       "portfolio_value": 27170.07,
       "qqq_indexed": 33598.42
+    },
+    {
+      "date": "2026-04-28",
+      "portfolio_value": 27174.78,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
