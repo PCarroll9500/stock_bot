@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-29T09:46:38.987483",
+  "updated_at": "2026-04-29T14:30:51.565143",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -3015,9 +3015,10 @@
           "shares": 5,
           "buy_price": 689.66,
           "buy_value": 3448.3,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 663.54,
+          "day_return_pct": -3.787,
+          "day_return_usd": -130.6,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "SIMO",
@@ -3031,9 +3032,10 @@
           "shares": 17,
           "buy_price": 195.02,
           "buy_value": 3315.34,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 193.0,
+          "day_return_pct": -1.036,
+          "day_return_usd": -34.34,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "BE",
@@ -3047,9 +3049,10 @@
           "shares": 12,
           "buy_price": 274.18,
           "buy_value": 3290.16,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 275.55,
+          "day_return_pct": 0.5,
+          "day_return_usd": 16.44,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "AVT",
@@ -3063,9 +3066,10 @@
           "shares": 41,
           "buy_price": 79.8488,
           "buy_value": 3273.8,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 79.33,
+          "day_return_pct": -0.65,
+          "day_return_usd": -21.27,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "CSTM",
@@ -3079,9 +3083,10 @@
           "shares": 112,
           "buy_price": 33.2415,
           "buy_value": 3723.05,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 32.41,
+          "day_return_pct": -2.501,
+          "day_return_usd": -93.13,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "WDC",
@@ -3095,9 +3100,10 @@
           "shares": 6,
           "buy_price": 437.57,
           "buy_value": 2625.42,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 422.81,
+          "day_return_pct": -3.373,
+          "day_return_usd": -88.56,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "NXPI",
@@ -3111,9 +3117,9 @@
           "shares": 2,
           "buy_price": 284.68,
           "buy_value": 569.36,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 290.62,
+          "day_return_pct": 2.087,
+          "day_return_usd": 11.88
         },
         {
           "ticker": "NEO",
@@ -3127,9 +3133,10 @@
           "shares": 106,
           "buy_price": 9.5444,
           "buy_value": 1011.71,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 9.42,
+          "day_return_pct": -1.303,
+          "day_return_usd": -13.19,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "HAL",
@@ -3143,9 +3150,9 @@
           "shares": 65,
           "buy_price": 41.1385,
           "buy_value": 2674.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 41.44,
+          "day_return_pct": 0.733,
+          "day_return_usd": 19.6
         },
         {
           "ticker": "CNC",
@@ -3159,9 +3166,10 @@
           "shares": 19,
           "buy_price": 53.3953,
           "buy_value": 1014.51,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 52.7,
+          "day_return_pct": -1.302,
+          "day_return_usd": -13.21,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "MDLZ",
@@ -3175,9 +3183,9 @@
           "shares": 43,
           "buy_price": 61.3628,
           "buy_value": 2638.6,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 61.19,
+          "day_return_pct": -0.282,
+          "day_return_usd": -7.43
         }
       ],
       "runner_ups": [
@@ -3273,17 +3281,17 @@
         }
       ],
       "qqq_buy_price": 657.45,
-      "qqq_close_price": null,
-      "qqq_day_return_pct": null,
+      "qqq_close_price": 658.41,
+      "qqq_day_return_pct": 0.146,
       "nasdaq_buy_price": 24582.44,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 24566.67,
+      "nasdaq_day_return_pct": -0.064,
       "portfolio_open_value": 27970.46,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 27578.6,
+      "session_return_pct": -1.401,
+      "session_return_usd": -391.86,
       "cash_uninvested": 386.21,
-      "cash_balance_close": null
+      "cash_balance_close": 27534.97
     }
   ],
   "equity_curve": [
@@ -3386,9 +3394,8 @@
     },
     {
       "date": "2026-04-29",
-      "portfolio_value": 27970.46,
-      "qqq_indexed": 33266.99,
-      "nasdaq_indexed": null
+      "portfolio_value": 27578.6,
+      "qqq_indexed": 33315.57
     }
   ]
 }
