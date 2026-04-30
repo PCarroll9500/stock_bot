@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-29T14:30:51.565143",
+  "updated_at": "2026-04-30T09:43:35.809844",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -3292,6 +3292,105 @@
       "session_return_usd": -391.86,
       "cash_uninvested": 386.21,
       "cash_balance_close": 27534.97
+    },
+    {
+      "date": "2026-04-30",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "STX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "STX has a fresh earnings-and-guidance catalyst plus a major $1,000 target raise, but after an 11% day and a huge multi-month run most of the easy upside is likely already priced in.",
+          "trend_summary": "1d: +11.1%  1w: +10.9%  1m: +77.5%  3m: +45.2%  1yr: +614.7%"
+        },
+        {
+          "ticker": "KLAC",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "KLAC has a fresh earnings catalyst with strong revenue growth and leadership in leading-edge foundry/HBM, but the move is modest and likely mostly priced in after the pre-market reaction.",
+          "trend_summary": "1d: +0.4%  1w: +0.2%  1m: +31.4%  3m: +11.6%  1yr: +168.5%"
+        },
+        {
+          "ticker": "VIAV",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "VIAV has a fresh earnings beat with strong after-hours reaction, but the stock already gapped up and much of the move is likely priced in, leaving moderate additional upside today.",
+          "trend_summary": "1d: +5.5%  1w: +2.8%  1m: +43.1%  3m: +116.5%  1yr: +327.5%"
+        },
+        {
+          "ticker": "WDC",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Western Digital has a fresh earnings catalyst today and is already in a strong multi-month AI/storage uptrend, but the move is partly priced in after a 5.6% gain and upside from current levels looks more like a continued grind than a breakout.",
+          "trend_summary": "1d: +5.6%  1w: +6.1%  1m: +64.0%  3m: +47.6%  1yr: +839.2%"
+        },
+        {
+          "ticker": "UMC",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh Q1 earnings double-beat with record 22nm revenue and positive demand commentary keeps UMC in a quality large-cap momentum setup, though the stock has already run 9.3% today so much of the move is partly priced in.",
+          "trend_summary": "1d: +9.3%  1w: +0.3%  1m: +48.1%  3m: +12.0%  1yr: +81.9%"
+        },
+        {
+          "ticker": "DELL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Dell has a fresh AI-infrastructure narrative plus a new Street-high price target, but this is a soft catalyst and the stock is already in a strong multi-month uptrend, limiting same-day upside.",
+          "trend_summary": "1d: -0.1%  1w: -4.2%  1m: +24.9%  3m: +75.3%  1yr: +123.7%"
+        },
+        {
+          "ticker": "ASX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "ASE Technology\u2019s Q1 results were in-line with EPS and showed strong revenue growth, but the stock is already extended on a huge multi-month run and today\u2019s move looks mostly priced in with limited remaining upside.",
+          "trend_summary": "1d: +1.7%  1w: +2.1%  1m: +46.4%  3m: +51.0%  1yr: +251.6%"
+        },
+        {
+          "ticker": "TER",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Teradyne posted record Q1 results with AI-driven demand and new test platforms, but the stock already sold off hard on softer margin guidance so remaining upside today looks limited and choppy.",
+          "trend_summary": "1d: -19.4%  1w: -20.5%  1m: +10.8%  3m: +22.3%  1yr: +315.2%"
+        },
+        {
+          "ticker": "MRAM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "MRAM has a fresh $40M mil-aero agreement that can support a continuation bounce today, but the stock already reacted to earnings with weak revenue/outlook and the move is likely partly priced in.",
+          "trend_summary": "1d: +3.5%  1w: +2.0%  1m: +61.6%  3m: +0.6%  1yr: +122.8%"
+        },
+        {
+          "ticker": "MO",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "MO has a fresh Q1 earnings beat and reaffirmed FY2026 guidance, but as a large-cap defensive name with only a modest move and no volume confirmation, most of the catalyst is likely already priced in.",
+          "trend_summary": "1d: +0.6%  1w: +4.6%  1m: +1.8%  3m: +8.0%  1yr: +15.0%"
+        }
+      ],
+      "portfolio_open_value": 27580.08
     }
   ],
   "equity_curve": [
