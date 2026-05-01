@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-04-30T09:43:35.809844",
+  "updated_at": "2026-05-01T09:42:50.528406",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -3391,6 +3391,225 @@
         }
       ],
       "portfolio_open_value": 27580.08
+    },
+    {
+      "date": "2026-05-01",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "EL",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Estee Lauder\u2019s fresh earnings/outlook raise plus larger-than-expected restructuring savings is a real large-cap catalyst, and the 11% premarket move suggests some upside may still remain though much is already priced in.",
+          "trend_summary": "1d: +1.3%  1w: +0.4%  1m: +6.9%  3m: -33.4%  1yr: +29.2%",
+          "allocation_pct": 15.5,
+          "shares": 53,
+          "buy_price": 80.5798,
+          "buy_value": 4270.73,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ALHC",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.2,
+          "reason": "ALHC has a fresh after-hours guidance raise plus FY/2Q revenue and membership outlook increases, which supports some continuation today, though the move is likely partly priced in after the 3.8% run and no volume confirmation is available.",
+          "trend_summary": "1d: +3.8%  1w: +8.2%  1m: +27.9%  3m: +0.2%  1yr: +45.1%",
+          "allocation_pct": 11.8,
+          "shares": 176,
+          "buy_price": 18.519,
+          "buy_value": 3259.34,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TEAM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.0,
+          "reason": "Atlassian has a fresh earnings-driven gap higher with a BTIG target raise and buy reiteration, and the move still looks early enough for modest additional upside today despite the already-large premarket gain.",
+          "trend_summary": "1d: -2.7%  1w: +1.4%  1m: +0.5%  3m: -43.0%  1yr: -67.1%",
+          "allocation_pct": 13.3,
+          "shares": 43,
+          "buy_price": 85.4091,
+          "buy_value": 3672.59,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TWLO",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.0,
+          "reason": "Twilio has a fresh raised FY outlook plus multiple analyst target hikes this morning, supporting continued upside, though the move is already partially priced in after the premarket surge.",
+          "trend_summary": "1d: +5.1%  1w: +4.6%  1m: +17.7%  3m: +19.7%  1yr: +47.9%",
+          "allocation_pct": 12.1,
+          "shares": 19,
+          "buy_price": 175.0695,
+          "buy_value": 3326.32,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CAT",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "CAT has a fresh earnings beat plus raised guidance and a major analyst target hike, but after a 9.9% one-day move much of the upside is already priced in, leaving only modest additional session upside.",
+          "trend_summary": "1d: +9.9%  1w: +6.6%  1m: +25.6%  3m: +33.8%  1yr: +175.0%",
+          "allocation_pct": 13.1,
+          "shares": 4,
+          "buy_price": 903.43,
+          "buy_value": 3613.72,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "LHX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh earnings beat with raised full-year outlook and defense-demand tailwinds support continued institutional buying, though the move is already partly priced in and upside from here is likely modest.",
+          "trend_summary": "1d: -0.3%  1w: -2.9%  1m: -7.1%  3m: -10.0%  1yr: +45.9%",
+          "allocation_pct": 11.5,
+          "shares": 10,
+          "buy_price": 318.05,
+          "buy_value": 3180.5,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ZETA",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Zeta Global\u2019s raised full-year and Q2 revenue guidance is a fresh earnings catalyst, but with the stock already up 3.4% today and the news 16\u201317 hours old, most of the move is likely partly priced in.",
+          "trend_summary": "1d: +3.4%  1w: +7.8%  1m: +15.7%  3m: -5.4%  1yr: +34.6%",
+          "allocation_pct": 13.1,
+          "shares": 194,
+          "buy_price": 18.6951,
+          "buy_value": 3626.85,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NBIS",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh acquisition of Eigen AI is a real AI-infrastructure catalyst for NBIS, but the stock has already been strong over the last month and the move may be partially priced in without volume confirmation.",
+          "trend_summary": "1d: -2.1%  1w: -12.0%  1m: +33.2%  3m: +45.6%  1yr: +444.2%",
+          "allocation_pct": 3.7,
+          "shares": 7,
+          "buy_price": 146.1286,
+          "buy_value": 1022.9,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ARDX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh post-earnings guidance/revenue update for Ardelyx is a real catalyst, but the stock is already up 5.3% today and the move may be partially priced in by the open.",
+          "trend_summary": "1d: +5.3%  1w: +6.2%  1m: +5.7%  3m: -19.4%  1yr: +53.3%",
+          "allocation_pct": 4.7,
+          "shares": 209,
+          "buy_price": 6.2389,
+          "buy_value": 1303.93,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "TMC",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "NOAA full-compliance on TMC\u2019s deep-seabed mining application is a fresh regulatory milestone that can extend today\u2019s squeeze, but the stock is already up 6.5% and the move is still highly speculative.",
+          "trend_summary": "1d: +6.5%  1w: +0.0%  1m: +12.2%  3m: -30.2%  1yr: +75.8%"
+        },
+        {
+          "ticker": "BMY",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh Q1 earnings beat with higher sales and profit is supporting a modest continuation move, but the upside looks partly priced in after yesterday\u2019s 5%+ jump and mixed growth-portfolio details.",
+          "trend_summary": "1d: +5.2%  1w: +2.7%  1m: -0.1%  3m: +11.6%  1yr: +19.8%"
+        },
+        {
+          "ticker": "FIVN",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.2,
+          "reason": "Five9\u2019s Q1 earnings are fresh and the stock is still only modestly up on the day, but the only additional catalyst is a standalone Needham target maintenance, which limits remaining upside.",
+          "trend_summary": "1d: +0.9%  1w: +11.3%  1m: +13.4%  3m: -3.3%  1yr: -30.7%"
+        },
+        {
+          "ticker": "TWO",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Two Harbors has a fresh merger-arbitrage catalyst with the amended $11.30 cash bid, but the news is already 2 days old and the remaining upside from current price looks limited.",
+          "trend_summary": "1d: +0.1%  1w: +5.2%  1m: +1.3%  3m: -12.9%  1yr: -2.5%"
+        },
+        {
+          "ticker": "DELL",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "Dell has a fresh AI-infrastructure partnership headline and a strong multi-month uptrend, but the news is modest and likely only supports limited additional upside today.",
+          "trend_summary": "1d: +1.6%  1w: -1.5%  1m: +27.3%  3m: +76.3%  1yr: +120.9%"
+        },
+        {
+          "ticker": "NVO",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh FDA-related semaglutide news and expanded access support the GLP-1 narrative, but NVO is a large-cap and the stock already moved 4.8% today so most of the easy upside is likely in.",
+          "trend_summary": "1d: +4.8%  1w: +9.6%  1m: +14.9%  3m: -28.8%  1yr: -39.0%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25065.71,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27581.64,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 304.76,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -3495,6 +3714,12 @@
       "date": "2026-04-29",
       "portfolio_value": 27578.6,
       "qqq_indexed": 33315.57
+    },
+    {
+      "date": "2026-05-01",
+      "portfolio_value": 27581.64,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
