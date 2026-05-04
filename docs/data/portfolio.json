@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-01T14:30:50.377247",
+  "updated_at": "2026-05-04T09:43:46.772176",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -3616,6 +3616,261 @@
       "session_return_usd": -46.22,
       "cash_uninvested": 304.76,
       "cash_balance_close": 27488.74
+    },
+    {
+      "date": "2026-05-04",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "EBAY",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 4.5,
+          "reason": "Fresh unsolicited $56B acquisition offer at a ~20% premium is a real takeover catalyst, and with the stock only up about 8% premarket there is still meaningful session upside if the bid is taken seriously.",
+          "trend_summary": "1d: +0.6%  1w: +6.3%  1m: +11.7%  3m: +14.1%  1yr: +48.0%",
+          "allocation_pct": 17.7,
+          "shares": 44,
+          "buy_price": 110.6766,
+          "buy_value": 4869.77,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "HESM",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh 1Q earnings plus FY26 free cash flow guidance raise is a real catalyst for this large-cap midstream name, but with no volume confirmation and the move likely partially priced in, upside looks steady rather than explosive.",
+          "trend_summary": "1d: -2.5%  1w: +2.1%  1m: +0.0%  3m: +7.5%  1yr: +3.4%",
+          "allocation_pct": 18.6,
+          "shares": 133,
+          "buy_price": 38.5452,
+          "buy_value": 5126.51,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CLNN",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.5,
+          "reason": "Fresh FDA meeting/news flow confirming an accelerated-approval NDA path for CNM-Au8 is a real biotech catalyst, but CLNN is already extended on strong multi-timeframe gains so upside is likely meaningful but not huge from here today.",
+          "trend_summary": "1d: -0.3%  1w: +3.9%  1m: +25.6%  3m: +50.1%  1yr: +111.0%",
+          "allocation_pct": 5.4,
+          "shares": 218,
+          "buy_price": 6.8674,
+          "buy_value": 1497.09,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "PLTR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.2,
+          "reason": "Palantir reports earnings this afternoon with very high expectations and strong projected revenue growth, so the catalyst is real but much of the move is likely already priced in ahead of the print.",
+          "trend_summary": "1d: +3.6%  1w: +0.7%  1m: -1.7%  3m: -1.7%  1yr: +16.4%",
+          "allocation_pct": 14.1,
+          "shares": 26,
+          "buy_price": 149.3285,
+          "buy_value": 3882.54,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CRCL",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.8,
+          "reason": "Fresh crypto-policy and Bitcoin breakout news is driving CRCL with strong sector momentum, but the stock is already up 9.7% today so much of the move is partly priced in.",
+          "trend_summary": "1d: +9.7%  1w: +0.0%  1m: +9.9%  3m: +56.0%  1yr: +19.8%",
+          "allocation_pct": 4.0,
+          "shares": 10,
+          "buy_price": 110.012,
+          "buy_value": 1100.12,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TSM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "TSMC is reacting to a fresh broad semiconductor/AI sentiment lift and is on track for its biggest daily gain in over a year, but with the move already underway the remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: +0.4%  1w: -1.2%  1m: +16.5%  3m: +20.3%  1yr: +125.4%",
+          "allocation_pct": 11.8,
+          "shares": 8,
+          "buy_price": 406.15,
+          "buy_value": 3249.2,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "AMAT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Applied Materials has a fresh strategic acquisition of NEXX that expands its advanced packaging portfolio, but as a large-cap the move is likely mostly priced in and upside today looks modest rather than explosive.",
+          "trend_summary": "1d: -1.4%  1w: -6.7%  1m: +10.0%  3m: +20.7%  1yr: +151.7%",
+          "allocation_pct": 12.8,
+          "shares": 9,
+          "buy_price": 391.75,
+          "buy_value": 3525.75,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "STM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh Dow Jones coverage highlights accelerating LEO-related revenue and a large 2026 spending opportunity, supporting continued institutional interest, though STM is already in a strong multi-month uptrend so upside today is likely modest.",
+          "trend_summary": "1d: +1.1%  1w: +10.5%  1m: +61.5%  3m: +99.9%  1yr: +142.7%",
+          "allocation_pct": 13.8,
+          "shares": 68,
+          "buy_price": 56.0601,
+          "buy_value": 3812.09,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "RDDT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.8,
+          "reason": "RDDT is still trading on a fresh beat-and-raise with strong ad growth and AI tailwinds, but the 13% one-day move and 2-day-old analyst upgrades mean much of the easy upside is already priced in.",
+          "trend_summary": "1d: +13.1%  1w: +7.5%  1m: +22.2%  3m: -7.6%  1yr: +43.1%",
+          "allocation_pct": 3.1,
+          "shares": 5,
+          "buy_price": 173.37,
+          "buy_value": 866.85,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "GBTG",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 1.2,
+          "reason": "GBTG has a fresh all-cash take-private merger at $9.50/share, but after a 58% premarket jump most of the premium is already priced in and remaining upside is limited to a small drift toward deal value.",
+          "trend_summary": "1d: +1.2%  1w: +3.5%  1m: +6.8%  3m: -13.4%  1yr: -13.9%"
+        },
+        {
+          "ticker": "SNDK",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh post-earnings momentum and AI-memory narrative remain supportive, but the stock is already extended after a huge multi-day run so most of the easy upside is likely behind it.",
+          "trend_summary": "1d: +8.3%  1w: +19.9%  1m: +71.4%  3m: +106.0%  1yr: +3329.6%"
+        },
+        {
+          "ticker": "RLYB",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh merger-termination/breakup-fee news is driving a premarket spike, but the stock is already up sharply and this kind of one-time catalyst often fades after the open.",
+          "trend_summary": "1d: +4.8%  1w: +9.0%  1m: +12.0%  3m: +83.2%  1yr: +267.0%"
+        },
+        {
+          "ticker": "NVO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh market talk that oral Wegovy is outperforming Lilly\u2019s rival supports the obesity franchise, but this is a quality large-cap already up on the week so remaining upside today looks modest.",
+          "trend_summary": "1d: +3.9%  1w: +6.6%  1m: +20.3%  3m: -26.2%  1yr: -36.5%"
+        },
+        {
+          "ticker": "IONQ",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh commercial InSAR launch is a real product catalyst, but IONQ is already extended on a strong multi-month run and the only other news is a standalone price-target maintenance, so upside today looks modest rather than explosive.",
+          "trend_summary": "1d: +2.4%  1w: +8.2%  1m: +66.2%  3m: +15.6%  1yr: +54.9%"
+        },
+        {
+          "ticker": "META",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Meta has a fresh premarket catalyst from the EDP Renewables power-purchase agreement supporting its AI/data-center energy buildout, but it is a soft operational news item rather than a major earnings or guidance event so upside today looks limited.",
+          "trend_summary": "1d: -0.5%  1w: -9.8%  1m: +5.1%  3m: -15.0%  1yr: +1.6%"
+        },
+        {
+          "ticker": "DAL",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "DAL is benefiting from the Spirit shutdown/bailout fallout as a quality large-cap airline, but the move is modest and the catalyst is already 2 days old so most of the easy upside is likely in.",
+          "trend_summary": "1d: +1.5%  1w: +0.8%  1m: +2.0%  3m: +4.7%  1yr: +51.6%"
+        },
+        {
+          "ticker": "MSTR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.0,
+          "reason": "MSTR is catching a fresh crypto-beta bid on Bitcoin\u2019s move above $80k, but the rally is broad sector sympathy rather than a company-specific catalyst and the 7% preexisting move limits remaining upside.",
+          "trend_summary": "1d: +7.1%  1w: +3.6%  1m: +44.3%  3m: +18.3%  1yr: -54.2%"
+        },
+        {
+          "ticker": "OWL",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "OWL has a fresh acquisition/strategic partnership catalyst that supports modest continuation, but the move is already partly priced in and the news is more incremental than explosive.",
+          "trend_summary": "1d: +2.4%  1w: +8.7%  1m: +14.6%  3m: -26.8%  1yr: -45.9%"
+        },
+        {
+          "ticker": "UMC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Daiwa\u2019s price-target raise is backed by a real margin/ASP catalyst from planned price increases, but it\u2019s a soft analyst-driven move with limited remaining upside after the recent multi-month run.",
+          "trend_summary": "1d: -0.1%  1w: +6.3%  1m: +45.5%  3m: +28.2%  1yr: +76.4%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25142.9,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27536.95,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": -392.97,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -3725,6 +3980,12 @@
       "date": "2026-05-01",
       "portfolio_value": 27535.42,
       "qqq_indexed": 34125.67
+    },
+    {
+      "date": "2026-05-04",
+      "portfolio_value": 27536.95,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
