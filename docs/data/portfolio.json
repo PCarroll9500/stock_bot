@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-05T09:44:11.377782",
+  "updated_at": "2026-05-05T14:30:52.643831",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -3910,9 +3910,10 @@
           "shares": 23,
           "buy_price": 142.4726,
           "buy_value": 3276.87,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 146.5,
+          "day_return_pct": 2.827,
+          "day_return_usd": 92.63,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "GFS",
@@ -3926,9 +3927,9 @@
           "shares": 44,
           "buy_price": 70.9205,
           "buy_value": 3120.5,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 72.63,
+          "day_return_pct": 2.41,
+          "day_return_usd": 75.22
         },
         {
           "ticker": "SHLS",
@@ -3942,9 +3943,10 @@
           "shares": 275,
           "buy_price": 8.8703,
           "buy_value": 2439.33,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 8.7,
+          "day_return_pct": -1.92,
+          "day_return_usd": -46.83,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "SHOP",
@@ -3958,9 +3960,10 @@
           "shares": 20,
           "buy_price": 114.5925,
           "buy_value": 2291.85,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 115.4,
+          "day_return_pct": 0.705,
+          "day_return_usd": 16.15,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "IREN",
@@ -3974,9 +3977,9 @@
           "shares": 20,
           "buy_price": 50.5465,
           "buy_value": 1010.93,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 55.3,
+          "day_return_pct": 9.404,
+          "day_return_usd": 95.07
         },
         {
           "ticker": "GEV",
@@ -3990,9 +3993,9 @@
           "shares": 2,
           "buy_price": 1096.0,
           "buy_value": 2192.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 1101.33,
+          "day_return_pct": 0.486,
+          "day_return_usd": 10.66
         },
         {
           "ticker": "ET",
@@ -4006,9 +4009,9 @@
           "shares": 126,
           "buy_price": 20.3639,
           "buy_value": 2565.85,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 20.49,
+          "day_return_pct": 0.619,
+          "day_return_usd": 15.89
         },
         {
           "ticker": "ETN",
@@ -4022,9 +4025,9 @@
           "shares": 5,
           "buy_price": 399.03,
           "buy_value": 1995.15,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 411.14,
+          "day_return_pct": 3.035,
+          "day_return_usd": 60.55
         },
         {
           "ticker": "HESM",
@@ -4038,9 +4041,9 @@
           "shares": 63,
           "buy_price": 39.0976,
           "buy_value": 2463.15,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 39.13,
+          "day_return_pct": 0.083,
+          "day_return_usd": 2.04
         },
         {
           "ticker": "IBRX",
@@ -4054,9 +4057,10 @@
           "shares": 117,
           "buy_price": 7.7058,
           "buy_value": 901.58,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 7.5066,
+          "day_return_pct": -2.585,
+          "day_return_usd": -23.31,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "COIN",
@@ -4070,9 +4074,10 @@
           "shares": 2,
           "buy_price": 205.31,
           "buy_value": 410.62,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 199.01,
+          "day_return_pct": -3.069,
+          "day_return_usd": -12.6,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "PINS",
@@ -4086,9 +4091,10 @@
           "shares": 43,
           "buy_price": 23.0695,
           "buy_value": 991.99,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 23.14,
+          "day_return_pct": 0.306,
+          "day_return_usd": 3.03,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "GBTG",
@@ -4102,9 +4108,9 @@
           "shares": 118,
           "buy_price": 9.33,
           "buy_value": 1100.94,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 9.48,
+          "day_return_pct": 1.608,
+          "day_return_usd": 17.7
         }
       ],
       "runner_ups": [
@@ -4203,14 +4209,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 25293.28,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 25349.43,
+      "nasdaq_day_return_pct": 0.222,
       "portfolio_open_value": 27358.85,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 27593.28,
+      "session_return_pct": 0.857,
+      "session_return_usd": 234.43,
       "cash_uninvested": -1280.6,
-      "cash_balance_close": null
+      "cash_balance_close": 27588.69
     }
   ],
   "equity_curve": [
@@ -4328,9 +4334,8 @@
     },
     {
       "date": "2026-05-05",
-      "portfolio_value": 27358.85,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 27593.28,
+      "qqq_indexed": 34544.14
     }
   ]
 }
