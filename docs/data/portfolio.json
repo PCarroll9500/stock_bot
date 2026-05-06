@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-06T09:45:06.673202",
+  "updated_at": "2026-05-06T14:30:51.634373",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -4235,9 +4235,9 @@
           "shares": 7,
           "buy_price": 349.6,
           "buy_value": 2447.2,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 353.83,
+          "day_return_pct": 1.21,
+          "day_return_usd": 29.61
         },
         {
           "ticker": "TGTX",
@@ -4251,9 +4251,10 @@
           "shares": 94,
           "buy_price": 40.604,
           "buy_value": 3816.78,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 39.5526,
+          "day_return_pct": -2.589,
+          "day_return_usd": -98.83,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "CART",
@@ -4267,9 +4268,10 @@
           "shares": 74,
           "buy_price": 40.2919,
           "buy_value": 2981.6,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 40.43,
+          "day_return_pct": 0.343,
+          "day_return_usd": 10.22,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "NVO",
@@ -4283,9 +4285,9 @@
           "shares": 55,
           "buy_price": 46.412,
           "buy_value": 2552.66,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 46.07,
+          "day_return_pct": -0.737,
+          "day_return_usd": -18.81
         },
         {
           "ticker": "BCRX",
@@ -4299,9 +4301,10 @@
           "shares": 155,
           "buy_price": 8.1121,
           "buy_value": 1257.38,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 8.1819,
+          "day_return_pct": 0.86,
+          "day_return_usd": 10.82,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "SWKS",
@@ -4315,9 +4318,10 @@
           "shares": 35,
           "buy_price": 62.8706,
           "buy_value": 2200.47,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 61.88,
+          "day_return_pct": -1.576,
+          "day_return_usd": -34.67,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "JCI",
@@ -4331,9 +4335,9 @@
           "shares": 16,
           "buy_price": 142.47,
           "buy_value": 2279.52,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 140.85,
+          "day_return_pct": -1.137,
+          "day_return_usd": -25.92
         },
         {
           "ticker": "CVE",
@@ -4347,9 +4351,9 @@
           "shares": 90,
           "buy_price": 29.2853,
           "buy_value": 2635.68,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 28.74,
+          "day_return_pct": -1.862,
+          "day_return_usd": -49.08
         },
         {
           "ticker": "TEM",
@@ -4363,9 +4367,9 @@
           "shares": 24,
           "buy_price": 49.9258,
           "buy_value": 1198.22,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 53.44,
+          "day_return_pct": 7.039,
+          "day_return_usd": 84.34
         },
         {
           "ticker": "GEV",
@@ -4379,9 +4383,9 @@
           "shares": 1,
           "buy_price": 1086.88,
           "buy_value": 1086.88,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 1113.8,
+          "day_return_pct": 2.477,
+          "day_return_usd": 26.92
         },
         {
           "ticker": "LYV",
@@ -4395,9 +4399,9 @@
           "shares": 14,
           "buy_price": 168.0214,
           "buy_value": 2352.3,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 166.83,
+          "day_return_pct": -0.709,
+          "day_return_usd": -16.68
         },
         {
           "ticker": "ALAB",
@@ -4411,9 +4415,10 @@
           "shares": 9,
           "buy_price": 214.8978,
           "buy_value": 1934.08,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 211.59,
+          "day_return_pct": -1.539,
+          "day_return_usd": -29.77,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "ANET",
@@ -4427,9 +4432,10 @@
           "shares": 15,
           "buy_price": 151.188,
           "buy_value": 2267.82,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 147.8413,
+          "day_return_pct": -2.214,
+          "day_return_usd": -50.2,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "RIOT",
@@ -4443,9 +4449,10 @@
           "shares": 49,
           "buy_price": 23.2539,
           "buy_value": 1139.44,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 22.8318,
+          "day_return_pct": -1.815,
+          "day_return_usd": -20.68,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -4544,14 +4551,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 25577.06,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 25775.11,
+      "nasdaq_day_return_pct": 0.774,
       "portfolio_open_value": 27594.8,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 27330.26,
+      "session_return_pct": -0.959,
+      "session_return_usd": -264.54,
       "cash_uninvested": -2555.23,
-      "cash_balance_close": null
+      "cash_balance_close": 27324.15
     }
   ],
   "equity_curve": [
@@ -4674,9 +4681,8 @@
     },
     {
       "date": "2026-05-06",
-      "portfolio_value": 27594.8,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 27330.26,
+      "qqq_indexed": 35088.59
     }
   ]
 }
