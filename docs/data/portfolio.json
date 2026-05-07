@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-06T14:30:51.634373",
+  "updated_at": "2026-05-07T09:40:44.805557",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -4559,6 +4559,105 @@
       "session_return_usd": -264.54,
       "cash_uninvested": -2555.23,
       "cash_balance_close": 27324.15
+    },
+    {
+      "date": "2026-05-07",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "VRT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "VRT is a quality large-cap AI/datacenter infrastructure name with a strong multi-timeframe uptrend, and the recent insider Form 4s look like routine tax-related share surrenders rather than a negative catalyst, leaving modest continuation upside today.",
+          "trend_summary": "1d: +5.2%  1w: +17.2%  1m: +36.8%  3m: +96.6%  1yr: +274.9%"
+        },
+        {
+          "ticker": "FTNT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.0,
+          "reason": "FTNT has a fresh post-earnings beat with raised optimism and a meaningful premarket gap, but the move is already partially priced in so remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: +0.0%  1w: +4.5%  1m: +7.4%  3m: +10.9%  1yr: -8.0%"
+        },
+        {
+          "ticker": "U",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh Q1 earnings release with management highlighting exceptional revenue growth and margin expansion gives Unity a real same-day catalyst, though the move is likely partly priced in without volume confirmation.",
+          "trend_summary": "1d: -0.2%  1w: +4.5%  1m: +23.9%  3m: +9.4%  1yr: +32.1%"
+        },
+        {
+          "ticker": "CGNX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Cognex reported Q1 results with strong revenue growth and is already trending higher, but the move is largely priced in after a 5.8% day and there\u2019s no fresh high-impact catalyst beyond earnings/dividend. ",
+          "trend_summary": "1d: +5.8%  1w: +16.3%  1m: +20.4%  3m: +52.9%  1yr: +111.6%"
+        },
+        {
+          "ticker": "AUR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh Q1 results and an upbeat driverless-truck rollout update are supporting the move, but AUR is already up sharply on the day and the standalone maintained $13 target is mostly priced in.",
+          "trend_summary": "1d: +11.3%  1w: +42.8%  1m: +77.8%  3m: +74.3%  1yr: -6.2%"
+        },
+        {
+          "ticker": "CDE",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.0,
+          "reason": "Fresh Q1 earnings/revenue print and 2026 production outlook are supporting the move, but with the stock already up 9.5% today the remaining upside is likely limited and partly priced in.",
+          "trend_summary": "1d: +9.5%  1w: +8.2%  1m: -1.3%  3m: -9.6%  1yr: +169.0%"
+        },
+        {
+          "ticker": "HTZ",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh Q1 results show a narrower loss and revenue beat with improving fleet economics, but the stock is already up 6.4% today so some of the catalyst is priced in.",
+          "trend_summary": "1d: +6.4%  1w: +15.7%  1m: +10.2%  3m: +24.1%  1yr: +3.8%"
+        },
+        {
+          "ticker": "PL",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh 7-figure government contract is a real catalyst for PL and the stock is already moving, but with no volume data and a 6.9% one-day run much of the easy upside may be partially priced in.",
+          "trend_summary": "1d: +6.9%  1w: +16.5%  1m: +12.9%  3m: +82.3%  1yr: +999.4%"
+        },
+        {
+          "ticker": "ACHR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "Fresh UAE regulatory progress on Midnight is a real catalyst for Archer, but the stock is already up sharply today and the move may be partially priced in without volume confirmation.",
+          "trend_summary": "1d: +9.8%  1w: +14.5%  1m: +20.0%  3m: -7.8%  1yr: -26.8%"
+        },
+        {
+          "ticker": "DELL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Dell has a real but mostly already-priced catalyst from the Mizuho target raise and the TotalEnergies/Nvidia supercomputer contract, but the stock is already up 10% today so remaining upside looks limited to a modest continuation.",
+          "trend_summary": "1d: +10.4%  1w: +16.1%  1m: +34.4%  3m: +95.7%  1yr: +148.2%"
+        }
+      ],
+      "portfolio_open_value": 27331.77
     }
   ],
   "equity_curve": [
