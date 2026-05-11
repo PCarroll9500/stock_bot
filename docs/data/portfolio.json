@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-08T09:42:48.304320",
+  "updated_at": "2026-05-11T09:41:37.272195",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -4666,6 +4666,154 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 27333.3
+    },
+    {
+      "date": "2026-05-11",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "LQDA",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh Q1 earnings/corporate update from Liquidia is a real catalyst and the stock is not meaningfully extended today, though without the actual print details and with no volume confirmation the upside is likely moderate rather than explosive.",
+          "trend_summary": "1d: +0.0%  1w: +10.9%  1m: +4.9%  3m: -1.7%  1yr: +168.6%",
+          "allocation_pct": 39.8,
+          "shares": 254,
+          "buy_price": 42.86,
+          "buy_value": 10886.44,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "B",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh earnings-driven buyback announcement plus stronger gold-production outlook gives Barrick a real large-cap catalyst, though some of the move is already priced in after the 3.1% gain.",
+          "trend_summary": "1d: +3.1%  1w: +11.1%  1m: +1.6%  3m: -4.5%  1yr: +136.6%",
+          "allocation_pct": 41.2,
+          "shares": 243,
+          "buy_price": 46.39,
+          "buy_value": 11272.77,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CRCL",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.0,
+          "reason": "Circle is a fresh premarket earnings catalyst with the stock surging on results and stablecoin growth, but after the initial gap and with no volume data the remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: +0.4%  1w: +14.0%  1m: +33.6%  3m: +99.3%  1yr: +36.6%",
+          "allocation_pct": 9.4,
+          "shares": 24,
+          "buy_price": 106.8267,
+          "buy_value": 2563.84,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NTLA",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh Q1 update with positive Phase 3 HAELO data and rolling BLA submission gives NTLA a real biotech catalyst today, though the move is likely partially priced in and upside from here looks more moderate than explosive.",
+          "trend_summary": "1d: +2.8%  1w: +6.3%  1m: +1.9%  3m: +14.7%  1yr: +64.8%",
+          "allocation_pct": 9.4,
+          "shares": 175,
+          "buy_price": 14.6294,
+          "buy_value": 2560.14,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "AMAT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh TSMC partnership and a Cantor target raise support the AI/semicap narrative, but this is a soft analyst-driven catalyst on a stock already up 6% today, so most of the easy move is likely gone.",
+          "trend_summary": "1d: +6.0%  1w: +11.9%  1m: +9.5%  3m: +35.0%  1yr: +159.2%"
+        },
+        {
+          "ticker": "TMC",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.0,
+          "reason": "Fresh commercial agreement with Allseas is a real catalyst for TMC, but the stock is already extended on a strong 1-month run and this looks more like a continuation trade than a fresh 5%+ breakout from current levels.",
+          "trend_summary": "1d: +0.0%  1w: +5.6%  1m: +29.0%  3m: -11.1%  1yr: +81.5%"
+        },
+        {
+          "ticker": "BABA",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Alibaba has a fresh earnings preview into Wednesday and is benefiting from the broader China AI rerating, but the move is still modest and the catalyst is not yet confirmed by results or volume.",
+          "trend_summary": "1d: -0.7%  1w: +6.5%  1m: +9.7%  3m: -13.8%  1yr: +5.7%"
+        },
+        {
+          "ticker": "ASPI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh MOU news in the nuclear fuel supply space gives ASPI a real catalyst today, but it is non-binding and the stock is already extended on the monthly chart, limiting remaining upside.",
+          "trend_summary": "1d: +0.9%  1w: +4.5%  1m: +27.8%  3m: -7.5%  1yr: -19.3%"
+        },
+        {
+          "ticker": "MRNA",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "MRNA is gapping on a fresh premarket media-driven hantavirus vaccine story, but the move is already +12% today so much of the catalyst is likely priced in and upside from here looks limited.",
+          "trend_summary": "1d: +12.0%  1w: +19.8%  1m: +6.0%  3m: +32.5%  1yr: +111.5%"
+        },
+        {
+          "ticker": "KOPN",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.0,
+          "reason": "Fresh press release on U.S. OLED microdisplay manufacturing for defense demand is a real catalyst, but KOPN is already extended (+12% 1d, +102% 1m) so most of the move may be priced in.",
+          "trend_summary": "1d: +12.2%  1w: +25.8%  1m: +101.9%  3m: +124.5%  1yr: +249.0%"
+        },
+        {
+          "ticker": "HPE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.2,
+          "reason": "HPE has a fresh product/capability announcement around SAP workloads, but the stock is already extended on the day and the news looks more like incremental positive positioning than a true session-changing catalyst.",
+          "trend_summary": "1d: +5.6%  1w: +9.7%  1m: +26.3%  3m: +32.8%  1yr: +76.7%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26228.76,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27334.81,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 51.62,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -4790,6 +4938,12 @@
       "date": "2026-05-06",
       "portfolio_value": 27330.26,
       "qqq_indexed": 35088.59
+    },
+    {
+      "date": "2026-05-11",
+      "portfolio_value": 27334.81,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
