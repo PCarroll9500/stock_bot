@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-11T09:41:37.272195",
+  "updated_at": "2026-05-11T14:30:50.737607",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -4684,9 +4684,10 @@
           "shares": 254,
           "buy_price": 42.86,
           "buy_value": 10886.44,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 47.16,
+          "day_return_pct": 10.033,
+          "day_return_usd": 1092.2,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "B",
@@ -4700,9 +4701,9 @@
           "shares": 243,
           "buy_price": 46.39,
           "buy_value": 11272.77,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 47.26,
+          "day_return_pct": 1.875,
+          "day_return_usd": 211.41
         },
         {
           "ticker": "CRCL",
@@ -4716,9 +4717,10 @@
           "shares": 24,
           "buy_price": 106.8267,
           "buy_value": 2563.84,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 114.53,
+          "day_return_pct": 7.211,
+          "day_return_usd": 184.88,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "NTLA",
@@ -4732,9 +4734,10 @@
           "shares": 175,
           "buy_price": 14.6294,
           "buy_value": 2560.14,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 15.05,
+          "day_return_pct": 2.875,
+          "day_return_usd": 73.61,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -4806,14 +4809,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26228.76,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26324.32,
+      "nasdaq_day_return_pct": 0.364,
       "portfolio_open_value": 27334.81,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28881.38,
+      "session_return_pct": 5.658,
+      "session_return_usd": 1546.57,
       "cash_uninvested": 51.62,
-      "cash_balance_close": null
+      "cash_balance_close": 28870.72
     }
   ],
   "equity_curve": [
@@ -4941,9 +4944,8 @@
     },
     {
       "date": "2026-05-11",
-      "portfolio_value": 27334.81,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28881.38,
+      "qqq_indexed": 36139.05
     }
   ]
 }
