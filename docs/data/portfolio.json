@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-13T09:42:44.539549",
+  "updated_at": "2026-05-14T09:40:16.644977",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -4844,6 +4844,105 @@
         }
       ],
       "portfolio_open_value": 28885.91
+    },
+    {
+      "date": "2026-05-14",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "AMAT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "AMAT has a fresh earnings catalyst with AI-chip spending tailwinds, but the stock is already up strongly over 1m/3m and the move looks partially priced in ahead of the report.",
+          "trend_summary": "1d: +1.3%  1w: +1.9%  1m: +10.4%  3m: +28.5%  1yr: +149.8%"
+        },
+        {
+          "ticker": "LUNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh earnings beat plus announced Goonhilly acquisition and positive EBITDA outlook are real catalysts, but LUNR is already up sharply on the year and the move looks partially priced in after the open.",
+          "trend_summary": "1d: +11.2%  1w: +35.5%  1m: +50.7%  3m: +109.4%  1yr: +201.6%"
+        },
+        {
+          "ticker": "BABA",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh analyst target raises and maintained overweight/buy calls on BABA support a modest continuation move, but this is a soft catalyst and the stock is already up 8.2% today so much of the upside may be priced in.",
+          "trend_summary": "1d: +8.2%  1w: +3.1%  1m: +11.0%  3m: -11.3%  1yr: +17.7%"
+        },
+        {
+          "ticker": "PANW",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "PANW has a fresh product catalyst with the Idira identity security launch and a recent Barclays target raise, but the stock is already up sharply across all timeframes so most of the move looks priced in.",
+          "trend_summary": "1d: +5.7%  1w: +24.0%  1m: +41.0%  3m: +37.8%  1yr: +18.1%"
+        },
+        {
+          "ticker": "WYFI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh 1Q results show year-over-year revenue growth, strong gross margins and positive adjusted EBITDA, but WYFI is already extended on the weekly/monthly chart so most of the earnings reaction may be priced in.",
+          "trend_summary": "1d: +3.6%  1w: +26.1%  1m: +68.0%  3m: +43.9%  1yr: +66.6%"
+        },
+        {
+          "ticker": "POET",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh partnership/supply agreement with Lumilens on AI optical networks is a real catalyst, but POET is already heavily extended on the 1w/1m/3m charts so most of the move is likely priced in.",
+          "trend_summary": "1d: +4.7%  1w: +47.8%  1m: +114.2%  3m: +146.5%  1yr: +220.8%"
+        },
+        {
+          "ticker": "UMC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Fresh product-platform release for 14nm eHV FinFET is a real but modest semiconductor catalyst, and with UMC already in a strong multi-month uptrend the remaining upside today looks limited rather than explosive.",
+          "trend_summary": "1d: -0.9%  1w: +4.5%  1m: +66.0%  3m: +54.6%  1yr: +103.1%"
+        },
+        {
+          "ticker": "HPE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "HPE is reacting to a fresh 8-K tied to the H3C stake sale and recent product/AI infrastructure news, but the stock is already up 6% and near a 52-week high so much of the move may be priced in.",
+          "trend_summary": "1d: +6.2%  1w: +5.6%  1m: +31.1%  3m: +34.7%  1yr: +82.0%"
+        },
+        {
+          "ticker": "ASM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "ASM has a fresh Q1 earnings beat and a small premarket analyst target bump, but the move is already partly priced in and the standalone upgrade is only a moderate catalyst.",
+          "trend_summary": "1d: -1.8%  1w: +15.0%  1m: +8.3%  3m: -23.9%  1yr: +193.3%"
+        },
+        {
+          "ticker": "FRMI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh Q1 results and Fermi 2.0 update with financing and capacity milestones are a real catalyst, but the stock is already up nearly 10% today and the huge 1-year downtrend raises reversal risk.",
+          "trend_summary": "1d: +9.7%  1w: +7.9%  1m: +13.6%  3m: -37.0%  1yr: -81.6%"
+        }
+      ],
+      "portfolio_open_value": 28889.05
     }
   ],
   "equity_curve": [
