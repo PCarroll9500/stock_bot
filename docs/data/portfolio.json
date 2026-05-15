@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-14T09:40:16.644977",
+  "updated_at": "2026-05-15T09:43:55.470903",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -4943,6 +4943,145 @@
         }
       ],
       "portfolio_open_value": 28889.05
+    },
+    {
+      "date": "2026-05-15",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "MICC",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh Reuters report of potential private-equity bids is a real takeover catalyst and MICC is still only up modestly today, but the move is already partly priced in from premarket strength so upside likely remains limited to a few more percent.",
+          "trend_summary": "1d: +1.8%  1w: +2.4%  1m: +6.8%  3m: -7.9%  1yr: +0.7%",
+          "allocation_pct": 17.4,
+          "shares": 300,
+          "buy_price": 16.7115,
+          "buy_value": 5013.45,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CSCO",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Cisco\u2019s fresh blowout earnings and raised UBS target support continued institutional momentum, but the stock already jumped 13.4% and much of the move is likely priced in.",
+          "trend_summary": "1d: +13.4%  1w: +25.4%  1m: +40.3%  3m: +54.0%  1yr: +81.6%",
+          "allocation_pct": 66.3,
+          "shares": 164,
+          "buy_price": 116.71,
+          "buy_value": 19140.44,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "MSTR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "The 8-K note repurchase plus crypto-sector strength from the Clarity Act is a fresh supportive catalyst, but MSTR is already up 5% today and the move is likely partly priced in.",
+          "trend_summary": "1d: +5.0%  1w: +4.0%  1m: +30.3%  3m: +52.0%  1yr: -53.2%",
+          "allocation_pct": 16.2,
+          "shares": 26,
+          "buy_price": 179.5288,
+          "buy_value": 4667.75,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "PIII",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "P3 Health Partners has a fresh earnings beat and raised FY EBITDA outlook, but the stock already surged 13% in regular trading and 43% after hours, so most of the catalyst is likely priced in with limited remaining upside today.",
+          "trend_summary": "1d: +12.9%  1w: +12.6%  1m: +65.2%  3m: +100.5%  1yr: -49.6%",
+          "allocation_pct": 0.2,
+          "shares": 7,
+          "buy_price": 6.54,
+          "buy_value": 45.78,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "PIII",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "P3 Health Partners has a fresh earnings beat and raised FY EBITDA outlook, but the stock already surged 13% in regular trading and 43% after hours, so most of the catalyst is likely priced in with limited remaining upside today.",
+          "trend_summary": "1d: +12.9%  1w: +12.6%  1m: +65.2%  3m: +100.5%  1yr: -49.6%"
+        },
+        {
+          "ticker": "GEMI",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh after-hours catalyst from a $100M strategic investment at $14/share plus narrowing losses supports continuation, but the stock already jumped and the move may be partially priced in by the open.",
+          "trend_summary": "1d: +6.9%  1w: +10.7%  1m: +7.3%  3m: -21.5%  1yr: -83.6%"
+        },
+        {
+          "ticker": "LUNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh post-earnings momentum plus a same-day Roth price target raise to $50 supports continuation, but LUNR is already heavily extended over multiple timeframes so most upside is likely priced in.",
+          "trend_summary": "1d: +2.4%  1w: +51.5%  1m: +52.9%  3m: +132.3%  1yr: +195.5%"
+        },
+        {
+          "ticker": "FRVO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh IPO-related attention and a supportive IBD mention keep FRVO in play, but the move is already up 11% and the catalyst is mostly priced in after the offering completed.",
+          "trend_summary": "1d: +11.2%  3m: +11.2%  1yr: +11.2%"
+        },
+        {
+          "ticker": "NOK",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh 6h-old guidance upgrade tied to Nokia\u2019s data-center switching traction is a real fundamental catalyst, but the stock has already had a strong multi-week run so remaining upside today looks modest.",
+          "trend_summary": "1d: -1.7%  1w: +17.1%  1m: +44.7%  3m: +107.5%  1yr: +178.6%"
+        },
+        {
+          "ticker": "LI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.2,
+          "reason": "Fresh Li L9 launch and imminent deliveries provide a real near-term catalyst, but the stock is already up on anticipation and the move looks more like a modest continuation than a 5%+ breakout from here.",
+          "trend_summary": "1d: -3.7%  1w: +9.5%  1m: +6.1%  3m: +2.5%  1yr: -33.1%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26189.51,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28890.69,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 23.27,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -5072,6 +5211,12 @@
       "date": "2026-05-11",
       "portfolio_value": 28881.38,
       "qqq_indexed": 36139.05
+    },
+    {
+      "date": "2026-05-15",
+      "portfolio_value": 28890.69,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
