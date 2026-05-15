@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-15T09:43:55.470903",
+  "updated_at": "2026-05-15T14:30:52.236697",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -4961,9 +4961,10 @@
           "shares": 300,
           "buy_price": 16.7115,
           "buy_value": 5013.45,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 16.4203,
+          "day_return_pct": -1.743,
+          "day_return_usd": -87.36,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "CSCO",
@@ -4977,9 +4978,9 @@
           "shares": 164,
           "buy_price": 116.71,
           "buy_value": 19140.44,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 117.41,
+          "day_return_pct": 0.6,
+          "day_return_usd": 114.8
         },
         {
           "ticker": "MSTR",
@@ -4993,9 +4994,9 @@
           "shares": 26,
           "buy_price": 179.5288,
           "buy_value": 4667.75,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 178.1,
+          "day_return_pct": -0.796,
+          "day_return_usd": -37.15
         },
         {
           "ticker": "PIII",
@@ -5009,9 +5010,10 @@
           "shares": 7,
           "buy_price": 6.54,
           "buy_value": 45.78,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 6.21,
+          "day_return_pct": -5.046,
+          "day_return_usd": -2.31,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -5074,14 +5076,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26189.51,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26358.54,
+      "nasdaq_day_return_pct": 0.645,
       "portfolio_open_value": 28890.69,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28864.61,
+      "session_return_pct": -0.09,
+      "session_return_usd": -26.08,
       "cash_uninvested": 23.27,
-      "cash_balance_close": null
+      "cash_balance_close": 28844.64
     }
   ],
   "equity_curve": [
@@ -5214,9 +5216,8 @@
     },
     {
       "date": "2026-05-15",
-      "portfolio_value": 28890.69,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28864.61,
+      "qqq_indexed": 36165.87
     }
   ]
 }
