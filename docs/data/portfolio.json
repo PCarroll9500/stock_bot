@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-15T14:30:52.236697",
+  "updated_at": "2026-05-18T09:42:32.408864",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5084,6 +5084,42 @@
       "session_return_usd": -26.08,
       "cash_uninvested": 23.27,
       "cash_balance_close": 28844.64
+    },
+    {
+      "date": "2026-05-18",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "GEV",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "GE Vernova has a fresh earnings beat with raised 2026 guidance, which is a real large-cap catalyst, though the move is likely partly priced in by now without volume confirmation.",
+          "trend_summary": "unavailable",
+          "allocation_pct": 91.8,
+          "shares": 26,
+          "buy_price": 1018.83,
+          "buy_value": 26489.58,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26197.34,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28866.24,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 2376.66,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -5218,6 +5254,12 @@
       "date": "2026-05-15",
       "portfolio_value": 28864.61,
       "qqq_indexed": 36165.87
+    },
+    {
+      "date": "2026-05-18",
+      "portfolio_value": 28866.24,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
