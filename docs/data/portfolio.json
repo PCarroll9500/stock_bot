@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-18T14:33:18.785384",
+  "updated_at": "2026-05-19T09:39:24.251802",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5121,6 +5121,51 @@
       "session_return_usd": -862.09,
       "cash_uninvested": 2376.66,
       "cash_balance_close": 27982.54
+    },
+    {
+      "date": "2026-05-19",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "LUNR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh analyst upgrade and target raise plus a new $20M lunar contract keep the catalyst alive, but the move is already partly priced in and the stock is extended on a strong multi-month run.",
+          "trend_summary": "1d: -0.9%  1w: +3.6%  1m: +21.8%  3m: +102.1%  1yr: +182.0%"
+        },
+        {
+          "ticker": "NBIS",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh WSJ coverage frames Nebius as a beneficiary of the AI cloud trade, but the stock is already extended on a huge multi-month run and yesterday\u2019s downgrade/valuation concerns limit remaining upside today.",
+          "trend_summary": "1d: -9.1%  1w: +7.4%  1m: +27.2%  3m: +104.9%  1yr: +410.6%"
+        },
+        {
+          "ticker": "GOOG",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Google I/O is a fresh, real catalyst for Alphabet, but with no earnings or hard product numbers yet and the stock already in a strong multi-month uptrend, upside today looks modest rather than explosive.",
+          "trend_summary": "1d: -0.1%  1w: +1.6%  1m: +15.8%  3m: +29.8%  1yr: +137.8%"
+        },
+        {
+          "ticker": "CMBT",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Q1 results show strong profit and backlog growth, but the stock is only modestly up today and the move looks largely digested without volume confirmation.",
+          "trend_summary": "1d: +0.8%  1w: +2.0%  1m: +15.0%  3m: +13.9%  1yr: +62.6%"
+        }
+      ],
+      "portfolio_open_value": 28009.07
     }
   ],
   "equity_curve": [
