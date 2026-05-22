@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-22T09:41:22.410279",
+  "updated_at": "2026-05-22T14:30:50.827641",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5321,9 +5321,10 @@
           "shares": 64,
           "buy_price": 132.5,
           "buy_value": 8480.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 129.68,
+          "day_return_pct": -2.128,
+          "day_return_usd": -180.48,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "NTES",
@@ -5337,9 +5338,9 @@
           "shares": 74,
           "buy_price": 117.04,
           "buy_value": 8660.96,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 116.89,
+          "day_return_pct": -0.128,
+          "day_return_usd": -11.1
         },
         {
           "ticker": "MRK",
@@ -5353,9 +5354,9 @@
           "shares": 69,
           "buy_price": 120.82,
           "buy_value": 8336.58,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 122.2,
+          "day_return_pct": 1.142,
+          "day_return_usd": 95.22
         },
         {
           "ticker": "NBIS",
@@ -5369,9 +5370,10 @@
           "shares": 11,
           "buy_price": 221.5291,
           "buy_value": 2436.82,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 214.56,
+          "day_return_pct": -3.146,
+          "day_return_usd": -76.66,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -5416,14 +5418,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26478.5,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26408.65,
+      "nasdaq_day_return_pct": -0.264,
       "portfolio_open_value": 28069.0,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 27885.36,
+      "session_return_pct": -0.654,
+      "session_return_usd": -183.64,
       "cash_uninvested": 154.64,
-      "cash_balance_close": null
+      "cash_balance_close": 27854.07
     }
   ],
   "equity_curve": [
@@ -5571,9 +5573,8 @@
     },
     {
       "date": "2026-05-22",
-      "portfolio_value": 28069.0,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 27885.36,
+      "qqq_indexed": 36432.02
     }
   ]
 }
