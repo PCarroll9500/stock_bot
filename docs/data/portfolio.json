@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-21T09:42:51.154337",
+  "updated_at": "2026-05-22T09:41:22.410279",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5303,6 +5303,127 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 28067.44
+    },
+    {
+      "date": "2026-05-22",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "WDAY",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.0,
+          "reason": "Workday posted a fresh Q1 earnings and sales beat with stronger subscription growth, and the premarket move on a large-cap software name suggests there is still some session upside left despite the analyst target cut.",
+          "trend_summary": "1d: -3.8%  1w: +2.6%  1m: -3.8%  3m: -11.6%  1yr: -48.8%",
+          "allocation_pct": 30.2,
+          "shares": 64,
+          "buy_price": 132.5,
+          "buy_value": 8480.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NTES",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "NTES has a fresh Q1 earnings beat with Citi raising its target, and despite the move already starting, the strong margin/revenue print still leaves some room for follow-through today.",
+          "trend_summary": "1d: -2.1%  1w: -1.7%  1m: +0.9%  3m: -3.4%  1yr: -4.5%",
+          "allocation_pct": 30.9,
+          "shares": 74,
+          "buy_price": 117.04,
+          "buy_value": 8660.96,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "MRK",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh EU CHMP positive opinion for Keytruda-Padcev is a real regulatory catalyst for a large-cap, but MRK has already moved 2.5% and the upside left today is likely modest rather than explosive.",
+          "trend_summary": "1d: +2.5%  1w: +2.2%  1m: +2.6%  3m: -5.2%  1yr: +49.4%",
+          "allocation_pct": 29.7,
+          "shares": 69,
+          "buy_price": 120.82,
+          "buy_value": 8336.58,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NBIS",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Nebius has a fresh, material AI infrastructure partnership with Bloom Energy that supports its data-center buildout, but the stock is already up 14.7% today and the move is likely partly priced in.",
+          "trend_summary": "1d: +14.7%  1w: -0.6%  1m: +40.9%  3m: +124.6%  1yr: +469.9%",
+          "allocation_pct": 8.7,
+          "shares": 11,
+          "buy_price": 221.5291,
+          "buy_value": 2436.82,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "RGTI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.0,
+          "reason": "RGTI is riding the fresh government-funded quantum rally and IBM-related sector momentum, but the stock is already up 30% today so most of the easy upside is likely priced in.",
+          "trend_summary": "1d: +30.6%  1w: +14.4%  1m: +19.9%  3m: +38.4%  1yr: +57.2%"
+        },
+        {
+          "ticker": "SNDK",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Sandisk has a real AI-memory undersupply/longer-term demand catalyst, but the move is already extended (+10.7% today, +57.5% in a month) so only modest additional upside remains intraday.",
+          "trend_summary": "1d: +10.7%  1w: +11.5%  1m: +57.5%  3m: +137.3%  1yr: +4036.9%"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.2,
+          "reason": "GE Vernova is a quality large-cap momentum name with a fresh IBD buy-signal mention and strong multi-month trend, but the catalyst is soft and likely only supports modest additional upside today.",
+          "trend_summary": "1d: +1.9%  1w: -4.3%  1m: -7.4%  3m: +25.7%  1yr: +124.8%"
+        },
+        {
+          "ticker": "CRDO",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Credo is being highlighted as an AI stock in buy areas, but this is more of a momentum/technical setup than a fresh fundamental catalyst, and the stock is already extended on the 3m and 1yr trends.",
+          "trend_summary": "1d: +5.7%  1w: +4.8%  1m: +2.1%  3m: +55.9%  1yr: +213.0%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26478.5,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28069.0,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 154.64,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -5447,6 +5568,12 @@
       "date": "2026-05-20",
       "portfolio_value": 28065.88,
       "qqq_indexed": 35978.14
+    },
+    {
+      "date": "2026-05-22",
+      "portfolio_value": 28069.0,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
