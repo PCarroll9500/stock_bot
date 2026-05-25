@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-22T14:30:50.827641",
+  "updated_at": "2026-05-25T09:44:44.247078",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5426,6 +5426,25 @@
       "session_return_usd": -183.64,
       "cash_uninvested": 154.64,
       "cash_balance_close": 27854.07
+    },
+    {
+      "date": "2026-05-25",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [],
+      "runner_ups": [],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26343.97,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27886.93,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 27886.93,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -5575,6 +5594,12 @@
       "date": "2026-05-22",
       "portfolio_value": 27885.36,
       "qqq_indexed": 36432.02
+    },
+    {
+      "date": "2026-05-25",
+      "portfolio_value": 27886.93,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
