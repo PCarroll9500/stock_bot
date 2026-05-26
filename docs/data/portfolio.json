@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-25T14:33:18.147945",
+  "updated_at": "2026-05-26T09:42:53.437886",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5445,6 +5445,152 @@
       "session_return_usd": 0.0,
       "cash_uninvested": 27886.93,
       "cash_balance_close": 27854.08
+    },
+    {
+      "date": "2026-05-26",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "SATL",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.5,
+          "reason": "Fresh $18M defense contract with rapid expansion from trial to full deployment is a real catalyst, but SATL is already up 10% today and the move is likely partially priced in.",
+          "trend_summary": "1d: +10.1%  1w: +7.8%  1m: +55.8%  3m: +230.5%  1yr: +154.4%",
+          "allocation_pct": 32.6,
+          "shares": 802,
+          "buy_price": 11.33,
+          "buy_value": 9086.66,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "WULF",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh 1+ GW hyperscale campus acquisition is a real strategic catalyst for WULF, but as a crypto/infrastructure name with a strong multi-month run the move is likely partially priced in and upside from here is more moderate than explosive.",
+          "trend_summary": "1d: -0.4%  1w: +2.2%  1m: +12.0%  3m: +45.5%  1yr: +479.2%",
+          "allocation_pct": 25.1,
+          "shares": 276,
+          "buy_price": 25.33,
+          "buy_value": 6991.08,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "MPWR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "MPWR is a quality large-cap power-chip name benefiting from the fresh Vicor guidance-boost read-through, but with only a modest 1.8% move today and no direct company-specific catalyst, upside looks limited rather than explosive.",
+          "trend_summary": "1d: +1.8%  1w: +2.6%  1m: -0.1%  3m: +33.6%  1yr: +131.9%",
+          "allocation_pct": 17.8,
+          "shares": 3,
+          "buy_price": 1652.78,
+          "buy_value": 4958.34,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "IBM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "IBM has a fresh five-year modernization contract with Abertis, which is a real but moderate catalyst for a large-cap already in a strong multi-month uptrend, though the move is likely mostly priced in without volume confirmation.",
+          "trend_summary": "1d: +0.3%  1w: +15.8%  1m: +9.8%  3m: +13.7%  1yr: -3.6%",
+          "allocation_pct": 17.7,
+          "shares": 20,
+          "buy_price": 247.407,
+          "buy_value": 4948.14,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "OUST",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh strategic counter-UAS lidar agreement with ARGUS is a real commercial catalyst, but OUST is already up on a strong multi-month run so remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: +5.5%  1w: +6.2%  1m: +40.2%  3m: +105.0%  1yr: +241.9%",
+          "allocation_pct": 6.4,
+          "shares": 43,
+          "buy_price": 41.2042,
+          "buy_value": 1771.78,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "CRBP",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "Fresh clinical data on CRB-701 showing robust activity in two solid tumors is a real biotech catalyst, but CRBP is already extended on the 3m/1yr trend and without volume confirmation the remaining upside today looks moderate.",
+          "trend_summary": "1d: -1.4%  1w: +2.9%  1m: +11.1%  3m: +53.0%  1yr: +54.2%"
+        },
+        {
+          "ticker": "NTES",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "NetEase has a fresh but mostly analyst-driven positive setup around resilient 1Q gaming results and a coming summer game launch, which supports modest further upside but looks partially priced in after the recent run.",
+          "trend_summary": "1d: +1.9%  1w: +2.8%  1m: +6.4%  3m: +0.2%  1yr: -6.2%"
+        },
+        {
+          "ticker": "NNE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh acquisition of a nuclear transportation business is a real strategic catalyst, but NNE is already up on the day and the move looks more like a speculative microcap reaction than a clean 5%+ remaining upside setup.",
+          "trend_summary": "1d: +6.6%  1w: +7.3%  1m: +5.5%  3m: +9.4%  1yr: -23.4%"
+        },
+        {
+          "ticker": "UMC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "UMC is catching a fresh semiconductor sympathy bid from the Huawei chip workaround headline, but the move is broad sector-driven rather than company-specific and likely partly priced in after the recent run.",
+          "trend_summary": "1d: -0.7%  1w: +5.9%  1m: +51.8%  3m: +74.9%  1yr: +135.4%"
+        },
+        {
+          "ticker": "ASX",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh packaging/AI innovation press release is a real but incremental catalyst for a large-cap semiconductor name, yet the stock is already extended on multi-timeframe gains so most upside looks priced in.",
+          "trend_summary": "1d: +6.6%  1w: +3.0%  1m: +16.8%  3m: +48.3%  1yr: +253.0%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26580.39,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27886.93,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 130.93,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -5599,6 +5745,12 @@
       "date": "2026-05-25",
       "portfolio_value": 27886.93,
       "qqq_indexed": 30410.62
+    },
+    {
+      "date": "2026-05-26",
+      "portfolio_value": 27886.93,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
