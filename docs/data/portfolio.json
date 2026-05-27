@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-27T09:44:54.377990",
+  "updated_at": "2026-05-27T14:30:49.480004",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5613,9 +5613,10 @@
           "shares": 32,
           "buy_price": 422.4,
           "buy_value": 13516.8,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 417.52,
+          "day_return_pct": -1.155,
+          "day_return_usd": -156.16,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "APGE",
@@ -5629,9 +5630,10 @@
           "shares": 49,
           "buy_price": 83.0,
           "buy_value": 4067.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 81.78,
+          "day_return_pct": -1.47,
+          "day_return_usd": -59.78,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "RKLB",
@@ -5645,9 +5647,10 @@
           "shares": 25,
           "buy_price": 143.1968,
           "buy_value": 3579.92,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 141.83,
+          "day_return_pct": -0.954,
+          "day_return_usd": -34.17,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "IREN",
@@ -5661,9 +5664,10 @@
           "shares": 62,
           "buy_price": 60.99,
           "buy_value": 3781.38,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 62.97,
+          "day_return_pct": 3.246,
+          "day_return_usd": 122.76,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "AXTA",
@@ -5677,9 +5681,10 @@
           "shares": 100,
           "buy_price": 31.159,
           "buy_value": 3115.9,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 30.38,
+          "day_return_pct": -2.5,
+          "day_return_usd": -77.9,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -5751,14 +5756,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26585.29,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26690.97,
+      "nasdaq_day_return_pct": 0.398,
       "portfolio_open_value": 28248.86,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28023.74,
+      "session_return_pct": -0.797,
+      "session_return_usd": -225.12,
       "cash_uninvested": 187.86,
-      "cash_balance_close": null
+      "cash_balance_close": 27984.65
     }
   ],
   "equity_curve": [
@@ -5921,9 +5926,8 @@
     },
     {
       "date": "2026-05-27",
-      "portfolio_value": 28248.86,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28023.74,
+      "qqq_indexed": 36848.46
     }
   ]
 }
