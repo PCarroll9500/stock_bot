@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-26T14:30:51.669032",
+  "updated_at": "2026-05-27T09:44:54.377990",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5595,6 +5595,170 @@
       "session_return_usd": 355.69,
       "cash_uninvested": 130.93,
       "cash_balance_close": 28209.77
+    },
+    {
+      "date": "2026-05-27",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "TSM",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh AI supply-chain catalyst from Nvidia\u2019s $150B annual Taiwan spending plan directly reinforces TSM\u2019s demand outlook, but as a mega-cap already up on the news the remaining intraday upside is likely modest.",
+          "trend_summary": "1d: +1.9%  1w: +4.1%  1m: +2.4%  3m: +6.9%  1yr: +110.2%",
+          "allocation_pct": 47.8,
+          "shares": 32,
+          "buy_price": 422.4,
+          "buy_value": 13516.8,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "APGE",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 6.5,
+          "reason": "Fresh 2h catalyst of strong Phase 2 results plus $1.3B Blackstone financing materially de-risks APGE and can still drive continuation today, though biotech gains can be volatile after the initial spike.",
+          "trend_summary": "1d: +2.0%  1w: +5.2%  1m: -3.3%  3m: +16.2%  1yr: +127.5%",
+          "allocation_pct": 14.4,
+          "shares": 49,
+          "buy_price": 83.0,
+          "buy_value": 4067.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "RKLB",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh SRR milestone for the SDA Tracking Layer Tranche 3 contract is a real fundamental catalyst, but RKLB is already extended and up 5.5% today so much of the move is likely partially priced in.",
+          "trend_summary": "1d: +5.5%  1w: +9.2%  1m: +79.7%  3m: +104.7%  1yr: +395.0%",
+          "allocation_pct": 12.7,
+          "shares": 25,
+          "buy_price": 143.1968,
+          "buy_value": 3579.92,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "IREN",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh Dell/Blackwell AI deployment deal and raised $4.4B ARR outlook are a real catalyst, but the stock is already up on the news and much of the initial move is likely priced in.",
+          "trend_summary": "1d: +5.2%  1w: +18.5%  1m: +18.0%  3m: +31.5%  1yr: +574.7%",
+          "allocation_pct": 13.4,
+          "shares": 62,
+          "buy_price": 60.99,
+          "buy_value": 3781.38,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "AXTA",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh merger-arbitrage catalyst from AkzoNobel rejecting a competing bid and reaffirming the Axalta combination keeps AXTA in play, but the stock is already up 2.7% so some of the move is priced in.",
+          "trend_summary": "1d: +2.7%  1w: +8.7%  1m: +1.1%  3m: -12.2%  1yr: -3.5%",
+          "allocation_pct": 11.0,
+          "shares": 100,
+          "buy_price": 31.159,
+          "buy_value": 3115.9,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "AMAT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "AMAT is riding a strong multi-month semiconductor equipment uptrend and hit a fresh 52-week high, but today\u2019s 5.3% move is already largely priced in so remaining upside looks modest.",
+          "trend_summary": "1d: +5.3%  1w: +10.0%  1m: +9.1%  3m: +20.4%  1yr: +181.5%"
+        },
+        {
+          "ticker": "APPS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Digital Turbine\u2019s earnings beat and 20% revenue growth are a real catalyst, but the stock already gapped on the news and the remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: +5.7%  1w: +18.8%  1m: +39.0%  3m: +17.6%  1yr: +5.7%"
+        },
+        {
+          "ticker": "SMCI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh AI infrastructure press release with Verda and Blackwell systems supports the ongoing AI narrative, but SMCI is already up on the week/month and this looks more like incremental momentum than a new high-conviction catalyst.",
+          "trend_summary": "1d: +4.3%  1w: +20.3%  1m: +27.6%  3m: +19.2%  1yr: -11.6%"
+        },
+        {
+          "ticker": "TDAC",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "TDAC has a fresh same-day definitive merger agreement with ProLogium, which can support continued SPAC momentum, but this is a standard deal announcement and likely only offers modest remaining upside from here.",
+          "trend_summary": "1d: +0.0%  1w: +0.0%  1m: -0.5%  3m: +1.0%  1yr: +4.4%"
+        },
+        {
+          "ticker": "NTES",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "NetEase has a fresh-ish positive setup from strong 1Q resilience and a planned game launch that could re-accelerate 2H gaming growth, but the move is already partly priced in after a 5.8% day and there is no volume confirmation.",
+          "trend_summary": "1d: +5.8%  1w: +8.6%  1m: +11.5%  3m: +5.3%  1yr: -0.4%"
+        },
+        {
+          "ticker": "SMR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "SMR is riding the broader nuclear/SMR sympathy bid from fresh sector news, but the catalyst is indirect and the stock is already up 7.2% today, so remaining upside looks limited.",
+          "trend_summary": "1d: +7.2%  1w: +16.6%  1m: +2.2%  3m: -9.0%  1yr: -65.5%"
+        },
+        {
+          "ticker": "NHIC",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh SPAC merger announcement with newcleo is a real catalyst, but it\u2019s a pre-deal press release with no volume confirmation and the move looks mostly priced in already.",
+          "trend_summary": "1d: +1.2%  1w: +1.6%  1m: +2.4%  3m: +2.6%  1yr: +6.7%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26585.29,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28248.86,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 187.86,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -5754,6 +5918,12 @@
       "date": "2026-05-26",
       "portfolio_value": 28242.62,
       "qqq_indexed": 36887.42
+    },
+    {
+      "date": "2026-05-27",
+      "portfolio_value": 28248.86,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
