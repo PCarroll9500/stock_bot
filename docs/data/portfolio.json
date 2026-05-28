@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-27T14:30:49.480004",
+  "updated_at": "2026-05-28T09:43:41.565257",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5764,6 +5764,229 @@
       "session_return_usd": -225.12,
       "cash_uninvested": 187.86,
       "cash_balance_close": 27984.65
+    },
+    {
+      "date": "2026-05-28",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "BRZE",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Braze has a fresh earnings beat with raised FY guidance and accelerating revenue growth, and despite the move already being partly priced in, the quality large-cap software setup still leaves some intraday upside.",
+          "trend_summary": "1d: -3.4%  1w: +13.0%  1m: +5.7%  3m: +39.7%  1yr: -32.5%",
+          "allocation_pct": 16.4,
+          "shares": 201,
+          "buy_price": 22.8499,
+          "buy_value": 4592.83,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "DLTR",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.2,
+          "reason": "DLTR has a fresh earnings beat, raised guidance, and a new DoorDash partnership, but after an 11% gap the easy upside is partly priced in so remaining intraday upside looks moderate rather than explosive.",
+          "trend_summary": "1d: +2.3%  1w: +5.8%  1m: -2.2%  3m: -24.9%  1yr: +5.8%",
+          "allocation_pct": 14.7,
+          "shares": 37,
+          "buy_price": 111.327,
+          "buy_value": 4119.1,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "SNOW",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.2,
+          "reason": "SNOW is a quality large-cap momentum name with a fresh earnings-driven gap and multiple analyst target raises confirming the move, though the stock is already up sharply so remaining upside is more likely a few percent than a full continuation.",
+          "trend_summary": "1d: -1.3%  1w: +3.4%  1m: +21.5%  3m: +3.6%  1yr: -13.4%",
+          "allocation_pct": 10.8,
+          "shares": 13,
+          "buy_price": 233.8,
+          "buy_value": 3039.4,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BBY",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh earnings beat with better-than-expected comps and a new CEO narrative supports modest continuation today, though the move is likely mostly priced in after the initial reaction.",
+          "trend_summary": "1d: +2.1%  1w: +8.9%  1m: +8.9%  3m: +3.5%  1yr: -2.7%",
+          "allocation_pct": 15.9,
+          "shares": 62,
+          "buy_price": 71.9448,
+          "buy_value": 4460.58,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "IBM",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "IBM has a fresh large-cap catalyst in the $10B quantum investment layered on top of last week\u2019s $1B federal award, and the multi-timeframe uptrend suggests there is still modest session upside remaining despite some already-priced-in gains.",
+          "trend_summary": "1d: +1.8%  1w: +14.8%  1m: +11.9%  3m: +7.4%  1yr: -1.3%",
+          "allocation_pct": 14.1,
+          "shares": 15,
+          "buy_price": 263.4,
+          "buy_value": 3951.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "DELL",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Dell has a fresh $9.7B Pentagon contract plus a premarket Mizuho target raise, but the stock is already extended on a huge multi-month run so most upside is likely modest rather than explosive.",
+          "trend_summary": "1d: +0.1%  1w: +29.8%  1m: +41.4%  3m: +147.3%  1yr: +168.7%",
+          "allocation_pct": 11.3,
+          "shares": 10,
+          "buy_price": 316.99,
+          "buy_value": 3169.9,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CZR",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh all-cash acquisition at $31/share is a real catalyst, but with the deal already public and the stock near the offer price, remaining upside today is limited to modest spread tightening or competing-bid speculation.",
+          "trend_summary": "1d: +1.4%  1w: +4.7%  1m: +2.7%  3m: +38.6%  1yr: +5.5%",
+          "allocation_pct": 15.9,
+          "shares": 152,
+          "buy_price": 29.26,
+          "buy_value": 4447.52,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "TSM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "TSM is benefiting from fresh AI-supply-chain enthusiasm after Nvidia highlighted massive Taiwan spending, and the stock\u2019s strong multi-timeframe uptrend suggests modest additional upside remains today despite the move already being partially priced in.",
+          "trend_summary": "1d: +2.5%  1w: +7.7%  1m: +4.4%  3m: +9.0%  1yr: +114.4%"
+        },
+        {
+          "ticker": "META",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Meta\u2019s fresh AI subscription rollout is a real monetization catalyst for its AI spend, and the stock is only modestly up today so there is still room for follow-through despite some pricing-in risk.",
+          "trend_summary": "1d: +3.7%  1w: +5.4%  1m: -6.4%  3m: -2.8%  1yr: -1.5%"
+        },
+        {
+          "ticker": "CRDO",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh acquisition close adds a real strategic catalyst to Credo\u2019s optical connectivity story, but the stock is already in a strong multi-timeframe uptrend so most of the move may be partially priced in.",
+          "trend_summary": "1d: -0.2%  1w: +30.9%  1m: +22.6%  3m: +79.2%  1yr: +246.6%"
+        },
+        {
+          "ticker": "NOW",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "ServiceNow is catching a fresh sector-wide software bid after Snowflake\u2019s blowout earnings, and with the stock only up modestly today there is still some room for continuation, though this is more sympathy momentum than a company-specific catalyst.",
+          "trend_summary": "1d: +2.2%  1w: +0.3%  1m: +12.9%  3m: -2.0%  1yr: -49.7%"
+        },
+        {
+          "ticker": "NBIS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh 1h-old news that a prominent AI investor backed Nebius is supporting the premarket gap, but the stock is already up about 10% premarket and has had a huge multi-month run, so remaining upside looks moderate rather than explosive.",
+          "trend_summary": "1d: +0.1%  1w: +5.4%  1m: +43.7%  3m: +96.4%  1yr: +447.8%"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "GE Vernova has a real AI/data-center infrastructure tailwind and remains near a buy point, but the news is not fresh enough or strong enough to imply more than modest same-day upside from here.",
+          "trend_summary": "1d: -3.6%  1w: +2.0%  1m: -7.9%  3m: +17.8%  1yr: +119.0%"
+        },
+        {
+          "ticker": "HRL",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.0,
+          "reason": "Fresh earnings update shows six straight quarters of organic sales growth and premarket strength, but lowered full-year profit guidance caps remaining upside from current levels.",
+          "trend_summary": "1d: +0.3%  1w: +2.7%  1m: -2.4%  3m: -17.2%  1yr: -31.0%"
+        },
+        {
+          "ticker": "SMCI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh AI infrastructure partnership/news keeps SMCI in a strong multi-timeframe uptrend, but the catalyst is modest and already partly reflected in the recent run. ",
+          "trend_summary": "1d: +2.9%  1w: +25.0%  1m: +37.1%  3m: +13.7%  1yr: -7.2%"
+        },
+        {
+          "ticker": "GOOG",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh Google Cloud partnership news with EQT is a real but modest large-cap catalyst, but GOOG is already in a strong multi-month uptrend and the move looks more like incremental AI sentiment than a 5%+ intraday breakout.",
+          "trend_summary": "1d: +-0.0%  1w: +-0.0%  1m: +10.4%  3m: +22.9%  1yr: +122.5%"
+        },
+        {
+          "ticker": "FRMI",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh shareholder-value campaign news is driving a modest momentum pop, but it is not a hard fundamental catalyst and the stock is already extended on a weak long-term trend.",
+          "trend_summary": "1d: +2.3%  1w: +12.1%  1m: +20.5%  3m: -44.2%  1yr: -79.8%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26602.48,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28025.29,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 244.96,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -5928,6 +6151,12 @@
       "date": "2026-05-27",
       "portfolio_value": 28023.74,
       "qqq_indexed": 36848.46
+    },
+    {
+      "date": "2026-05-28",
+      "portfolio_value": 28025.29,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
