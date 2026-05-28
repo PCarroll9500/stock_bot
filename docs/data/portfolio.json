@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-28T09:43:41.565257",
+  "updated_at": "2026-05-28T14:30:51.241129",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5782,9 +5782,10 @@
           "shares": 201,
           "buy_price": 22.8499,
           "buy_value": 4592.83,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 22.88,
+          "day_return_pct": 0.132,
+          "day_return_usd": 6.05,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "DLTR",
@@ -5798,9 +5799,9 @@
           "shares": 37,
           "buy_price": 111.327,
           "buy_value": 4119.1,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 111.5,
+          "day_return_pct": 0.155,
+          "day_return_usd": 6.4
         },
         {
           "ticker": "SNOW",
@@ -5814,9 +5815,10 @@
           "shares": 13,
           "buy_price": 233.8,
           "buy_value": 3039.4,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 233.2,
+          "day_return_pct": -0.257,
+          "day_return_usd": -7.8,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "BBY",
@@ -5830,9 +5832,9 @@
           "shares": 62,
           "buy_price": 71.9448,
           "buy_value": 4460.58,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 76.44,
+          "day_return_pct": 6.248,
+          "day_return_usd": 278.7
         },
         {
           "ticker": "IBM",
@@ -5846,9 +5848,10 @@
           "shares": 15,
           "buy_price": 263.4,
           "buy_value": 3951.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 260.66,
+          "day_return_pct": -1.04,
+          "day_return_usd": -41.1,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "DELL",
@@ -5862,9 +5865,9 @@
           "shares": 10,
           "buy_price": 316.99,
           "buy_value": 3169.9,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 323.64,
+          "day_return_pct": 2.098,
+          "day_return_usd": 66.5
         },
         {
           "ticker": "CZR",
@@ -5878,9 +5881,9 @@
           "shares": 152,
           "buy_price": 29.26,
           "buy_value": 4447.52,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 29.06,
+          "day_return_pct": -0.684,
+          "day_return_usd": -30.4
         }
       ],
       "runner_ups": [
@@ -5979,14 +5982,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26602.48,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26912.55,
+      "nasdaq_day_return_pct": 1.166,
       "portfolio_open_value": 28025.29,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28277.32,
+      "session_return_pct": 0.899,
+      "session_return_usd": 252.03,
       "cash_uninvested": 244.96,
-      "cash_balance_close": null
+      "cash_balance_close": 28236.68
     }
   ],
   "equity_curve": [
@@ -6154,9 +6157,8 @@
     },
     {
       "date": "2026-05-28",
-      "portfolio_value": 28025.29,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28277.32,
+      "qqq_indexed": 37231.0
     }
   ]
 }
