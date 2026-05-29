@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-28T14:30:51.241129",
+  "updated_at": "2026-05-29T09:42:57.214079",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -5990,6 +5990,197 @@
       "session_return_usd": 252.03,
       "cash_uninvested": 244.96,
       "cash_balance_close": 28236.68
+    },
+    {
+      "date": "2026-05-29",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "NTAP",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "NetApp delivered a fresh earnings/revenue beat and is breaking to record highs with a major premarket gap, but the move is already partially priced in so remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: -0.2%  1w: +19.7%  1m: +31.5%  3m: +43.6%  1yr: +43.6%",
+          "allocation_pct": 27.8,
+          "shares": 43,
+          "buy_price": 182.72,
+          "buy_value": 7856.96,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TEM",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh FDA approval for xT CDx is a real same-day catalyst with institutional relevance, and despite the 8.7% move there may still be follow-through as the expanded label broadens Tempus\u2019s oncology franchise.",
+          "trend_summary": "1d: +8.7%  1w: +11.8%  1m: +0.4%  3m: -7.4%  1yr: -7.0%",
+          "allocation_pct": 24.9,
+          "shares": 138,
+          "buy_price": 51.0291,
+          "buy_value": 7042.02,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "HPE",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "HPE is catching a fresh AI-server sympathy bid off Dell\u2019s blowout AI revenue print ahead of HPE\u2019s own earnings Monday, but the move is already extended intraday so upside is likely moderate rather than explosive.",
+          "trend_summary": "1d: +2.7%  1w: +13.0%  1m: +36.7%  3m: +83.3%  1yr: +121.1%",
+          "allocation_pct": 20.1,
+          "shares": 136,
+          "buy_price": 41.7081,
+          "buy_value": 5672.3,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "IBM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "IBM has a fresh AI/security and quantum investment catalyst with credible long-term upside, but the stock is already up 3.5% today and the move looks more like steady large-cap momentum than a 5%+ remaining breakout.",
+          "trend_summary": "1d: +3.5%  1w: +17.4%  1m: +13.4%  3m: +9.2%  1yr: +2.0%",
+          "allocation_pct": 20.6,
+          "shares": 21,
+          "buy_price": 277.0538,
+          "buy_value": 5818.13,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "SMCI",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "SMCI is catching a fresh AI-server sympathy bid off Dell\u2019s blowout AI revenue print, but the move is already extended and likely needs strong follow-through volume to keep running today.",
+          "trend_summary": "1d: +8.1%  1w: +23.4%  1m: +51.6%  3m: +27.9%  1yr: +3.2%",
+          "allocation_pct": 6.1,
+          "shares": 37,
+          "buy_price": 46.9235,
+          "buy_value": 1736.17,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "META",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "META has a fresh, credible AI-monetization narrative via paid subscription tiers and a new dividend, but the move is modest and the insider-sale headline is a minor offset rather than a true catalyst killer.",
+          "trend_summary": "1d: +0.0%  1w: +5.0%  1m: -5.4%  3m: -3.3%  1yr: -1.9%"
+        },
+        {
+          "ticker": "PD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "PagerDuty\u2019s Q1 print showed profitability, a $100M buyback, and a CEO transition, but revenue/ARR were only flat-to-up slightly and the stock has already moved on the news, limiting remaining upside today.",
+          "trend_summary": "1d: +3.5%  1w: +3.9%  1m: +10.7%  3m: +5.1%  1yr: -47.8%"
+        },
+        {
+          "ticker": "HPQ",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "HPQ has a fresh AI-server sympathy catalyst from Dell\u2019s blowout AI revenue and a major UBS target raise, but the move is already partially priced in and the standalone upgrade caps conviction.",
+          "trend_summary": "1d: -1.9%  1w: +18.7%  1m: +26.8%  3m: +33.0%  1yr: +0.4%"
+        },
+        {
+          "ticker": "PATH",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "UiPath has a fresh earnings release and a maintained $15 target, but the move is already partly priced in and the CEO trading-plan headlines add some overhang.",
+          "trend_summary": "1d: +3.8%  1w: +7.5%  1m: +9.7%  3m: +8.1%  1yr: -13.0%"
+        },
+        {
+          "ticker": "TSM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "TSMC is benefiting from fresh AI-supply-chain headlines tied to Nvidia\u2019s Taiwan spending, but the move is modest and already partly reflected after a multi-day run.",
+          "trend_summary": "1d: +0.5%  1w: +5.8%  1m: +8.3%  3m: +12.8%  1yr: +119.8%"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "GE Vernova has a real AI/data-center power infrastructure tailwind and remains in a strong long-term uptrend, but the catalyst is not fresh enough and the move looks mostly priced in for today.",
+          "trend_summary": "1d: -3.5%  1w: -2.8%  1m: -8.5%  3m: +13.6%  1yr: +110.6%"
+        },
+        {
+          "ticker": "ASAN",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 1.8,
+          "reason": "Asana has a fresh acquisition catalyst with StackAI plus a Q1 earnings release, but the move is already partly priced in and the 1-year downtrend raises reversal risk.",
+          "trend_summary": "1d: +3.9%  1w: +0.3%  1m: +5.2%  3m: -9.4%  1yr: -62.8%"
+        },
+        {
+          "ticker": "NOW",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "NOW is benefiting from a sector sympathy move after Snowflake\u2019s strong earnings, but the catalyst is indirect and the stock has already gained 6.5% today, limiting remaining upside.",
+          "trend_summary": "1d: +6.5%  1w: +5.3%  1m: +20.2%  3m: -0.5%  1yr: -46.2%"
+        },
+        {
+          "ticker": "HOOD",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "HOOD is riding a fresh Trump Account/agentic trading catalyst plus a Mizuho target raise, but the stock already jumped 11% yesterday so much of the move is likely priced in.",
+          "trend_summary": "1d: +11.3%  1w: +12.0%  1m: +3.4%  3m: +6.8%  1yr: +28.3%"
+        },
+        {
+          "ticker": "UPST",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "UPST has a fresh lender-partnership catalyst and a supportive 1d/1w uptrend, but the news is modest and already 17\u201348 hours old so upside from here looks limited.",
+          "trend_summary": "1d: +6.4%  1w: +13.3%  1m: -0.5%  3m: +10.2%  1yr: -30.7%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 27042.53,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28278.89,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 153.31,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -6159,6 +6350,12 @@
       "date": "2026-05-28",
       "portfolio_value": 28277.32,
       "qqq_indexed": 37231.0
+    },
+    {
+      "date": "2026-05-29",
+      "portfolio_value": 28278.89,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
