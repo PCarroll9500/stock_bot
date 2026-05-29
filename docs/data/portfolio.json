@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-29T09:42:57.214079",
+  "updated_at": "2026-05-29T14:30:50.100389",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -6008,9 +6008,10 @@
           "shares": 43,
           "buy_price": 182.72,
           "buy_value": 7856.96,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 186.93,
+          "day_return_pct": 2.304,
+          "day_return_usd": 181.03,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "TEM",
@@ -6024,9 +6025,10 @@
           "shares": 138,
           "buy_price": 51.0291,
           "buy_value": 7042.02,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 50.7916,
+          "day_return_pct": -0.465,
+          "day_return_usd": -32.77,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "HPE",
@@ -6040,9 +6042,10 @@
           "shares": 136,
           "buy_price": 41.7081,
           "buy_value": 5672.3,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 43.0604,
+          "day_return_pct": 3.242,
+          "day_return_usd": 183.91,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "IBM",
@@ -6056,9 +6059,9 @@
           "shares": 21,
           "buy_price": 277.0538,
           "buy_value": 5818.13,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 291.25,
+          "day_return_pct": 5.124,
+          "day_return_usd": 298.12
         },
         {
           "ticker": "SMCI",
@@ -6072,9 +6075,10 @@
           "shares": 37,
           "buy_price": 46.9235,
           "buy_value": 1736.17,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 46.88,
+          "day_return_pct": -0.093,
+          "day_return_usd": -1.61,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -6173,14 +6177,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 27042.53,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26985.98,
+      "nasdaq_day_return_pct": -0.209,
       "portfolio_open_value": 28278.89,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28888.11,
+      "session_return_pct": 2.154,
+      "session_return_usd": 609.22,
       "cash_uninvested": 153.31,
-      "cash_balance_close": null
+      "cash_balance_close": 28845.89
     }
   ],
   "equity_curve": [
@@ -6353,9 +6357,8 @@
     },
     {
       "date": "2026-05-29",
-      "portfolio_value": 28278.89,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 28888.11,
+      "qqq_indexed": 37291.72
     }
   ]
 }
