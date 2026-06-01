@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-01T09:44:34.194870",
+  "updated_at": "2026-06-01T14:30:51.658040",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -6220,9 +6220,10 @@
           "shares": 13,
           "buy_price": 404.69,
           "buy_value": 5260.97,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 390.65,
+          "day_return_pct": -3.469,
+          "day_return_usd": -182.52,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "IREN",
@@ -6236,9 +6237,10 @@
           "shares": 24,
           "buy_price": 61.6125,
           "buy_value": 1478.7,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 61.31,
+          "day_return_pct": -0.491,
+          "day_return_usd": -7.26,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "EWTX",
@@ -6252,9 +6254,10 @@
           "shares": 37,
           "buy_price": 39.9938,
           "buy_value": 1479.77,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 39.22,
+          "day_return_pct": -1.935,
+          "day_return_usd": -28.63,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "RVMD",
@@ -6268,9 +6271,9 @@
           "shares": 8,
           "buy_price": 154.99,
           "buy_value": 1239.92,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 164.53,
+          "day_return_pct": 6.155,
+          "day_return_usd": 76.32
         },
         {
           "ticker": "CRM",
@@ -6284,9 +6287,9 @@
           "shares": 20,
           "buy_price": 204.55,
           "buy_value": 4091.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 209.04,
+          "day_return_pct": 2.195,
+          "day_return_usd": 89.8
         },
         {
           "ticker": "CRWV",
@@ -6300,9 +6303,10 @@
           "shares": 10,
           "buy_price": 118.259,
           "buy_value": 1182.59,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 123.13,
+          "day_return_pct": 4.119,
+          "day_return_usd": 48.71,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "HOOD",
@@ -6316,9 +6320,9 @@
           "shares": 12,
           "buy_price": 86.8192,
           "buy_value": 1041.83,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 91.57,
+          "day_return_pct": 5.472,
+          "day_return_usd": 57.01
         },
         {
           "ticker": "TMHC",
@@ -6332,9 +6336,9 @@
           "shares": 78,
           "buy_price": 71.5899,
           "buy_value": 5584.01,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 71.56,
+          "day_return_pct": -0.042,
+          "day_return_usd": -2.33
         }
       ],
       "runner_ups": [
@@ -6433,14 +6437,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 27005.05,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 27164.81,
+      "nasdaq_day_return_pct": 0.592,
       "portfolio_open_value": 28889.67,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 29217.44,
+      "session_return_pct": 1.135,
+      "session_return_usd": 327.77,
       "cash_uninvested": 410.53,
-      "cash_balance_close": null
+      "cash_balance_close": 21745.76
     }
   ],
   "equity_curve": [
@@ -6618,9 +6622,8 @@
     },
     {
       "date": "2026-06-01",
-      "portfolio_value": 28889.67,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 29217.44,
+      "qqq_indexed": 37650.98
     }
   ]
 }
