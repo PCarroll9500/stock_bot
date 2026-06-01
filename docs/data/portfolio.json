@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-05-29T14:30:50.100389",
+  "updated_at": "2026-06-01T09:44:34.194870",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -6185,6 +6185,262 @@
       "session_return_usd": 609.22,
       "cash_uninvested": 153.31,
       "cash_balance_close": 28845.89
+    },
+    {
+      "date": "2026-06-01",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "MGM",
+          "score": 9,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh all-cash takeover proposal at $48.30/share is a real catalyst with remaining deal-spread upside today, though much of the premium is likely already being priced in.",
+          "trend_summary": "1d: +1.7%  1w: +16.0%  1m: +11.2%  3m: +18.5%  1yr: +40.1%",
+          "allocation_pct": 24.6,
+          "shares": 146,
+          "buy_price": 48.7695,
+          "buy_value": 7120.35,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null,
+          "hold_until": "2026-06-04"
+        },
+        {
+          "ticker": "ARM",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh Nvidia-related catalyst plus a meaningful Mizuho target raise keeps ARM in play today, though the stock is already extended so upside is likely modest rather than explosive.",
+          "trend_summary": "1d: +5.4%  1w: +18.5%  1m: +75.2%  3m: +177.2%  1yr: +180.3%",
+          "allocation_pct": 18.2,
+          "shares": 13,
+          "buy_price": 404.69,
+          "buy_value": 5260.97,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "IREN",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.5,
+          "reason": "IREN has a fresh, material catalyst in the $3.65B investment-grade GPU financing tied to its Microsoft AI Cloud contract, but the stock is already in a strong multi-month uptrend so upside today is meaningful yet likely capped below a full breakout move.",
+          "trend_summary": "1d: -0.8%  1w: +9.4%  1m: +48.3%  3m: +55.2%  1yr: +627.8%",
+          "allocation_pct": 5.1,
+          "shares": 24,
+          "buy_price": 61.6125,
+          "buy_value": 1478.7,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "EWTX",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh $2.65B asset sale is a real value-unlocking catalyst and should keep EWTX bid today, though the move is already partially priced in and upside from here is likely more measured than explosive.",
+          "trend_summary": "1d: +2.6%  1w: +4.5%  1m: +12.2%  3m: +12.2%  1yr: +132.5%",
+          "allocation_pct": 5.1,
+          "shares": 37,
+          "buy_price": 39.9938,
+          "buy_value": 1479.77,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "RVMD",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh phase 3 pancreatic cancer trial results are a real catalyst and the stock is reacting premarket, but after a huge multi-month run and a likely gap-up, much of the upside is already priced in.",
+          "trend_summary": "1d: +1.8%  1w: +2.4%  1m: +12.0%  3m: +54.4%  1yr: +287.4%",
+          "allocation_pct": 4.3,
+          "shares": 8,
+          "buy_price": 154.99,
+          "buy_value": 1239.92,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CRM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "CRM is participating in a fresh software-sector rebound after Nvidia\u2019s AI-agent comments, and the move is still early enough that momentum could carry it modestly higher today despite the lack of a company-specific hard catalyst.",
+          "trend_summary": "1d: +8.5%  1w: +8.4%  1m: +5.5%  3m: -1.9%  1yr: -27.0%",
+          "allocation_pct": 14.2,
+          "shares": 20,
+          "buy_price": 204.55,
+          "buy_value": 4091.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CRWV",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "CoreWeave\u2019s first-to-market validation of NVIDIA Vera Rubin NVL72 is a fresh AI-infrastructure catalyst, but with the stock already up on the day and no volume data, upside looks meaningful yet likely limited to a few more percent today.",
+          "trend_summary": "1d: +2.5%  1w: +1.8%  1m: -4.1%  3m: +37.7%  1yr: -8.9%",
+          "allocation_pct": 4.1,
+          "shares": 10,
+          "buy_price": 118.259,
+          "buy_value": 1182.59,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "HOOD",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "HOOD has a fresh crypto-perpetuals regulatory catalyst and a supportive analyst note, but the stock already surged 11% today so much of the move is priced in and remaining upside is likely modest.",
+          "trend_summary": "1d: +11.2%  1w: +24.2%  1m: +32.4%  3m: +24.3%  1yr: +38.7%",
+          "allocation_pct": 3.6,
+          "shares": 12,
+          "buy_price": 86.8192,
+          "buy_value": 1041.83,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TMHC",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Berkshire\u2019s definitive all-cash acquisition at a 24% premium is a fresh, real catalyst, but TMHC is already up about 23% premarket so most of the upside appears priced in.",
+          "trend_summary": "1d: -0.4%  1w: +1.2%  1m: -3.6%  3m: -11.2%  1yr: +4.7%",
+          "allocation_pct": 19.3,
+          "shares": 78,
+          "buy_price": 71.5899,
+          "buy_value": 5584.01,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "CRDO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "CRDO has a fresh Mizuho target raise to $260 and remains in a strong multi-month AI/semis uptrend, but the move is already extended and this standalone analyst action is likely only good for modest additional upside today.",
+          "trend_summary": "1d: +6.2%  1w: +22.0%  1m: +34.3%  3m: +110.2%  1yr: +276.7%"
+        },
+        {
+          "ticker": "MRVL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh Marvell AI/data-center product launch plus a recent Barclays target hike keeps the large-cap momentum bid alive, but the move is already extended and likely only has modest additional upside left today.",
+          "trend_summary": "1d: +0.1%  1w: +7.5%  1m: +30.9%  3m: +150.9%  1yr: +233.5%"
+        },
+        {
+          "ticker": "ADBE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Adobe is riding a fresh software-sector rebound and the Nvidia partnership mention adds a mild catalyst, but the move is already up 7% today so much of the upside is likely priced in.",
+          "trend_summary": "1d: +7.4%  1w: +6.2%  1m: +6.4%  3m: -1.2%  1yr: -35.7%"
+        },
+        {
+          "ticker": "HIMX",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh product-adoption press release with a real semiconductor/display catalyst, but HIMX is already extended on a strong multi-month run so remaining upside today looks modest.",
+          "trend_summary": "1d: -1.2%  1w: +3.4%  1m: +79.7%  3m: +182.6%  1yr: +147.5%"
+        },
+        {
+          "ticker": "XPEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh May delivery results and China EV sales rebound news are supporting XPeng early today, but the catalyst is moderate and likely partially priced in after the initial pop.",
+          "trend_summary": "1d: +0.1%  1w: +5.2%  1m: +3.7%  3m: -6.3%  1yr: -14.6%"
+        },
+        {
+          "ticker": "USAR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh analyst initiation/target raise plus the France investment and potential government support are real catalysts, but USAR is already extended on a strong multi-month run so most of the move may be priced in.",
+          "trend_summary": "1d: -0.6%  1w: +15.3%  1m: +27.1%  3m: +48.2%  1yr: +196.7%"
+        },
+        {
+          "ticker": "WDC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "WDC has a fresh Computex AI-storage positioning catalyst today, but with the stock already up strongly over the past months and no volume confirmation provided, the remaining upside looks modest rather than explosive.",
+          "trend_summary": "1d: +0.0%  1w: +9.2%  1m: +28.7%  3m: +89.9%  1yr: +917.8%"
+        },
+        {
+          "ticker": "QBTS",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh investor-day roadmap news for D-Wave Quantum is a real catalyst, but the stock is already extended on a strong multi-month run so remaining upside today looks limited and volatile.",
+          "trend_summary": "1d: +2.2%  1w: +17.1%  1m: +65.0%  3m: +60.5%  1yr: +76.2%"
+        },
+        {
+          "ticker": "PFE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Pfizer has a fresh ASCO oncology data catalyst from Sunday, but as a mega-cap with only a modest premarket/overnight reaction and no volume confirmation, most of the move may already be priced in.",
+          "trend_summary": "1d: +0.2%  1w: +0.9%  1m: -0.3%  3m: -5.3%  1yr: +11.6%"
+        },
+        {
+          "ticker": "HPQ",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.0,
+          "reason": "HPQ is benefiting from a fresh AI-PC/product narrative and a sector-wide software/tech rebound, but the stock is already up 8% today so most of the easy move appears priced in.",
+          "trend_summary": "1d: +8.1%  1w: +23.5%  1m: +34.3%  3m: +42.4%  1yr: +8.6%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 27005.05,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28889.67,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 410.53,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -6359,6 +6615,12 @@
       "date": "2026-05-29",
       "portfolio_value": 28888.11,
       "qqq_indexed": 37291.72
+    },
+    {
+      "date": "2026-06-01",
+      "portfolio_value": 28889.67,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
