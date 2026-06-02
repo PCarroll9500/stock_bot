@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-01T14:30:51.658040",
+  "updated_at": "2026-06-02T09:40:54.237907",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -6445,6 +6445,105 @@
       "session_return_usd": 327.77,
       "cash_uninvested": 410.53,
       "cash_balance_close": 21745.76
+    },
+    {
+      "date": "2026-06-02",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "IREN",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "IREN has a fresh, material $3.65B investment-grade GPU financing tied to its Microsoft AI cloud contract, but the move is already partially priced in after a strong multi-timeframe run and the catalyst is a day old.",
+          "trend_summary": "1d: +2.8%  1w: +15.0%  1m: +43.6%  3m: +57.8%  1yr: +634.9%"
+        },
+        {
+          "ticker": "CRDO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Credo has a fresh BofA upgrade with a sizable target raise and strong multi-timeframe momentum, but this is still a standalone analyst catalyst with no hard fundamental surprise and likely only modest remaining upside today.",
+          "trend_summary": "1d: -4.2%  1w: +3.5%  1m: +29.9%  3m: +98.0%  1yr: +214.4%"
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "VRT is a quality large-cap AI/datacenter infrastructure name with a fresh AI-bottleneck tailwind, but the move is modest and the Barron\u2019s mention is broad rather than a company-specific catalyst.",
+          "trend_summary": "1d: +2.4%  1w: -1.2%  1m: -1.6%  3m: +25.5%  1yr: +187.9%"
+        },
+        {
+          "ticker": "SMCI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh AI-server collaboration/launch news with Dell sector strength supports SMCI, but the stock is already extended on a multi-week run so remaining upside today looks modest rather than explosive.",
+          "trend_summary": "1d: +1.7%  1w: +31.8%  1m: +71.1%  3m: +47.3%  1yr: +8.5%"
+        },
+        {
+          "ticker": "MP",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Needham\u2019s fresh Buy initiation and $80 target on MP supports continued rare-earth momentum, but this is a standalone analyst catalyst already partly reflected in yesterday\u2019s 7%+ move.",
+          "trend_summary": "1d: +7.1%  1w: +7.5%  1m: +4.9%  3m: +8.7%  1yr: +215.0%"
+        },
+        {
+          "ticker": "CRWV",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "BNP Paribas initiation at Outperform plus a $192 target and the fresh Nvidia Vera Rubin deployment keep the AI momentum intact, but the stock is already up 14% today so much of the near-term upside is likely priced in.",
+          "trend_summary": "1d: +14.0%  1w: +18.3%  1m: +11.8%  3m: +59.9%  1yr: -17.1%"
+        },
+        {
+          "ticker": "ARM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "ARM is benefiting from the fresh Nvidia PC-chip/AI-stack narrative, but the stock is already heavily extended on multi-timeframe gains so most of the move looks priced in.",
+          "trend_summary": "1d: +15.7%  1w: +33.4%  1m: +94.4%  3m: +228.7%  1yr: +217.5%"
+        },
+        {
+          "ticker": "IBM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "IBM\u2019s fresh $10B quantum-computing investment is a real catalyst for a large-cap, but after a 7.6% day and strong multi-month run, much of the upside is likely already priced in.",
+          "trend_summary": "1d: +7.6%  1w: +26.2%  1m: +38.7%  3m: +33.9%  1yr: +20.8%"
+        },
+        {
+          "ticker": "CRM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "CRM is benefiting from a fresh software-sector re-rating and a positive shareholder vote/8-K, but the stock is already up 9.7% today so most of the easy upside is likely captured.",
+          "trend_summary": "1d: +9.7%  1w: +16.4%  1m: +18.7%  3m: +8.6%  1yr: -20.7%"
+        },
+        {
+          "ticker": "HIMS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh acquisition-completion catalyst and international expansion into Japan/Canada support continued upside today, but HIMS is already up 6.2% and the move looks partly priced in without volume confirmation.",
+          "trend_summary": "1d: +6.2%  1w: +16.9%  1m: +2.2%  3m: +68.4%  1yr: -49.3%"
+        }
+      ],
+      "portfolio_open_value": 29106.24
     }
   ],
   "equity_curve": [
