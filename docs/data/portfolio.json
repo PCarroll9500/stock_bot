@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-02T09:40:54.237907",
+  "updated_at": "2026-06-03T09:42:28.367461",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -6544,6 +6544,152 @@
         }
       ],
       "portfolio_open_value": 29106.24
+    },
+    {
+      "date": "2026-06-03",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "M",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Macy's has a fresh earnings beat with raised full-year guidance and improving sales trends, which can still support modest follow-through today despite the move already being partially priced in.",
+          "trend_summary": "1d: -0.6%  1w: +0.0%  1m: +10.1%  3m: +18.5%  1yr: +89.3%",
+          "allocation_pct": 26.5,
+          "shares": 357,
+          "buy_price": 21.64,
+          "buy_value": 7725.48,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Vertiv is a quality large-cap AI infrastructure name with fresh Nvidia-related cooling tailwind and a new product/service announcement, but the move is already partly priced in so remaining upside today looks modest rather than explosive.",
+          "trend_summary": "1d: +3.4%  1w: +3.3%  1m: +1.9%  3m: +36.8%  1yr: +196.4%",
+          "allocation_pct": 25.3,
+          "shares": 22,
+          "buy_price": 335.31,
+          "buy_value": 7376.82,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "PANW",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.2,
+          "reason": "Multiple fresh analyst target raises on PANW support a quality large-cap momentum setup, but this is a soft catalyst and likely only offers modest additional upside after the initial reaction.",
+          "trend_summary": "1d: -1.1%  1w: +15.7%  1m: +64.1%  3m: +90.4%  1yr: +53.1%",
+          "allocation_pct": 20.1,
+          "shares": 21,
+          "buy_price": 279.0167,
+          "buy_value": 5859.35,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "IREN",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh announcement of a first Australian 800MW data center campus is a real growth catalyst, but the move is already partially priced in and 2028 energization limits immediate upside.",
+          "trend_summary": "1d: +1.9%  1w: +11.4%  1m: +45.9%  3m: +71.4%  1yr: +606.3%",
+          "allocation_pct": 7.4,
+          "shares": 31,
+          "buy_price": 69.6935,
+          "buy_value": 2160.5,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "SMH",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "SMH is riding a broad AI/semiconductor infrastructure tailwind, but the move is already extended across 1d/1w/1m and the news is more thematic than a fresh stock-specific catalyst, limiting remaining upside today.",
+          "trend_summary": "1d: +4.0%  1w: +5.0%  1m: +24.0%  3m: +61.7%  1yr: +151.1%",
+          "allocation_pct": 19.7,
+          "shares": 9,
+          "buy_price": 637.9289,
+          "buy_value": 5741.36,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "XOS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.0,
+          "reason": "Fresh after-hours launch of the Power Hub for AI data-center energy needs is a real catalyst, but XOS is a small-cap already doubled in post-market and the move may be largely priced in by the open.",
+          "trend_summary": "1d: -4.7%  1w: +6.2%  1m: +26.7%  3m: +4.2%  1yr: -28.5%"
+        },
+        {
+          "ticker": "TE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh acquisition into BESS/data-center infrastructure is a real catalyst, but TE is already up 15.7% today so much of the move is likely priced in and upside from here is limited.",
+          "trend_summary": "1d: +15.7%  1w: +15.2%  1m: +133.8%  3m: +84.9%  1yr: +965.5%"
+        },
+        {
+          "ticker": "TSM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "TSMC is benefiting from fresh AI-semiconductor sentiment and related Nvidia-linked headlines, but the move is modest, the news is not a standalone hard catalyst, and much of the upside appears already reflected in the strong multi-timeframe uptrend.",
+          "trend_summary": "1d: +2.5%  1w: +8.3%  1m: +12.3%  3m: +26.5%  1yr: +120.7%"
+        },
+        {
+          "ticker": "DE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Deere is benefiting from a fresh tariff reduction on farm machinery, but the stock has already run 6.8% over the last day and the move looks partly priced in without volume confirmation.",
+          "trend_summary": "1d: +6.8%  1w: +9.5%  1m: +0.3%  3m: -6.5%  1yr: +14.1%"
+        },
+        {
+          "ticker": "USAR",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 1.5,
+          "reason": "USAR has a fresh government funding-agreement catalyst, but the stock is already extended on a strong multi-month run and the filing/news looks more like financing than a clean upside surprise, so remaining upside today is limited.",
+          "trend_summary": "1d: +4.3%  1w: +10.7%  1m: +16.6%  3m: +58.1%  1yr: +196.6%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 27004.96,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 29107.87,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 244.36,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -6723,6 +6869,12 @@
       "date": "2026-06-01",
       "portfolio_value": 29217.44,
       "qqq_indexed": 37650.98
+    },
+    {
+      "date": "2026-06-03",
+      "portfolio_value": 29107.87,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
