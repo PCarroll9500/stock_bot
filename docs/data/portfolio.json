@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-05T09:42:06.655438",
+  "updated_at": "2026-06-05T14:30:48.738186",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -6784,9 +6784,10 @@
           "shares": 24,
           "buy_price": 428.0625,
           "buy_value": 10273.5,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 418.38,
+          "day_return_pct": -2.262,
+          "day_return_usd": -232.38,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "BBCP",
@@ -6800,9 +6801,10 @@
           "shares": 761,
           "buy_price": 11.35,
           "buy_value": 8637.35,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 10.81,
+          "day_return_pct": -4.758,
+          "day_return_usd": -410.94,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "VRT",
@@ -6816,9 +6818,10 @@
           "shares": 27,
           "buy_price": 307.7293,
           "buy_value": 8308.69,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 305.02,
+          "day_return_pct": -0.88,
+          "day_return_usd": -73.15,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "HOOD",
@@ -6832,9 +6835,10 @@
           "shares": 105,
           "buy_price": 86.114,
           "buy_value": 9041.97,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 83.6108,
+          "day_return_pct": -2.907,
+          "day_return_usd": -262.84,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -6888,14 +6892,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26466.28,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 25861.27,
+      "nasdaq_day_return_pct": -2.286,
       "portfolio_open_value": 28907.05,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 27899.82,
+      "session_return_pct": -3.484,
+      "session_return_usd": -1007.23,
       "cash_uninvested": -7354.46,
-      "cash_balance_close": null
+      "cash_balance_close": 27895.52
     }
   ],
   "equity_curve": [
@@ -7083,9 +7087,8 @@
     },
     {
       "date": "2026-06-05",
-      "portfolio_value": 28907.05,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 27899.82,
+      "qqq_indexed": 36040.89
     }
   ]
 }
