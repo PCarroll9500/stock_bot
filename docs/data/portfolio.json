@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-04T09:52:05.233746",
+  "updated_at": "2026-06-05T09:42:06.655438",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -6766,6 +6766,136 @@
         }
       ],
       "portfolio_open_value": 28905.4
+    },
+    {
+      "date": "2026-06-05",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "TSM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh shareholder-meeting commentary that TSMC still sees strong AI-chip demand and no competitive edge loss supports continued institutional buying, though the move is already partially priced in after yesterday\u2019s gain.",
+          "trend_summary": "1d: +1.9%  1w: +4.7%  1m: +12.8%  3m: +25.7%  1yr: +116.8%",
+          "allocation_pct": 35.5,
+          "shares": 24,
+          "buy_price": 428.0625,
+          "buy_value": 10273.5,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BBCP",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "BBCP has a fresh earnings catalyst with raised FY26 outlook and a swing to profit tied to AI data-center demand, but the move is already partially priced in after the after-hours surge and likely offers only moderate remaining upside today.",
+          "trend_summary": "1d: +2.2%  1w: +0.9%  1m: -0.5%  3m: +17.7%  1yr: +31.5%",
+          "allocation_pct": 29.9,
+          "shares": 761,
+          "buy_price": 11.35,
+          "buy_value": 8637.35,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "VRT is benefiting from the Nvidia/AI data-center cooling theme, but the catalyst is already 2 days old and the move looks partially priced in, so upside today is likely modest rather than explosive.",
+          "trend_summary": "1d: -2.3%  1w: +3.1%  1m: -5.0%  3m: +29.7%  1yr: +180.8%",
+          "allocation_pct": 28.7,
+          "shares": 27,
+          "buy_price": 307.7293,
+          "buy_value": 8308.69,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "HOOD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "HOOD is benefiting from a fresh sector-wide financials rally and a Goldman price-target raise, but the move is already up 6.6% today so much of the easy upside looks partially priced in.",
+          "trend_summary": "1d: +6.6%  1w: +4.1%  1m: +14.7%  3m: +9.6%  1yr: +18.0%",
+          "allocation_pct": 31.3,
+          "shares": 105,
+          "buy_price": 86.114,
+          "buy_value": 9041.97,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "DE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Deere is benefiting from a fresh tariff-cut catalyst and a supportive JPM target raise, but the move is already several days old and much of the upside appears priced in.",
+          "trend_summary": "1d: +0.6%  1w: +9.8%  1m: +2.8%  3m: +0.2%  1yr: +13.8%"
+        },
+        {
+          "ticker": "PTEN",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Goldman\u2019s Buy reiteration and modest target raise to $13 provide a real but soft catalyst for PTEN, and the stock\u2019s strong multi-timeframe uptrend supports some continuation, though the move is likely partly priced in already.",
+          "trend_summary": "1d: +2.2%  1w: +8.6%  1m: -1.1%  3m: +38.8%  1yr: +111.6%"
+        },
+        {
+          "ticker": "IBM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.2,
+          "reason": "IBM has a fresh enterprise AI partnership with Google that supports the bull case, but the news is already ~1 day old and the stock has largely digested it, limiting remaining upside today.",
+          "trend_summary": "1d: -1.3%  1w: +14.2%  1m: +31.8%  3m: +17.6%  1yr: +12.2%"
+        },
+        {
+          "ticker": "WDC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.8,
+          "reason": "WDC has a fresh balance-sheet catalyst from the convertible debt exchange and is already in a strong multi-month uptrend, but the move is partly priced in after a 5.5% prior-day rally and new highs.",
+          "trend_summary": "1d: -3.1%  1w: +8.3%  1m: +23.7%  3m: +122.2%  1yr: +937.9%"
+        },
+        {
+          "ticker": "BAC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "BAC has a fresh but broad tokenized-deposit/blockchain banking headline that supports modest continuation, though it is not a hard earnings or contract catalyst and the move is likely partly priced in after a 3.4% day.",
+          "trend_summary": "1d: +3.4%  1w: +6.7%  1m: +2.0%  3m: +8.8%  1yr: +20.5%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26466.28,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 28907.05,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": -7354.46,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -6950,6 +7080,12 @@
       "date": "2026-06-03",
       "portfolio_value": 28904.38,
       "qqq_indexed": 37640.86
+    },
+    {
+      "date": "2026-06-05",
+      "portfolio_value": 28907.05,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
