@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-05T14:30:48.738186",
+  "updated_at": "2026-06-08T09:42:03.225897",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -6900,6 +6900,84 @@
       "session_return_usd": -1007.23,
       "cash_uninvested": -7354.46,
       "cash_balance_close": 27895.52
+    },
+    {
+      "date": "2026-06-08",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "MRVL",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.0,
+          "reason": "MRVL has a fresh S&P 500 inclusion catalyst announced 1 hour ago, which can support continued institutional buying today, though the move is already partially priced in after the premarket surge.",
+          "trend_summary": "1d: -16.7%  1w: +28.5%  1m: +53.0%  3m: +194.1%  1yr: +281.1%",
+          "allocation_pct": 77.2,
+          "shares": 75,
+          "buy_price": 287.33,
+          "buy_value": 21549.75,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "LITE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "LITE is likely trading as a sympathy beneficiary to Corning\u2019s fresh multibillion-dollar Amazon fiber deal, but this is indirect news and without volume confirmation the upside looks limited from here.",
+          "trend_summary": "1d: -8.6%  1w: +1.0%  1m: -8.5%  3m: +54.7%  1yr: +951.8%",
+          "allocation_pct": 9.3,
+          "shares": 3,
+          "buy_price": 867.48,
+          "buy_value": 2602.44,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TER",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Teradyne has a fresh AI/data-center collaboration announcement with Tokyo Electron, but as a large-cap the move is likely only modestly actionable today and the lack of volume data limits conviction.",
+          "trend_summary": "1d: -12.0%  1w: -4.4%  1m: -6.4%  3m: +31.1%  1yr: +312.4%",
+          "allocation_pct": 10.7,
+          "shares": 8,
+          "buy_price": 373.4937,
+          "buy_value": 2987.95,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "IPFX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "Fresh SPAC merger announcement with Quantum Space gives IPFX a real catalyst today, but as a blank-check deal the move is likely partially priced in and upside may fade after the initial pop.",
+          "trend_summary": "1d: +0.0%  1w: +0.0%  3m: -0.5%  1yr: -0.5%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25996.76,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27901.46,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 761.32,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -7089,6 +7167,12 @@
       "date": "2026-06-05",
       "portfolio_value": 27899.82,
       "qqq_indexed": 36040.89
+    },
+    {
+      "date": "2026-06-08",
+      "portfolio_value": 27901.46,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
