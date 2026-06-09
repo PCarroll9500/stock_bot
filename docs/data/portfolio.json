@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-09T09:40:55.421957",
+  "updated_at": "2026-06-09T14:30:49.045485",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -6998,9 +6998,10 @@
           "shares": 34,
           "buy_price": 186.9265,
           "buy_value": 6355.5,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 184.01,
+          "day_return_pct": -1.56,
+          "day_return_usd": -99.16,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "SLB",
@@ -7014,9 +7015,10 @@
           "shares": 146,
           "buy_price": 56.48,
           "buy_value": 8246.08,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 55.19,
+          "day_return_pct": -2.284,
+          "day_return_usd": -188.34,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "STX",
@@ -7030,9 +7032,10 @@
           "shares": 7,
           "buy_price": 894.9643,
           "buy_value": 6264.75,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 873.0,
+          "day_return_pct": -2.454,
+          "day_return_usd": -153.75,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "GOOG",
@@ -7046,9 +7049,10 @@
           "shares": 17,
           "buy_price": 367.39,
           "buy_value": 6245.63,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 358.13,
+          "day_return_pct": -2.52,
+          "day_return_usd": -157.42,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -7066,14 +7070,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26130.47,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 25635.31,
+      "nasdaq_day_return_pct": -1.895,
       "portfolio_open_value": 27660.7,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 27047.44,
+      "session_return_pct": -2.217,
+      "session_return_usd": -613.26,
       "cash_uninvested": 548.74,
-      "cash_balance_close": null
+      "cash_balance_close": 27036.58
     }
   ],
   "equity_curve": [
@@ -7271,9 +7275,8 @@
     },
     {
       "date": "2026-06-09",
-      "portfolio_value": 27660.7,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 27047.44,
+      "qqq_indexed": 35488.33
     }
   ]
 }
