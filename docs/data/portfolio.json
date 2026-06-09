@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-08T14:30:51.177763",
+  "updated_at": "2026-06-09T09:40:55.421957",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -6980,6 +6980,100 @@
       "session_return_usd": -245.68,
       "cash_uninvested": 761.32,
       "cash_balance_close": 27649.84
+    },
+    {
+      "date": "2026-06-09",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "GLW",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Corning has a fresh Amazon multibillion-dollar fiber deal tied to AI/data-center demand, but the stock already jumped 5.6% and the move may be partly priced in.",
+          "trend_summary": "1d: +5.6%  1w: +6.1%  1m: +2.8%  3m: +45.3%  1yr: +270.6%",
+          "allocation_pct": 23.0,
+          "shares": 34,
+          "buy_price": 186.9265,
+          "buy_value": 6355.5,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "SLB",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "SLB has a fresh subsea contract win with bp that supports the energy services backlog, but the news is already 1 day old and the stock has largely moved on a strong multi-timeframe uptrend.",
+          "trend_summary": "1d: +3.1%  1w: +3.3%  1m: +6.7%  3m: +19.8%  1yr: +59.2%",
+          "allocation_pct": 29.8,
+          "shares": 146,
+          "buy_price": 56.48,
+          "buy_value": 8246.08,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "STX",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "STX has a fresh analyst-target raise and reiterated outperform tied to AI storage demand, but this is a soft catalyst and likely mostly priced in after yesterday\u2019s 3.5% move.",
+          "trend_summary": "1d: +3.5%  1w: -4.8%  1m: +14.4%  3m: +134.2%  1yr: +585.0%",
+          "allocation_pct": 22.6,
+          "shares": 7,
+          "buy_price": 894.9643,
+          "buy_value": 6264.75,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "GOOG",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Alphabet has a fresh AI-related catalyst from Apple\u2019s Siri reboot using Google technology, but the move looks more like a modest large-cap momentum setup than a 5%+ same-day breakout.",
+          "trend_summary": "1d: -1.3%  1w: -3.1%  1m: -8.6%  3m: +18.0%  1yr: +100.6%",
+          "allocation_pct": 22.6,
+          "shares": 17,
+          "buy_price": 367.39,
+          "buy_value": 6245.63,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "NBIS",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Nebius has a fresh AI-infrastructure/Living Lab announcement plus a recent BofA target raise, but the analyst news is already 20h old and the stock\u2019s strong multi-month run makes today\u2019s remaining upside modest.",
+          "trend_summary": "1d: -4.3%  1w: -17.6%  1m: +18.0%  3m: +129.6%  1yr: +315.2%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26130.47,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27660.7,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 548.74,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -7174,6 +7268,12 @@
       "date": "2026-06-08",
       "portfolio_value": 27655.78,
       "qqq_indexed": 36382.44
+    },
+    {
+      "date": "2026-06-09",
+      "portfolio_value": 27660.7,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
