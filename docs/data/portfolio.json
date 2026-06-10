@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-10T09:40:29.462478",
+  "updated_at": "2026-06-10T14:30:48.499323",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -7096,9 +7096,10 @@
           "shares": 128,
           "buy_price": 47.64,
           "buy_value": 6097.92,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 47.47,
+          "day_return_pct": -0.357,
+          "day_return_usd": -21.76,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "TSM",
@@ -7112,9 +7113,10 @@
           "shares": 40,
           "buy_price": 417.5,
           "buy_value": 16700.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 413.45,
+          "day_return_pct": -0.97,
+          "day_return_usd": -162.0,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "DKNG",
@@ -7128,9 +7130,10 @@
           "shares": 150,
           "buy_price": 28.95,
           "buy_value": 4342.5,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 29.05,
+          "day_return_pct": 0.345,
+          "day_return_usd": 15.0,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -7157,14 +7160,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 25550.89,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 25322.51,
+      "nasdaq_day_return_pct": -0.894,
       "portfolio_open_value": 27048.99,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 26873.61,
+      "session_return_pct": -0.648,
+      "session_return_usd": -175.38,
       "cash_uninvested": -91.43,
-      "cash_balance_close": null
+      "cash_balance_close": 26861.2
     }
   ],
   "equity_curve": [
@@ -7367,9 +7370,8 @@
     },
     {
       "date": "2026-06-10",
-      "portfolio_value": 27048.99,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 26873.61,
+      "qqq_indexed": 35425.59
     }
   ]
 }
