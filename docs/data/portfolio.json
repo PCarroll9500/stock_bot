@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-10T14:30:48.499323",
+  "updated_at": "2026-06-11T09:41:22.305572",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -7168,6 +7168,90 @@
       "session_return_usd": -175.38,
       "cash_uninvested": -91.43,
       "cash_balance_close": 26861.2
+    },
+    {
+      "date": "2026-06-11",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "AMAT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "AMAT has a fresh Barclays target raise to $590 with an overweight reiteration and the semiconductor equipment group remains in a strong multi-month uptrend, but this is still just an analyst upgrade so upside from here is likely modest and partly priced in.",
+          "trend_summary": "1d: -0.4%  1w: -0.8%  1m: +12.0%  3m: +41.6%  1yr: +184.0%",
+          "allocation_pct": 27.3,
+          "shares": 14,
+          "buy_price": 524.26,
+          "buy_value": 7339.64,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "META",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Meta\u2019s long-term power purchase agreement with RWE is a real but modest catalyst for META, but the move is likely mostly priced in and the news is more supportive than explosive.",
+          "trend_summary": "1d: -2.3%  1w: -8.3%  1m: -4.7%  3m: -12.8%  1yr: -17.7%",
+          "allocation_pct": 27.3,
+          "shares": 13,
+          "buy_price": 563.76,
+          "buy_value": 7328.88,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "LHX",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "LHX has a fresh defense contract/counter-drone order worth up to $106M, but as a large-cap defense name the move is likely mostly priced in and the stock is only modestly lower on the day.",
+          "trend_summary": "1d: -1.7%  1w: -0.1%  1m: +0.2%  3m: -16.8%  1yr: +21.0%",
+          "allocation_pct": 21.8,
+          "shares": 19,
+          "buy_price": 307.77,
+          "buy_value": 5847.63,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NLY",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Annaly\u2019s 7.1% dividend hike is a real positive catalyst for a large-cap mREIT, but it was announced after the close and the stock is already not showing a strong fresh breakout, so remaining upside today looks limited.",
+          "trend_summary": "1d: -1.4%  1w: +1.1%  1m: -4.6%  3m: -4.7%  1yr: +9.9%",
+          "allocation_pct": 23.5,
+          "shares": 288,
+          "buy_price": 21.8828,
+          "buy_value": 6302.25,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25202.85,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 26875.14,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 56.74,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -7372,6 +7456,12 @@
       "date": "2026-06-10",
       "portfolio_value": 26873.61,
       "qqq_indexed": 35425.59
+    },
+    {
+      "date": "2026-06-11",
+      "portfolio_value": 26875.14,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
