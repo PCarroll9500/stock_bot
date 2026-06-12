@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-11T14:30:51.378708",
+  "updated_at": "2026-06-12T09:41:51.263219",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -7252,6 +7252,111 @@
       "session_return_usd": 416.94,
       "cash_uninvested": 56.74,
       "cash_balance_close": 27278.14
+    },
+    {
+      "date": "2026-06-12",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "NBIS",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh Nasdaq-100 inclusion plus a new Nvidia-linked data-center deal is a real institutional catalyst, though the stock is already up today so some of the move is priced in.",
+          "trend_summary": "1d: +5.0%  1w: -14.4%  1m: +24.1%  3m: +105.7%  1yr: +371.5%",
+          "allocation_pct": 46.8,
+          "shares": 56,
+          "buy_price": 227.86,
+          "buy_value": 12760.16,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh acquisition completion for ThermoKey expands Vertiv\u2019s AI data-center thermal portfolio, and the stock\u2019s strong long-term uptrend keeps modest additional upside in play today despite the 6% already-moved session.",
+          "trend_summary": "1d: +6.0%  1w: -8.0%  1m: -18.9%  3m: +12.2%  1yr: +168.4%",
+          "allocation_pct": 36.3,
+          "shares": 33,
+          "buy_price": 300.45,
+          "buy_value": 9914.85,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ALAB",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "Astera Labs is getting a fresh Nasdaq-100 inclusion announcement, which should support continued institutional buying today, though the move is already partially priced in after the 11% gap-up.",
+          "trend_summary": "1d: +11.1%  1w: +2.6%  1m: +79.8%  3m: +206.5%  1yr: +309.5%",
+          "allocation_pct": 16.4,
+          "shares": 12,
+          "buy_price": 372.0033,
+          "buy_value": 4464.04,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "SHAZ",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh Nvidia collaboration and up to $4.88B contract value are real catalysts, but the concurrent convertible-share issuance raises dilution risk and likely caps remaining upside today.",
+          "trend_summary": "unavailable"
+        },
+        {
+          "ticker": "SATS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "EchoStar is trading as a SpaceX proxy on a very fresh sector-wide space rally, but the move is already +11% today so much of the catalyst is priced in and remaining upside looks limited.",
+          "trend_summary": "1d: +11.2%  1w: +2.8%  1m: -1.0%  3m: +19.0%  1yr: +660.9%"
+        },
+        {
+          "ticker": "HOOD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "HOOD has a fresh analyst target raise to $97 plus insider buying support, but the move is already extended and the catalyst is soft rather than a hard fundamental event.",
+          "trend_summary": "1d: +6.8%  1w: +4.4%  1m: +17.8%  3m: +21.2%  1yr: +27.0%"
+        },
+        {
+          "ticker": "GOOG",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Alphabet has a mild positive backdrop from strong euro debt demand and ongoing AI/Waymo visibility, but there is no fresh earnings or contract catalyst and the move is already modest.",
+          "trend_summary": "1d: +0.9%  1w: -3.4%  1m: -7.1%  3m: +17.6%  1yr: +102.7%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25681.51,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27293.56,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 154.51,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -7461,6 +7566,12 @@
       "date": "2026-06-11",
       "portfolio_value": 27292.08,
       "qqq_indexed": 35925.52
+    },
+    {
+      "date": "2026-06-12",
+      "portfolio_value": 27293.56,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
