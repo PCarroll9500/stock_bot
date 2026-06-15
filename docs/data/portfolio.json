@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-15T09:42:38.250302",
+  "updated_at": "2026-06-15T14:30:47.583158",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -7395,9 +7395,10 @@
           "shares": 525,
           "buy_price": 13.51,
           "buy_value": 7092.75,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 13.17,
+          "day_return_pct": -2.517,
+          "day_return_usd": -178.5,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "PAYO",
@@ -7428,9 +7429,10 @@
           "shares": 40,
           "buy_price": 62.2345,
           "buy_value": 2489.38,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 60.93,
+          "day_return_pct": -2.096,
+          "day_return_usd": -52.18,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -7484,14 +7486,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26501.48,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26640.04,
+      "nasdaq_day_return_pct": 0.523,
       "portfolio_open_value": 27295.39,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 27033.32,
+      "session_return_pct": -0.96,
+      "session_return_usd": -262.07,
       "cash_uninvested": 56.82,
-      "cash_balance_close": null
+      "cash_balance_close": 9373.2
     }
   ],
   "equity_curve": [
@@ -7709,9 +7711,8 @@
     },
     {
       "date": "2026-06-15",
-      "portfolio_value": 27295.39,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 27033.32,
+      "qqq_indexed": 37633.27
     }
   ]
 }
