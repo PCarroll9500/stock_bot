@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-12T14:30:48.128629",
+  "updated_at": "2026-06-15T09:42:38.250302",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -7360,6 +7360,138 @@
       "session_return_usd": 0.37,
       "cash_uninvested": 154.51,
       "cash_balance_close": 27278.51
+    },
+    {
+      "date": "2026-06-15",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "ROKU",
+          "score": 9,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 6.5,
+          "reason": "Fresh $22B Fox acquisition of Roku is a major premium catalyst with the deal still being digested, though the stock is already up 20% so upside is partly priced in.",
+          "trend_summary": "1d: +20.1%  1w: +17.5%  1m: +14.3%  3m: +56.7%  1yr: +74.8%",
+          "allocation_pct": 31.8,
+          "shares": 61,
+          "buy_price": 142.26,
+          "buy_value": 8677.86,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null,
+          "hold_until": "2026-06-18"
+        },
+        {
+          "ticker": "TRIP",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh sale of TheFork to American Express for $700M plus a definitive agreement is a real catalyst, but TRIP is already up on the news so remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: +4.2%  1w: +4.6%  1m: +28.9%  3m: +34.3%  1yr: -7.3%",
+          "allocation_pct": 26.0,
+          "shares": 525,
+          "buy_price": 13.51,
+          "buy_value": 7092.75,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "PAYO",
+          "score": 9,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Nuvei\u2019s all-cash acquisition at $7.40/share is a fresh, definitive catalyst with the stock still below deal value, though most upside is likely already captured after the halt/resume.",
+          "trend_summary": "1d: +0.0%  1w: +33.9%  1m: +36.9%  3m: +48.7%  1yr: +1.4%",
+          "allocation_pct": 32.9,
+          "shares": 1279,
+          "buy_price": 7.02,
+          "buy_value": 8978.58,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null,
+          "hold_until": "2026-06-18"
+        },
+        {
+          "ticker": "IREN",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.8,
+          "reason": "IREN\u2019s completed acquisition of Nostrum expands its AI cloud footprint into Europe with meaningful secured power capacity, but the stock is already up on the day and the move looks more like a steady continuation than a fresh 5%+ breakout.",
+          "trend_summary": "1d: +5.4%  1w: +10.0%  1m: +8.3%  3m: +43.7%  1yr: +474.7%",
+          "allocation_pct": 9.1,
+          "shares": 40,
+          "buy_price": 62.2345,
+          "buy_value": 2489.38,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "AMAT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "AMAT is in a strong multi-timeframe uptrend and likely benefiting from ongoing AI/semicap momentum, but with only a modest +2.6% day and no fresh company-specific catalyst or volume confirmation, remaining upside today looks limited.",
+          "trend_summary": "1d: +2.6%  1w: +25.2%  1m: +29.9%  3m: +66.1%  1yr: +221.3%"
+        },
+        {
+          "ticker": "HOOD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "HOOD is getting a fresh crypto-beta lift from Bitcoin breaking above $65k, but the move is broad sector sympathy rather than a company-specific catalyst and the stock is already in a strong multi-month uptrend.",
+          "trend_summary": "1d: +1.0%  1w: +13.0%  1m: +21.4%  3m: +27.0%  1yr: +21.4%"
+        },
+        {
+          "ticker": "DAL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "DAL is benefiting from a fresh geopolitical tailwind as the Iran interim peace deal and reopening of the Strait of Hormuz should lower fuel costs, but the move is already partially priced in after a 1.5% day and recent run-up.",
+          "trend_summary": "1d: +1.5%  1w: +4.6%  1m: +16.9%  3m: +41.3%  1yr: +67.9%"
+        },
+        {
+          "ticker": "UAL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "UAL is benefiting from the fresh Iran/Strait of Hormuz peace-deal rally, which should support lower fuel costs and keep airline momentum alive today, but the move is already partially priced in and upside looks modest from here.",
+          "trend_summary": "1d: +2.6%  1w: +9.3%  1m: +20.7%  3m: +33.4%  1yr: +47.1%"
+        },
+        {
+          "ticker": "OUST",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh partnership expansion with Benchmark to scale REV8 production is a real operational catalyst, but OUST is already extended on a strong multi-month run and the news lacks hard revenue/earnings numbers, limiting remaining upside today.",
+          "trend_summary": "1d: +0.5%  1w: +0.3%  1m: +16.5%  3m: +85.4%  1yr: +99.9%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26501.48,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27295.39,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 56.82,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -7574,6 +7706,12 @@
       "date": "2026-06-12",
       "portfolio_value": 27293.93,
       "qqq_indexed": 36502.86
+    },
+    {
+      "date": "2026-06-15",
+      "portfolio_value": 27295.39,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
