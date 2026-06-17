@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-16T09:43:14.175104",
+  "updated_at": "2026-06-17T09:42:19.687766",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -7502,6 +7502,155 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 26883.77
+    },
+    {
+      "date": "2026-06-17",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "QURE",
+          "score": 9,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 12.0,
+          "reason": "Fresh FDA regulatory green light to pursue BLA for AMT-130 in Huntington's disease is a true Profile A catalyst with major remaining upside today, though the stock is already heavily extended premarket so reversal risk is elevated.",
+          "trend_summary": "1d: -3.2%  1w: +2.0%  1m: -0.2%  3m: +72.8%  1yr: +78.7%",
+          "allocation_pct": 38.6,
+          "shares": 232,
+          "buy_price": 44.75,
+          "buy_value": 10382.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null,
+          "hold_until": "2026-06-22"
+        },
+        {
+          "ticker": "KMX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.0,
+          "reason": "KMX has a fresh earnings beat with revenue and EPS above estimates plus turnaround commentary, but the stock already moved on the print so remaining upside looks moderate rather than explosive.",
+          "trend_summary": "1d: -0.2%  1w: +8.5%  1m: +41.1%  3m: +23.1%  1yr: -19.0%",
+          "allocation_pct": 24.9,
+          "shares": 138,
+          "buy_price": 48.6059,
+          "buy_value": 6707.61,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "GEV",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Bernstein\u2019s fresh Outperform initiation and $1206 target on GEV is a real large-cap catalyst, but it\u2019s only a soft analyst-driven move and likely leaves modest additional upside today rather than a big breakout.",
+          "trend_summary": "1d: +0.3%  1w: +6.8%  1m: -6.4%  3m: +16.4%  1yr: +100.4%",
+          "allocation_pct": 15.0,
+          "shares": 4,
+          "buy_price": 1007.99,
+          "buy_value": 4031.96,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TSM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "TSMC has a fresh strategic partnership with Amkor that supports the U.S. packaging story, but it\u2019s a modest large-cap catalyst and the move is likely mostly priced in after yesterday\u2019s reaction.",
+          "trend_summary": "1d: -3.5%  1w: -0.5%  1m: +5.3%  3m: +23.1%  1yr: +99.5%",
+          "allocation_pct": 19.4,
+          "shares": 12,
+          "buy_price": 435.0783,
+          "buy_value": 5220.94,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "BBBY",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh acquisition announcement of Fathom Holdings is a real catalyst, but BBBY is already extended on a 1m/3m uptrend and the deal appears modest, so most of the move may already be priced in.",
+          "trend_summary": "1d: -1.3%  1w: +3.4%  1m: +31.7%  3m: +21.6%  1yr: -3.1%"
+        },
+        {
+          "ticker": "QCOM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Qualcomm has a real AI/data-center catalyst ahead of its June 24 investor day, but the move is already partly priced in and today\u2019s upside from current levels looks limited without fresh confirmation or volume.",
+          "trend_summary": "1d: -3.1%  1w: +4.2%  1m: +6.2%  3m: +62.7%  1yr: +39.3%"
+        },
+        {
+          "ticker": "CIFR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "CIFR has a fresh but modest operational catalyst with insider share acquisitions and a strategic hire, but the move is already extended on a huge 1-year run and there\u2019s no volume confirmation or hard revenue/earnings surprise to drive 5%+ more today.",
+          "trend_summary": "1d: +0.7%  1w: +13.8%  1m: +28.9%  3m: +73.7%  1yr: +587.9%"
+        },
+        {
+          "ticker": "HPE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "HPE\u2019s Discover event and Juniper/AI networking rollout are a real but mostly expected large-cap catalyst, with modest remaining upside today rather than a fresh explosive move.",
+          "trend_summary": "1d: -1.3%  1w: +0.2%  1m: +46.2%  3m: +123.3%  1yr: +172.1%"
+        },
+        {
+          "ticker": "HIMS",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "HIMS has a fresh peptide-market catalyst with a sizable implied revenue opportunity, but the news is still mostly thematic and the stock is already extended on the week/month, limiting remaining upside today.",
+          "trend_summary": "1d: +4.3%  1w: +8.6%  1m: +25.6%  3m: +26.0%  1yr: -48.5%"
+        },
+        {
+          "ticker": "TE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.0,
+          "reason": "TE has a fresh positive bankability assessment and insider buying, but the move is being driven mostly by soft analyst action and the stock is already extended on a huge 1-year run, limiting remaining upside today.",
+          "trend_summary": "1d: -3.3%  1w: +2.0%  1m: +52.2%  3m: +10.8%  1yr: +487.1%"
+        },
+        {
+          "ticker": "UBER",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Fresh robotaxi expansion news to Houston is a real long-term catalyst for Uber, but the launch is not until 2027 so most of the move is likely to be modest and partially priced in today.",
+          "trend_summary": "1d: +0.5%  1w: +4.1%  1m: -2.5%  3m: -5.8%  1yr: -12.2%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26478.22,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 26885.27,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 542.76,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -7721,6 +7870,12 @@
       "date": "2026-06-15",
       "portfolio_value": 27033.32,
       "qqq_indexed": 37633.27
+    },
+    {
+      "date": "2026-06-17",
+      "portfolio_value": 26885.27,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
