@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-22T09:42:41.947291",
+  "updated_at": "2026-06-23T09:42:42.590904",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -7845,6 +7845,74 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 27542.9
+    },
+    {
+      "date": "2026-06-23",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "GEV",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "GE Vernova has a fresh, credible AI/data-center power catalyst from Chevron/Microsoft\u2019s West Texas project, but the move looks more like a quality large-cap continuation than a true 5%+ intraday breakout.",
+          "trend_summary": "unavailable",
+          "allocation_pct": 38.3,
+          "shares": 10,
+          "buy_price": 1055.88,
+          "buy_value": 10558.8,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "AMAT",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "AMAT has a fresh sector-strength setup with semicap peers showing rare relative strength and recent bullish analyst sentiment, but the catalyst is mostly thematic/analyst-driven rather than a hard event, so upside looks modest today.",
+          "trend_summary": "unavailable",
+          "allocation_pct": 27.5,
+          "shares": 13,
+          "buy_price": 582.21,
+          "buy_value": 7568.73,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "KLAC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "KLAC is benefiting from a fresh sector-wide semiconductor equipment momentum wave and record-relative-strength backdrop, but the catalyst is broad and already partially reflected, so remaining upside today looks modest.",
+          "trend_summary": "unavailable",
+          "allocation_pct": 27.8,
+          "shares": 31,
+          "buy_price": 247.17,
+          "buy_value": 7662.27,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25666.8,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27548.94,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 1759.14,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -8074,6 +8142,12 @@
       "date": "2026-06-18",
       "portfolio_value": 27541.44,
       "qqq_indexed": 37422.77
+    },
+    {
+      "date": "2026-06-23",
+      "portfolio_value": 27548.94,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
