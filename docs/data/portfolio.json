@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-23T09:42:42.590904",
+  "updated_at": "2026-06-23T14:33:21.781585",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -7863,9 +7863,10 @@
           "shares": 10,
           "buy_price": 1055.88,
           "buy_value": 10558.8,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 1040.48,
+          "day_return_pct": -1.458,
+          "day_return_usd": -154.0,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "AMAT",
@@ -7879,9 +7880,9 @@
           "shares": 13,
           "buy_price": 582.21,
           "buy_value": 7568.73,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 584.72,
+          "day_return_pct": 0.431,
+          "day_return_usd": 32.63
         },
         {
           "ticker": "KLAC",
@@ -7895,9 +7896,10 @@
           "shares": 31,
           "buy_price": 247.17,
           "buy_value": 7662.27,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 241.62,
+          "day_return_pct": -2.245,
+          "day_return_usd": -172.05,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [],
@@ -7905,14 +7907,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 25666.8,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 25680.39,
+      "nasdaq_day_return_pct": 0.053,
       "portfolio_open_value": 27548.94,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 27248.98,
+      "session_return_pct": -1.089,
+      "session_return_usd": -299.96,
       "cash_uninvested": 1759.14,
-      "cash_balance_close": null
+      "cash_balance_close": 27218.6
     }
   ],
   "equity_curve": [
@@ -8145,9 +8147,8 @@
     },
     {
       "date": "2026-06-23",
-      "portfolio_value": 27548.94,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 27248.98,
+      "qqq_indexed": 30410.62
     }
   ]
 }
