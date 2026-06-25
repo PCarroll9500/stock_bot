@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-24T09:43:14.290228",
+  "updated_at": "2026-06-25T09:42:26.405350",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -7923,6 +7923,164 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 27250.5
+    },
+    {
+      "date": "2026-06-25",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "WYY",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.5,
+          "reason": "Fresh DHS single-award $3.1B contract is a real catalyst with same-day momentum still likely, but the stock is already up sharply and the move may be partially priced in.",
+          "trend_summary": "1d: +15.4%  1w: +38.2%  1m: +61.7%  3m: +235.6%  1yr: +427.5%",
+          "allocation_pct": 14.1,
+          "shares": 170,
+          "buy_price": 22.5539,
+          "buy_value": 3834.16,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "STX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "STX is getting a fresh sympathy lift from Micron\u2019s blowout earnings and the AI-memory trade, but this is a sector-follow-through move rather than a company-specific catalyst so remaining upside is likely modest.",
+          "trend_summary": "1d: -4.4%  1w: -3.7%  1m: +22.2%  3m: +133.7%  1yr: +606.0%",
+          "allocation_pct": 24.0,
+          "shares": 6,
+          "buy_price": 1092.3467,
+          "buy_value": 6554.08,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "META",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Meta is the named customer in Qualcomm\u2019s fresh data-center chip catalyst, which supports a positive AI-infrastructure read-through, though the move is indirect and likely only offers modest remaining upside today.",
+          "trend_summary": "1d: -0.8%  1w: -7.1%  1m: -8.6%  3m: -5.9%  1yr: -23.2%",
+          "allocation_pct": 23.9,
+          "shares": 12,
+          "buy_price": 542.2467,
+          "buy_value": 6506.96,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TECH",
+          "score": 9,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Merck KGaA\u2019s announced $73/share acquisition is a fresh, definitive takeover catalyst, but with TECH already up about 4.7% today and near the deal price, only limited additional upside remains intraday.",
+          "trend_summary": "1d: +4.7%  1w: +5.1%  1m: +22.1%  3m: +12.3%  1yr: +11.5%",
+          "allocation_pct": 37.1,
+          "shares": 144,
+          "buy_price": 70.26,
+          "buy_value": 10117.44,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null,
+          "hold_until": "2026-06-30"
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "RUN",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.0,
+          "reason": "Fresh Tesla/renewable power-plant partnership is a real catalyst and the stock is still reacting, but RUN is already up 12.6% today so much of the move is likely priced in and upside from here is more limited.",
+          "trend_summary": "1d: +12.6%  1w: +14.1%  1m: -1.4%  3m: +13.1%  1yr: +86.1%"
+        },
+        {
+          "ticker": "AMAT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Applied Materials has a fresh AI-chip equipment product announcement that supports the semiconductor capex theme, but it\u2019s a soft catalyst and the stock is already in a strong multi-month uptrend so remaining upside today looks modest.",
+          "trend_summary": "1d: +0.5%  1w: +3.6%  1m: +36.3%  3m: +57.5%  1yr: +220.9%"
+        },
+        {
+          "ticker": "LHX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh $35.3B THAAD contract and related missile-production expansion news support continued defense-sector buying, but LHX is a large-cap with a modest preexisting downtrend so upside today is likely limited to a few percent.",
+          "trend_summary": "1d: -2.2%  1w: -7.5%  1m: -7.9%  3m: -18.3%  1yr: +16.4%"
+        },
+        {
+          "ticker": "RKT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Rocket has a fresh housing-market/Redfin data catalyst and is already trending higher, but the 9%+ move is partly priced in and without volume confirmation the remaining upside looks limited.",
+          "trend_summary": "1d: +9.4%  1w: +5.8%  1m: +6.8%  3m: +4.0%  1yr: +1.7%"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "GEV has a real AI/data-center power demand catalyst from Chevron\u2019s Project Kilby and Alphabet capex commentary, but the move is already partially priced in after recent strength and yesterday\u2019s pullback.",
+          "trend_summary": "1d: +2.2%  1w: +7.7%  1m: +1.8%  3m: +16.3%  1yr: +108.7%"
+        },
+        {
+          "ticker": "FRMI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh project-buildout and turbine agreement news for Fermi is a real catalyst, but it looks more like incremental execution progress than a hard revenue surprise, so upside should be limited after the initial reaction.",
+          "trend_summary": "1d: -8.1%  1w: +1.4%  1m: +33.6%  3m: +7.1%  1yr: -75.4%"
+        },
+        {
+          "ticker": "BAC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "BAC has a fresh, broadly positive stress-test headline that supports bank capital strength, but the result was widely expected and likely mostly priced in after the recent run.",
+          "trend_summary": "1d: -0.3%  1w: +1.6%  1m: +11.4%  3m: +19.9%  1yr: +21.6%"
+        },
+        {
+          "ticker": "UBER",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Uber has a fresh but modest catalyst from Uber Eats expanding non-food options, and the 6% move suggests some upside remains though much of the easy gain is likely already priced in.",
+          "trend_summary": "1d: +6.0%  1w: +0.8%  1m: +2.8%  3m: +2.1%  1yr: -20.7%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25481.88,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27252.02,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 239.38,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -8157,6 +8315,12 @@
       "date": "2026-06-23",
       "portfolio_value": 27248.98,
       "qqq_indexed": 30410.62
+    },
+    {
+      "date": "2026-06-25",
+      "portfolio_value": 27252.02,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
