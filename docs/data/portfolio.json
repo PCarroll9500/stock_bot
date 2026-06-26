@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-25T14:30:51.865525",
+  "updated_at": "2026-06-26T09:42:40.393639",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8083,6 +8083,84 @@
       "session_return_usd": -103.39,
       "cash_uninvested": 239.38,
       "cash_balance_close": 16956.57
+    },
+    {
+      "date": "2026-06-26",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "AMAT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Applied Materials has a fresh AI/DRAM/advanced packaging product catalyst and is making new highs, but the stock is already up 13.4% today so most of the easy move is likely done.",
+          "trend_summary": "1d: +13.4%  1w: +12.7%  1m: +46.8%  3m: +80.9%  1yr: +264.6%",
+          "allocation_pct": 46.3,
+          "shares": 20,
+          "buy_price": 628.8,
+          "buy_value": 12576.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "MKSI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Fresh AI-buildout manufacturing expansion is a real positive but it\u2019s a modest operational catalyst already partly reflected in the 7.5% daily move, so upside likely remains limited today.",
+          "trend_summary": "1d: +7.5%  1w: +10.5%  1m: +22.8%  3m: +68.4%  1yr: +309.5%",
+          "allocation_pct": 24.5,
+          "shares": 17,
+          "buy_price": 391.49,
+          "buy_value": 6655.33,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "LHX",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "L3Harris has a fresh defense-production catalyst from the PAC-3 facility expansion and broader missile replenishment theme, but the news is already a day old and the stock is only modestly higher today, limiting remaining upside.",
+          "trend_summary": "1d: +0.4%  1w: -7.9%  1m: -8.0%  3m: -18.0%  1yr: +16.8%",
+          "allocation_pct": 24.9,
+          "shares": 23,
+          "buy_price": 294.69,
+          "buy_value": 6777.87,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "FRMI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh project-buildout and turbine agreement news is a real catalyst, but it\u2019s already 1 day old and the stock has moved +10% today, so most of the easy upside looks partly priced in.",
+          "trend_summary": "1d: +10.1%  1w: +1.6%  1m: +36.9%  3m: +32.1%  1yr: -72.9%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25109.1,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27173.93,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 1164.73,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -8322,6 +8400,12 @@
       "date": "2026-06-25",
       "portfolio_value": 27148.63,
       "qqq_indexed": 36241.26
+    },
+    {
+      "date": "2026-06-26",
+      "portfolio_value": 27173.93,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
