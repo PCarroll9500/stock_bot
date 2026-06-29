@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-26T14:30:50.944156",
+  "updated_at": "2026-06-29T09:40:23.295353",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8163,6 +8163,90 @@
       "session_return_usd": -107.98,
       "cash_uninvested": 1164.73,
       "cash_balance_close": 27031.03
+    },
+    {
+      "date": "2026-06-29",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "AMAT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "KeyBanc\u2019s fresh overweight reiteration with a $200 target raise on AMAT is a credible large-cap catalyst, but as a standalone analyst action it likely offers only modest additional upside today after the stock\u2019s strong multi-month run.",
+          "trend_summary": "1d: -6.2%  1w: +1.6%  1m: +39.8%  3m: +85.2%  1yr: +242.4%",
+          "allocation_pct": 52.5,
+          "shares": 22,
+          "buy_price": 645.49,
+          "buy_value": 14200.78,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NOW",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh ServiceNow-Accenture AI services launch is a real enterprise catalyst, but NOW is already up 9.9% today and the move looks partially priced in despite supportive software rotation.",
+          "trend_summary": "1d: +9.9%  1w: +3.5%  1m: -3.7%  3m: -5.1%  1yr: -52.2%",
+          "allocation_pct": 27.0,
+          "shares": 72,
+          "buy_price": 101.57,
+          "buy_value": 7313.04,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRDN",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.0,
+          "reason": "Fresh FDA approval and immediate launch of Lumvoa is a real catalyst, but it was announced 2 days ago and the stock has already started to digest the news, leaving only moderate upside from here today.",
+          "trend_summary": "1d: +2.9%  1w: +7.6%  1m: +3.7%  3m: -36.5%  1yr: +28.0%",
+          "allocation_pct": 11.8,
+          "shares": 165,
+          "buy_price": 19.2762,
+          "buy_value": 3180.57,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "WBD",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Seaport\u2019s fresh upgrade to Buy with a $31 target is a real but standalone analyst catalyst, likely supporting modest follow-through today rather than a major breakout.",
+          "trend_summary": "1d: -0.9%  1w: +2.1%  1m: -1.5%  3m: -1.2%  1yr: +133.3%",
+          "allocation_pct": 8.5,
+          "shares": 85,
+          "buy_price": 26.99,
+          "buy_value": 2294.15,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25610.71,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27067.45,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 78.91,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -8407,6 +8491,12 @@
       "date": "2026-06-26",
       "portfolio_value": 27065.95,
       "qqq_indexed": 35983.71
+    },
+    {
+      "date": "2026-06-29",
+      "portfolio_value": 27067.45,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
