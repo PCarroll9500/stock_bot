@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-06-30T09:42:08.659089",
+  "updated_at": "2026-06-30T14:30:51.342153",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8268,9 +8268,9 @@
           "shares": 9,
           "buy_price": 708.97,
           "buy_value": 6380.73,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 734.46,
+          "day_return_pct": 3.595,
+          "day_return_usd": 229.41
         },
         {
           "ticker": "QXO",
@@ -8284,9 +8284,10 @@
           "shares": 372,
           "buy_price": 17.9927,
           "buy_value": 6693.28,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 17.89,
+          "day_return_pct": -0.571,
+          "day_return_usd": -38.2,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "GOOG",
@@ -8300,9 +8301,9 @@
           "shares": 9,
           "buy_price": 348.69,
           "buy_value": 3138.21,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 353.69,
+          "day_return_pct": 1.434,
+          "day_return_usd": 45.0
         },
         {
           "ticker": "DELL",
@@ -8316,9 +8317,9 @@
           "shares": 8,
           "buy_price": 419.27,
           "buy_value": 3354.16,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 429.0,
+          "day_return_pct": 2.321,
+          "day_return_usd": 77.84
         },
         {
           "ticker": "LHX",
@@ -8332,9 +8333,9 @@
           "shares": 11,
           "buy_price": 288.75,
           "buy_value": 3176.25,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 289.77,
+          "day_return_pct": 0.353,
+          "day_return_usd": 11.22
         },
         {
           "ticker": "SOFI",
@@ -8348,9 +8349,9 @@
           "shares": 76,
           "buy_price": 18.0854,
           "buy_value": 1374.49,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 17.91,
+          "day_return_pct": -0.97,
+          "day_return_usd": -13.33
         },
         {
           "ticker": "MKSI",
@@ -8364,9 +8365,9 @@
           "shares": 2,
           "buy_price": 430.0,
           "buy_value": 860.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 445.24,
+          "day_return_pct": 3.544,
+          "day_return_usd": 30.48
         },
         {
           "ticker": "CMCSA",
@@ -8380,9 +8381,10 @@
           "shares": 54,
           "buy_price": 24.6563,
           "buy_value": 1331.44,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 24.15,
+          "day_return_pct": -2.053,
+          "day_return_usd": -27.34,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [],
@@ -8390,14 +8392,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 25909.6,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26165.2,
+      "nasdaq_day_return_pct": 0.987,
       "portfolio_open_value": 26896.76,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 27180.23,
+      "session_return_pct": 1.054,
+      "session_return_usd": 283.47,
       "cash_uninvested": 588.2,
-      "cash_balance_close": null
+      "cash_balance_close": 27142.01
     }
   ],
   "equity_curve": [
@@ -8650,9 +8652,8 @@
     },
     {
       "date": "2026-06-30",
-      "portfolio_value": 26896.76,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 27180.23,
+      "qqq_indexed": 37229.48
     }
   ]
 }
