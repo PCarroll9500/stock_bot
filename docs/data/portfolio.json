@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-02T09:44:28.329396",
+  "updated_at": "2026-07-02T14:30:50.451908",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8426,9 +8426,10 @@
           "shares": 8,
           "buy_price": 1115.21,
           "buy_value": 8921.68,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 1107.3,
+          "day_return_pct": -0.709,
+          "day_return_usd": -63.28,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "META",
@@ -8442,9 +8443,9 @@
           "shares": 12,
           "buy_price": 596.72,
           "buy_value": 7160.64,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 586.19,
+          "day_return_pct": -1.765,
+          "day_return_usd": -126.36
         },
         {
           "ticker": "LHX",
@@ -8458,9 +8459,9 @@
           "shares": 24,
           "buy_price": 302.02,
           "buy_value": 7248.48,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 301.82,
+          "day_return_pct": -0.066,
+          "day_return_usd": -4.8
         },
         {
           "ticker": "HOOD",
@@ -8474,9 +8475,10 @@
           "shares": 32,
           "buy_price": 118.235,
           "buy_value": 3783.52,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 116.43,
+          "day_return_pct": -1.527,
+          "day_return_usd": -57.76,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -8512,14 +8514,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26141.32,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 25760.69,
+      "nasdaq_day_return_pct": -1.456,
       "portfolio_open_value": 27183.18,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 26920.41,
+      "session_return_pct": -0.967,
+      "session_return_usd": -262.77,
       "cash_uninvested": 68.86,
-      "cash_balance_close": null
+      "cash_balance_close": 26879.25
     }
   ],
   "equity_curve": [
@@ -8777,9 +8779,8 @@
     },
     {
       "date": "2026-07-02",
-      "portfolio_value": 27183.18,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 26920.41,
+      "qqq_indexed": 35952.34
     }
   ]
 }
