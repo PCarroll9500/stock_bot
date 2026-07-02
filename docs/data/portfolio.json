@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-01T09:42:46.633396",
+  "updated_at": "2026-07-02T09:44:28.329396",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8408,6 +8408,118 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 27181.72
+    },
+    {
+      "date": "2026-07-02",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "GEV",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.0,
+          "reason": "Fresh Russell Top 50 inclusion plus AI-driven power order momentum is a real large-cap catalyst, but after a 7.3% run and no volume confirmation the remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: -3.4%  1w: +7.3%  1m: +19.3%  3m: +30.0%  1yr: +119.4%",
+          "allocation_pct": 32.8,
+          "shares": 8,
+          "buy_price": 1115.21,
+          "buy_value": 8921.68,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "META",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Meta\u2019s reported move into cloud computing is a fresh, plausible growth catalyst, but the stock is already up 8.8% today so much of the initial reaction is likely priced in.",
+          "trend_summary": "1d: +8.8%  1w: +9.9%  1m: +2.1%  3m: +7.1%  1yr: -14.8%",
+          "allocation_pct": 26.3,
+          "shares": 12,
+          "buy_price": 596.72,
+          "buy_value": 7160.64,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "LHX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "L3Harris has a fresh FAA contract and a supportive defense-compounder thesis, but the move is modest, the catalyst is not explosive, and much of the upside may already be reflected after 21 hours.",
+          "trend_summary": "1d: +0.6%  1w: +1.7%  1m: -5.6%  3m: -15.3%  1yr: +14.3%",
+          "allocation_pct": 26.7,
+          "shares": 24,
+          "buy_price": 302.02,
+          "buy_value": 7248.48,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "HOOD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "HOOD has a fresh product/catalyst mix around AI agent trading and tokenized assets, but the stock is already extended on the day and the news is more incremental than binary, limiting remaining upside.",
+          "trend_summary": "1d: +8.3%  1w: +11.8%  1m: +19.8%  3m: +56.8%  1yr: +15.1%",
+          "allocation_pct": 13.9,
+          "shares": 32,
+          "buy_price": 118.235,
+          "buy_value": 3783.52,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "VRT",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Vertiv has a fresh AI data-center expansion catalyst and a recent analyst upgrade, but the news is already several hours old and the stock\u2019s 1-day drop suggests much of the move has faded, limiting remaining upside today.",
+          "trend_summary": "1d: -7.0%  1w: -1.6%  1m: -3.7%  3m: +24.3%  1yr: +143.6%"
+        },
+        {
+          "ticker": "XYZ",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Block has a fresh AI-integration product update plus a recent Piper Sandler upgrade, but the move is modest and likely partly priced in after the stock\u2019s strong multi-month run.",
+          "trend_summary": "1d: +1.5%  1w: +1.9%  1m: +1.4%  3m: +28.2%  1yr: +11.4%"
+        },
+        {
+          "ticker": "HIMS",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "HIMS has a fresh financing/liquidity catalyst plus multiple analyst target raises, but the stock is already up sharply over the past week and the standalone PT upgrades are mostly priced in.",
+          "trend_summary": "1d: +8.4%  1w: +14.9%  1m: +35.3%  3m: +81.0%  1yr: -21.7%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26141.32,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 27183.18,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 68.86,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -8662,6 +8774,12 @@
       "date": "2026-06-30",
       "portfolio_value": 27180.23,
       "qqq_indexed": 37229.48
+    },
+    {
+      "date": "2026-07-02",
+      "portfolio_value": 27183.18,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
