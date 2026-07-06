@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-03T09:42:43.614024",
+  "updated_at": "2026-07-06T09:41:39.467625",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8530,6 +8530,90 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 26921.9
+    },
+    {
+      "date": "2026-07-06",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "ATAI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "AtaiBeckley\u2019s Phase 2b TRD update is a real fresh biotech catalyst, but the stock is already up 6.4% today and the move looks partially priced in without volume confirmation.",
+          "trend_summary": "1d: +6.4%  1w: +13.3%  1m: +7.9%  3m: +40.3%  1yr: +88.7%",
+          "allocation_pct": 18.4,
+          "shares": 957,
+          "buy_price": 5.1869,
+          "buy_value": 4963.86,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "SNDK",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.5,
+          "reason": "SNDK is bouncing with the memory/semiconductor group on a fresh tech rebound, but this looks like sector rotation rather than a company-specific catalyst and the move is already partially priced in.",
+          "trend_summary": "1d: -14.1%  1w: -25.3%  1m: +1.7%  3m: +151.9%  1yr: +3758.9%",
+          "allocation_pct": 6.6,
+          "shares": 1,
+          "buy_price": 1777.94,
+          "buy_value": 1777.94,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TSM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Fresh Citi market talk suggests TSMC may raise 2026 revenue growth guidance into mid-July earnings, but this is only a soft pre-earnings catalyst and the stock is not showing a fresh volume-confirmed breakout today.",
+          "trend_summary": "1d: -2.3%  1w: -0.2%  1m: -2.8%  3m: +27.1%  1yr: +89.4%",
+          "allocation_pct": 37.1,
+          "shares": 22,
+          "buy_price": 453.86,
+          "buy_value": 9984.92,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BAC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "BAC has a fresh premarket analyst upgrade cluster with modest target raises, but this is a soft catalyst on a large-cap that has already trended up over the past month, so upside today looks limited.",
+          "trend_summary": "1d: +0.6%  1w: +0.9%  1m: +11.9%  3m: +19.2%  1yr: +20.7%",
+          "allocation_pct": 37.5,
+          "shares": 169,
+          "buy_price": 59.81,
+          "buy_value": 10107.89,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26042.05,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 26921.9,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 87.29,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -8789,6 +8873,12 @@
       "date": "2026-07-02",
       "portfolio_value": 26920.41,
       "qqq_indexed": 35952.34
+    },
+    {
+      "date": "2026-07-06",
+      "portfolio_value": 26921.9,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
