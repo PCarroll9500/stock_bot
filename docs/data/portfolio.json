@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-07T09:42:50.421729",
+  "updated_at": "2026-07-08T09:39:10.371030",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8624,6 +8624,58 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 26978.87
+    },
+    {
+      "date": "2026-07-08",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "LHX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh defense-sector bid from Iran war fears plus a new $499.6M missile defense contract supports continued upside today, though LHX is a large-cap so the move should stay measured.",
+          "trend_summary": "1d: -1.9%  1w: +2.1%  1m: -4.6%  3m: -17.7%  1yr: +14.0%",
+          "allocation_pct": 63.0,
+          "shares": 58,
+          "buy_price": 293.08,
+          "buy_value": 16998.64,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "IBM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "IBM has a fresh same-day product launch with Red Hat around AI/open-source security, but it reads more like incremental enterprise software news than a market-moving catalyst, so upside should be modest and likely partially priced in after the recent run.",
+          "trend_summary": "1d: +2.2%  1w: +10.1%  1m: +1.4%  3m: +24.1%  1yr: +5.5%",
+          "allocation_pct": 32.2,
+          "shares": 29,
+          "buy_price": 299.49,
+          "buy_value": 8685.21,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25709.19,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 26980.34,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 1296.49,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -8888,6 +8940,12 @@
       "date": "2026-07-06",
       "portfolio_value": 26972.91,
       "qqq_indexed": 36585.85
+    },
+    {
+      "date": "2026-07-08",
+      "portfolio_value": 26980.34,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
