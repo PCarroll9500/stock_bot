@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-08T14:30:51.740906",
+  "updated_at": "2026-07-09T09:41:31.494746",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8676,6 +8676,100 @@
       "session_return_usd": -26.01,
       "cash_uninvested": 1296.49,
       "cash_balance_close": 26945.41
+    },
+    {
+      "date": "2026-07-09",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "ALNY",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.0,
+          "reason": "ALNY is surging on a fresh read-through from AstraZeneca/Ionis\u2019 failed ATTR-CM trial, which materially improves Alnylam\u2019s competitive position, though the premarket jump already prices in much of the immediate upside.",
+          "trend_summary": "1d: +0.6%  1w: +7.5%  1m: +6.7%  3m: +1.2%  1yr: +0.3%",
+          "allocation_pct": 43.1,
+          "shares": 31,
+          "buy_price": 374.96,
+          "buy_value": 11623.76,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "AMAT",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Mizuho\u2019s maintained Outperform and $650 target raise is a fresh but soft catalyst for AMAT, and with the stock already up 2.9% today the remaining upside looks modest rather than explosive.",
+          "trend_summary": "1d: +2.9%  1w: -21.1%  1m: +25.9%  3m: +61.0%  1yr: +188.1%",
+          "allocation_pct": 16.3,
+          "shares": 7,
+          "buy_price": 627.59,
+          "buy_value": 4393.13,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "IBM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "IBM has a fresh enterprise AI product update this morning, which is a real but moderate catalyst for a large-cap name, though the move is likely to be steady rather than explosive without volume confirmation.",
+          "trend_summary": "1d: -1.3%  1w: +7.4%  1m: +6.0%  3m: +23.3%  1yr: +5.1%",
+          "allocation_pct": 19.5,
+          "shares": 18,
+          "buy_price": 292.0256,
+          "buy_value": 5256.46,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "MKSI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "Fresh Mizuho price-target raise and maintained Outperform on MKSI support a modest large-cap momentum setup, but this is still just an analyst action with likely limited remaining upside today.",
+          "trend_summary": "1d: -0.1%  1w: -21.5%  1m: +15.8%  3m: +46.7%  1yr: +226.5%",
+          "allocation_pct": 18.2,
+          "shares": 13,
+          "buy_price": 377.0254,
+          "buy_value": 4901.33,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "BBIO",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "BBIO is getting a fresh read-through bid from AstraZeneca\u2019s failed ATTR-CM trial, but after a 14% premarket jump much of the catalyst is already priced in and upside may be limited from here.",
+          "trend_summary": "1d: +0.5%  1w: +5.2%  1m: +15.9%  3m: +8.9%  1yr: +69.3%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25998.98,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 26955.82,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 781.14,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -8945,6 +9039,12 @@
       "date": "2026-07-08",
       "portfolio_value": 26954.33,
       "qqq_indexed": 35926.53
+    },
+    {
+      "date": "2026-07-09",
+      "portfolio_value": 26955.82,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
