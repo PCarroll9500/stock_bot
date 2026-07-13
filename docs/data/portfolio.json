@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-10T09:42:44.561631",
+  "updated_at": "2026-07-13T09:41:00.567562",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8781,6 +8781,74 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 26356.45
+    },
+    {
+      "date": "2026-07-13",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "VOD",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Xavier Niel\u2019s 16.2% stake purchase is a fresh strategic catalyst that can support continued short-covering and re-rating today, though the move is already partially extended at +12.5%.",
+          "trend_summary": "1d: +12.5%  1w: +11.9%  1m: +0.3%  3m: -7.1%  1yr: +35.0%",
+          "allocation_pct": 38.4,
+          "shares": 660,
+          "buy_price": 15.3333,
+          "buy_value": 10119.98,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "META",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Meta\u2019s $50B AI data-center expansion is a fresh, credible long-term catalyst, but the stock already ran 6% today and the move looks partly priced in for further session upside.",
+          "trend_summary": "1d: +6.0%  1w: +14.8%  1m: +14.5%  3m: +6.5%  1yr: -7.2%",
+          "allocation_pct": 38.1,
+          "shares": 15,
+          "buy_price": 669.21,
+          "buy_value": 10038.15,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "TSM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "TSMC\u2019s record June revenue and announced advanced-packaging expansion are real bullish fundamentals, but the ADR already barely reacted and AI semis are soft today, limiting remaining upside from current levels.",
+          "trend_summary": "1d: -0.7%  1w: +-0.0%  1m: +1.4%  3m: +18.8%  1yr: +89.8%",
+          "allocation_pct": 23.0,
+          "shares": 14,
+          "buy_price": 432.1264,
+          "buy_value": 6049.77,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26050.26,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 26357.92,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 150.02,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -9055,6 +9123,12 @@
       "date": "2026-07-09",
       "portfolio_value": 26354.98,
       "qqq_indexed": 36628.35
+    },
+    {
+      "date": "2026-07-13",
+      "portfolio_value": 26357.92,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
