@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-13T14:30:51.180713",
+  "updated_at": "2026-07-14T09:46:18.932576",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8850,6 +8850,141 @@
       "session_return_usd": -249.49,
       "cash_uninvested": 150.02,
       "cash_balance_close": 26095.09
+    },
+    {
+      "date": "2026-07-14",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "WFC",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.2,
+          "reason": "WFC has a fresh Q2 earnings beat with broad-based strength and premarket upside, and as a large-cap bank the move can still extend modestly intraday though much of the initial reaction is likely priced in.",
+          "trend_summary": "1d: +0.6%  1w: +0.3%  1m: +7.0%  3m: +2.7%  1yr: +11.2%",
+          "allocation_pct": 25.0,
+          "shares": 75,
+          "buy_price": 86.9263,
+          "buy_value": 6519.47,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "KLAC",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "KLA has a fresh earnings/buyback catalyst and a strong multi-year uptrend, but the stock is already down on the day and the move looks more like a quality dip-buy than a fresh breakout with 5%+ remaining upside.",
+          "trend_summary": "1d: -4.0%  1w: -4.7%  1m: +4.1%  3m: +27.9%  1yr: +137.3%",
+          "allocation_pct": 17.7,
+          "shares": 20,
+          "buy_price": 230.6,
+          "buy_value": 4612.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "LHX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh Space Force satellite contract is a real defense catalyst, but with no disclosed size and the stock already flat-to-down on the day, upside looks modest rather than explosive.",
+          "trend_summary": "1d: -0.7%  1w: -4.2%  1m: -4.7%  3m: -18.4%  1yr: +10.5%",
+          "allocation_pct": 13.5,
+          "shares": 12,
+          "buy_price": 292.92,
+          "buy_value": 3515.04,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ERIC",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "ERIC has a fresh Q2 earnings catalyst with an EBITA beat and a strong 1-year uptrend, but revenue/FCF missed and the move is already partly priced in after a 3.3% gain today.",
+          "trend_summary": "1d: +3.3%  1w: +7.6%  1m: +1.0%  3m: -1.3%  1yr: +62.3%",
+          "allocation_pct": 14.4,
+          "shares": 363,
+          "buy_price": 10.3507,
+          "buy_value": 3757.3,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "OXY",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.2,
+          "reason": "OXY is benefiting from a fresh oil-price spike tied to escalating U.S.-Iran/Strait of Hormuz tensions, but the move is already partly reflected in the 1-day gain and this is more sector tailwind than a company-specific catalyst.",
+          "trend_summary": "1d: +3.6%  1w: +12.3%  1m: -4.0%  3m: -5.5%  1yr: +28.4%",
+          "allocation_pct": 14.1,
+          "shares": 67,
+          "buy_price": 54.9557,
+          "buy_value": 3682.03,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CMG",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Chipotle\u2019s first Mexico opening is a real international growth catalyst, but it\u2019s already been in the tape for hours and the stock is near four-month highs, limiting remaining upside today.",
+          "trend_summary": "1d: +3.9%  1w: +7.8%  1m: +20.4%  3m: +7.5%  1yr: -32.1%",
+          "allocation_pct": 14.7,
+          "shares": 104,
+          "buy_price": 37.0269,
+          "buy_value": 3850.8,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "GOOG",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Alphabet\u2019s large solar deal is a real positive catalyst for a quality mega-cap, but with no volume confirmation and the stock already lacking strong intraday momentum, upside from here looks modest rather than explosive.",
+          "trend_summary": "1d: -1.2%  1w: -3.9%  1m: -0.8%  3m: +11.1%  1yr: +91.5%"
+        },
+        {
+          "ticker": "NOW",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "ServiceNow has a fresh software-rotation tailwind and an AI monetization narrative, but the catalyst is mostly sentiment/upgrade-driven rather than a hard fundamental surprise, so upside from here looks limited.",
+          "trend_summary": "1d: +3.3%  1w: +3.1%  1m: +4.9%  3m: +34.0%  1yr: -41.9%"
+        }
+      ],
+      "qqq_buy_price": 719.16,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26060.03,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 26112.68,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 176.04,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -9129,6 +9264,12 @@
       "date": "2026-07-13",
       "portfolio_value": 26108.43,
       "qqq_indexed": 36068.72
+    },
+    {
+      "date": "2026-07-14",
+      "portfolio_value": 26112.68,
+      "qqq_indexed": 36389.52,
+      "nasdaq_indexed": null
     }
   ]
 }
