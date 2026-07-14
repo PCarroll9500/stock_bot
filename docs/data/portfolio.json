@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-14T09:46:18.932576",
+  "updated_at": "2026-07-14T14:30:51.099399",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8868,9 +8868,10 @@
           "shares": 75,
           "buy_price": 86.9263,
           "buy_value": 6519.47,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 85.86,
+          "day_return_pct": -1.227,
+          "day_return_usd": -79.97,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "KLAC",
@@ -8884,9 +8885,9 @@
           "shares": 20,
           "buy_price": 230.6,
           "buy_value": 4612.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 233.35,
+          "day_return_pct": 1.193,
+          "day_return_usd": 55.0
         },
         {
           "ticker": "LHX",
@@ -8900,9 +8901,9 @@
           "shares": 12,
           "buy_price": 292.92,
           "buy_value": 3515.04,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 292.24,
+          "day_return_pct": -0.232,
+          "day_return_usd": -8.16
         },
         {
           "ticker": "ERIC",
@@ -8916,9 +8917,10 @@
           "shares": 363,
           "buy_price": 10.3507,
           "buy_value": 3757.3,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 10.11,
+          "day_return_pct": -2.325,
+          "day_return_usd": -87.37,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "OXY",
@@ -8932,9 +8934,9 @@
           "shares": 67,
           "buy_price": 54.9557,
           "buy_value": 3682.03,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 54.28,
+          "day_return_pct": -1.23,
+          "day_return_usd": -45.27
         },
         {
           "ticker": "CMG",
@@ -8948,9 +8950,9 @@
           "shares": 104,
           "buy_price": 37.0269,
           "buy_value": 3850.8,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 36.61,
+          "day_return_pct": -1.126,
+          "day_return_usd": -43.36
         }
       ],
       "runner_ups": [
@@ -8974,17 +8976,17 @@
         }
       ],
       "qqq_buy_price": 719.16,
-      "qqq_close_price": null,
-      "qqq_day_return_pct": null,
+      "qqq_close_price": 721.79,
+      "qqq_day_return_pct": 0.366,
       "nasdaq_buy_price": 26060.03,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26150.98,
+      "nasdaq_day_return_pct": 0.349,
       "portfolio_open_value": 26112.68,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 25878.42,
+      "session_return_pct": -0.897,
+      "session_return_usd": -234.26,
       "cash_uninvested": 176.04,
-      "cash_balance_close": null
+      "cash_balance_close": 25860.82
     }
   ],
   "equity_curve": [
@@ -9267,9 +9269,8 @@
     },
     {
       "date": "2026-07-14",
-      "portfolio_value": 26112.68,
-      "qqq_indexed": 36389.52,
-      "nasdaq_indexed": null
+      "portfolio_value": 25878.42,
+      "qqq_indexed": 36522.6
     }
   ]
 }
