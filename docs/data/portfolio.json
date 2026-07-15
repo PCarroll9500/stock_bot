@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-15T09:39:06.684412",
+  "updated_at": "2026-07-15T14:30:48.718324",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -9005,9 +9005,10 @@
           "shares": 51,
           "buy_price": 199.0,
           "buy_value": 10149.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 195.88,
+          "day_return_pct": -1.568,
+          "day_return_usd": -159.12,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "VRT",
@@ -9021,9 +9022,10 @@
           "shares": 24,
           "buy_price": 307.3,
           "buy_value": 7375.2,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 298.9,
+          "day_return_pct": -2.733,
+          "day_return_usd": -201.6,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "CRWD",
@@ -9037,9 +9039,10 @@
           "shares": 35,
           "buy_price": 213.64,
           "buy_value": 7477.4,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 206.71,
+          "day_return_pct": -3.244,
+          "day_return_usd": -242.55,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -9075,14 +9078,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26266.71,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26273.15,
+      "nasdaq_day_return_pct": 0.025,
       "portfolio_open_value": 25879.85,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 25270.06,
+      "session_return_pct": -2.356,
+      "session_return_usd": -609.79,
       "cash_uninvested": 878.25,
-      "cash_balance_close": null
+      "cash_balance_close": 25251.04
     }
   ],
   "equity_curve": [
@@ -9370,9 +9373,8 @@
     },
     {
       "date": "2026-07-15",
-      "portfolio_value": 25879.85,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 25270.06,
+      "qqq_indexed": 36316.66
     }
   ]
 }
