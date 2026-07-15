@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-14T14:30:51.099399",
+  "updated_at": "2026-07-15T09:39:06.684412",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -8987,6 +8987,102 @@
       "session_return_usd": -234.26,
       "cash_uninvested": 176.04,
       "cash_balance_close": 25860.82
+    },
+    {
+      "date": "2026-07-15",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "NBIS",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh 1h-old announcement of a new AI cloud partnership model is a real growth catalyst, but with no volume confirmation and the stock already down on the day, upside looks meaningful yet not explosive from current levels.",
+          "trend_summary": "1d: -7.8%  1w: -0.6%  1m: -12.7%  3m: +25.6%  1yr: +264.1%",
+          "allocation_pct": 39.2,
+          "shares": 51,
+          "buy_price": 199.0,
+          "buy_value": 10149.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "VRT is a quality large-cap AI infrastructure name with a fresh Q2 earnings date announcement ahead of the July 29 report, but this is not a true catalyst and the stock is only modestly trending, so upside today looks limited.",
+          "trend_summary": "1d: -0.7%  1w: -0.7%  1m: +1.9%  3m: +1.2%  1yr: +142.1%",
+          "allocation_pct": 28.5,
+          "shares": 24,
+          "buy_price": 307.3,
+          "buy_value": 7375.2,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "CRWD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "BTIG\u2019s price-target raise and buy reiteration are a real but soft catalyst for a large-cap leader, and the fresh CPO appointment adds a modest positive narrative, though the stock is already up sharply today so much of the move may be priced in.",
+          "trend_summary": "1d: +12.1%  1w: +8.3%  1m: +21.9%  3m: +109.6%  1yr: +79.2%",
+          "allocation_pct": 28.9,
+          "shares": 35,
+          "buy_price": 213.64,
+          "buy_value": 7477.4,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "PYPL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.0,
+          "reason": "Fresh takeover-bid reports from Stripe and Advent are a real catalyst, but the stock is already up about 19% premarket and the offer appears early/uncertain, limiting remaining upside today.",
+          "trend_summary": "1d: -0.6%  1w: +3.8%  1m: +14.9%  3m: -0.3%  1yr: -35.1%"
+        },
+        {
+          "ticker": "LRCX",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Lam Research has a fresh positive Moody\u2019s outlook change and is rebounding after a recent pullback, but the move is already partly priced in and there\u2019s no evidence of a stronger intraday catalyst or volume confirmation.",
+          "trend_summary": "1d: +4.9%  1w: +6.1%  1m: -4.5%  3m: +29.5%  1yr: +244.8%"
+        },
+        {
+          "ticker": "QQQ",
+          "score": 2,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 0.8,
+          "reason": "QQQ is a broad large-cap momentum ETF with a modest 1.1% session gain and no real fresh catalyst, so any remaining upside today looks limited and mostly market-driven.",
+          "trend_summary": "1d: +1.1%  1w: +1.4%  1m: +0.4%  3m: +16.6%  1yr: +29.1%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 26266.71,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 25879.85,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 878.25,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -9271,6 +9367,12 @@
       "date": "2026-07-14",
       "portfolio_value": 25878.42,
       "qqq_indexed": 36522.6
+    },
+    {
+      "date": "2026-07-15",
+      "portfolio_value": 25879.85,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
