@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-15T14:30:48.718324",
+  "updated_at": "2026-07-16T09:42:46.358619",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -9086,6 +9086,14 @@
       "session_return_usd": -609.79,
       "cash_uninvested": 878.25,
       "cash_balance_close": 25251.04
+    },
+    {
+      "date": "2026-07-16",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [],
+      "portfolio_open_value": 25271.45
     }
   ],
   "equity_curve": [
