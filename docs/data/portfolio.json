@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-21T09:42:44.926565",
+  "updated_at": "2026-07-22T09:42:04.747656",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -9223,6 +9223,171 @@
         }
       ],
       "portfolio_open_value": 25146.35
+    },
+    {
+      "date": "2026-07-22",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "BLFS",
+          "score": 9,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 4.5,
+          "reason": "BioLife has a fresh announced acquisition at $31/share plus a 21% revenue print, and while most of the deal premium is likely priced in, the open still offers some remaining upside from arb and momentum flows.",
+          "trend_summary": "1d: +0.3%  1w: +1.9%  1m: +12.1%  3m: +31.5%  1yr: +30.0%",
+          "allocation_pct": 33.3,
+          "shares": 269,
+          "buy_price": 31.1,
+          "buy_value": 8365.9,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null,
+          "hold_until": "2026-07-27"
+        },
+        {
+          "ticker": "AGPU",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 4.5,
+          "reason": "Fresh $1.3B AI-infrastructure contract win is a real fundamental catalyst and the stock is still early in the move, though the +9.5% day already prices in part of the news.",
+          "trend_summary": "1d: +9.5%  1w: +36.1%  1m: +34.0%  3m: +106.5%  1yr: -18.0%",
+          "allocation_pct": 7.1,
+          "shares": 227,
+          "buy_price": 7.8896,
+          "buy_value": 1790.94,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "EQNR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Equinor posted a modest Q2 earnings beat with higher buybacks and stronger cash flow, but the move is already partially priced in and upside from here looks limited to a few more percent today.",
+          "trend_summary": "1d: +0.6%  1w: +3.9%  1m: +16.1%  3m: +4.4%  1yr: +44.9%",
+          "allocation_pct": 21.2,
+          "shares": 135,
+          "buy_price": 39.4075,
+          "buy_value": 5320.01,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "T",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "AT&T delivered a fresh earnings beat with stronger wireless subscriber additions, and the move is still early enough for modest follow-through despite the revenue miss.",
+          "trend_summary": "1d: +1.4%  1w: +4.6%  1m: +1.1%  3m: -15.0%  1yr: -19.8%",
+          "allocation_pct": 21.3,
+          "shares": 231,
+          "buy_price": 23.2302,
+          "buy_value": 5366.18,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "GM",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "GM has a fresh earnings-driven catalyst with raised full-year profit guidance and a supportive Barclays upgrade, but the stock is already up 4.9% so most of the easy move is likely in.",
+          "trend_summary": "1d: +4.9%  1w: +3.4%  1m: +0.3%  3m: -1.3%  1yr: +49.7%",
+          "allocation_pct": 21.5,
+          "shares": 65,
+          "buy_price": 83.2448,
+          "buy_value": 5410.91,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "TSM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "TSMC has a fresh but mostly priced-in catalyst from reported 2027 price hikes and a small insider buy, supporting modest continuation but not a 5%+ remaining move from here.",
+          "trend_summary": "1d: +5.5%  1w: +1.0%  1m: -8.1%  3m: +15.9%  1yr: +76.7%"
+        },
+        {
+          "ticker": "AUR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh product-launch catalyst with a concrete production ramp and network expansion supports some continuation, but AUR is already up on the day and the move looks more like incremental upside than a 5%+ breakout from here.",
+          "trend_summary": "1d: +3.6%  1w: +2.9%  1m: +0.5%  3m: +20.9%  1yr: -2.5%"
+        },
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "BMNR has a fresh crypto-treasury/ETH holdings update plus ongoing buybacks, but the news is already 2 days old and the stock has only a modest daily move, so upside today looks limited rather than explosive.",
+          "trend_summary": "1d: +3.6%  1w: +5.8%  1m: +6.8%  3m: -23.5%  1yr: -57.3%"
+        },
+        {
+          "ticker": "DELL",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "DELL is getting a sympathy bid from SMCI\u2019s strong AI-server margin surprise, but this is a secondary move with no company-specific catalyst and likely limited remaining upside today.",
+          "trend_summary": "1d: +5.8%  1w: -11.7%  1m: -1.3%  3m: +97.9%  1yr: +217.7%"
+        },
+        {
+          "ticker": "SNDK",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "SNDK is benefiting from a fresh sector-wide memory/AI chip momentum bid, but the move is already +14% today and the news is broad market commentary rather than a company-specific catalyst, so upside likely remains but is limited.",
+          "trend_summary": "1d: +14.3%  1w: -9.6%  1m: -27.3%  3m: +74.1%  1yr: +3596.3%"
+        },
+        {
+          "ticker": "VRT",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Vertiv has a fresh AI data-center capacity expansion and a strategic thermal acquisition, but the news is already ~1 day old and the stock is only modestly up today, so there may be some remaining follow-through but not a high-conviction 5%+ move.",
+          "trend_summary": "1d: +4.4%  1w: +0.3%  1m: -8.6%  3m: -3.2%  1yr: +133.9%"
+        },
+        {
+          "ticker": "NKE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Nike\u2019s China distribution reset is a fresh strategic catalyst for a large-cap, but it\u2019s a gradual operational change rather than a hard near-term earnings event, so upside today looks modest and partly priced in.",
+          "trend_summary": "1d: -1.2%  1w: +0.2%  1m: -5.0%  3m: -7.6%  1yr: -44.0%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25685.28,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 25147.67,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": -1106.27,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -9517,6 +9682,12 @@
       "date": "2026-07-20",
       "portfolio_value": 25142.35,
       "qqq_indexed": 35464.05
+    },
+    {
+      "date": "2026-07-22",
+      "portfolio_value": 25147.67,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
