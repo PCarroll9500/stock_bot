@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-22T14:30:50.936247",
+  "updated_at": "2026-07-23T09:43:51.274840",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -9390,6 +9390,105 @@
       "session_return_usd": -393.81,
       "cash_uninvested": -1106.27,
       "cash_balance_close": 24725.42
+    },
+    {
+      "date": "2026-07-23",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "LITE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "LITE is benefiting from the AI infrastructure/photonics theme and a recent Barclays upgrade, but the catalyst is mostly analyst-driven and already partially reflected in the recent run-up, limiting remaining upside today.",
+          "trend_summary": "1d: -0.9%  1w: +10.3%  1m: -7.2%  3m: -0.9%  1yr: +706.7%"
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh AI/data-center infrastructure headline with NVIDIA/NPS supports the ongoing Vertiv growth narrative, but the stock is already a mature large-cap momentum name and the catalyst looks more incremental than explosive for today.",
+          "trend_summary": "1d: -1.1%  1w: -1.1%  1m: -15.9%  3m: -3.6%  1yr: +130.1%"
+        },
+        {
+          "ticker": "T",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "AT&T\u2019s Q2 beat and overnight follow-through keep the move alive, but with the stock already up 3.5% today and no fresh higher-conviction catalyst, upside looks limited from here.",
+          "trend_summary": "1d: +3.5%  1w: +7.5%  1m: +4.3%  3m: -11.0%  1yr: -17.5%"
+        },
+        {
+          "ticker": "TER",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Teradyne has a fresh earnings-week/AI-robotics sector setup and a strong long-term uptrend, but today\u2019s move is modest and the catalyst looks more like sector anticipation than a confirmed breakout with volume confirmation.",
+          "trend_summary": "1d: -1.2%  1w: +8.0%  1m: -19.2%  3m: -2.8%  1yr: +304.5%"
+        },
+        {
+          "ticker": "CRDO",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "CRDO has a fresh-ish analyst price target raise and remains in a strong long-term AI infrastructure uptrend, but the catalyst is soft and the move looks mostly priced in after the recent pullback/rebound.",
+          "trend_summary": "1d: +2.0%  1w: +0.7%  1m: -24.5%  3m: +24.5%  1yr: +125.6%"
+        },
+        {
+          "ticker": "ACI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "ACI has a fresh Q1 earnings release and operating-model update today, but with no volume confirmation and a mature large-cap grocery profile the upside remaining looks modest rather than explosive.",
+          "trend_summary": "1d: -0.8%  1w: +0.3%  1m: +7.2%  3m: -14.6%  1yr: -28.9%"
+        },
+        {
+          "ticker": "NU",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "NU has a real but now partially digested acquisition catalyst from the Banco Porto Real deal, and with no volume confirmation the remaining upside today looks modest rather than explosive.",
+          "trend_summary": "1d: +0.8%  1w: +4.5%  1m: +13.4%  3m: -3.6%  1yr: +13.8%"
+        },
+        {
+          "ticker": "CVX",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Chevron has a modest energy-tailwind setup from surging oil prices and storm-related production disruption, but the catalyst is broad and likely mostly priced in for a large-cap already up on the week.",
+          "trend_summary": "1d: +1.0%  1w: +6.3%  1m: +10.2%  3m: +3.8%  1yr: +23.8%"
+        },
+        {
+          "ticker": "SPXU",
+          "score": 2,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 0.8,
+          "reason": "SPXU is a leveraged inverse ETF with no fresh stock-specific catalyst; the bearish macro commentary is already reflected and any further upside today looks limited and likely to fade.",
+          "trend_summary": "1d: +0.4%  1w: +3.1%  1m: -1.6%  3m: -16.8%  1yr: -40.7%"
+        },
+        {
+          "ticker": "SPXS",
+          "score": 2,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 0.8,
+          "reason": "SPXS is a bearish inverse ETF with only broad macro commentary as context and no fresh, actionable catalyst or volume confirmation, so any upside from here looks limited and likely choppy.",
+          "trend_summary": "1d: +0.4%  1w: +3.1%  1m: -1.4%  3m: -16.7%  1yr: -39.4%"
+        }
+      ],
+      "portfolio_open_value": 24755.17
     }
   ],
   "equity_curve": [
