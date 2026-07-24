@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-23T09:43:51.274840",
+  "updated_at": "2026-07-24T09:40:37.323139",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -9489,6 +9489,100 @@
         }
       ],
       "portfolio_open_value": 24755.17
+    },
+    {
+      "date": "2026-07-24",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "SLB",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh earnings beat with revenue growth and offshore/data-center strength is supporting a modest continuation move today, but the stock is already up premarket and the upside from here looks limited rather than explosive.",
+          "trend_summary": "1d: -0.9%  1w: +0.3%  1m: -1.2%  3m: -13.1%  1yr: +33.1%",
+          "allocation_pct": 34.2,
+          "shares": 167,
+          "buy_price": 50.73,
+          "buy_value": 8471.91,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "NEE",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh Q2 earnings beat with high-end guidance and long-term EPS growth reaffirmed gives NEE a real large-cap catalyst, though the move is likely mostly modest and partly priced in already.",
+          "trend_summary": "1d: +0.4%  1w: +0.5%  1m: +3.9%  3m: -0.2%  1yr: +25.0%",
+          "allocation_pct": 32.8,
+          "shares": 91,
+          "buy_price": 89.33,
+          "buy_value": 8129.03,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "DELL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Dell has a fresh but soft catalyst mix of a Citi target raise and a new Texas A&M AI platform win, with the stock already trending strong so upside likely remains but is probably limited to a modest continuation move today.",
+          "trend_summary": "1d: -0.6%  1w: +12.3%  1m: +2.7%  3m: +104.7%  1yr: +234.8%",
+          "allocation_pct": 24.8,
+          "shares": 14,
+          "buy_price": 438.6321,
+          "buy_value": 6140.85,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "LITE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "LITE is benefiting from the fresh AI data-center spending narrative, but the catalyst is indirect and already partially reflected after a week-long run, so upside today looks modest rather than explosive.",
+          "trend_summary": "1d: +0.5%  1w: +18.0%  1m: +0.7%  3m: -4.6%  1yr: +697.6%",
+          "allocation_pct": 3.3,
+          "shares": 1,
+          "buy_price": 811.0,
+          "buy_value": 811.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "META",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Meta\u2019s new Facebook Marketplace Seller app is a fresh product catalyst, but it\u2019s modest and the stock is already weak on the week, so upside today looks limited rather than explosive.",
+          "trend_summary": "1d: -3.4%  1w: -8.8%  1m: +7.8%  3m: -10.2%  1yr: -15.0%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25078.69,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 24756.48,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 1203.69,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -9788,6 +9882,12 @@
       "date": "2026-07-22",
       "portfolio_value": 24753.86,
       "qqq_indexed": 35767.14
+    },
+    {
+      "date": "2026-07-24",
+      "portfolio_value": 24756.48,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
