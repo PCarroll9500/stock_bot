@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-24T09:40:37.323139",
+  "updated_at": "2026-07-24T14:30:50.991498",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -9507,9 +9507,9 @@
           "shares": 167,
           "buy_price": 50.73,
           "buy_value": 8471.91,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 52.43,
+          "day_return_pct": 3.351,
+          "day_return_usd": 283.9
         },
         {
           "ticker": "NEE",
@@ -9523,9 +9523,9 @@
           "shares": 91,
           "buy_price": 89.33,
           "buy_value": 8129.03,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 89.1,
+          "day_return_pct": -0.257,
+          "day_return_usd": -20.93
         },
         {
           "ticker": "DELL",
@@ -9539,9 +9539,9 @@
           "shares": 14,
           "buy_price": 438.6321,
           "buy_value": 6140.85,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 440.2,
+          "day_return_pct": 0.357,
+          "day_return_usd": 21.95
         },
         {
           "ticker": "LITE",
@@ -9555,9 +9555,10 @@
           "shares": 1,
           "buy_price": 811.0,
           "buy_value": 811.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 785.01,
+          "day_return_pct": -3.205,
+          "day_return_usd": -25.99,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -9575,14 +9576,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 25078.69,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 25008.48,
+      "nasdaq_day_return_pct": -0.28,
       "portfolio_open_value": 24756.48,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 25005.86,
+      "session_return_pct": 1.007,
+      "session_return_usd": 249.38,
       "cash_uninvested": 1203.69,
-      "cash_balance_close": null
+      "cash_balance_close": 24974.8
     }
   ],
   "equity_curve": [
@@ -9885,9 +9886,8 @@
     },
     {
       "date": "2026-07-24",
-      "portfolio_value": 24756.48,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 25005.86,
+      "qqq_indexed": 34792.08
     }
   ]
 }
