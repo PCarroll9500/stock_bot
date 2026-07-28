@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-28T09:40:03.528087",
+  "updated_at": "2026-07-28T14:30:50.905105",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -9610,9 +9610,9 @@
           "shares": 99,
           "buy_price": 89.45,
           "buy_value": 8855.55,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 87.81,
+          "day_return_pct": -1.833,
+          "day_return_usd": -162.36
         },
         {
           "ticker": "META",
@@ -9626,9 +9626,9 @@
           "shares": 14,
           "buy_price": 598.35,
           "buy_value": 8376.9,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 594.4,
+          "day_return_pct": -0.66,
+          "day_return_usd": -55.3
         },
         {
           "ticker": "STX",
@@ -9642,9 +9642,10 @@
           "shares": 9,
           "buy_price": 722.0,
           "buy_value": 6498.0,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 703.34,
+          "day_return_pct": -2.584,
+          "day_return_usd": -167.94,
+          "stop_loss_triggered": true
         }
       ],
       "runner_ups": [
@@ -9734,14 +9735,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 24707.33,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 24884.05,
+      "nasdaq_day_return_pct": 0.715,
       "portfolio_open_value": 25010.98,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 24618.87,
+      "session_return_pct": -1.568,
+      "session_return_usd": -392.11,
       "cash_uninvested": 1280.53,
-      "cash_balance_close": null
+      "cash_balance_close": 24582.69
     }
   ],
   "equity_curve": [
@@ -10049,9 +10050,8 @@
     },
     {
       "date": "2026-07-28",
-      "portfolio_value": 25010.98,
-      "qqq_indexed": 30410.62,
-      "nasdaq_indexed": null
+      "portfolio_value": 24618.87,
+      "qqq_indexed": 34178.3
     }
   ]
 }
