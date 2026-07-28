@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-27T09:42:51.323370",
+  "updated_at": "2026-07-28T09:40:03.528087",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -9592,6 +9592,156 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 25007.14
+    },
+    {
+      "date": "2026-07-28",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "KO",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 2.8,
+          "reason": "KO has a fresh premarket earnings beat with raised full-year guidance and strong multi-timeframe uptrend, but as a large-cap already up ~2% today the remaining upside is likely modest rather than explosive.",
+          "trend_summary": "1d: +2.2%  1w: +2.4%  1m: +4.5%  3m: +9.7%  1yr: +21.2%",
+          "allocation_pct": 35.4,
+          "shares": 99,
+          "buy_price": 89.45,
+          "buy_value": 8855.55,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "META",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.2,
+          "reason": "Meta has a fresh, credible AI/data-center catalyst with the $14B BlackRock venture and new content access deals, supporting modest additional upside today despite the large-cap profile.",
+          "trend_summary": "1d: -0.2%  1w: -8.0%  1m: +9.4%  3m: -12.0%  1yr: -15.2%",
+          "allocation_pct": 33.5,
+          "shares": 14,
+          "buy_price": 598.35,
+          "buy_value": 8376.9,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "STX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.0,
+          "reason": "STX has a fresh pre-earnings catalyst with analysts expecting another strong beat on AI-driven HDD demand, and the recent pullback leaves room for a modest continuation into the report.",
+          "trend_summary": "1d: -4.1%  1w: +1.8%  1m: -20.3%  3m: +39.4%  1yr: +435.1%",
+          "allocation_pct": 26.0,
+          "shares": 9,
+          "buy_price": 722.0,
+          "buy_value": 6498.0,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "GSK",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.2,
+          "reason": "GSK has a fresh results/strategy update and cost-savings plan that supports earnings durability, but the move is already up 3.3% and the guidance is only mid-single-digit EPS growth, limiting remaining intraday upside.",
+          "trend_summary": "1d: +1.2%  1w: +3.9%  1m: +0.2%  3m: -4.5%  1yr: +38.0%"
+        },
+        {
+          "ticker": "RITM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.0,
+          "reason": "Rithm Capital\u2019s fresh 2Q earnings release is a real catalyst, but with only a modest 1.2% daily move and no volume confirmation the remaining upside looks limited rather than explosive.",
+          "trend_summary": "1d: +1.2%  1w: +0.3%  1m: -1.0%  3m: -8.9%  1yr: -25.4%"
+        },
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh crypto-treasury/ETH holdings update and buyback support keep BMNR bid, but the move is already +13.5% today and the catalyst is largely priced in for the session.",
+          "trend_summary": "1d: +13.5%  1w: +7.8%  1m: +34.5%  3m: -19.1%  1yr: -49.0%"
+        },
+        {
+          "ticker": "BCS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Barclays has a fresh earnings beat with raised key targets and strong trading/investment banking results, but the move is modest and likely mostly priced in already.",
+          "trend_summary": "1d: +2.3%  1w: +4.8%  1m: +4.6%  3m: +24.4%  1yr: +42.4%"
+        },
+        {
+          "ticker": "AUR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.0,
+          "reason": "Fresh customer agreement for second-generation driverless truck deployments is a real catalyst, but AUR is already up on the news and the move looks more like continued momentum than a fresh 5%+ breakout from here.",
+          "trend_summary": "1d: +4.4%  1w: +2.0%  1m: -0.5%  3m: +26.5%  1yr: +4.0%"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "GE Vernova is a quality large-cap with a fresh but modest analyst target raise and a small positive product/news flow, but the catalyst is soft and likely mostly priced in after yesterday\u2019s move.",
+          "trend_summary": "1d: -1.8%  1w: -7.7%  1m: -8.2%  3m: -13.3%  1yr: +57.5%"
+        },
+        {
+          "ticker": "HWM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "HWM is a quality large-cap aerospace name with a fresh RBC target raise and dividend increase, but the catalyst is soft and mostly priced in after yesterday\u2019s move, leaving only modest additional upside today.",
+          "trend_summary": "1d: -0.5%  1w: +5.9%  1m: +5.4%  3m: +18.8%  1yr: +52.2%"
+        },
+        {
+          "ticker": "LHX",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "L3Harris has a real defense-contract catalyst tied to THAAD production, but the news is already 1 day old and the stock\u2019s modest move suggests most of the initial reaction is priced in.",
+          "trend_summary": "1d: +1.1%  1w: +8.2%  1m: +5.2%  3m: -4.4%  1yr: +11.4%"
+        },
+        {
+          "ticker": "CRCL",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 1.5,
+          "reason": "Circle\u2019s IBM blockchain patent acquisition is a real strategic headline, but it\u2019s already 1 day old and CRCL has moved +5.3% today, so most of the easy upside looks priced in.",
+          "trend_summary": "1d: +5.3%  1w: +0.3%  1m: -4.6%  3m: -34.1%  1yr: -63.8%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 24707.33,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 25010.98,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 1280.53,
+      "cash_balance_close": null
     }
   ],
   "equity_curve": [
@@ -9896,6 +10046,12 @@
       "date": "2026-07-24",
       "portfolio_value": 25005.86,
       "qqq_indexed": 34792.08
+    },
+    {
+      "date": "2026-07-28",
+      "portfolio_value": 25010.98,
+      "qqq_indexed": 30410.62,
+      "nasdaq_indexed": null
     }
   ]
 }
