@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 30410.62,
   "start_date": "2026-03-11",
-  "updated_at": "2026-07-28T14:30:50.905105",
+  "updated_at": "2026-07-29T09:44:18.249581",
   "sessions": [
     {
       "date": "2026-03-16",
@@ -9743,6 +9743,69 @@
       "session_return_usd": -392.11,
       "cash_uninvested": 1280.53,
       "cash_balance_close": 24582.69
+    },
+    {
+      "date": "2026-07-29",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "LHX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "LHX has a real defense-contract catalyst from the THAAD production framework, but the news is 2 days old and the stock is only modestly up today, so most of the move may already be priced in.",
+          "trend_summary": "1d: +0.6%  1w: +9.9%  1m: +4.8%  3m: -4.8%  1yr: +11.3%"
+        },
+        {
+          "ticker": "SWKS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.0,
+          "reason": "SWKS has a fresh earnings beat plus a large $2B buyback and Qorvo-combination narrative, but the move is already partially priced in and the upside from here looks more like a modest continuation than a 5%+ day.",
+          "trend_summary": "1d: +2.0%  1w: +2.7%  1m: -4.9%  3m: +4.1%  1yr: -9.3%"
+        },
+        {
+          "ticker": "MDLZ",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "MDLZ has a fresh Q2 earnings beat with maintained full-year guidance and a dividend hike, but the move is already partially priced in after a 3% day and this looks like steady large-cap follow-through rather than a 5%+ runner.",
+          "trend_summary": "1d: +3.0%  1w: +4.4%  1m: +2.8%  3m: +8.8%  1yr: -4.0%"
+        },
+        {
+          "ticker": "GOOG",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "GOOG has a fresh but modest Google Cloud partnership headline with Laureate, which supports incremental upside today, though it lacks the scale of a true earnings or contract surprise and the move is already partly reflected.",
+          "trend_summary": "1d: +1.8%  1w: -3.9%  1m: -0.6%  3m: -4.6%  1yr: +68.5%"
+        },
+        {
+          "ticker": "DAL",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "DAL is getting a modest sector sympathy lift from JetBlue\u2019s earnings beat and airline re-rating chatter, but the catalyst is indirect and likely mostly priced in after a 3.1% move today.",
+          "trend_summary": "1d: +3.1%  1w: +5.6%  1m: -3.5%  3m: +31.0%  1yr: +66.7%"
+        },
+        {
+          "ticker": "CRDO",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh post-earnings commentary says the sell-off looks overdone, but with the stock already down sharply on the day and no volume confirmation, remaining upside today looks limited.",
+          "trend_summary": "1d: -7.6%  1w: -14.1%  1m: -19.2%  3m: +6.5%  1yr: +65.7%"
+        }
+      ],
+      "portfolio_open_value": 24620.18
     }
   ],
   "equity_curve": [
