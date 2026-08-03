@@ -1,8 +1,187 @@
 {
   "title": "Inf Money Stock Bot",
-  "initial_investment": 30000.0,
+  "initial_investment": 24747.97,
   "start_date": "2026-08-02",
-  "updated_at": "2026-08-02T00:00:00.000000",
-  "sessions": [],
-  "equity_curve": []
+  "updated_at": "2026-08-03T09:41:56.013572",
+  "sessions": [
+    {
+      "date": "2026-08-03",
+      "mode": "aggressive",
+      "spy_return_pct": null,
+      "picks": [
+        {
+          "ticker": "FERG",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "FERG has a fresh S&P 500 inclusion catalyst with strong premarket strength, but most of the move is already underway so remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: +3.5%  1w: +1.6%  1m: +2.2%  3m: -12.5%  1yr: +4.0%",
+          "allocation_pct": 18.4,
+          "shares": 18,
+          "buy_price": 253.5711,
+          "buy_value": 4564.28,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "PLTR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh pre-earnings momentum plus a new defense/industrial automation partnership keeps PLTR bid today, though the move is partly priced in and upside is likely limited ahead of tonight\u2019s report.",
+          "trend_summary": "1d: +0.7%  1w: +0.1%  1m: -2.1%  3m: -11.5%  1yr: -23.4%",
+          "allocation_pct": 14.7,
+          "shares": 29,
+          "buy_price": 125.6762,
+          "buy_value": 3644.61,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BMY",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh merger-talk catalyst with BMY already up premarket but still potentially benefiting from deal speculation and valuation rerating, though upside is likely capped without confirmation.",
+          "trend_summary": "1d: +0.7%  1w: +5.2%  1m: +15.7%  3m: +7.8%  1yr: +43.9%",
+          "allocation_pct": 15.8,
+          "shares": 59,
+          "buy_price": 66.2066,
+          "buy_value": 3906.19,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BABA",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Fresh AI/cloud catalyst and positive Citi commentary are supporting BABA, but the stock is already up 5.1% today so much of the move is partly priced in.",
+          "trend_summary": "1d: +5.1%  1w: +9.0%  1m: +24.8%  3m: -7.3%  1yr: +4.0%",
+          "allocation_pct": 15.0,
+          "shares": 29,
+          "buy_price": 127.7828,
+          "buy_value": 3705.7,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "BA",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Rare double upgrade to Buy is a fresh positive catalyst for Boeing and the stock is still only modestly higher, leaving some room for continued session upside despite the weak longer-term trend.",
+          "trend_summary": "1d: -2.2%  1w: +3.2%  1m: -1.1%  3m: -5.6%  1yr: -2.8%",
+          "allocation_pct": 14.5,
+          "shares": 16,
+          "buy_price": 224.2537,
+          "buy_value": 3588.06,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        },
+        {
+          "ticker": "ITGR",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "KKR\u2019s all-cash acquisition at $127/share is a fresh, definitive catalyst, but with ITGR already trading near the deal price and up sharply today, only limited upside remains from current levels.",
+          "trend_summary": "1d: +20.2%  1w: +22.9%  1m: +28.2%  3m: +36.9%  1yr: +13.5%",
+          "allocation_pct": 19.6,
+          "shares": 39,
+          "buy_price": 124.5885,
+          "buy_value": 4858.95,
+          "close_price": null,
+          "day_return_pct": null,
+          "day_return_usd": null
+        }
+      ],
+      "runner_ups": [
+        {
+          "ticker": "TSM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "TSMC is benefiting from a fresh AI-infrastructure tailwind note, but this is broad sector commentary rather than a company-specific catalyst, so upside today looks modest and likely already partly reflected.",
+          "trend_summary": "1d: +0.2%  1w: +0.2%  1m: -9.0%  3m: +2.1%  1yr: +69.1%"
+        },
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.0,
+          "reason": "Fresh press release on massive ETH holdings and buybacks is a real crypto-treasury catalyst, but BMNR is already extended on a weak 1-year trend and the move looks partly priced in without volume confirmation.",
+          "trend_summary": "1d: -4.4%  1w: +9.4%  1m: +22.1%  3m: -19.3%  1yr: -44.5%"
+        },
+        {
+          "ticker": "MPWR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Wells Fargo\u2019s overweight reiteration and $1,800 target raise are supportive for this quality large-cap, but the catalyst is already 2 days old and the stock has largely moved on it, limiting upside from current levels today.",
+          "trend_summary": "1d: +8.3%  1w: +6.9%  1m: +7.1%  3m: -11.7%  1yr: +71.7%"
+        },
+        {
+          "ticker": "META",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "META has a modest fresh momentum move with supportive AI/cloud commentary, but the news is indirect and volume confirmation is unavailable, so remaining upside today looks limited rather than explosive.",
+          "trend_summary": "1d: +3.3%  1w: -6.5%  1m: -9.2%  3m: -9.0%  1yr: -28.3%"
+        },
+        {
+          "ticker": "PYPL",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "Cantor\u2019s price target raise to $60 is a fresh but standalone analyst catalyst for PYPL, which can support modest follow-through today but is not strong enough to imply 5%+ remaining upside from here.",
+          "trend_summary": "1d: -0.8%  1w: +1.9%  1m: +29.8%  3m: +14.1%  1yr: -15.9%"
+        },
+        {
+          "ticker": "DIS",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "Disney has a modest, indirect catalyst from the strong Spider-Man box office update, but it is not a company-specific fresh earnings or guidance event and the move is likely mostly priced in.",
+          "trend_summary": "1d: +0.0%  1w: +1.4%  1m: +0.5%  3m: -7.3%  1yr: -19.4%"
+        }
+      ],
+      "qqq_buy_price": null,
+      "qqq_close_price": null,
+      "qqq_day_return_pct": null,
+      "nasdaq_buy_price": 25577.96,
+      "nasdaq_close_price": null,
+      "nasdaq_day_return_pct": null,
+      "portfolio_open_value": 24747.97,
+      "portfolio_close_value": null,
+      "session_return_pct": null,
+      "session_return_usd": null,
+      "cash_uninvested": 480.18,
+      "cash_balance_close": null
+    }
+  ],
+  "equity_curve": [
+    {
+      "date": "2026-08-03",
+      "portfolio_value": 24747.97,
+      "qqq_indexed": 24747.97,
+      "nasdaq_indexed": 24747.97
+    }
+  ]
 }
