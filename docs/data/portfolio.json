@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 24747.97,
   "start_date": "2026-08-02",
-  "updated_at": "2026-08-03T09:41:56.013572",
+  "updated_at": "2026-08-03T14:30:50.800800",
   "sessions": [
     {
       "date": "2026-08-03",
@@ -21,9 +21,9 @@
           "shares": 18,
           "buy_price": 253.5711,
           "buy_value": 4564.28,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 252.41,
+          "day_return_pct": -0.458,
+          "day_return_usd": -20.9
         },
         {
           "ticker": "PLTR",
@@ -37,9 +37,9 @@
           "shares": 29,
           "buy_price": 125.6762,
           "buy_value": 3644.61,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 125.88,
+          "day_return_pct": 0.162,
+          "day_return_usd": 5.91
         },
         {
           "ticker": "BMY",
@@ -53,9 +53,10 @@
           "shares": 59,
           "buy_price": 66.2066,
           "buy_value": 3906.19,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 64.54,
+          "day_return_pct": -2.517,
+          "day_return_usd": -98.33,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "BABA",
@@ -69,9 +70,9 @@
           "shares": 29,
           "buy_price": 127.7828,
           "buy_value": 3705.7,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 127.63,
+          "day_return_pct": -0.12,
+          "day_return_usd": -4.43
         },
         {
           "ticker": "BA",
@@ -85,9 +86,9 @@
           "shares": 16,
           "buy_price": 224.2537,
           "buy_value": 3588.06,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 231.66,
+          "day_return_pct": 3.303,
+          "day_return_usd": 118.5
         },
         {
           "ticker": "ITGR",
@@ -101,9 +102,9 @@
           "shares": 39,
           "buy_price": 124.5885,
           "buy_value": 4858.95,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 124.46,
+          "day_return_pct": -0.103,
+          "day_return_usd": -5.01
         }
       ],
       "runner_ups": [
@@ -166,22 +167,21 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 25577.96,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 25923.56,
+      "nasdaq_day_return_pct": 1.351,
       "portfolio_open_value": 24747.97,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 24718.92,
+      "session_return_pct": -0.117,
+      "session_return_usd": -29.05,
       "cash_uninvested": 480.18,
-      "cash_balance_close": null
+      "cash_balance_close": 24677.61
     }
   ],
   "equity_curve": [
     {
       "date": "2026-08-03",
-      "portfolio_value": 24747.97,
-      "qqq_indexed": 24747.97,
-      "nasdaq_indexed": 24747.97
+      "portfolio_value": 24718.92,
+      "qqq_indexed": 24747.97
     }
   ]
 }
