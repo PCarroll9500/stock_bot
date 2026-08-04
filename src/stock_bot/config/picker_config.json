@@ -88,6 +88,14 @@
     "providers": "BRFG+DJ-N",
     "max_articles": 5
   },
+  "_enhanced_data_comment": "Each source can be independently disabled (e.g. if a scraper starts getting blocked) without a code change. max_tickers bounds worst-case wall-clock time since these are synchronous scrapers with no per-ticker concurrency.",
+  "enhanced_data_sources": {
+    "earnings": true,
+    "sentiment": true,
+    "sec_filings": true,
+    "web_news": true,
+    "max_tickers": 15
+  },
   "trailing_stop_pct": 3.0,
   "multi_day_hold_min_score": 9,
   "multi_day_max_days": 3,
