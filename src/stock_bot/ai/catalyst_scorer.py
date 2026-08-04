@@ -11,6 +11,8 @@ from importlib.resources import files
 import openai
 from openai import OpenAI
 
+from stock_bot.core.llm_input_logger import log_llm_input, log_llm_output
+
 logger = logging.getLogger(__name__)
 
 MODEL       = "gpt-5.4-mini"
@@ -79,6 +81,45 @@ def _format_news_items(articles: list[dict]) -> str:
     return "\n\n".join(lines)
 
 
+def _format_earnings_signal(earnings: dict | None) -> str:
+    if not earnings:
+        return "No upcoming earnings data."
+    earnings_date = earnings.get("earnings_date", "")
+    if not earnings_date:
+        return "No upcoming earnings data."
+    eps_estimate = earnings.get("eps_estimate")
+    time_of_day = earnings.get("time_of_day", "unknown")
+    if eps_estimate:
+        return f"Earnings on {earnings_date} ({time_of_day}), EPS estimate: ${eps_estimate:.2f}"
+    return f"Earnings on {earnings_date} ({time_of_day}), EPS estimate: N/A"
+
+
+def _format_sentiment_signal(sentiment: dict | None) -> str:
+    if not sentiment:
+        return "No social sentiment data available."
+    reddit_mentions = sentiment.get("reddit_mentions", 0)
+    reddit_sentiment = sentiment.get("reddit_sentiment", 0.0)
+    stocktwits_sentiment = sentiment.get("stocktwits_sentiment", 0.0)
+    lines = []
+    if reddit_mentions > 0:
+        lines.append(f"Reddit: {reddit_mentions} mentions, sentiment {reddit_sentiment:+.2f}")
+    if stocktwits_sentiment != 0:
+        lines.append(f"StockTwits: sentiment {stocktwits_sentiment:+.2f}")
+    return " | ".join(lines) if lines else "Neutral social sentiment"
+
+
+def _format_sec_signal(filings: list[dict] | None) -> str:
+    if not filings:
+        return "No recent SEC filings or insider activity."
+    lines = []
+    for filing in filings[:3]:
+        form_type = filing.get("form_type", "")
+        significance = filing.get("significance", "")
+        summary = filing.get("summary", "")
+        lines.append(f"- {form_type} ({significance}): {summary}")
+    return "\n".join(lines) if lines else "No recent SEC filings or insider activity."
+
+
 def _parse_json_response(raw: str) -> dict:
     """Strip markdown fences and parse JSON."""
     raw = raw.strip()
@@ -99,6 +140,9 @@ def _score_ticker(
     trend_summary: str,
     spy_context: str = "unavailable",
     volume_context: str = "unavailable",
+    earnings: dict | None = None,
+    sentiment: dict | None = None,
+    sec_filings: list[dict] | None = None,
 ) -> dict:
     today_date = datetime.now(timezone.utc).strftime("%A, %B %d, %Y")
     prompt = (
@@ -109,6 +153,14 @@ def _score_ticker(
         .replace("{spy_context}", spy_context)
         .replace("{today_date}", today_date)
         .replace("{volume_context}", volume_context)
+        .replace("{earnings_signal}", _format_earnings_signal(earnings))
+        .replace("{sentiment_signal}", _format_sentiment_signal(sentiment))
+        .replace("{sec_signal}", _format_sec_signal(sec_filings))
+    )
+    log_llm_input(
+        ticker, 0.0, articles, trend_summary,
+        earnings=earnings, sentiment=sentiment, sec_filings=sec_filings,
+        gpt_prompt=prompt,
     )
     _default = {
         "ticker": ticker,
@@ -137,6 +189,7 @@ def _score_ticker(
                 "catalyst_scorer: %s score=%d dir=%s risk=%d gain=%.1f%% sector=%s | %s",
                 ticker, score, direction, risk, expected_gain, sector, reason,
             )
+            log_llm_output(ticker, parsed, reasoning=reason)
             return {
                 "ticker": ticker,
                 "score": score,
@@ -219,6 +272,9 @@ def score_candidates(
     sequential: bool = False,
     spy_context: str = "unavailable",
     volume_by_ticker: dict[str, str] | None = None,
+    earnings_by_ticker: dict[str, dict] | None = None,
+    sentiment_by_ticker: dict[str, dict] | None = None,
+    sec_by_ticker: dict[str, list[dict]] | None = None,
 ) -> list[dict]:
     """
     Score every ticker in news_by_ticker with GPT in parallel.
@@ -228,10 +284,16 @@ def score_candidates(
 
     Each result dict has keys: ticker, score, direction, risk,
     expected_gain_pct, reason, trend_summary.
+
+    earnings_by_ticker / sentiment_by_ticker / sec_by_ticker are optional —
+    tickers missing from these dicts just get the "no data available" prompt text.
     """
     client = OpenAI()
     trend_by_ticker = trend_by_ticker or {}
     volume_by_ticker = volume_by_ticker or {}
+    earnings_by_ticker = earnings_by_ticker or {}
+    sentiment_by_ticker = sentiment_by_ticker or {}
+    sec_by_ticker = sec_by_ticker or {}
 
     candidates: dict[str, list[dict]] = {}
     stale_skipped: list[str] = []
@@ -262,6 +324,9 @@ def score_candidates(
                 trend_by_ticker.get(ticker, "unavailable"),
                 spy_context,
                 volume_by_ticker.get(ticker, "unavailable"),
+                earnings_by_ticker.get(ticker),
+                sentiment_by_ticker.get(ticker),
+                sec_by_ticker.get(ticker, []),
             ): ticker
             for ticker, articles in candidates.items()
         }

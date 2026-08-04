@@ -23,6 +23,10 @@ from stock_bot.data_sources.trend_checker import (
     fmt_trend_for_prompt,
     fmt_volume_for_prompt,
 )
+from stock_bot.data_sources.earnings_fetcher import fetch_earnings
+from stock_bot.data_sources.sentiment_fetcher import fetch_sentiment
+from stock_bot.data_sources.sec_fetcher import fetch_sec_filings
+from stock_bot.data_sources.web_scraper import scrape_news
 from stock_bot.ai.catalyst_scorer import score_candidates, filter_and_rank
 from stock_bot.brokers.ib.sell_all import close_position
 from stock_bot.data_sources.portfolio_writer import (
@@ -299,6 +303,91 @@ async def main():
     news_by_ticker = await fetch_news_for_tickers_async(survivors, ib, config["news"])
 
     # ------------------------------------------------------------------ #
+    # STEP 3b — ENHANCED DATA SOURCES                                      #
+    # Earnings calendar, social sentiment, SEC filings/insider activity,   #
+    # and extra web news, all fed into the GPT catalyst prompt alongside   #
+    # the IBKR news above. Each source is independently toggleable via     #
+    # picker_config.json ("enhanced_data_sources") in case a scraper       #
+    # starts getting blocked. Bounded to the top `max_tickers` (watchlist  #
+    # tickers first, then most-newsworthy) since these are synchronous,    #
+    # unthrottled scrapers with no per-ticker concurrency.                 #
+    # ------------------------------------------------------------------ #
+    enhanced_cfg: dict = config.get("enhanced_data_sources", {})
+    earnings_by_ticker: dict[str, dict] = {}
+    sentiment_by_ticker: dict[str, dict] = {}
+    sec_by_ticker: dict[str, list] = {}
+    if enhanced_cfg and news_by_ticker:
+        max_enh_tickers: int = enhanced_cfg.get("max_tickers", 15)
+        enh_watchlist = [t for t in news_by_ticker if t in watchlist_set]
+        enh_rest = sorted(
+            (t for t in news_by_ticker if t not in watchlist_set),
+            key=lambda t: len(news_by_ticker[t]), reverse=True,
+        )
+        enhanced_tickers = (enh_watchlist + enh_rest)[:max_enh_tickers]
+        logger.info("Enhanced data sources: fetching for %d tickers", len(enhanced_tickers))
+
+        loop = asyncio.get_running_loop()
+        enh_futures: dict[str, "asyncio.Future"] = {}
+        if enhanced_cfg.get("earnings", True):
+            enh_futures["earnings"] = loop.run_in_executor(None, fetch_earnings, 7)
+        if enhanced_cfg.get("sentiment", True):
+            enh_futures["sentiment"] = loop.run_in_executor(
+                None, lambda: fetch_sentiment(enhanced_tickers, 30, len(enhanced_tickers))
+            )
+        if enhanced_cfg.get("sec_filings", True):
+            enh_futures["sec_filings"] = loop.run_in_executor(
+                None, lambda: fetch_sec_filings(enhanced_tickers, 7, len(enhanced_tickers))
+            )
+        if enhanced_cfg.get("web_news", True):
+            enh_futures["web_news"] = loop.run_in_executor(
+                None, lambda: scrape_news(enhanced_tickers, None, len(enhanced_tickers))
+            )
+
+        if enh_futures:
+            results = await asyncio.gather(*enh_futures.values(), return_exceptions=True)
+            enh_results = dict(zip(enh_futures.keys(), results))
+
+            earnings_data = enh_results.get("earnings")
+            if isinstance(earnings_data, Exception):
+                logger.warning("Enhanced data: earnings fetch failed: %s", earnings_data)
+            elif earnings_data is not None and not earnings_data.empty:
+                earnings_by_ticker = {row["ticker"]: row.to_dict() for _, row in earnings_data.iterrows()}
+
+            sentiment_data = enh_results.get("sentiment")
+            if isinstance(sentiment_data, Exception):
+                logger.warning("Enhanced data: sentiment fetch failed: %s", sentiment_data)
+            elif sentiment_data is not None and not sentiment_data.empty:
+                sentiment_by_ticker = {row["ticker"]: row.to_dict() for _, row in sentiment_data.iterrows()}
+
+            sec_data = enh_results.get("sec_filings")
+            if isinstance(sec_data, Exception):
+                logger.warning("Enhanced data: SEC filings fetch failed: %s", sec_data)
+            elif sec_data is not None and not sec_data.empty:
+                for _, row in sec_data.iterrows():
+                    sec_by_ticker.setdefault(row["ticker"], []).append(row.to_dict())
+
+            web_data = enh_results.get("web_news")
+            if isinstance(web_data, Exception):
+                logger.warning("Enhanced data: web news scrape failed: %s", web_data)
+            elif web_data is not None and not web_data.empty:
+                for ticker, group in web_data.groupby("ticker"):
+                    extra_articles = [
+                        {
+                            "time": r.get("publish_date", ""),
+                            "provider": r.get("source", ""),
+                            "headline": r.get("title", ""),
+                            "body": "",
+                        }
+                        for r in group.to_dict("records")
+                    ]
+                    news_by_ticker.setdefault(ticker, []).extend(extra_articles)
+
+        logger.info(
+            "Enhanced data: earnings=%d, sentiment=%d, sec_filings=%d",
+            len(earnings_by_ticker), len(sentiment_by_ticker), len(sec_by_ticker),
+        )
+
+    # ------------------------------------------------------------------ #
     # STEP 4 — TREND DATA                                                  #
     # Fetch price-trend data for every ticker that has news.               #
     # The raw values are used to pre-filter before GPT (see below).        #
@@ -411,12 +500,22 @@ async def main():
         spy_context = "SPY return unavailable."
 
     if sequential:
-        all_scored = score_candidates(news_by_ticker, excluded_set, trend_by_ticker, sequential=True, spy_context=spy_context, volume_by_ticker=volume_by_ticker)
+        all_scored = score_candidates(
+            news_by_ticker, excluded_set, trend_by_ticker, sequential=True,
+            spy_context=spy_context, volume_by_ticker=volume_by_ticker,
+            earnings_by_ticker=earnings_by_ticker, sentiment_by_ticker=sentiment_by_ticker,
+            sec_by_ticker=sec_by_ticker,
+        )
     else:
         loop = asyncio.get_running_loop()
         all_scored = await loop.run_in_executor(
             None,
-            lambda: score_candidates(news_by_ticker, excluded_set, trend_by_ticker, spy_context=spy_context, volume_by_ticker=volume_by_ticker),
+            lambda: score_candidates(
+                news_by_ticker, excluded_set, trend_by_ticker,
+                spy_context=spy_context, volume_by_ticker=volume_by_ticker,
+                earnings_by_ticker=earnings_by_ticker, sentiment_by_ticker=sentiment_by_ticker,
+                sec_by_ticker=sec_by_ticker,
+            ),
         )
 
     # ------------------------------------------------------------------ #
@@ -532,12 +631,22 @@ async def main():
                 extra_news = filtered_extra_news
 
             if sequential:
-                extra_scored = score_candidates(extra_news, excluded_set, trend_by_ticker, sequential=True, spy_context=spy_context, volume_by_ticker=volume_by_ticker)
+                extra_scored = score_candidates(
+                    extra_news, excluded_set, trend_by_ticker, sequential=True,
+                    spy_context=spy_context, volume_by_ticker=volume_by_ticker,
+                    earnings_by_ticker=earnings_by_ticker, sentiment_by_ticker=sentiment_by_ticker,
+                    sec_by_ticker=sec_by_ticker,
+                )
             else:
                 loop = asyncio.get_running_loop()
                 extra_scored = await loop.run_in_executor(
                     None,
-                    lambda: score_candidates(extra_news, excluded_set, trend_by_ticker, spy_context=spy_context, volume_by_ticker=volume_by_ticker),
+                    lambda: score_candidates(
+                        extra_news, excluded_set, trend_by_ticker,
+                        spy_context=spy_context, volume_by_ticker=volume_by_ticker,
+                        earnings_by_ticker=earnings_by_ticker, sentiment_by_ticker=sentiment_by_ticker,
+                        sec_by_ticker=sec_by_ticker,
+                    ),
                 )
 
             # Merge with original scored list and re-rank at the score floor

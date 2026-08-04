@@ -9,6 +9,7 @@ Integration-level tests for the morning pipeline:
 - No-picks-today scenario
 """
 
+import json
 import math
 import pytest
 
@@ -144,16 +145,26 @@ class TestReallocCashTracking:
 class TestNoPicksScenario:
     """When no stocks qualify, the bot should stay in cash without error."""
 
-    def test_write_session_skipped_on_empty_picks(self):
-        """portfolio_writer.write_session returns early when picks=[]."""
+    def test_write_session_skipped_on_empty_picks(self, tmp_path, monkeypatch):
+        """portfolio_writer.write_session writes a no-pick stub (not a real
+        session) when picks=[], and must never touch the real portfolio.json.
+        Redirects _PORTFOLIO_JSON_TEST to a tmp file so this test can't
+        pollute production data regardless of test_mode handling upstream."""
         from unittest.mock import MagicMock, patch
-        from stock_bot.data_sources.portfolio_writer import write_session
+        import stock_bot.data_sources.portfolio_writer as pw
+
+        tmp_test_json = tmp_path / "portfolio_test.json"
+        monkeypatch.setattr(pw, "_PORTFOLIO_JSON_TEST", tmp_test_json)
 
         mock_ib = MagicMock()
         with patch("stock_bot.data_sources.portfolio_writer._get_last_price", return_value=100.0):
-            # Should return without raising
-            result = write_session(picks=[], ib=mock_ib)
-        assert result is None  # returns None (early exit)
+            result = pw.write_session(picks=[], ib=mock_ib, test_mode=True, open_value_override=10_000.0)
+        assert result is None
+
+        written = json.loads(tmp_test_json.read_text(encoding="utf-8"))
+        assert len(written["sessions"]) == 1
+        assert written["sessions"][0]["no_picks"] is True
+        assert written["sessions"][0]["picks"] == []
 
     def test_empty_picks_list_not_bought(self):
         """If picks is empty, no orders should be submitted."""

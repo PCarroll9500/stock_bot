@@ -210,3 +210,8 @@ __marimo__/
 /myenv
 *.slnx
 *.pyproj
+
+# Runtime caches / debug logs written by the bot itself — not source
+logs/sentiment_cache/
+logs/web_scraper_cache/
+logs/llm_inputs/
