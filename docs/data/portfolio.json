@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 24747.97,
   "start_date": "2026-08-02",
-  "updated_at": "2026-08-04T09:48:17.441016",
+  "updated_at": "2026-08-04T14:30:50.262005",
   "sessions": [
     {
       "date": "2026-08-03",
@@ -193,9 +193,9 @@
           "shares": 59,
           "buy_price": 162.72,
           "buy_value": 9600.48,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 163.63,
+          "day_return_pct": 0.559,
+          "day_return_usd": 53.69
         },
         {
           "ticker": "CAT",
@@ -209,9 +209,10 @@
           "shares": 10,
           "buy_price": 913.53,
           "buy_value": 9135.3,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 880.41,
+          "day_return_pct": -3.625,
+          "day_return_usd": -331.2,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "SNDK",
@@ -225,9 +226,10 @@
           "shares": 2,
           "buy_price": 1389.55,
           "buy_value": 2779.1,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 1372.0,
+          "day_return_pct": -1.263,
+          "day_return_usd": -35.1,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "META",
@@ -241,9 +243,9 @@
           "shares": 12,
           "buy_price": 585.73,
           "buy_value": 7028.76,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 589.12,
+          "day_return_pct": 0.579,
+          "day_return_usd": 40.68
         }
       ],
       "runner_ups": [
@@ -339,17 +341,17 @@
         }
       ],
       "qqq_buy_price": 710.69,
-      "qqq_close_price": null,
-      "qqq_day_return_pct": null,
+      "qqq_close_price": 723.44,
+      "qqq_day_return_pct": 1.794,
       "nasdaq_buy_price": 26226.95,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26628.63,
+      "nasdaq_day_return_pct": 1.532,
       "portfolio_open_value": 30044.37,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 29761.84,
+      "session_return_pct": -0.94,
+      "session_return_usd": -282.53,
       "cash_uninvested": 1500.73,
-      "cash_balance_close": null
+      "cash_balance_close": 29717.47
     }
   ],
   "equity_curve": [
@@ -360,9 +362,8 @@
     },
     {
       "date": "2026-08-04",
-      "portfolio_value": 30044.37,
-      "qqq_indexed": 24747.97,
-      "nasdaq_indexed": 25375.9
+      "portfolio_value": 29761.84,
+      "qqq_indexed": 24747.97
     }
   ]
 }
