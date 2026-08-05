@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-05T09:44:24.323153",
+  "updated_at": "2026-08-05T14:30:51.260299",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -25,9 +25,10 @@
           "buy_value": 3518.72,
           "preflight_price": 11.92,
           "slippage_pct": -2.253,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 12.1,
+          "day_return_pct": 3.85,
+          "day_return_usd": 135.48,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "KTOS",
@@ -45,9 +46,10 @@
           "buy_value": 3334.1,
           "preflight_price": 59.5,
           "slippage_pct": -3.387,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 55.19,
+          "day_return_pct": -3.992,
+          "day_return_usd": -133.08,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "ZETA",
@@ -65,9 +67,10 @@
           "buy_value": 3947.87,
           "preflight_price": 24.66,
           "slippage_pct": 10.408,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 27.35,
+          "day_return_pct": 0.453,
+          "day_return_usd": 17.88,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "ELAN",
@@ -85,9 +88,10 @@
           "buy_value": 3681.78,
           "preflight_price": 27.14,
           "slippage_pct": 2.772,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 26.87,
+          "day_return_pct": -3.665,
+          "day_return_usd": -134.94,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "PRGO",
@@ -105,9 +109,9 @@
           "buy_value": 2932.91,
           "preflight_price": 12.75,
           "slippage_pct": 5.038,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 13.39,
+          "day_return_pct": -0.017,
+          "day_return_usd": -0.5
         },
         {
           "ticker": "PGEN",
@@ -125,9 +129,10 @@
           "buy_value": 1004.2,
           "preflight_price": 6.94,
           "slippage_pct": -2.888,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 6.99,
+          "day_return_pct": 3.715,
+          "day_return_usd": 37.31,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "TOST",
@@ -145,9 +150,9 @@
           "buy_value": 2812.21,
           "preflight_price": 34.5,
           "slippage_pct": 3.181,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 34.88,
+          "day_return_pct": -2.016,
+          "day_return_usd": -56.69
         },
         {
           "ticker": "CLSK",
@@ -165,9 +170,10 @@
           "buy_value": 931.48,
           "preflight_price": 14.18,
           "slippage_pct": -0.47,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 13.95,
+          "day_return_pct": -1.157,
+          "day_return_usd": -10.78,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "GILD",
@@ -185,9 +191,9 @@
           "buy_value": 2571.65,
           "preflight_price": 136.01,
           "slippage_pct": -0.485,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 131.29,
+          "day_return_pct": -3.0,
+          "day_return_usd": -77.14
         },
         {
           "ticker": "GTE",
@@ -205,9 +211,10 @@
           "buy_value": 471.49,
           "preflight_price": 10.16,
           "slippage_pct": 10.492,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 11.2845,
+          "day_return_pct": 0.521,
+          "day_return_usd": 2.46,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "WBS",
@@ -225,9 +232,9 @@
           "buy_value": 1108.09,
           "preflight_price": 79.04,
           "slippage_pct": 0.138,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 79.17,
+          "day_return_pct": 0.026,
+          "day_return_usd": 0.29
         },
         {
           "ticker": "CAT",
@@ -245,9 +252,9 @@
           "buy_value": 2645.28,
           "preflight_price": 872.0,
           "slippage_pct": 1.119,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 888.58,
+          "day_return_pct": 0.773,
+          "day_return_usd": 20.46
         },
         {
           "ticker": "SAN",
@@ -265,9 +272,9 @@
           "buy_value": 925.43,
           "preflight_price": 14.64,
           "slippage_pct": 0.337,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 14.69,
+          "day_return_pct": 0.004,
+          "day_return_usd": 0.04
         }
       ],
       "runner_ups": [
@@ -386,22 +393,21 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26713.83,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26444.12,
+      "nasdaq_day_return_pct": -1.01,
       "portfolio_open_value": 29763.12,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 29416.04,
+      "session_return_pct": -1.166,
+      "session_return_usd": -347.08,
       "cash_uninvested": -122.09,
-      "cash_balance_close": null
+      "cash_balance_close": 29412.72
     }
   ],
   "equity_curve": [
     {
       "date": "2026-08-05",
-      "portfolio_value": 29763.12,
-      "qqq_indexed": 29763.12,
-      "nasdaq_indexed": 29763.12
+      "portfolio_value": 29416.04,
+      "qqq_indexed": 29763.12
     }
   ]
 }
