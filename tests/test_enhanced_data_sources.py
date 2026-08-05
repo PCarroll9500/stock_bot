@@ -16,6 +16,7 @@ from stock_bot.ai.catalyst_scorer import (
     _format_earnings_signal,
     _format_sentiment_signal,
     _format_sec_signal,
+    _normalize_catalyst_type,
 )
 from stock_bot.data_sources.earnings_fetcher import fetch_earnings
 from stock_bot.data_sources.sentiment_fetcher import fetch_sentiment
@@ -137,3 +138,37 @@ class TestSignalFormatting:
         ]
         result = _format_sec_signal(filings)
         assert result.count("filing") == 3
+
+
+class TestCatalystTypeNormalization:
+    """catalyst_type feeds the score-vs-returns feedback loop analysis, so an
+    unrecognized or missing value from GPT must fall back to 'other' rather
+    than polluting the dataset with arbitrary free-text values."""
+
+    def test_known_value_passes_through(self):
+        assert _normalize_catalyst_type("earnings_beat") == "earnings_beat"
+
+    def test_case_insensitive(self):
+        assert _normalize_catalyst_type("Earnings_Beat") == "earnings_beat"
+        assert _normalize_catalyst_type("FDA_APPROVAL") == "fda_approval"
+
+    def test_whitespace_stripped(self):
+        assert _normalize_catalyst_type("  ma_acquisition  ") == "ma_acquisition"
+
+    def test_unknown_value_falls_back_to_other(self):
+        assert _normalize_catalyst_type("stock_split") == "other"
+        assert _normalize_catalyst_type("random gibberish") == "other"
+
+    def test_none_falls_back_to_other(self):
+        assert _normalize_catalyst_type(None) == "other"
+
+    def test_empty_string_falls_back_to_other(self):
+        assert _normalize_catalyst_type("") == "other"
+
+    def test_all_documented_types_are_valid(self):
+        for t in [
+            "earnings_beat", "ma_acquisition", "fda_approval", "insider_buying",
+            "analyst_action", "contract_win", "sector_tailwind", "short_squeeze",
+            "guidance_raise", "other",
+        ]:
+            assert _normalize_catalyst_type(t) == t

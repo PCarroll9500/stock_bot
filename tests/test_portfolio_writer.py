@@ -149,6 +149,32 @@ class TestWriteSessionFillAggregation:
         assert pick["shares"] == 200
         assert pick["buy_price"] == 50.0
 
+    def test_sector_and_catalyst_type_persisted(self, tmp_path):
+        """sector/catalyst_type from GPT scoring must survive into the saved
+        pick entry — otherwise the score-vs-returns feedback loop analysis
+        has nothing to break results down by."""
+        picks = [{"ticker": "NVDA", "score": 8, "direction": "bullish",
+                  "risk": "low", "expected_gain_pct": 3.0, "reason": "test",
+                  "allocation_pct": 100, "sector": "Technology",
+                  "catalyst_type": "earnings_beat"}]
+        trades = {"NVDA": [_make_trade(filled=10, avg_fill=100.0)]}
+        data = self._run(picks, trades, tmp_path)
+        pick = data["sessions"][0]["picks"][0]
+        assert pick["sector"] == "Technology"
+        assert pick["catalyst_type"] == "earnings_beat"
+
+    def test_sector_and_catalyst_type_default_when_missing(self, tmp_path):
+        """A pick dict without sector/catalyst_type (e.g. from an older code
+        path or a scoring failure) must not raise — falls back to defaults."""
+        picks = [{"ticker": "IBM", "score": 7, "direction": "bullish",
+                  "risk": "medium", "expected_gain_pct": 2.0, "reason": "test",
+                  "allocation_pct": 100}]
+        trades = {"IBM": [_make_trade(filled=10, avg_fill=100.0)]}
+        data = self._run(picks, trades, tmp_path)
+        pick = data["sessions"][0]["picks"][0]
+        assert pick["sector"] == "Unknown"
+        assert pick["catalyst_type"] == "other"
+
 
 # ---------------------------------------------------------------------------
 # Budget check maths (pre-flight scale-down)

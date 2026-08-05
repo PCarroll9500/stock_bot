@@ -339,6 +339,8 @@ def write_session(
             "risk": p.get("risk"),
             "expected_gain_pct": p.get("expected_gain_pct"),
             "reason": p["reason"],
+            "sector": p.get("sector", "Unknown"),
+            "catalyst_type": p.get("catalyst_type", "other"),
             "trend_summary": p.get("trend_summary", ""),
             "allocation_pct": round(buy_value / open_value * 100, 1) if open_value > 0 else round(alloc_pct, 1),
             "shares": shares,

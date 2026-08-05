@@ -683,7 +683,8 @@ async def main():
     runner_ups = [
         {"ticker": s["ticker"], "score": s["score"], "direction": s["direction"],
          "risk": s.get("risk"), "expected_gain_pct": s.get("expected_gain_pct"),
-         "reason": s["reason"], "trend_summary": s.get("trend_summary", "")}
+         "reason": s["reason"], "trend_summary": s.get("trend_summary", ""),
+         "sector": s.get("sector", "Unknown"), "catalyst_type": s.get("catalyst_type", "other")}
         for s in sorted(all_scored, key=lambda x: x.get("score", 0), reverse=True)
         if s["ticker"] not in _picked_tickers and s.get("direction") == "bullish"
     ][:10]

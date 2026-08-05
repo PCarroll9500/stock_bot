@@ -23,6 +23,12 @@ _ALLOC_MIN_PCT    = 5.0
 _ALLOC_MAX_PCT    = 35.0
 _MAX_NEWS_AGE_HRS = 72  # articles older than this are dropped before scoring
 
+_CATALYST_TYPES = {
+    "earnings_beat", "ma_acquisition", "fda_approval", "insider_buying",
+    "analyst_action", "contract_win", "sector_tailwind", "short_squeeze",
+    "guidance_raise", "other",
+}
+
 
 # ── Prompt template ────────────────────────────────────────────────────────────
 
@@ -79,6 +85,12 @@ def _format_news_items(articles: list[dict]) -> str:
             f"   {body_snippet}"
         )
     return "\n\n".join(lines)
+
+
+def _normalize_catalyst_type(value) -> str:
+    """Coerce GPT's catalyst_type response to a known value, defaulting to 'other'."""
+    normalized = str(value or "other").strip().lower()
+    return normalized if normalized in _CATALYST_TYPES else "other"
 
 
 def _format_earnings_signal(earnings: dict | None) -> str:
@@ -169,6 +181,8 @@ def _score_ticker(
         "risk": 5,
         "expected_gain_pct": 0.0,
         "reason": "scoring failed",
+        "sector": "Unknown",
+        "catalyst_type": "other",
     }
     for attempt in range(4):
         try:
@@ -176,7 +190,7 @@ def _score_ticker(
                 model=MODEL,
                 messages=[{"role": "system", "content": prompt}],
                 temperature=TEMPERATURE,
-                max_completion_tokens=200,
+                max_completion_tokens=250,
             )
             parsed = _parse_json_response(response.choices[0].message.content or "")
             score         = int(parsed.get("score", 0))
@@ -185,9 +199,10 @@ def _score_ticker(
             expected_gain = float(parsed.get("expected_gain_pct", 0.0))
             reason        = str(parsed.get("reason", ""))
             sector        = str(parsed.get("sector", "Unknown"))
+            catalyst_type = _normalize_catalyst_type(parsed.get("catalyst_type"))
             logger.info(
-                "catalyst_scorer: %s score=%d dir=%s risk=%d gain=%.1f%% sector=%s | %s",
-                ticker, score, direction, risk, expected_gain, sector, reason,
+                "catalyst_scorer: %s score=%d dir=%s risk=%d gain=%.1f%% sector=%s catalyst=%s | %s",
+                ticker, score, direction, risk, expected_gain, sector, catalyst_type, reason,
             )
             log_llm_output(ticker, parsed, reasoning=reason)
             return {
@@ -198,6 +213,7 @@ def _score_ticker(
                 "expected_gain_pct": expected_gain,
                 "reason": reason,
                 "sector": sector,
+                "catalyst_type": catalyst_type,
             }
         except openai.RateLimitError:
             if attempt < 3:

@@ -61,6 +61,9 @@ Return a JSON object with five fields:
 
 6. "sector": one of: Technology, Energy, Healthcare, Financials, Consumer, Industrials, Materials, Utilities, Real Estate, Communication, Crypto
 
+7. "catalyst_type": the SINGLE primary driver of your score — one of: earnings_beat, ma_acquisition, fda_approval, insider_buying, analyst_action, contract_win, sector_tailwind, short_squeeze, guidance_raise, other
+   Pick the one that best matches the actual reason for your score, not just what's mentioned in the news. A stock with an analyst upgrade AND an earnings beat is earnings_beat (the stronger catalyst) — analyst_action is only for standalone target raises/upgrades with no earnings/contract/M&A event behind them. Use "other" only when none of the listed types genuinely fit.
+
 Ticker: {ticker}
 
 Today: {today_date}
@@ -82,4 +85,4 @@ Recent news (age shown as time since publication — e.g. "2h ago" is very fresh
 {news_items}
 
 Respond with JSON only — no text outside the JSON:
-{{"score": <1-10>, "direction": "bullish" or "bearish", "risk": <1-5>, "expected_gain_pct": <float>, "reason": "<one sentence>", "sector": "<one of the sectors listed above>"}}
+{{"score": <1-10>, "direction": "bullish" or "bearish", "risk": <1-5>, "expected_gain_pct": <float>, "reason": "<one sentence>", "sector": "<one of the sectors listed above>", "catalyst_type": "<one of the catalyst types listed above>"}}
