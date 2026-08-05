@@ -8,34 +8,41 @@ import math
 import sys
 from pathlib import Path
 
-from stock_bot.core.logging_config import setup_logging
-from stock_bot.config.settings import ib_settings
-from stock_bot.brokers.ib.connect_disconnect import connect_ib_async, disconnect_ib
-from stock_bot.brokers.ib.buy_stocks import buy_stock_async, get_price_async, place_trailing_stop_async
-from stock_bot.data_sources.scanner import get_scanner_universe_async
-from stock_bot.data_sources.news_fetcher import fetch_news_for_tickers_async
-from stock_bot.data_sources.trend_checker import (
-    passes_trend_filters_async,
-    passes_gap_filter_async,
-    passes_aggressive_filters_async,
-    get_spy_day_return_async,
-    get_trend_for_scoring_async,
-    fmt_trend_for_prompt,
-    fmt_volume_for_prompt,
+from stock_bot.ai.catalyst_scorer import (
+    catalyst_weight,
+    filter_and_rank,
+    score_candidates,
 )
+from stock_bot.brokers.ib.buy_stocks import (
+    buy_stock_async,
+    get_price_async,
+    place_trailing_stop_async,
+)
+from stock_bot.brokers.ib.connect_disconnect import connect_ib_async, disconnect_ib
+from stock_bot.config.settings import ib_settings
+from stock_bot.core.logging_config import setup_logging
 from stock_bot.data_sources.earnings_fetcher import fetch_earnings
-from stock_bot.data_sources.sentiment_fetcher import fetch_sentiment
-from stock_bot.data_sources.sec_fetcher import fetch_sec_filings
-from stock_bot.data_sources.web_scraper import scrape_news
-from stock_bot.ai.catalyst_scorer import score_candidates, filter_and_rank
-from stock_bot.brokers.ib.sell_all import close_position
+from stock_bot.data_sources.news_fetcher import fetch_news_for_tickers_async
 from stock_bot.data_sources.portfolio_writer import (
-    write_session,
-    load_portfolio,
     _get_open_value,
     get_live_account_value,
     get_net_liquidation,
+    load_portfolio,
+    write_session,
 )
+from stock_bot.data_sources.scanner import get_scanner_universe_async
+from stock_bot.data_sources.sec_fetcher import fetch_sec_filings
+from stock_bot.data_sources.sentiment_fetcher import fetch_sentiment
+from stock_bot.data_sources.trend_checker import (
+    fmt_trend_for_prompt,
+    fmt_volume_for_prompt,
+    get_spy_day_return_async,
+    get_trend_for_scoring_async,
+    passes_aggressive_filters_async,
+    passes_gap_filter_async,
+    passes_trend_filters_async,
+)
+from stock_bot.data_sources.web_scraper import scrape_news
 
 _CONFIG_DIR = Path(__file__).parent / "config"
 logger = logging.getLogger(__name__)  # module-level so _safe() can use it before main() runs
@@ -111,12 +118,45 @@ async def main():
     realloc_fill_wait_seconds: int = config.get("realloc_fill_wait_seconds", 20)
     min_expected_gain_pct: float = config.get("min_expected_gain_pct", 0.0)
     sector_cap: int | None = config.get("sector_cap")
+    # Per-catalyst_type conviction/allocation multiplier, tuned from
+    # scripts/analyze_scoring.py's realized win-rate/return breakdown (e.g.
+    # ma_acquisition has historically underperformed; analyst_action has
+    # historically outperformed). "_comment" keys are ignored by catalyst_weight().
+    catalyst_weights: dict[str, float] = {
+        k: v for k, v in config.get("catalyst_type_weights", {}).items()
+        if not k.startswith("_")
+    }
+    # Allocation risk penalty (halves conviction weight for risk>=threshold picks
+    # by default) — kept configurable since scripts/analyze_scoring.py's risk
+    # breakdown is based on a still-small sample and may not hold up over time.
+    _risk_penalty_cfg: dict = config.get("risk_penalty", {})
+    risk_penalty_enabled: bool = _risk_penalty_cfg.get("enabled", True)
+    risk_penalty_threshold: int = _risk_penalty_cfg.get("threshold", 3)
+    risk_penalty_factor: float = _risk_penalty_cfg.get("factor", 0.5)
     take_profit_pct: float | None = config.get("take_profit_pct")
     stop_loss_pct: float | None = config.get("stop_loss_pct")
     trailing_stop_pct: float | None = config.get("trailing_stop_pct")
     if trailing_stop_pct is not None and (stop_loss_pct is not None or take_profit_pct is not None):
         logger.error("Config error: trailing_stop_pct cannot be combined with stop_loss_pct or take_profit_pct")
         sys.exit(1)
+    # Risk-adjusted trailing stop: tighten the stop for higher-risk picks (cut
+    # losers faster) and widen it for lower-risk, higher-conviction picks (let
+    # winners run) instead of one flat trailing_stop_pct for every position.
+    # Only takes effect when trailing_stop_pct itself is configured (the
+    # mutual-exclusivity check above already ensures no bracket/stop_loss
+    # conflict). Falls back to the flat trailing_stop_pct for any risk value
+    # not present in the map, so a partial map is safe.
+    _trailing_by_risk_cfg: dict = config.get("trailing_stop_by_risk", {})
+    trailing_by_risk_enabled: bool = (
+        trailing_stop_pct is not None and _trailing_by_risk_cfg.get("enabled", False)
+    )
+
+    def _effective_trailing_stop(pick: dict) -> float | None:
+        if not trailing_by_risk_enabled:
+            return trailing_stop_pct
+        risk_key = str(pick.get("risk", ""))
+        return _trailing_by_risk_cfg.get(risk_key, trailing_stop_pct)
+
     limit_order_buffer_pct: float | None = config.get("limit_order_buffer_pct", 0.5)
 
     # Validate required config sections early — a missing key would crash deep
@@ -327,7 +367,7 @@ async def main():
         logger.info("Enhanced data sources: fetching for %d tickers", len(enhanced_tickers))
 
         loop = asyncio.get_running_loop()
-        enh_futures: dict[str, "asyncio.Future"] = {}
+        enh_futures: dict[str, asyncio.Future] = {}
         if enhanced_cfg.get("earnings", True):
             enh_futures["earnings"] = loop.run_in_executor(None, fetch_earnings, 7)
         if enhanced_cfg.get("sentiment", True):
@@ -528,7 +568,7 @@ async def main():
     threshold = effective_min_score
 
     while threshold >= score_floor:
-        picks = filter_and_rank(all_scored, num_stocks, min_score=threshold, min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap)
+        picks = filter_and_rank(all_scored, num_stocks, min_score=threshold, min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap, catalyst_weights=catalyst_weights)
         if len(picks) >= num_stocks:
             logger.info(
                 "Target of %d stocks reached at min_score=%d", num_stocks, threshold
@@ -651,7 +691,7 @@ async def main():
 
             # Merge with original scored list and re-rank at the score floor
             all_scored = all_scored + extra_scored
-            picks = filter_and_rank(all_scored, num_stocks, min_score=score_floor, min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap)
+            picks = filter_and_rank(all_scored, num_stocks, min_score=score_floor, min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap, catalyst_weights=catalyst_weights)
             logger.info(
                 "After conservative expansion: %d picks (min_score=%d)",
                 len(picks), score_floor,
@@ -663,7 +703,8 @@ async def main():
     _fallback_floor = score_floor - 1
     while len(picks) < min_picks and _fallback_floor >= max(1, score_floor - 3):
         picks = filter_and_rank(all_scored, num_stocks, min_score=_fallback_floor,
-                                min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap)
+                                min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap,
+                                catalyst_weights=catalyst_weights)
         logger.warning(
             "min_picks fallback: %d picks at min_score=%d (need %d)",
             len(picks), _fallback_floor, min_picks,
@@ -690,30 +731,42 @@ async def main():
     ][:10]
 
     # Score^2 allocation re-weighting — concentrates capital on highest-conviction picks.
-    # Risk=3 picks use half their score for weighting (acts as a ~75% allocation penalty).
+    # Risk>=threshold picks use a reduced score for weighting (risk_penalty config above).
     # Exception: when fewer than 3 picks cleared the original score threshold (i.e. most
     # picks came from the min_picks fallback), suppress the risk penalty for genuine picks
     # so they aren't diluted by weak fallback fills.
+    # catalyst_type weight (same multiplier used for ranking) is also applied here since
+    # this step overwrites the allocation_pct computed by filter_and_rank.
     if picks:
         _genuine_count = sum(1 for p in picks if p.get("score", 0) >= score_floor)
 
         def _alloc_score(p: dict) -> float:
             s = max(p.get("score", 1), 1)
+            w = catalyst_weight(p.get("catalyst_type", "other"), catalyst_weights)
             if _genuine_count < 3 and p.get("score", 0) >= score_floor:
-                return s  # protect genuine picks from risk penalty when pool is thin
-            return s * 0.5 if p.get("risk", 1) >= 3 else s
+                return s * w  # protect genuine picks from risk penalty when pool is thin
+            if risk_penalty_enabled and p.get("risk", 1) >= risk_penalty_threshold:
+                s = s * risk_penalty_factor
+            return s * w
         _sq_total = sum(_alloc_score(p) ** 2 for p in picks)
         for p in picks:
             p["allocation_pct"] = round(_alloc_score(p) ** 2 / _sq_total * 100, 1)
-        logger.info("Allocations re-weighted (score^2, risk3=half-weight, %d genuine): %s",
-                    _genuine_count,
-                    {p["ticker"]: f'{p["allocation_pct"]:.1f}%' for p in picks})
+        _risk_penalty_desc = (
+            f"risk>={risk_penalty_threshold}={risk_penalty_factor}x weight"
+            if risk_penalty_enabled else "risk penalty disabled"
+        )
+        logger.info(
+            "Allocations re-weighted (score^2, %s, catalyst_type-weighted, %d genuine): %s",
+            _risk_penalty_desc, _genuine_count,
+            {p["ticker"]: f'{p["allocation_pct"]:.1f}%' for p in picks},
+        )
 
     # Multi-day hold: flag high-conviction picks to skip EOD liquidation
     _multi_day_min = config.get("multi_day_hold_min_score", 0)
     _multi_day_days = config.get("multi_day_max_days", 3)
     if _multi_day_min:
-        from datetime import date as _dt, timedelta as _td
+        from datetime import date as _dt
+        from datetime import timedelta as _td
         _today = _dt.today()
         _days_added, _hold_date = 0, _today
         while _days_added < _multi_day_days:
@@ -756,6 +809,11 @@ async def main():
         logger.warning("Portfolio open value: falling back to CashBalance $%.2f (NetLiquidation unavailable)", record_open)
 
     trades_by_ticker: dict[str, list] = {}
+    # Pre-flight quote per ticker (the price used to size the initial order) —
+    # persisted alongside the actual fill so slippage can be measured
+    # separately from scoring alpha. Only covers the initial entry order, not
+    # later realloc top-ups, which is the dominant signal for execution cost.
+    preflight_price_by_ticker: dict[str, float] = {}
     if picks and test_mode:
         # TEST MODE — log picks but do not place any real orders
         logger.warning("*** TEST MODE — skipping order execution, no real trades placed ***")
@@ -816,6 +874,7 @@ async def main():
         )
 
         for pick, alloc_pct, shares, preflight_price in order_plans:
+            preflight_price_by_ticker[pick["ticker"]] = preflight_price
             if shares <= 0:
                 logger.warning("Skipping %s — 0 shares after budget check", pick["ticker"])
                 continue
@@ -829,7 +888,7 @@ async def main():
                     limit_price=limit_price,
                     take_profit_pct=take_profit_pct,
                     stop_loss_pct=stop_loss_pct,
-                    trailing_stop_pct=trailing_stop_pct,
+                    trailing_stop_pct=_effective_trailing_stop(pick),
                 )
                 trades_by_ticker[pick["ticker"]] = trades
                 order_type = f"LMT ${limit_price:.2f}" if limit_price else "MKT"
@@ -888,7 +947,7 @@ async def main():
                 _st = getattr(_entry, "orderStatus", None) if _entry else None
                 if _st and _st.filled > 0:
                     try:
-                        _trail = await place_trailing_stop_async(_tkr, ib, int(_st.filled), trailing_stop_pct)
+                        _trail = await place_trailing_stop_async(_tkr, ib, int(_st.filled), _effective_trailing_stop(_fp))
                         trades_by_ticker[_tkr].append(_trail)
                     except Exception:
                         logger.error("Failed to place trailing stop for %s", _tkr, exc_info=True)
@@ -975,7 +1034,7 @@ async def main():
                         _res_shares = math.floor(_deployable / _res_price)
                         if _res_shares > 0:
                             _res_lmt = round(_res_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct is not None else None
-                            _res_trades = await buy_stock_async(_res["ticker"], ib, shares=_res_shares, limit_price=_res_lmt, stop_loss_pct=stop_loss_pct, trailing_stop_pct=trailing_stop_pct)
+                            _res_trades = await buy_stock_async(_res["ticker"], ib, shares=_res_shares, limit_price=_res_lmt, stop_loss_pct=stop_loss_pct, trailing_stop_pct=_effective_trailing_stop(_res))
                             trades_by_ticker[_res["ticker"]] = _res_trades
                             _otype = f"LMT ${_res_lmt:.2f}" if _res_lmt else "MKT"
                             logger.info(
@@ -997,7 +1056,7 @@ async def main():
                                     )
                                     if trailing_stop_pct is not None and limit_order_buffer_pct is None:
                                         try:
-                                            await place_trailing_stop_async(_res["ticker"], ib, int(_st.filled), trailing_stop_pct)
+                                            await place_trailing_stop_async(_res["ticker"], ib, int(_st.filled), _effective_trailing_stop(_res))
                                         except Exception:
                                             logger.error("Failed to place trailing stop for reserve %s", _res["ticker"], exc_info=True)
                                 else:
@@ -1028,6 +1087,7 @@ async def main():
 
             # Place all top-up orders simultaneously
             _rt: dict[str, list] = {}
+            _top_up_by_ticker: dict[str, dict] = {_fp["ticker"]: _fp for _fp, _ in _top_ups}
             for _fp, _extra_usd in _top_ups:
                 _tkr = _fp["ticker"]
                 _price = _fresh.get(_tkr)
@@ -1038,7 +1098,7 @@ async def main():
                     continue
                 _lmt = round(_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct is not None else None
                 try:
-                    _trades = await buy_stock_async(_tkr, ib, shares=_extra_shares, limit_price=_lmt, stop_loss_pct=stop_loss_pct, trailing_stop_pct=trailing_stop_pct)
+                    _trades = await buy_stock_async(_tkr, ib, shares=_extra_shares, limit_price=_lmt, stop_loss_pct=stop_loss_pct, trailing_stop_pct=_effective_trailing_stop(_fp))
                     _rt[_tkr] = _trades
                     _otype = f"LMT ${_lmt:.2f}" if _lmt else "MKT"
                     logger.info(
@@ -1064,7 +1124,8 @@ async def main():
                         )
                         if trailing_stop_pct is not None and limit_order_buffer_pct is None:
                             try:
-                                await place_trailing_stop_async(_tkr, ib, int(_st.filled), trailing_stop_pct)
+                                _tu_pick = _top_up_by_ticker.get(_tkr, {})
+                                await place_trailing_stop_async(_tkr, ib, int(_st.filled), _effective_trailing_stop(_tu_pick))
                             except Exception:
                                 logger.error("Failed to place trailing stop for realloc %s", _tkr, exc_info=True)
                     else:
@@ -1141,6 +1202,7 @@ async def main():
         open_value_override=record_open,
         qqq_price_override=qqq_price,
         runner_ups=runner_ups,
+        preflight_price_by_ticker=preflight_price_by_ticker,
     )
 
     # ------------------------------------------------------------------ #

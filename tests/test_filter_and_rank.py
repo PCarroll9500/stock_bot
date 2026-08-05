@@ -5,11 +5,10 @@ Tests for catalyst_scorer.filter_and_rank — the pick selection logic that
 applies score/gain/risk filters and computes allocations.
 """
 
-import pytest
-from stock_bot.ai.catalyst_scorer import filter_and_rank
+from stock_bot.ai.catalyst_scorer import catalyst_weight, filter_and_rank
 
 
-def _pick(ticker, score, direction="bullish", gain=3.0, risk=2):
+def _pick(ticker, score, direction="bullish", gain=3.0, risk=2, catalyst_type="other"):
     return {
         "ticker": ticker,
         "score": score,
@@ -18,6 +17,7 @@ def _pick(ticker, score, direction="bullish", gain=3.0, risk=2):
         "risk": risk,
         "reason": "test",
         "trend_summary": "",
+        "catalyst_type": catalyst_type,
     }
 
 
@@ -165,3 +165,90 @@ class TestThresholdLoweringSimulation:
         )
         # filter_and_rank was last called with threshold=7, so score 5/4 don't qualify
         assert picks == []
+
+
+class TestCatalystWeight:
+    """catalyst_weight() is the lookup used to scale conviction/allocation by
+    catalyst_type, tuned from scripts/analyze_scoring.py's realized-return
+    breakdown (e.g. discounting ma_acquisition, boosting analyst_action)."""
+
+    def test_no_weights_config_is_neutral(self):
+        assert catalyst_weight("ma_acquisition", None) == 1.0
+        assert catalyst_weight("ma_acquisition", {}) == 1.0
+
+    def test_known_catalyst_type_uses_configured_weight(self):
+        weights = {"ma_acquisition": 0.5, "analyst_action": 1.15}
+        assert catalyst_weight("ma_acquisition", weights) == 0.5
+        assert catalyst_weight("analyst_action", weights) == 1.15
+
+    def test_unlisted_catalyst_type_defaults_to_neutral(self):
+        weights = {"ma_acquisition": 0.5}
+        assert catalyst_weight("earnings_beat", weights) == 1.0
+
+    def test_comment_key_does_not_corrupt_real_lookups(self):
+        """picker_config.json convention: a leading-underscore key documents the
+        section. catalyst_type is always one of the normalized _CATALYST_TYPES
+        values (never "_comment"), so a stray comment key alongside real
+        weights must not affect lookups of actual catalyst types."""
+        weights = {"_comment": "explanation", "ma_acquisition": 0.5}
+        assert catalyst_weight("ma_acquisition", weights) == 0.5
+        assert catalyst_weight("other", weights) == 1.0
+
+
+class TestCatalystWeightedRanking:
+    """catalyst_weights must scale conviction ranking, not just cosmetically
+    tag picks — a discounted catalyst_type should be able to lose its slot
+    to a pick it would otherwise outrank."""
+
+    def test_discounted_catalyst_type_ranked_below_neutral_pick(self):
+        # Equal score/gain/risk so conviction is tied without weighting.
+        scored = [
+            _pick("ACQ", 8, gain=4.0, risk=2, catalyst_type="ma_acquisition"),
+            _pick("OTHER", 8, gain=4.0, risk=2, catalyst_type="other"),
+        ]
+        picks = filter_and_rank(
+            scored, num_stocks=1, min_score=7,
+            catalyst_weights={"ma_acquisition": 0.5},
+        )
+        assert len(picks) == 1
+        assert picks[0]["ticker"] == "OTHER"
+
+    def test_boosted_catalyst_type_can_outrank_higher_raw_conviction(self):
+        # ANALYST has slightly lower raw conviction but a big enough boost to win.
+        scored = [
+            _pick("ANALYST", 7, gain=3.0, risk=2, catalyst_type="analyst_action"),  # conviction 10.5
+            _pick("PLAIN", 8, gain=3.0, risk=2, catalyst_type="other"),             # conviction 12.0
+        ]
+        picks = filter_and_rank(
+            scored, num_stocks=1, min_score=7,
+            catalyst_weights={"analyst_action": 1.5},  # 10.5 * 1.5 = 15.75 > 12.0
+        )
+        assert len(picks) == 1
+        assert picks[0]["ticker"] == "ANALYST"
+
+    def test_no_catalyst_weights_preserves_original_ranking(self):
+        """Without catalyst_weights (None/omitted), ranking is unaffected —
+        backward compatible with existing behavior."""
+        scored = [
+            _pick("ACQ", 8, gain=4.0, risk=2, catalyst_type="ma_acquisition"),
+            _pick("OTHER", 8, gain=4.0, risk=2, catalyst_type="other"),
+        ]
+        picks = filter_and_rank(scored, num_stocks=2, min_score=7)
+        assert len(picks) == 2
+
+    def test_allocation_reflects_catalyst_weight(self):
+        """A boosted catalyst_type should receive more capital than an
+        otherwise-identical neutral pick. Uses 4 picks (not 2) so the
+        per-pick 35% allocation cap doesn't force both into a tie."""
+        scored = [
+            _pick("BOOSTED", 8, gain=4.0, risk=2, catalyst_type="analyst_action"),
+            _pick("NEUTRAL", 8, gain=4.0, risk=2, catalyst_type="other"),
+            _pick("FILLER1", 8, gain=4.0, risk=2, catalyst_type="other"),
+            _pick("FILLER2", 8, gain=4.0, risk=2, catalyst_type="other"),
+        ]
+        picks = filter_and_rank(
+            scored, num_stocks=4, min_score=7,
+            catalyst_weights={"analyst_action": 1.5},
+        )
+        by_ticker = {p["ticker"]: p["allocation_pct"] for p in picks}
+        assert by_ticker["BOOSTED"] > by_ticker["NEUTRAL"]

@@ -97,7 +97,35 @@
     "max_tickers": 15
   },
   "trailing_stop_pct": 3.0,
+  "_trailing_stop_by_risk_comment": "When enabled, overrides the flat trailing_stop_pct above with a per-pick stop width keyed by GPT's risk (1-5): tighter for high-risk picks (cut losers faster) and wider for low-risk/high-conviction picks (let winners run), instead of stopping every position out at the same distance regardless of how risky it was flagged. Falls back to trailing_stop_pct for any risk value not listed. Only takes effect when trailing_stop_pct is set (same mutual-exclusivity rule as before).",
+  "trailing_stop_by_risk": {
+    "enabled": true,
+    "1": 5.0,
+    "2": 4.0,
+    "3": 3.0,
+    "4": 2.0,
+    "5": 1.5
+  },
   "multi_day_hold_min_score": 9,
   "multi_day_max_days": 3,
-  "min_picks": 3
+  "min_picks": 3,
+  "_catalyst_type_weights_comment": "Conviction/allocation multiplier applied per catalyst_type (1.0 = neutral). Derived from scripts/analyze_scoring.py's win-rate/return breakdown of 390 historical picks (keyword-classified pre-catalyst_type era): ma_acquisition was the worst performer (22.6% win rate, -30% total return contributed over 31 picks) so it is discounted; analyst_action was the best performer (54.1% win rate, +36.7% total return over 74 picks) despite catalyst_prompt.txt's WEAK CATALYST RULE treating it as a soft catalyst, so it is boosted. Revisit these once enough native (post-catalyst_type-field) data accumulates -- run scripts/analyze_scoring.py periodically and adjust.",
+  "catalyst_type_weights": {
+    "ma_acquisition": 0.5,
+    "analyst_action": 1.15,
+    "earnings_beat": 0.9,
+    "fda_approval": 0.85,
+    "sector_tailwind": 0.85,
+    "insider_buying": 1.0,
+    "contract_win": 1.0,
+    "short_squeeze": 1.0,
+    "guidance_raise": 1.0,
+    "other": 1.0
+  },
+  "_risk_penalty_comment": "Allocation penalty for risk>=threshold picks (applied as score * factor before score^2 weighting). Historically risk=3 picks had the HIGHEST total return of any risk bucket (95 picks, +47.5% total) -- possibly a small-sample artifact, but the penalty is kept configurable rather than hardcoded so it can be disabled/tuned as scripts/analyze_scoring.py accumulates more data without a code change.",
+  "risk_penalty": {
+    "enabled": true,
+    "threshold": 3,
+    "factor": 0.5
+  }
 }

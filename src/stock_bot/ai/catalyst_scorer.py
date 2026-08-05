@@ -93,6 +93,20 @@ def _normalize_catalyst_type(value) -> str:
     return normalized if normalized in _CATALYST_TYPES else "other"
 
 
+def catalyst_weight(catalyst_type: str, weights: dict[str, float] | None) -> float:
+    """Return the conviction/allocation multiplier for a catalyst_type.
+
+    Weights come from picker_config.json's "catalyst_type_weights", tuned from
+    scripts/analyze_scoring.py's realized win-rate/return breakdown by
+    catalyst_type (e.g. ma_acquisition has historically underperformed and
+    analyst_action has historically outperformed). Defaults to 1.0 (neutral)
+    for any catalyst_type not present in the config.
+    """
+    if not weights:
+        return 1.0
+    return float(weights.get(catalyst_type, 1.0))
+
+
 def _format_earnings_signal(earnings: dict | None) -> str:
     if not earnings:
         return "No upcoming earnings data."
@@ -137,8 +151,7 @@ def _parse_json_response(raw: str) -> dict:
     raw = raw.strip()
     if raw.startswith("```"):
         raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
+        raw = raw.removeprefix("json")
         raw = raw.strip()
     return json.loads(raw)
 
@@ -233,9 +246,13 @@ def _score_ticker(
 
 # ── Math-based allocation ─────────────────────────────────────────────────────
 
-def _compute_allocations(picks: list[dict]) -> dict[str, float]:
+def _compute_allocations(
+    picks: list[dict],
+    catalyst_weights: dict[str, float] | None = None,
+) -> dict[str, float]:
     """
-    Allocate capital proportionally to expected value: score * expected_gain_pct / risk.
+    Allocate capital proportionally to expected value: score * expected_gain_pct / risk,
+    scaled by the pick's catalyst_type weight (see catalyst_weight()).
 
     Uses iterative redistribution so every pick stays within
     [_ALLOC_MIN_PCT, _ALLOC_MAX_PCT] and the total is exactly 100%.
@@ -245,7 +262,10 @@ def _compute_allocations(picks: list[dict]) -> dict[str, float]:
     passes so budget is redistributed to remaining free picks.
     """
     convictions: dict[str, float] = {
-        p["ticker"]: p["score"] * max(p.get("expected_gain_pct", 1.0), 0.5) / max(p["risk"], 1)
+        p["ticker"]: (
+            p["score"] * max(p.get("expected_gain_pct", 1.0), 0.5) / max(p["risk"], 1)
+            * catalyst_weight(p.get("catalyst_type", "other"), catalyst_weights)
+        )
         for p in picks
     }
     tickers = list(convictions)
@@ -360,10 +380,16 @@ def filter_and_rank(
     min_score: int,
     min_expected_gain_pct: float = 0.0,
     sector_cap: int | None = None,
+    catalyst_weights: dict[str, float] | None = None,
 ) -> list[dict]:
     """
     Filter scored results to bullish picks above min_score, sort by score,
     take top num_stocks, then compute risk-adjusted allocations.
+
+    catalyst_weights (from picker_config.json "catalyst_type_weights") scales
+    both ranking and allocation by historical performance per catalyst_type —
+    e.g. discounting ma_acquisition picks, which have historically had a much
+    lower win rate than the rest of the pool. See catalyst_weight().
 
     Returns list of pick dicts with allocation_pct added.
     """
@@ -405,10 +431,12 @@ def filter_and_rank(
     if rejected_risk:
         logger.info("catalyst_scorer: high-risk/low-score filtered: %s", ", ".join(rejected_risk))
 
-    # Rank by conviction = score × expected_gain / risk (same formula as allocation).
-    # This ensures the stocks we select are consistent with how we'd allocate capital.
+    # Rank by conviction = score × expected_gain / risk × catalyst_type weight
+    # (same formula as allocation). This ensures the stocks we select are
+    # consistent with how we'd allocate capital.
     def conviction(r: dict) -> float:
-        return r["score"] * max(r.get("expected_gain_pct", 1.0), 0.5) / max(r["risk"], 1)
+        base = r["score"] * max(r.get("expected_gain_pct", 1.0), 0.5) / max(r["risk"], 1)
+        return base * catalyst_weight(r.get("catalyst_type", "other"), catalyst_weights)
 
     bullish.sort(key=conviction, reverse=True)
 
@@ -436,7 +464,7 @@ def filter_and_rank(
     if not top:
         return []
 
-    allocations = _compute_allocations(top)
+    allocations = _compute_allocations(top, catalyst_weights)
     for pick in top:
         pick["allocation_pct"] = allocations.get(pick["ticker"], round(100.0 / len(top), 1))
 

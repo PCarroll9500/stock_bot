@@ -4,10 +4,11 @@ import json
 import logging
 import math
 import os
-from datetime import datetime, date as date_type
+import urllib.request
+from datetime import date as date_type
+from datetime import datetime
 from pathlib import Path
 
-import urllib.request
 from ib_insync import IB, Stock
 
 from stock_bot.config.settings import ib_settings
@@ -183,6 +184,7 @@ def write_session(
     open_value_override: float | None = None,
     qqq_price_override: float | None = None,
     runner_ups: list[dict] | None = None,
+    preflight_price_by_ticker: dict[str, float] | None = None,
 ) -> None:
     """
     Write today's session to portfolio.json using actual IBKR fill data when
@@ -200,6 +202,12 @@ def write_session(
         open_value_override: Actual account balance from IBKR (NetLiquidation).
             When supplied this is used as the session open value instead of
             reading the previous session's close from portfolio.json.
+        preflight_price_by_ticker: {ticker: price} — the quote used to size the
+            initial order, fetched immediately before submission. Persisted
+            alongside the actual fill price as slippage_pct so execution cost
+            can be measured separately from scoring alpha (see
+            scripts/analyze_scoring.py). None/missing entries leave
+            slippage_pct unset rather than guessing.
     """
     if not picks:
         logger.info("portfolio_writer: no picks — writing no-pick stub to portfolio.json")
@@ -283,6 +291,11 @@ def write_session(
                 fill_price = round(total_value / total_filled, 4)
                 fill_qty = total_filled
 
+        # Slippage is only meaningful against a confirmed real fill — comparing
+        # the pre-flight quote to an ESTIMATED/QUEUED price would just measure
+        # market drift between two market-data snapshots, not execution cost.
+        is_confirmed_fill = bool(fill_price and fill_qty > 0)
+
         if fill_price and fill_qty > 0:
             buy_price = fill_price
             shares = fill_qty
@@ -332,6 +345,11 @@ def write_session(
                 p["ticker"], p["score"], alloc_pct, shares, buy_price, buy_value,
             )
 
+        preflight_price = (preflight_price_by_ticker or {}).get(p["ticker"])
+        slippage_pct = None
+        if is_confirmed_fill and preflight_price and preflight_price > 0:
+            slippage_pct = round((buy_price - preflight_price) / preflight_price * 100, 3)
+
         entry = {
             "ticker": p["ticker"],
             "score": p["score"],
@@ -346,6 +364,8 @@ def write_session(
             "shares": shares,
             "buy_price": buy_price or 0,
             "buy_value": buy_value,
+            "preflight_price": preflight_price,
+            "slippage_pct": slippage_pct,
             "close_price": None,
             "day_return_pct": None,
             "day_return_usd": None,
