@@ -33,27 +33,27 @@ Return a JSON object with five fields:
 
    WEAK CATALYST RULE: Standalone price target raises, analyst upgrades, and initiations (without an accompanying earnings beat, contract win, or major fundamental event) are soft catalysts — cap score at 7. Do NOT automatically default these to "bearish": a standalone analyst upgrade from a reputable firm with a meaningful target raise (10%+ upside to new target) on a stock early in its move is a legitimate bullish setup at 6-7 — judge direction using the normal criteria in field 1 (real remaining upside vs. priced-in / stale). Only default to bearish here when the target raise is stale, minor, or the stock has already run most of the way to the new target.
 
-   ALREADY-MOVED PENALTY: If the stock's intraday gain already exceeds 5% from the prior close, subtract 1 from your score (the catalyst is at least partially priced in). If the intraday gain exceeds 10%, subtract 2. Apply this before the SIZE RULE cap below.
+   ALREADY-MOVED PENALTY (Profile B only): If a Profile B stock's intraday gain already exceeds 5% from the prior close, subtract 1 from your score (the catalyst is at least partially priced in). If it exceeds 10%, subtract 2. Profile A stocks are governed by the SIZE RULE below instead — do not apply this penalty a second time on top of it; Profile A is defined around large intraday moves, so double-penalizing size there would exclude the profile's own core case.
 
    ADDITIONAL SIGNAL WEIGHTING: Earnings within 2 days can add +1 to +2 on a bullish setup (market often prices optimistically ahead of earnings) — but this alone never lifts a soft catalyst (see WEAK CATALYST RULE) above 7. Insider buying (Form 4, especially CEO/CFO) is a strong signal, comparable to an analyst upgrade: +1 to +2. A Form 8-K material event (acquisition, partnership, major contract) can shift score by +1 to +3 depending on severity. Social sentiment (Reddit/StockTwits skewed bullish) is a mild confirmation signal only: +0 to +1, never sufficient on its own to raise a score past 6. Insider selling or a bearish 8-K should lower the score and/or raise risk instead.
 
-   SIZE RULE — applies only to Profile A (small-cap explosive plays):
-   - Already up 20–30% today: cap score at 6 unless a clear secondary catalyst has not yet been priced in.
-   - Already up 30–50% today: cap score at 4.
-   - Already up 50%+ today: cap score at 2.
-   This rule does NOT apply to Profile B. A quality large-cap up 3% on record earnings is a legitimate 8 or 9.
+   SIZE RULE — applies only to Profile A (small-cap explosive plays). Big moves are the point of Profile A, not a reason to reflexively exclude it — judge the catalyst quality and volume, then size the score to match instead of capping every large move to the middle of the range:
+   - Already up 20–30% today: cap score at 8 if volume is elevated (1.5x+ avg) and the catalyst is fresh and named (FDA approval, acquisition, confirmed earnings blowout, etc — not vague); cap at 6 if volume is normal/below-average or the catalyst is weak/generic.
+   - Already up 30–50% today: cap score at 7 if volume is very elevated (3x+ avg) and the catalyst is a genuine binary event with clear catalyst-driven upside still ahead (not just "it's hot"); cap at 4 otherwise.
+   - Already up 50%+ today: cap score at 5, and only for an undeniable, still-fresh binary catalyst (e.g. FDA approval same day, confirmed buyout) with very elevated volume; cap at 2 for anything vaguer — a 50%+ move on weak news is genuinely exhausted, not a bargain.
+   This rule does NOT apply to Profile B. A quality large-cap up 3% on record earnings is a legitimate 8 or 9. Whenever you score a Profile A pick already up 20%+ at 6 or higher, set risk to 4–5 regardless of catalyst quality — position sizing and the trailing stop should carry the risk of a large move continuing to run or reversing, not exclusion from the pick list.
 
 3. "risk": integer 1–5 — risk of loss or sharp reversal from current price
    - 1: Very low — large-cap ($10B+ market cap), strong multi-timeframe uptrend, high-conviction fresh catalyst, highly liquid, institutions hold most of the float
    - 2: Low — solid catalyst, reasonable liquidity and market cap, stock near support or early in today's move
    - 3: Moderate — speculative catalyst, extended from the open, mixed trend signals, or mid-cap with low float
-   - 4: High — Profile A stock already up 30%+, soft catalyst, negative short-term trend, or very low float
-   - 5: Very high — parabolic move 50%+ today, vague or recycled catalyst, strong yearly downtrend, micro-cap with no institutional backing
+   - 4: High — Profile A stock already up 20-30%+ (see SIZE RULE — this applies even to a genuine catalyst, since a large move is inherently more reversal-prone regardless of quality), soft catalyst, negative short-term trend, or very low float
+   - 5: Very high — Profile A stock already up 50%+ (genuine catalyst or not — see SIZE RULE), vague or recycled catalyst, strong yearly downtrend, micro-cap with no institutional backing
    Trend adjustment: yearly trend worse than -30% → add 1 to risk. Monthly AND yearly both positive → subtract 1 from risk. Clamp final risk to [1, 5].
 
 4. "expected_gain_pct": float — your estimate of REMAINING upside % from current price today
    Be conservative and realistic. Examples by profile:
-   - Profile A — Fresh FDA approval on small biotech: 15–30%. Earnings beat on small-cap just after open: 5–12%. Analyst upgrade mid-day: 2–5%. Stock already ran 30%+ on vague news: 0–2%.
+   - Profile A — Fresh FDA approval on small biotech: 15–30%. Earnings beat on small-cap just after open: 5–12%. Analyst upgrade mid-day: 2–5%. Already up 30–50%+ on a genuine, still-fresh binary catalyst with very elevated volume (confirmed buyout, active short squeeze, same-day approval): 5–15% — real catalysts can keep running intraday. The SAME size move on vague or generic news: 0–2%, not 5–15% — the catalyst quality, not the size of the move so far, is what separates these two cases.
    - Profile B — Record earnings beat on quality large-cap, still early in session: 2–5%. Analyst upgrade with major price target raise: 1–3%. Stock already near session high on modest move: 0.5–1.5%.
    Use 0.0–1.0 for moves you expect to fade or stall.
 

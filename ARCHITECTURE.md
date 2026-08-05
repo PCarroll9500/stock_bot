@@ -436,6 +436,34 @@ Findings from this loop feed back into `picker_config.json`:
   trailing-stop order on the exchange is the only way to react intraday
   without a new always-on process.
 
+### Catching explosive outlier moves (Profile A)
+
+`catalyst_prompt.txt`'s Profile A (small/mid-cap, already up 10-40%+ on a
+fresh binary event — FDA approval, acquisition, short squeeze) was originally
+defined around large intraday moves but then immediately capped its own core
+case: the SIZE RULE scored a genuine, high-volume 30-50% mover at only 4, and
+the ALREADY-MOVED PENALTY applied a second, stacking penalty on top of that.
+Combined with `aggressive_min_score: 8` / `score_floor: 7`, this meant real
+Profile A outliers were almost never actually selected, despite being exactly
+the trade this bot is nominally built for.
+
+Fixed by:
+- Scoping ALREADY-MOVED PENALTY to Profile B only (Profile A has its own
+  SIZE RULE covering the same concept — stacking both punished the profile's
+  defining case twice).
+- Raising the SIZE RULE caps so a genuine, high-volume binary catalyst can
+  reach 8 (20-30% already up), 7 (30-50%), or 5 (50%+) instead of 6/4/2 —
+  while still capping vague/generic-news movers low, so this widens the door
+  for real catalysts without turning into blind momentum chasing.
+- Instructing GPT to set risk 4-5 on any such pick regardless of catalyst
+  quality, so `trailing_stop_by_risk`'s tight 1.5-2.0% stops carry the
+  downside risk of a large move reversing, instead of the only risk control
+  being "don't buy it."
+- Keeping `catalyst_type_weights["fda_approval"]` neutral (1.0) rather than
+  discounted — the original -0.85x was drawn from only 3 historical picks,
+  too small a sample to justify discounting exactly the catalyst type this
+  change is trying to let through.
+
 Run manually any time with `python scripts/analyze_scoring.py` (reads
 `docs/data/portfolio.json` by default; pass one or more portfolio.json paths,
 including old snapshots pulled from git history via `git show <ref>:docs/data/portfolio.json`,
