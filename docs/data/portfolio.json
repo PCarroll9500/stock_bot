@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-06T09:42:08.577464",
+  "updated_at": "2026-08-06T14:30:50.898534",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -423,9 +423,10 @@
           "buy_value": 5306.0,
           "preflight_price": 738.0,
           "slippage_pct": 2.71,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 715.83,
+          "day_return_pct": -5.563,
+          "day_return_usd": -295.19,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "ELF",
@@ -443,9 +444,9 @@
           "buy_value": 5280.5,
           "preflight_price": 87.34,
           "slippage_pct": 2.473,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 93.05,
+          "day_return_pct": 3.966,
+          "day_return_usd": 209.45
         },
         {
           "ticker": "MKSI",
@@ -463,9 +464,10 @@
           "buy_value": 4197.34,
           "preflight_price": 299.0,
           "slippage_pct": 0.271,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 296.88,
+          "day_return_pct": -0.977,
+          "day_return_usd": -41.02,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "WRBY",
@@ -483,9 +485,10 @@
           "buy_value": 3331.21,
           "preflight_price": 25.24,
           "slippage_pct": 3.922,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 25.68,
+          "day_return_pct": -2.097,
+          "day_return_usd": -69.85,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "ASPN",
@@ -503,9 +506,10 @@
           "buy_value": 1194.72,
           "preflight_price": 6.96,
           "slippage_pct": 12.931,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 7.68,
+          "day_return_pct": -2.29,
+          "day_return_usd": -27.36,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "HWM",
@@ -523,9 +527,10 @@
           "buy_value": 3069.2,
           "preflight_price": 301.0,
           "slippage_pct": 1.967,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 292.52,
+          "day_return_pct": -4.692,
+          "day_return_usd": -144.0,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "BROS",
@@ -543,9 +548,9 @@
           "buy_value": 3134.32,
           "preflight_price": 56.55,
           "slippage_pct": -1.026,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 53.83,
+          "day_return_pct": -3.823,
+          "day_return_usd": -119.84
         },
         {
           "ticker": "SOUN",
@@ -563,9 +568,10 @@
           "buy_value": 1021.68,
           "preflight_price": 7.97,
           "slippage_pct": -2.886,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 7.65,
+          "day_return_pct": -1.163,
+          "day_return_usd": -11.88,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "GENI",
@@ -583,9 +589,10 @@
           "buy_value": 1061.25,
           "preflight_price": 8.45,
           "slippage_pct": 0.473,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 8.34,
+          "day_return_pct": -1.767,
+          "day_return_usd": -18.75,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "HNST",
@@ -603,9 +610,10 @@
           "buy_value": 948.09,
           "preflight_price": 4.6991,
           "slippage_pct": 19.385,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 5.66,
+          "day_return_pct": 0.891,
+          "day_return_usd": 8.45,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "WBS",
@@ -623,9 +631,9 @@
           "buy_value": 955.44,
           "preflight_price": 79.54,
           "slippage_pct": 0.101,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 79.15,
+          "day_return_pct": -0.59,
+          "day_return_usd": -5.64
         },
         {
           "ticker": "WBD",
@@ -643,9 +651,9 @@
           "buy_value": 211.2,
           "preflight_price": 26.22,
           "slippage_pct": 0.686,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 26.4,
+          "day_return_pct": 0.0,
+          "day_return_usd": 0.0
         }
       ],
       "runner_ups": [
@@ -764,14 +772,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26350.96,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26371.01,
+      "nasdaq_day_return_pct": 0.076,
       "portfolio_open_value": 29417.78,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28877.37,
+      "session_return_pct": -1.837,
+      "session_return_usd": -540.41,
       "cash_uninvested": -293.17,
-      "cash_balance_close": null
+      "cash_balance_close": 28872.31
     }
   ],
   "equity_curve": [
@@ -782,9 +790,8 @@
     },
     {
       "date": "2026-08-06",
-      "portfolio_value": 29417.78,
-      "qqq_indexed": 29763.12,
-      "nasdaq_indexed": 29358.83
+      "portfolio_value": 28877.37,
+      "qqq_indexed": 29763.12
     }
   ]
 }
