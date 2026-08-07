@@ -9,10 +9,14 @@ test_portfolio_writer.py), so these tests replicate its exact logic rather
 than importing it directly. Keep this in sync with main.py if that logic
 changes.
 
-Locks in the 2026-08-06 fix: risk_penalty.threshold raised 3 -> 5 so that
-risk 3-4 picks (which the SIZE RULE now uses for genuine outlier catches,
-not just weak ones) are no longer double-penalized on top of their already
--tight trailing_stop_by_risk stop.
+Locks in two 2026-08-06 fixes:
+  1. risk_penalty.threshold raised 3 -> 5 so that risk 3-4 picks (which the
+     SIZE RULE now uses for genuine outlier catches, not just weak ones)
+     are no longer double-penalized on top of their already-tight
+     trailing_stop_by_risk stop.
+  2. A 25% position cap added to the initial score^2 allocation step,
+     matching the cap the smart-reallocation rounds already enforced on
+     top-ups -- the initial step had no ceiling at all before this.
 """
 
 import pytest
@@ -125,3 +129,75 @@ class TestRiskPenaltyDisabled:
             risk_penalty_factor=0.5, catalyst_weights=None, genuine_count=5,
         )
         assert fn(_pick(score=8, risk=5)) == 8.0
+
+
+# ---------------------------------------------------------------------------
+# Position cap (added 2026-08-06): the score^2 -> percentage normalization had
+# no ceiling, unlike the smart-reallocation rounds later in main.py which cap
+# any single stock at _MAX_POSITION_PCT (25%) of the portfolio. A lopsided
+# score distribution could size one initial position arbitrarily large while
+# every top-up after it was held to 25% -- inconsistent risk discipline
+# between the two mechanisms. Mirrors main.py's compute-then-clamp step.
+# ---------------------------------------------------------------------------
+
+def _compute_and_cap(picks, alloc_score_fn, max_pct=25.0):
+    """Mirrors main.py: score^2-normalize to percentages, then clamp any
+    pick above max_pct down to it (excess is left undeployed, matching the
+    real code -- no redistribution pass)."""
+    sq_total = sum(alloc_score_fn(p) ** 2 for p in picks)
+    for p in picks:
+        p["allocation_pct"] = round(alloc_score_fn(p) ** 2 / sq_total * 100, 1)
+    for p in picks:
+        if p["allocation_pct"] > max_pct:
+            p["allocation_pct"] = max_pct
+    return picks
+
+
+class TestPositionCap:
+    def _uniform_fn(self):
+        """No risk penalty / catalyst weighting in play -- isolates the cap."""
+        return _make_alloc_score(
+            score_floor=7, risk_penalty_enabled=False, risk_penalty_threshold=5,
+            risk_penalty_factor=0.5, catalyst_weights=None, genuine_count=5,
+        )
+
+    def test_dominant_score_gets_capped(self):
+        """A single much-higher-scored pick among otherwise-similar picks
+        would naturally exceed 25% under pure score^2 weighting -- the cap
+        must bring it back down."""
+        picks = [_pick(score=10) for _ in range(1)] + [_pick(score=5) for _ in range(4)]
+        # Without a cap: 10^2 / (10^2 + 4*5^2) * 100 = 100/200*100 = 50% -- well over 25%.
+        result = _compute_and_cap(picks, self._uniform_fn())
+        assert result[0]["allocation_pct"] == 25.0
+
+    def test_uncapped_picks_are_unaffected(self):
+        picks = [_pick(score=10)] + [_pick(score=5) for _ in range(4)]
+        result = _compute_and_cap(picks, self._uniform_fn())
+        # The four score=5 picks were never near the cap -- untouched by the clamp.
+        for p in result[1:]:
+            assert p["allocation_pct"] < 25.0
+
+    def test_no_pick_ever_exceeds_the_cap(self):
+        picks = [_pick(score=s) for s in (10, 9, 8, 7, 7, 6, 6, 5, 5, 5)]
+        result = _compute_and_cap(picks, self._uniform_fn())
+        assert all(p["allocation_pct"] <= 25.0 for p in result)
+
+    def test_evenly_scored_picks_stay_under_cap_uncapped(self):
+        """A reasonably-sized, evenly-scored slate (like a normal 12-15 pick
+        day) shouldn't trip the cap at all -- it's a tail-risk guard, not a
+        change to normal-day sizing."""
+        picks = [_pick(score=8) for _ in range(13)]
+        result = _compute_and_cap(picks, self._uniform_fn())
+        assert all(p["allocation_pct"] < 25.0 for p in result)
+        # Even split: 100/13 ~= 7.7%, nowhere near the 25% ceiling.
+        assert result[0]["allocation_pct"] == pytest.approx(100 / 13, abs=0.1)
+
+    def test_few_picks_can_legitimately_leave_capital_undeployed(self):
+        """With very few picks (e.g. near min_picks=3), an even split alone
+        exceeds 25% each -- the cap correctly leaves the remainder
+        undeployed here rather than over-concentrating; main.py's smart
+        reallocation rounds redeploy it later under the same cap."""
+        picks = [_pick(score=8) for _ in range(3)]
+        result = _compute_and_cap(picks, self._uniform_fn())
+        assert all(p["allocation_pct"] == 25.0 for p in picks)  # would be ~33.3% uncapped
+        assert sum(p["allocation_pct"] for p in result) == pytest.approx(75.0)

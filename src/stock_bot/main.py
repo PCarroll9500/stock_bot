@@ -739,6 +739,9 @@ async def main():
     # this step overwrites the allocation_pct computed by filter_and_rank.
     if picks:
         _genuine_count = sum(1 for p in picks if p.get("score", 0) >= score_floor)
+        # Same 25% ceiling as _MAX_POSITION_PCT in the smart-reallocation rounds
+        # below (percentage-scale here since allocation_pct is 0-100, not 0-1).
+        _MAX_INITIAL_ALLOC_PCT = 25.0
 
         def _alloc_score(p: dict) -> float:
             s = max(p.get("score", 1), 1)
@@ -751,6 +754,25 @@ async def main():
         _sq_total = sum(_alloc_score(p) ** 2 for p in picks)
         for p in picks:
             p["allocation_pct"] = round(_alloc_score(p) ** 2 / _sq_total * 100, 1)
+
+        # Cap any single position at the same MAX_POSITION_PCT (25%) the smart
+        # reallocation rounds already enforce on top-ups below -- this step was
+        # previously uncapped, so a lopsided score distribution could size one
+        # initial position arbitrarily large while every top-up after it was
+        # held to 25%. Any capped excess is simply left undeployed here; the
+        # smart reallocation rounds redeploy leftover cash into other picks
+        # (respecting the same cap) once fills are confirmed, so nothing needs
+        # a redistribution pass at this step.
+        _capped = [p["ticker"] for p in picks if p["allocation_pct"] > _MAX_INITIAL_ALLOC_PCT]
+        for p in picks:
+            if p["allocation_pct"] > _MAX_INITIAL_ALLOC_PCT:
+                p["allocation_pct"] = _MAX_INITIAL_ALLOC_PCT
+        if _capped:
+            logger.info(
+                "Position cap: %d pick(s) capped at %.1f%% (excess left for smart reallocation to redeploy): %s",
+                len(_capped), _MAX_INITIAL_ALLOC_PCT, _capped,
+            )
+
         _risk_penalty_desc = (
             f"risk>={risk_penalty_threshold}={risk_penalty_factor}x weight"
             if risk_penalty_enabled else "risk penalty disabled"
