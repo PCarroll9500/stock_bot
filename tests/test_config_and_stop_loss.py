@@ -46,7 +46,11 @@ class TestConfigValues:
         assert _config()["min_expected_gain_pct"] == 1.5
 
     def test_limit_order_buffer(self):
-        assert _config()["limit_order_buffer_pct"] is None
+        """3.0% as of 2026-08-06: caps worst-case entry slippage after two days
+        of live data showed market orders on fast-moving names paying 10-19%
+        more than the pre-flight quote (see the _limit_order_comment in
+        picker_config.json for the specific picks and the tradeoff)."""
+        assert _config()["limit_order_buffer_pct"] == 3.0
 
     def test_fill_wait_seconds(self):
         assert _config()["fill_wait_seconds"] == 30

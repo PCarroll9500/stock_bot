@@ -43,8 +43,8 @@
   "fill_wait_seconds": 30,
   "sell_wait_seconds": 45,
   "realloc_fill_wait_seconds": 20,
-  "_limit_order_comment": "Caps buy price at pre-flight quote + buffer% for both paper and live (e.g. 0.5 = 0.5% above). null = market orders.",
-  "limit_order_buffer_pct": null,
+  "_limit_order_comment": "Caps buy price at pre-flight quote + buffer% for both paper and live (e.g. 0.5 = 0.5% above). null = market orders (uncapped slippage). Set to 3.0 on 2026-08-06 after two straight days of scripts/analyze_scoring.py-visible slippage data showed market orders on fast-moving names paying far more than quoted: 2026-08-05 ZETA +10.4%, GTE +10.5%; 2026-08-06 ASPN +12.9%, HNST +19.4% (that one alone turned a would-be +20.5% winner into a +0.9% wash). 3.0 was chosen to block that >=10% tier while still letting most picks fill -- across those two days, 7 of 25 fills had slippage above 3% (18 of 25, i.e. 72%, would still have filled unchanged). Tradeoff: a capped LMT order can simply not fill on the fastest movers within fill_wait_seconds, so this trades some missed entries for capping catastrophic ones. Revisit by comparing fill-rate and slippage stats before/after in scripts/analyze_scoring.py once enough data accumulates under the new setting.",
+  "limit_order_buffer_pct": 3.0,
   "_bracket_comment": "Stop-loss fires at -stop_loss_pct% below fill price. take_profit_pct locks in gains at +take_profit_pct%. Set either to null to disable.",
   "take_profit_pct": null,
   "trend_filters": {
