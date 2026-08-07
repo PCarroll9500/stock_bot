@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-07T09:44:28.684854",
+  "updated_at": "2026-08-07T14:30:49.957266",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -802,9 +802,10 @@
           "buy_value": 5485.04,
           "preflight_price": 12.89,
           "slippage_pct": -3.069,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 12.24,
+          "day_return_pct": -2.036,
+          "day_return_usd": -111.68,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "FSLR",
@@ -822,9 +823,10 @@
           "buy_value": 1595.22,
           "preflight_price": 256.01,
           "slippage_pct": 3.851,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 254.17,
+          "day_return_pct": -4.401,
+          "day_return_usd": -70.2,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "REAL",
@@ -842,9 +844,10 @@
           "buy_value": 8923.97,
           "preflight_price": 13.92,
           "slippage_pct": -1.522,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 13.2826,
+          "day_return_pct": -3.104,
+          "day_return_usd": -277.0,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "MPWR",
@@ -862,9 +865,9 @@
           "buy_value": 5629.23,
           "preflight_price": 1390.0,
           "slippage_pct": 1.245,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 1390.0,
+          "day_return_pct": -1.23,
+          "day_return_usd": -69.23
         },
         {
           "ticker": "JHX",
@@ -882,9 +885,9 @@
           "buy_value": 8941.07,
           "preflight_price": 30.0,
           "slippage_pct": 1.029,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 29.97,
+          "day_return_pct": -1.118,
+          "day_return_usd": -99.92
         }
       ],
       "runner_ups": [
@@ -1003,14 +1006,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26608.75,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26578.71,
+      "nasdaq_day_return_pct": -0.113,
       "portfolio_open_value": 28879.09,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28220.98,
+      "session_return_pct": -2.279,
+      "session_return_usd": -658.11,
       "cash_uninvested": -1695.44,
-      "cash_balance_close": null
+      "cash_balance_close": 28214.21
     }
   ],
   "equity_curve": [
@@ -1026,9 +1029,8 @@
     },
     {
       "date": "2026-08-07",
-      "portfolio_value": 28879.09,
-      "qqq_indexed": 29763.12,
-      "nasdaq_indexed": 29646.05
+      "portfolio_value": 28220.98,
+      "qqq_indexed": 29763.12
     }
   ]
 }
