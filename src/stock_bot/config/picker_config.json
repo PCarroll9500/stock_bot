@@ -122,10 +122,10 @@
     "guidance_raise": 1.0,
     "other": 1.0
   },
-  "_risk_penalty_comment": "Allocation penalty for risk>=threshold picks (applied as score * factor before score^2 weighting). Historically risk=3 picks had the HIGHEST total return of any risk bucket (95 picks, +47.5% total) -- possibly a small-sample artifact, but the penalty is kept configurable rather than hardcoded so it can be disabled/tuned as scripts/analyze_scoring.py accumulates more data without a code change.",
+  "_risk_penalty_comment": "Allocation penalty for risk>=threshold picks (applied as score * factor before score^2 weighting). Historically risk=3 picks had the HIGHEST total return of any risk bucket (95 picks, +47.5% total) -- possibly a small-sample artifact, but the penalty is kept configurable rather than hardcoded so it can be disabled/tuned as scripts/analyze_scoring.py accumulates more data without a code change. threshold raised 3 -> 5 on 2026-08-06: the 2026-08-05 SIZE RULE fix now tells GPT to set risk 4-5 on genuine Profile A outlier catches (not just weak/soft ones), so a threshold of 3 was double-penalizing exactly the picks that fix was built to surface -- risk 3-4 were getting both a tight trailing_stop_by_risk AND half allocation weight, while the trailing stop alone already carries that risk. Live data backed this up: 2026-08-05/06 combined, risk>=3 picks got only 8-15% of total capital despite including the best single performer both days (GTE +0.52%, ASPN would have been +10.3% without slippage). Threshold=5 keeps the discount only on the most extreme tier, which the risk rubric itself defines as 'genuine catalyst or not' at 50%+ moves -- the one tier where caution regardless of catalyst quality still makes sense.",
   "risk_penalty": {
     "enabled": true,
-    "threshold": 3,
+    "threshold": 5,
     "factor": 0.5
   }
 }

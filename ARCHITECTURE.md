@@ -427,7 +427,14 @@ Findings from this loop feed back into `picker_config.json`:
   realized win rate/return).
 - `risk_penalty` — configurable allocation penalty for risk>=threshold picks,
   kept tunable rather than hardcoded since the realized-return-by-risk
-  breakdown is still a small sample.
+  breakdown is still a small sample. Threshold raised 3→5 on 2026-08-06:
+  once the SIZE RULE fix (below) started telling GPT to flag genuine
+  outlier catches as risk 4-5, a threshold of 3 was halving their
+  allocation on top of their already-tight `trailing_stop_by_risk` stop —
+  double-penalizing exactly the picks the SIZE RULE fix exists to surface.
+  Live data backed this up: risk>=3 picks got only 8-15% of total capital
+  across the first two days despite including the best single performer
+  both days.
 - `trailing_stop_by_risk` — per-pick trailing-stop width keyed by GPT's risk
   score instead of one flat `trailing_stop_pct` for every position: tighter
   for high-risk picks (cut losers faster), wider for low-risk/high-conviction
