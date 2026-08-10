@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-10T09:45:31.559792",
+  "updated_at": "2026-08-10T14:30:50.889218",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -1036,9 +1036,10 @@
           "buy_value": 6425.26,
           "preflight_price": 11.97,
           "slippage_pct": -1.145,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 11.77,
+          "day_return_pct": -0.532,
+          "day_return_usd": -34.15,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "CRDO",
@@ -1056,9 +1057,10 @@
           "buy_value": 5310.41,
           "preflight_price": 251.0,
           "slippage_pct": 0.748,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 253.29,
+          "day_return_pct": 0.163,
+          "day_return_usd": 8.68,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "NESR",
@@ -1076,9 +1078,10 @@
           "buy_value": 660.82,
           "preflight_price": 31.38,
           "slippage_pct": 5.293,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 33.9,
+          "day_return_pct": 2.6,
+          "day_return_usd": 17.18,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "HZO",
@@ -1096,9 +1099,9 @@
           "buy_value": 5100.9,
           "preflight_price": 51.89,
           "slippage_pct": 0.308,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 52.01,
+          "day_return_pct": -0.077,
+          "day_return_usd": -3.92
         },
         {
           "ticker": "ACHR",
@@ -1116,9 +1119,10 @@
           "buy_value": 5126.06,
           "preflight_price": 6.4,
           "slippage_pct": 1.13,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 6.72,
+          "day_return_pct": 3.827,
+          "day_return_usd": 196.18,
+          "stop_loss_triggered": true
         },
         {
           "ticker": "VREX",
@@ -1136,9 +1140,9 @@
           "buy_value": 5201.51,
           "preflight_price": 18.4,
           "slippage_pct": -0.109,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 18.45,
+          "day_return_pct": 0.381,
+          "day_return_usd": 19.84
         }
       ],
       "runner_ups": [
@@ -1254,17 +1258,17 @@
         }
       ],
       "qqq_buy_price": 722.84,
-      "qqq_close_price": null,
-      "qqq_day_return_pct": null,
+      "qqq_close_price": 721.08,
+      "qqq_day_return_pct": -0.243,
       "nasdaq_buy_price": 26654.2,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26571.33,
+      "nasdaq_day_return_pct": -0.311,
       "portfolio_open_value": 28222.67,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28376.63,
+      "session_return_pct": 0.546,
+      "session_return_usd": 153.96,
       "cash_uninvested": 397.71,
-      "cash_balance_close": null
+      "cash_balance_close": 28368.17
     }
   ],
   "equity_curve": [
@@ -1285,9 +1289,8 @@
     },
     {
       "date": "2026-08-10",
-      "portfolio_value": 28222.67,
-      "qqq_indexed": 29763.12,
-      "nasdaq_indexed": 29696.68
+      "portfolio_value": 28376.63,
+      "qqq_indexed": 29763.12
     }
   ]
 }
