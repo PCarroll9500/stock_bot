@@ -9,6 +9,8 @@
   "min_expected_gain_pct": 1.5,
   "max_score_candidates": 50,
   "sector_cap": 4,
+  "_catalyst_type_cap_comment": "Caps how many picks can share the same catalyst_type, same mechanism as sector_cap but on a different axis -- sector_cap alone let 2026-08-10 put 3 of 6 picks (54% of capital: HZO/Consumer, ACHR/Industrials, VREX/Healthcare) into ma_acquisition names spread across different sectors, all exposed to the same deal-arb-spread risk (one deal breaking or a regulatory shift hits all of them at once) despite passing the sector diversity check. Set to match sector_cap's ratio (4 of num_stocks=15) as a starting point; null disables it.",
+  "catalyst_type_cap": 4,
   "_pre_score_comment": "Hard trend thresholds applied before GPT \u2014 stocks failing any are dropped without an AI call. null = no limit for that direction.",
   "pre_score_trend_filters": {
     "weekly": {
@@ -106,6 +108,8 @@
     "4": 2.0,
     "5": 1.5
   },
+  "_trailing_stop_limit_offset_comment": "Caps trailing-stop EXIT slippage the same way limit_order_buffer_pct caps entry slippage. A plain TRAIL order becomes a market order the instant it triggers -- live data on 2026-08-06 showed exits filling well past their configured trail width (CW: 2-3% trail, -5.56% actual exit) because of that market-order conversion in a fast decline. Setting this makes the exit a TRAIL LIMIT instead: same trigger, but the sell is a limit order pinned this many % below the trigger price. null = plain TRAIL (uncapped exit slippage, current pre-fix behavior). 1.0 caps the worst-case blowout while still filling in all but a genuine crash; tradeoff is the same as the entry-side buffer -- in a fast-enough drop the limit can fail to fill and the position rides further down uncapped. Revisit alongside stop_slippage_pct data in analyze_scoring.py once enough fills accumulate under this setting.",
+  "trailing_stop_limit_offset_pct": 1.0,
   "multi_day_hold_min_score": 9,
   "multi_day_max_days": 3,
   "min_picks": 3,

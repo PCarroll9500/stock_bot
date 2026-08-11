@@ -82,6 +82,54 @@ def _entry_order(action: str, shares: float, limit_price: Optional[float]) -> Or
     return order
 
 
+def _trail_sell_order(
+    shares: float,
+    trailing_pct: float,
+    ref_price: float,
+    *,
+    limit_offset_pct: Optional[float] = None,
+    parent_id: Optional[int] = None,
+    transmit: bool = True,
+) -> Order:
+    """Build a trailing-stop SELL order.
+
+    Plain TRAIL orders become a market order the instant they trigger, which
+    on a fast-moving name can fill well below the trigger price (observed
+    live: trailing-stop exits losing more than their configured trail width
+    on 2026-08-06). When ``limit_offset_pct`` is set, build a TRAIL LIMIT
+    instead — same trigger, but the resulting sell is a limit order pinned
+    ``limit_offset_pct`` below the trigger, capping worst-case slippage on
+    the exit the same way ``limit_order_buffer_pct`` already caps it on
+    entries. Tradeoff: in a genuine crash the limit can fail to fill and the
+    position rides further down uncapped — mirrors the accepted buy-side
+    tradeoff of a capped order sometimes not filling at all.
+    """
+    trail_stop_price = round(ref_price * (1 - trailing_pct / 100), 2)
+    if limit_offset_pct is None:
+        order = Order(
+            action="SELL",
+            orderType="TRAIL",
+            totalQuantity=shares,
+            trailingPercent=trailing_pct,
+            transmit=transmit,
+        )
+    else:
+        offset_dollars = max(round(ref_price * limit_offset_pct / 100, 2), 0.01)
+        order = Order(
+            action="SELL",
+            orderType="TRAIL LIMIT",
+            totalQuantity=shares,
+            trailingPercent=trailing_pct,
+            trailStopPrice=trail_stop_price,
+            lmtPriceOffset=offset_dollars,
+            lmtPrice=round(trail_stop_price - offset_dollars, 2),
+            transmit=transmit,
+        )
+    if parent_id is not None:
+        order.parentId = parent_id
+    return order
+
+
 # ---------------------------------------------------------------------------
 # Public API
 # ---------------------------------------------------------------------------
@@ -97,6 +145,7 @@ def buy_stock(
     stop_loss_pct: Optional[float] = None,
     take_profit_pct: Optional[float] = None,
     trailing_stop_pct: Optional[float] = None,
+    trailing_stop_limit_offset_pct: Optional[float] = None,
 ) -> list[Trade]:
     """Place a BUY order with optional risk-management exit orders.
 
@@ -243,21 +292,19 @@ def buy_stock(
         else:
             parent_trade = ib.placeOrder(contract, parent)
             trades.append(parent_trade)
-            trail_order = Order(
-                action="SELL",
-                orderType="TRAIL",
-                trailingPercent=trailing_stop_pct,
-                totalQuantity=shares,
-                parentId=parent_trade.order.orderId,
-                transmit=True,
+            trail_order = _trail_sell_order(
+                shares, trailing_stop_pct, ref_price,
+                limit_offset_pct=trailing_stop_limit_offset_pct,
+                parent_id=parent_trade.order.orderId,
             )
             trades.append(ib.placeOrder(contract, trail_order))
         logger.info(
-            "BUY %s x%.4f %s | trailing stop %.2f%%",
+            "BUY %s x%.4f %s | trailing stop %.2f%%%s",
             ticker,
             shares,
             f"LMT {limit_price:.2f}" if limit_price else "MKT",
             trailing_stop_pct,
+            f" (TRAIL LIMIT, offset {trailing_stop_limit_offset_pct:.2f}%)" if trailing_stop_limit_offset_pct else "",
         )
 
     elif stop_loss_pct is not None:
@@ -386,23 +433,29 @@ async def place_trailing_stop_async(
     ib: IB,
     shares: int,
     trailing_pct: float,
+    trailing_stop_limit_offset_pct: Optional[float] = None,
 ) -> "Trade":
     """Place a standalone trailing-stop SELL order for an existing filled position.
 
     Used when the entry was a MKT order — IBKR does not allow trailing stops
     as bracket children of market orders (Error 328), so we place them
     separately after confirming the fill.
+
+    When ``trailing_stop_limit_offset_pct`` is set, places a TRAIL LIMIT
+    (capped exit slippage) instead of a plain TRAIL (market exit on trigger)
+    — see ``_trail_sell_order`` for why.
     """
     contract = await _qualify_async(ticker, ib)
-    order = Order(
-        action="SELL",
-        orderType="TRAIL",
-        totalQuantity=shares,
-        trailingPercent=trailing_pct,
-        transmit=True,
+    ref_price = await _last_price_async(contract, ib) if trailing_stop_limit_offset_pct else None
+    order = _trail_sell_order(
+        shares, trailing_pct, ref_price if ref_price is not None else 0.0,
+        limit_offset_pct=trailing_stop_limit_offset_pct,
     )
     trade = ib.placeOrder(contract, order)
-    logger.info("Trail stop placed: SELL %s x%d TRAIL %.1f%%", ticker, shares, trailing_pct)
+    logger.info(
+        "Trail stop placed: SELL %s x%d %s %.1f%%",
+        ticker, shares, order.orderType, trailing_pct,
+    )
     return trade
 
 
@@ -416,6 +469,7 @@ async def buy_stock_async(
     stop_loss_pct: Optional[float] = None,
     take_profit_pct: Optional[float] = None,
     trailing_stop_pct: Optional[float] = None,
+    trailing_stop_limit_offset_pct: Optional[float] = None,
 ) -> list[Trade]:
     """Async version of buy_stock — use this when calling from async main()."""
     if (shares is None) == (dollar_amount is None):
@@ -492,16 +546,18 @@ async def buy_stock_async(
         else:
             parent_trade = ib.placeOrder(contract, parent)
             trades.append(parent_trade)
-            trail_order = Order(
-                action="SELL", orderType="TRAIL", trailingPercent=trailing_stop_pct,
-                totalQuantity=shares, parentId=parent_trade.order.orderId, transmit=True,
+            trail_order = _trail_sell_order(
+                shares, trailing_stop_pct, ref_price,
+                limit_offset_pct=trailing_stop_limit_offset_pct,
+                parent_id=parent_trade.order.orderId,
             )
             trades.append(ib.placeOrder(contract, trail_order))
         logger.info(
-            "BUY %s x%.4f %s | trailing stop %.2f%%",
+            "BUY %s x%.4f %s | trailing stop %.2f%%%s",
             ticker, shares,
             f"LMT {limit_price:.2f}" if limit_price else "MKT",
             trailing_stop_pct,
+            f" (TRAIL LIMIT, offset {trailing_stop_limit_offset_pct:.2f}%)" if trailing_stop_limit_offset_pct else "",
         )
 
     elif stop_loss_pct is not None:
