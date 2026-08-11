@@ -118,6 +118,7 @@ async def main():
     realloc_fill_wait_seconds: int = config.get("realloc_fill_wait_seconds", 20)
     min_expected_gain_pct: float = config.get("min_expected_gain_pct", 0.0)
     sector_cap: int | None = config.get("sector_cap")
+    catalyst_type_cap: int | None = config.get("catalyst_type_cap")
     # Per-catalyst_type conviction/allocation multiplier, tuned from
     # scripts/analyze_scoring.py's realized win-rate/return breakdown (e.g.
     # ma_acquisition has historically underperformed; analyst_action has
@@ -156,6 +157,15 @@ async def main():
             return trailing_stop_pct
         risk_key = str(pick.get("risk", ""))
         return _trailing_by_risk_cfg.get(risk_key, trailing_stop_pct)
+
+    # Caps trailing-stop exit slippage the same way limit_order_buffer_pct caps
+    # entry slippage: the stop still triggers at the trailing_stop_pct distance,
+    # but the resulting sell is a limit order pinned this many % below the
+    # trigger instead of a market order. Live data on 2026-08-06 showed
+    # trailing-stop exits filling past their configured trail width (CW -5.56%
+    # against a 2-3% trail) because a triggered TRAIL order becomes MKT. None
+    # disables this and falls back to plain TRAIL (uncapped exit slippage).
+    trailing_stop_limit_offset_pct: float | None = config.get("trailing_stop_limit_offset_pct")
 
     limit_order_buffer_pct: float | None = config.get("limit_order_buffer_pct", 0.5)
 
@@ -568,7 +578,7 @@ async def main():
     threshold = effective_min_score
 
     while threshold >= score_floor:
-        picks = filter_and_rank(all_scored, num_stocks, min_score=threshold, min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap, catalyst_weights=catalyst_weights)
+        picks = filter_and_rank(all_scored, num_stocks, min_score=threshold, min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap, catalyst_type_cap=catalyst_type_cap, catalyst_weights=catalyst_weights)
         if len(picks) >= num_stocks:
             logger.info(
                 "Target of %d stocks reached at min_score=%d", num_stocks, threshold
@@ -691,7 +701,7 @@ async def main():
 
             # Merge with original scored list and re-rank at the score floor
             all_scored = all_scored + extra_scored
-            picks = filter_and_rank(all_scored, num_stocks, min_score=score_floor, min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap, catalyst_weights=catalyst_weights)
+            picks = filter_and_rank(all_scored, num_stocks, min_score=score_floor, min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap, catalyst_type_cap=catalyst_type_cap, catalyst_weights=catalyst_weights)
             logger.info(
                 "After conservative expansion: %d picks (min_score=%d)",
                 len(picks), score_floor,
@@ -704,7 +714,7 @@ async def main():
     while len(picks) < min_picks and _fallback_floor >= max(1, score_floor - 3):
         picks = filter_and_rank(all_scored, num_stocks, min_score=_fallback_floor,
                                 min_expected_gain_pct=min_expected_gain_pct, sector_cap=sector_cap,
-                                catalyst_weights=catalyst_weights)
+                                catalyst_type_cap=catalyst_type_cap, catalyst_weights=catalyst_weights)
         logger.warning(
             "min_picks fallback: %d picks at min_score=%d (need %d)",
             len(picks), _fallback_floor, min_picks,
@@ -911,6 +921,7 @@ async def main():
                     take_profit_pct=take_profit_pct,
                     stop_loss_pct=stop_loss_pct,
                     trailing_stop_pct=_effective_trailing_stop(pick),
+                    trailing_stop_limit_offset_pct=trailing_stop_limit_offset_pct,
                 )
                 trades_by_ticker[pick["ticker"]] = trades
                 order_type = f"LMT ${limit_price:.2f}" if limit_price else "MKT"
@@ -969,7 +980,7 @@ async def main():
                 _st = getattr(_entry, "orderStatus", None) if _entry else None
                 if _st and _st.filled > 0:
                     try:
-                        _trail = await place_trailing_stop_async(_tkr, ib, int(_st.filled), _effective_trailing_stop(_fp))
+                        _trail = await place_trailing_stop_async(_tkr, ib, int(_st.filled), _effective_trailing_stop(_fp), trailing_stop_limit_offset_pct)
                         trades_by_ticker[_tkr].append(_trail)
                     except Exception:
                         logger.error("Failed to place trailing stop for %s", _tkr, exc_info=True)
@@ -1056,7 +1067,7 @@ async def main():
                         _res_shares = math.floor(_deployable / _res_price)
                         if _res_shares > 0:
                             _res_lmt = round(_res_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct is not None else None
-                            _res_trades = await buy_stock_async(_res["ticker"], ib, shares=_res_shares, limit_price=_res_lmt, stop_loss_pct=stop_loss_pct, trailing_stop_pct=_effective_trailing_stop(_res))
+                            _res_trades = await buy_stock_async(_res["ticker"], ib, shares=_res_shares, limit_price=_res_lmt, stop_loss_pct=stop_loss_pct, trailing_stop_pct=_effective_trailing_stop(_res), trailing_stop_limit_offset_pct=trailing_stop_limit_offset_pct)
                             trades_by_ticker[_res["ticker"]] = _res_trades
                             _otype = f"LMT ${_res_lmt:.2f}" if _res_lmt else "MKT"
                             logger.info(
@@ -1078,7 +1089,7 @@ async def main():
                                     )
                                     if trailing_stop_pct is not None and limit_order_buffer_pct is None:
                                         try:
-                                            await place_trailing_stop_async(_res["ticker"], ib, int(_st.filled), _effective_trailing_stop(_res))
+                                            await place_trailing_stop_async(_res["ticker"], ib, int(_st.filled), _effective_trailing_stop(_res), trailing_stop_limit_offset_pct)
                                         except Exception:
                                             logger.error("Failed to place trailing stop for reserve %s", _res["ticker"], exc_info=True)
                                 else:
@@ -1120,7 +1131,7 @@ async def main():
                     continue
                 _lmt = round(_price * (1 + limit_order_buffer_pct / 100), 2) if limit_order_buffer_pct is not None else None
                 try:
-                    _trades = await buy_stock_async(_tkr, ib, shares=_extra_shares, limit_price=_lmt, stop_loss_pct=stop_loss_pct, trailing_stop_pct=_effective_trailing_stop(_fp))
+                    _trades = await buy_stock_async(_tkr, ib, shares=_extra_shares, limit_price=_lmt, stop_loss_pct=stop_loss_pct, trailing_stop_pct=_effective_trailing_stop(_fp), trailing_stop_limit_offset_pct=trailing_stop_limit_offset_pct)
                     _rt[_tkr] = _trades
                     _otype = f"LMT ${_lmt:.2f}" if _lmt else "MKT"
                     logger.info(
@@ -1147,7 +1158,7 @@ async def main():
                         if trailing_stop_pct is not None and limit_order_buffer_pct is None:
                             try:
                                 _tu_pick = _top_up_by_ticker.get(_tkr, {})
-                                await place_trailing_stop_async(_tkr, ib, int(_st.filled), _effective_trailing_stop(_tu_pick))
+                                await place_trailing_stop_async(_tkr, ib, int(_st.filled), _effective_trailing_stop(_tu_pick), trailing_stop_limit_offset_pct)
                             except Exception:
                                 logger.error("Failed to place trailing stop for realloc %s", _tkr, exc_info=True)
                     else:

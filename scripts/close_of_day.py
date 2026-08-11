@@ -98,6 +98,20 @@ def main() -> None:
     config = _load_config()
     sell_wait_seconds: int = config.get("sell_wait_seconds", 45)
 
+    # Mirrors main.py's _effective_trailing_stop() so we can compute the
+    # worst-case guaranteed stop price per pick (see stop_slippage_pct below).
+    _trailing_stop_pct_cfg: float | None = config.get("trailing_stop_pct")
+    _trailing_by_risk_cfg: dict = config.get("trailing_stop_by_risk", {})
+    _trailing_by_risk_enabled = (
+        _trailing_stop_pct_cfg is not None and _trailing_by_risk_cfg.get("enabled", False)
+    )
+
+    def _effective_trailing_stop(pick: dict) -> float | None:
+        if not _trailing_by_risk_enabled:
+            return _trailing_stop_pct_cfg
+        risk_key = str(pick.get("risk", ""))
+        return _trailing_by_risk_cfg.get(risk_key, _trailing_stop_pct_cfg)
+
     if test_mode:
         logger.info("*** TEST MODE — using portfolio_test.json ***")
 
@@ -289,7 +303,26 @@ def main() -> None:
         if close_price is None and ticker in exec_map:
             close_price = exec_map[ticker]
             pick["stop_loss_triggered"] = True
-            logger.info("close_of_day: %s stop-loss triggered intraday @ %.4f", ticker, close_price)
+            # A trailing stop's trigger only ever ratchets up from entry, so
+            # buy_price * (1 - trail_pct/100) is a hard floor on what the
+            # trigger price could have been. If the actual fill landed below
+            # that floor, the exit lost more than the configured trail width
+            # guaranteed (see trailing_stop_limit_offset_pct in
+            # picker_config.json, added 2026-08-10 to bound this). Negative
+            # = exit priced worse than the guaranteed floor; feeds
+            # scripts/analyze_scoring.py for future trail-width/offset tuning.
+            _eff_trail = _effective_trailing_stop(pick)
+            if _eff_trail is not None and buy_price > 0:
+                worst_case_stop_price = buy_price * (1 - _eff_trail / 100)
+                pick["stop_slippage_pct"] = round(
+                    (close_price - worst_case_stop_price) / worst_case_stop_price * 100, 3
+                )
+                logger.info(
+                    "close_of_day: %s stop-loss triggered intraday @ %.4f (worst-case floor %.4f, slippage %.2f%%)",
+                    ticker, close_price, worst_case_stop_price, pick["stop_slippage_pct"],
+                )
+            else:
+                logger.info("close_of_day: %s stop-loss triggered intraday @ %.4f", ticker, close_price)
 
         # Fall back to last bar price with retry
         if close_price is None:

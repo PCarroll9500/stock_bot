@@ -380,6 +380,7 @@ def filter_and_rank(
     min_score: int,
     min_expected_gain_pct: float = 0.0,
     sector_cap: int | None = None,
+    catalyst_type_cap: int | None = None,
     catalyst_weights: dict[str, float] | None = None,
 ) -> list[dict]:
     """
@@ -390,6 +391,13 @@ def filter_and_rank(
     both ranking and allocation by historical performance per catalyst_type —
     e.g. discounting ma_acquisition picks, which have historically had a much
     lower win rate than the rest of the pool. See catalyst_weight().
+
+    catalyst_type_cap limits how many picks can share the same catalyst_type,
+    same mechanism as sector_cap. sector_cap alone doesn't prevent this —
+    e.g. 2026-08-10 put 3 of 6 picks (54% of capital) into ma_acquisition
+    names spread across 3 different sectors, all exposed to the same
+    deal-arb-spread risk (a single deal breaking or regulatory shift hits
+    all of them at once) despite passing the sector diversity check.
 
     Returns list of pick dicts with allocation_pct added.
     """
@@ -440,20 +448,30 @@ def filter_and_rank(
 
     bullish.sort(key=conviction, reverse=True)
 
-    # Apply sector cap: take picks in order, skip any sector that already
-    # has sector_cap picks. This preserves conviction ordering.
-    if sector_cap is not None:
+    # Apply sector cap and catalyst_type cap: take picks in order, skip any
+    # pick whose sector or catalyst_type already has its cap's worth of
+    # picks. This preserves conviction ordering.
+    if sector_cap is not None or catalyst_type_cap is not None:
         sector_counts: dict[str, int] = {}
+        catalyst_type_counts: dict[str, int] = {}
         capped: list[dict] = []
         for r in bullish:
             sec = r.get("sector", "Unknown")
-            if sector_counts.get(sec, 0) >= sector_cap:
+            ctype = r.get("catalyst_type", "other")
+            if sector_cap is not None and sector_counts.get(sec, 0) >= sector_cap:
                 logger.info(
                     "catalyst_scorer: %s dropped — sector '%s' already has %d picks (cap=%d)",
                     r["ticker"], sec, sector_counts[sec], sector_cap,
                 )
                 continue
+            if catalyst_type_cap is not None and catalyst_type_counts.get(ctype, 0) >= catalyst_type_cap:
+                logger.info(
+                    "catalyst_scorer: %s dropped — catalyst_type '%s' already has %d picks (cap=%d)",
+                    r["ticker"], ctype, catalyst_type_counts[ctype], catalyst_type_cap,
+                )
+                continue
             sector_counts[sec] = sector_counts.get(sec, 0) + 1
+            catalyst_type_counts[ctype] = catalyst_type_counts.get(ctype, 0) + 1
             capped.append(r)
             if len(capped) == num_stocks:
                 break

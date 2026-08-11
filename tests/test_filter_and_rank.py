@@ -8,7 +8,7 @@ applies score/gain/risk filters and computes allocations.
 from stock_bot.ai.catalyst_scorer import catalyst_weight, filter_and_rank
 
 
-def _pick(ticker, score, direction="bullish", gain=3.0, risk=2, catalyst_type="other"):
+def _pick(ticker, score, direction="bullish", gain=3.0, risk=2, catalyst_type="other", sector="Unknown"):
     return {
         "ticker": ticker,
         "score": score,
@@ -18,6 +18,7 @@ def _pick(ticker, score, direction="bullish", gain=3.0, risk=2, catalyst_type="o
         "reason": "test",
         "trend_summary": "",
         "catalyst_type": catalyst_type,
+        "sector": sector,
     }
 
 
@@ -252,3 +253,110 @@ class TestCatalystWeightedRanking:
         )
         by_ticker = {p["ticker"]: p["allocation_pct"] for p in picks}
         assert by_ticker["BOOSTED"] > by_ticker["NEUTRAL"]
+
+
+class TestSectorCap:
+    def test_cap_limits_picks_per_sector(self):
+        scored = [
+            _pick("A1", 9, sector="Technology"), _pick("A2", 8, sector="Technology"),
+            _pick("A3", 7, sector="Technology"), _pick("B1", 6, sector="Energy"),
+        ]
+        picks = filter_and_rank(scored, num_stocks=10, min_score=6, sector_cap=2)
+        tech = [p for p in picks if p["sector"] == "Technology"]
+        assert len(tech) == 2
+
+    def test_cap_preserves_conviction_ordering_within_sector(self):
+        """When a sector is capped, the highest-conviction picks in that
+        sector are kept, not an arbitrary subset."""
+        scored = [
+            _pick("BEST", 9, sector="Technology"), _pick("MID", 8, sector="Technology"),
+            _pick("WORST", 7, sector="Technology"),
+        ]
+        picks = filter_and_rank(scored, num_stocks=10, min_score=7, sector_cap=1)
+        assert [p["ticker"] for p in picks] == ["BEST"]
+
+    def test_none_disables_sector_cap(self):
+        scored = [_pick("A1", 9, sector="Technology"), _pick("A2", 8, sector="Technology")]
+        picks = filter_and_rank(scored, num_stocks=10, min_score=7, sector_cap=None)
+        assert len(picks) == 2
+
+    def test_capped_sector_makes_room_for_other_sectors(self):
+        """A pick that would be dropped by the sector cap doesn't consume a
+        num_stocks slot, so a lower-conviction pick from another sector
+        fills in instead."""
+        scored = [
+            _pick("TECH1", 9, sector="Technology"), _pick("TECH2", 8, sector="Technology"),
+            _pick("ENERGY1", 7, sector="Energy"),
+        ]
+        picks = filter_and_rank(scored, num_stocks=2, min_score=7, sector_cap=1)
+        tickers = [p["ticker"] for p in picks]
+        assert tickers == ["TECH1", "ENERGY1"]
+
+
+class TestCatalystTypeCap:
+    """catalyst_type_cap limits concentration on a different axis than
+    sector_cap — same catalyst_type across different sectors still shares
+    correlated risk (e.g. three ma_acquisition picks in three different
+    sectors all exposed to deal-arb-spread risk), which sector_cap alone
+    doesn't catch. Real trigger: 2026-08-10 put 3 of 6 picks into
+    ma_acquisition across 3 different sectors."""
+
+    def test_cap_limits_picks_per_catalyst_type(self):
+        scored = [
+            _pick("M1", 9, catalyst_type="ma_acquisition", sector="Consumer"),
+            _pick("M2", 8, catalyst_type="ma_acquisition", sector="Industrials"),
+            _pick("M3", 7, catalyst_type="ma_acquisition", sector="Healthcare"),
+            _pick("E1", 6, catalyst_type="earnings_beat", sector="Technology"),
+        ]
+        picks = filter_and_rank(scored, num_stocks=10, min_score=6, catalyst_type_cap=2)
+        ma_picks = [p for p in picks if p["catalyst_type"] == "ma_acquisition"]
+        assert len(ma_picks) == 2
+
+    def test_different_sectors_do_not_bypass_catalyst_type_cap(self):
+        """The exact scenario that motivated this cap: same catalyst_type,
+        different sectors, sector_cap alone would let all three through."""
+        scored = [
+            _pick("HZO", 8, catalyst_type="ma_acquisition", sector="Consumer"),
+            _pick("ACHR", 8, catalyst_type="ma_acquisition", sector="Industrials"),
+            _pick("VREX", 8, catalyst_type="ma_acquisition", sector="Healthcare"),
+        ]
+        picks = filter_and_rank(
+            scored, num_stocks=10, min_score=7, sector_cap=4, catalyst_type_cap=2,
+        )
+        assert len(picks) == 2
+
+    def test_cap_preserves_conviction_ordering_within_catalyst_type(self):
+        scored = [
+            _pick("BEST", 9, catalyst_type="ma_acquisition"),
+            _pick("MID", 8, catalyst_type="ma_acquisition"),
+            _pick("WORST", 7, catalyst_type="ma_acquisition"),
+        ]
+        picks = filter_and_rank(scored, num_stocks=10, min_score=7, catalyst_type_cap=1)
+        assert [p["ticker"] for p in picks] == ["BEST"]
+
+    def test_none_disables_catalyst_type_cap(self):
+        scored = [
+            _pick("M1", 9, catalyst_type="ma_acquisition"),
+            _pick("M2", 8, catalyst_type="ma_acquisition"),
+        ]
+        picks = filter_and_rank(scored, num_stocks=10, min_score=7, catalyst_type_cap=None)
+        assert len(picks) == 2
+
+    def test_combined_with_sector_cap_both_enforced(self):
+        scored = [
+            _pick("A", 9, catalyst_type="ma_acquisition", sector="Tech"),
+            _pick("B", 8, catalyst_type="ma_acquisition", sector="Tech"),
+            _pick("C", 7, catalyst_type="earnings_beat", sector="Tech"),
+            _pick("D", 6, catalyst_type="earnings_beat", sector="Energy"),
+        ]
+        picks = filter_and_rank(
+            scored, num_stocks=10, min_score=6, sector_cap=2, catalyst_type_cap=1,
+        )
+        tickers = [p["ticker"] for p in picks]
+        # A wins ma_acquisition slot; B dropped (catalyst_type cap=1, already
+        # has A). C dropped (Tech sector cap=2 already hit by A + one more
+        # would be C itself pushing past... verify sector count stays <=2).
+        assert "A" in tickers
+        assert "B" not in tickers
+        sectors = [p["sector"] for p in picks if p["sector"] == "Tech"]
+        assert len(sectors) <= 2

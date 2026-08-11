@@ -219,6 +219,27 @@ def slippage_summary(picks: list[dict]) -> dict | None:
     }
 
 
+def stop_slippage_summary(picks: list[dict]) -> dict | None:
+    """Mean/best/worst EXIT slippage on stop-loss-triggered picks --
+    stop_slippage_pct (added 2026-08-10 in close_of_day.py) compares the
+    actual exit fill against buy_price * (1 - trail_pct/100), the hard floor
+    a trailing stop's trigger can never go below. A negative mean means
+    exits are landing worse than that guaranteed floor on average -- the
+    trailing-stop order becomes a market order once triggered, so a fast
+    decline can blow through the intended trail width. Use this to judge
+    whether trailing_stop_limit_offset_pct (the TRAIL LIMIT fix) is actually
+    closing the gap once enough post-fix fills accumulate."""
+    values = [p["stop_slippage_pct"] for p in picks if p.get("stop_slippage_pct") is not None]
+    if not values:
+        return None
+    return {
+        "n": len(values),
+        "mean_stop_slippage_pct": sum(values) / len(values),
+        "best": max(values),  # least negative/most positive = best
+        "worst": min(values),  # most negative = worst (blew furthest through the floor)
+    }
+
+
 # ---------------------------------------------------------------------------
 # Report printing
 # ---------------------------------------------------------------------------
@@ -295,6 +316,22 @@ def print_report(picks: list[dict]) -> None:
                 "compare against the overall avg return above to see how much of the gap it explains."
             )
 
+    stop_slip = stop_slippage_summary(picks)
+    print("\nStop-loss exit slippage: guaranteed floor vs. actual fill")
+    print("-" * 59)
+    if stop_slip is None:
+        print("  No stop_slippage_pct data yet (picks predate the 2026-08-10 tracking, "
+              "or none were stop-loss-triggered).")
+    else:
+        print(f"  n = {stop_slip['n']}")
+        print(f"  mean = {stop_slip['mean_stop_slippage_pct']:+.3f}%  (negative = exit priced worse than the guaranteed floor)")
+        print(f"  best = {stop_slip['best']:+.3f}%   worst = {stop_slip['worst']:+.3f}%")
+        if stop_slip["mean_stop_slippage_pct"] < -0.05:
+            print(
+                "  -> Stop-loss exits are landing worse than their configured trail width on average -- "
+                "trailing_stop_limit_offset_pct in picker_config.json caps this; revisit its value against this data."
+            )
+
 
 def report_to_dict(picks: list[dict]) -> dict:
     """Assemble every breakdown + the calibration summary into one JSON-serializable
@@ -320,6 +357,7 @@ def report_to_dict(picks: list[dict]) -> dict:
         "by_expected_gain_bucket": breakdown_by_expected_gain_bucket(picks),
         "calibration": calibration_summary(picks),
         "slippage": slippage_summary(picks),
+        "stop_slippage": stop_slippage_summary(picks),
     }
 
 

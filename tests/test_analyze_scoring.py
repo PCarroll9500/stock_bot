@@ -23,6 +23,7 @@ from analyze_scoring import (
     load_picks,
     report_to_dict,
     slippage_summary,
+    stop_slippage_summary,
 )
 
 # ---------------------------------------------------------------------------
@@ -240,6 +241,33 @@ class TestSlippageSummary:
         assert result["n"] == 1
 
 
+class TestStopSlippageSummary:
+    def test_none_when_no_stop_slippage_data(self):
+        picks = [{"day_return_pct": 1.0}]
+        assert stop_slippage_summary(picks) is None
+
+    def test_computes_mean_best_worst(self):
+        picks = [
+            {"stop_slippage_pct": -1.0},
+            {"stop_slippage_pct": -3.5},
+            {"stop_slippage_pct": 0.2},
+        ]
+        result = stop_slippage_summary(picks)
+        assert result["n"] == 3
+        assert result["mean_stop_slippage_pct"] == pytest.approx((-1.0 - 3.5 + 0.2) / 3)
+        assert result["best"] == 0.2   # least negative = best
+        assert result["worst"] == -3.5  # most negative = worst
+
+    def test_ignores_picks_without_stop_slippage(self):
+        picks = [
+            {"stop_slippage_pct": -1.0},
+            {"stop_slippage_pct": None},
+            {},
+        ]
+        result = stop_slippage_summary(picks)
+        assert result["n"] == 1
+
+
 # ---------------------------------------------------------------------------
 # report_to_dict -- JSON-serializable report for automation (run_weekly_report.sh)
 # ---------------------------------------------------------------------------
@@ -268,7 +296,7 @@ class TestReportToDict:
         assert report["native_catalyst_type_count"] == 2
         assert report["keyword_classified_count"] == 0
         assert report["overall_win_rate_pct"] == 50.0
-        for key in ("by_score", "by_catalyst_type", "by_sector", "by_risk", "by_expected_gain_bucket", "calibration", "slippage"):
+        for key in ("by_score", "by_catalyst_type", "by_sector", "by_risk", "by_expected_gain_bucket", "calibration", "slippage", "stop_slippage"):
             assert key in report
         assert report["calibration"]["n"] == 2
 

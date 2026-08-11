@@ -573,6 +573,12 @@ class TestPnLRecording:
         assert pick.get("stop_loss_triggered") is True
         assert pick["close_price"] == 190.0
         assert pick["day_return_pct"] < 0  # bought at 200, sold at 190
+        # stop_slippage_pct: worst-case floor = 200 * (1 - 3.0/100) = 194.0
+        # (real picker_config.json trailing_stop_pct=3.0, risk="medium" isn't
+        # a "1".."5" key so it falls back to the flat rate). Exit at 190.0 is
+        # below that floor -> negative slippage.
+        assert pick["stop_slippage_pct"] == pytest.approx((190.0 - 194.0) / 194.0 * 100, abs=0.01)
+        assert pick["stop_slippage_pct"] < 0
 
     def test_session_return_computed_correctly(self):
         """session_return_usd = close_value - open_value."""
