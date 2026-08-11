@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-10T14:30:50.889218",
+  "updated_at": "2026-08-11T09:40:48.234147",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -1269,6 +1269,125 @@
       "session_return_usd": 153.96,
       "cash_uninvested": 397.71,
       "cash_balance_close": 28368.17
+    },
+    {
+      "date": "2026-08-11",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "SOUN",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "LivePerson is actively urging approval of the SoundHound acquisition today, which keeps the M&A catalyst live, but SOUN has already had a strong multi-week run and the deal appears partially priced in.",
+          "trend_summary": "1d: -7.0%  1w: +22.3%  1m: +12.3%  3m: -16.0%  1yr: -53.3%",
+          "sector": "Technology",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "HWM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 1.5,
+          "reason": "HWM has a fresh analyst upgrade/price-target raise and a strong multi-timeframe uptrend, but this is a soft catalyst and the move is likely mostly priced in after yesterday\u2019s reaction.",
+          "trend_summary": "1d: +0.6%  1w: -0.9%  1m: +4.7%  3m: +4.9%  1yr: +56.8%",
+          "sector": "Industrials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "LHX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Fresh defense-program milestone on the NGI interceptor supports sentiment, but LHX is a large-cap and the move is modest with limited evidence of major remaining intraday upside.",
+          "trend_summary": "1d: +1.1%  1w: +4.3%  1m: -0.4%  3m: -3.3%  1yr: +7.2%",
+          "sector": "Industrials",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "CW",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Curtiss-Wright has a fresh $100M buyback expansion plus a notable director purchase, but this is a quality large-cap name with only modest upside remaining after the news is already out.",
+          "trend_summary": "1d: +0.4%  1w: -7.1%  1m: -8.0%  3m: -4.8%  1yr: +38.4%",
+          "sector": "Industrials",
+          "catalyst_type": "insider_buying"
+        },
+        {
+          "ticker": "FF",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "FutureFuel reported a strong Q2 earnings beat with sharply higher revenue and net income on regulatory tailwinds, but the news is already 17 hours old and the move appears partly priced in.",
+          "trend_summary": "1d: +1.4%  1w: +5.3%  1m: +11.2%  3m: +5.3%  1yr: +42.9%",
+          "sector": "Energy",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "QMCO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "QMCO has a fresh earnings release/8-K with guidance-style revenue and EPS figures, but the stock is already up strongly over 1w/1m/3m and the move looks partly priced in after yesterday\u2019s report.",
+          "trend_summary": "1d: -2.2%  1w: +11.6%  1m: +17.6%  3m: +22.5%  1yr: +58.5%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "ALC",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Alcon reported a solid Q2 with 2026 sales growth guidance of 5%\u20137%, which supports modest follow-through, but the move is already partially priced in after the post-earnings reaction.",
+          "trend_summary": "1d: +2.5%  1w: +4.9%  1m: +8.6%  3m: +17.7%  1yr: -14.4%",
+          "sector": "Healthcare",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "JOBY",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.0,
+          "reason": "Joby\u2019s $500M acquisition of Resonant Sciences is a fresh strategic defense expansion catalyst, but the stock is already up on the news and the concurrent equity distribution filing adds dilution overhang.",
+          "trend_summary": "1d: +2.0%  1w: +19.4%  1m: +14.1%  3m: -19.0%  1yr: -51.1%",
+          "sector": "Industrials",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "OXY",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "OXY has a fresh premarket analyst upgrade cluster with a modest target raise to $70 and the stock is already trending higher, but this is a soft catalyst and much of the move may already be priced in.",
+          "trend_summary": "1d: +4.9%  1w: +5.7%  1m: +10.9%  3m: +10.6%  1yr: +32.8%",
+          "sector": "Energy",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "ONDS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "ONDS has a fresh acquisition catalyst plus a new Roth Capital Buy/$13 target, but the move is already partly priced in after a strong multi-timeframe run and the standalone analyst action is a soft catalyst.",
+          "trend_summary": "1d: +2.2%  1w: +11.2%  1m: +28.2%  3m: +2.8%  1yr: +117.0%",
+          "sector": "Technology",
+          "catalyst_type": "ma_acquisition"
+        }
+      ],
+      "portfolio_open_value": 28381.55
     }
   ],
   "equity_curve": [
