@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-11T09:40:48.234147",
+  "updated_at": "2026-08-12T09:41:23.165143",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -1388,6 +1388,125 @@
         }
       ],
       "portfolio_open_value": 28381.55
+    },
+    {
+      "date": "2026-08-12",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "SNDK",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.0,
+          "reason": "Fresh Kioxia/Sandisk AI-memory technology announcement plus the recent upgrade keeps the stock in play, but the move looks partly priced in after yesterday\u2019s reaction and social sentiment is only neutral.",
+          "trend_summary": "1d: +2.7%  1w: -11.0%  1m: -24.1%  3m: -17.9%  1yr: +2603.8%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "ACHR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Boeing\u2019s stake and the Wisk/SkyGrid/Insitu acquisition are a real strategic catalyst, but ACHR has already run hard over the past week and the move looks partly priced in by now.",
+          "trend_summary": "1d: +8.5%  1w: +27.9%  1m: +49.2%  3m: +3.8%  1yr: -33.4%",
+          "sector": "Industrials",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "FRMI",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh first-tenant lease for Fermi\u2019s Texas AI data-center project is a real milestone with institutional validation, but the stock already surged 21% today and much of the move is likely priced in.",
+          "trend_summary": "1d: +21.1%  1w: +12.8%  1m: +12.8%  3m: +32.6%  1yr: -78.1%",
+          "sector": "Technology",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "WRD",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "WeRide posted a fresh 2Q revenue beat with a large loss still weighing on the story, so there is some intraday upside left but the move is likely partially priced in and remains volatile.",
+          "trend_summary": "1d: +0.2%  1w: +5.9%  1m: +10.3%  3m: -18.4%  1yr: -36.5%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "KOPN",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.0,
+          "reason": "Fresh Q2 results and operational milestones around U.S. Army MicroLED and drone-related orders are driving a strong continuation move, but the stock is already up sharply today so upside is more likely to be a smaller extension than a fresh breakout.",
+          "trend_summary": "1d: +23.5%  1w: +25.3%  1m: +43.3%  3m: +4.6%  1yr: +172.3%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "GEV",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "GE Vernova has a real AI power/turbine demand tailwind and fresh coverage, but the move looks mostly mature already with no earnings or volume confirmation to suggest 5%+ upside remains today.",
+          "trend_summary": "1d: +2.1%  1w: -0.7%  1m: -2.9%  3m: -5.7%  1yr: +59.5%",
+          "sector": "Industrials",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "HWM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "HWM has a fresh analyst target raise to $350 from JPM and remains in a strong longer-term uptrend, but the move is already a day old and the catalyst is soft/partly priced in.",
+          "trend_summary": "1d: -0.8%  1w: -2.4%  1m: +3.7%  3m: +2.8%  1yr: +59.1%",
+          "sector": "Industrials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "TSM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "TSMC has a fresh Bernstein target raise to $554 and a new Sony joint venture headline, but both are already largely digested and the move looks modest rather than a true 5%+ day-trading catalyst from here.",
+          "trend_summary": "1d: +0.9%  1w: +1.2%  1m: +0.1%  3m: +4.3%  1yr: +74.8%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "NOW",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Wells Fargo\u2019s price target hike to $175 with an Overweight reiteration is a real but standalone analyst catalyst, and NOW\u2019s multi-month uptrend supports modest continuation despite some premarket softness in software.",
+          "trend_summary": "1d: +0.1%  1w: +8.0%  1m: +14.6%  3m: +39.4%  1yr: -26.1%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "RDW",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.0,
+          "reason": "Fresh strategic collaboration with Kanematsu gives RDW a real new business catalyst today, but the move is already extended on a strong multi-week run and volume confirmation is unavailable.",
+          "trend_summary": "1d: +3.0%  1w: +27.1%  1m: +40.9%  3m: +11.1%  1yr: +39.9%",
+          "sector": "Industrials",
+          "catalyst_type": "other"
+        }
+      ],
+      "portfolio_open_value": 28383.13
     }
   ],
   "equity_curve": [
