@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-12T09:41:23.165143",
+  "updated_at": "2026-08-13T09:41:05.294184",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -1507,6 +1507,125 @@
         }
       ],
       "portfolio_open_value": 28383.13
+    },
+    {
+      "date": "2026-08-13",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "NBIS",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "Nebius is still riding a fresh post-earnings AI cloud surge with strong results cited in the news, but the stock is already up 34% today so much of the move is priced in and upside is more likely to be incremental than explosive.",
+          "trend_summary": "1d: +34.1%  1w: +18.4%  1m: +33.5%  3m: +44.7%  1yr: +278.6%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "SMCI",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "SMCI is benefiting from a fresh AI-hardware earnings/rally theme today, but the stock is already up sharply across all timeframes so much of the move is likely partially priced in.",
+          "trend_summary": "1d: +19.0%  1w: +24.0%  1m: +36.0%  3m: +14.7%  1yr: -17.3%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "FIGR",
+          "score": 8,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "Fresh 2Q earnings/8-K shows strong results for Figure Technology Solutions, but the stock is already up 10% today so some of the move is priced in and upside is likely more limited from here.",
+          "trend_summary": "1d: +10.2%  1w: +6.8%  1m: +2.4%  3m: -22.3%  1yr: -1.4%",
+          "sector": "Financials",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "MPWR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "MPWR is reacting to Q2 earnings with record revenue and AI-driven growth, but the move is already partially priced in and the remaining upside from current levels looks modest.",
+          "trend_summary": "1d: +1.6%  1w: +5.9%  1m: +3.5%  3m: -10.9%  1yr: +67.9%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "ACHR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Boeing\u2019s stake and the Wisk/SkyGrid/Insitu acquisition is a real strategic catalyst, but the move is already two days old and ACHR has given back sharply today, limiting remaining upside.",
+          "trend_summary": "1d: -7.4%  1w: +21.0%  1m: +29.7%  3m: -1.6%  1yr: -37.0%",
+          "sector": "Industrials",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "POET",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.0,
+          "reason": "POET\u2019s Q2 report shows 112% revenue growth and a sixth straight quarter of sequential growth, which is a real earnings catalyst, but the stock is already up on the day and the small-cap profile makes further upside more reversal-prone.",
+          "trend_summary": "1d: +3.3%  1w: +9.6%  1m: +0.7%  3m: -35.4%  1yr: +74.3%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "SNDK",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh AI-memory technology announcement and analyst upgrade keep the setup constructive, but the move is already partially priced in and volume confirmation is unavailable.",
+          "trend_summary": "1d: +5.8%  1w: -0.5%  1m: -23.5%  3m: -7.4%  1yr: +2779.8%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "LYV",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "LYV has a quality large-cap momentum setup with recent earnings-related headlines pointing to record demand and revenue growth, but the move is modest and the catalyst looks mostly priced in already.",
+          "trend_summary": "1d: +1.1%  1w: +1.0%  1m: +2.1%  3m: +11.9%  1yr: +14.7%",
+          "sector": "Communication",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "GEV",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "GE Vernova has a real AI power/turbine demand catalyst with record orders and backlog support, but the move is modest and the WSJ note suggests some of the power-stock enthusiasm is already fading.",
+          "trend_summary": "1d: +2.8%  1w: +2.2%  1m: -2.4%  3m: -3.0%  1yr: +66.3%",
+          "sector": "Industrials",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "FGI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "FGI\u2019s Q2 results showed revenue growth, sharply higher gross margin, and a return to net income, but the move is already 17h old and without volume data the upside looks partially priced in.",
+          "trend_summary": "1d: +4.0%  1w: +5.6%  1m: -0.2%  3m: -17.7%  1yr: +26.3%",
+          "sector": "Consumer",
+          "catalyst_type": "earnings_beat"
+        }
+      ],
+      "portfolio_open_value": 28384.73
     }
   ],
   "equity_curve": [
