@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-13T09:41:05.294184",
+  "updated_at": "2026-08-14T09:44:25.988157",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -1626,6 +1626,70 @@
         }
       ],
       "portfolio_open_value": 28384.73
+    },
+    {
+      "date": "2026-08-14",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "SNDK",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "JPMorgan upgrade after SanDisk\u2019s investor day is a real but soft catalyst, and with the stock already up about 7% the remaining upside today looks modest rather than explosive.",
+          "trend_summary": "unavailable",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "LYV",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "LYV has a fresh quality-supportive backdrop from recent Q2 commentary showing record fan growth and strong demand, but with no clear intraday price/volume confirmation the remaining upside today looks modest rather than explosive.",
+          "trend_summary": "unavailable",
+          "sector": "Communication",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "HWM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Howmet has a fresh earnings-driven aerospace/defense strength narrative and a recent Strong Buy upgrade, but the move looks mostly mature and the upside left today is likely modest rather than explosive.",
+          "trend_summary": "unavailable",
+          "sector": "Industrials",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "GE Vernova has a real but already well-publicized catalyst from strong Q2 results, raised guidance, and AI/data-center power demand, but the move looks largely priced in and recent commentary flags valuation pressure.",
+          "trend_summary": "unavailable",
+          "sector": "Industrials",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "STX",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "STX is catching sympathy momentum from the strong storage-sector move led by SanDisk, but the catalyst is indirect and the move already looks partially priced in.",
+          "trend_summary": "unavailable",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        }
+      ],
+      "portfolio_open_value": 28386.33
     }
   ],
   "equity_curve": [
