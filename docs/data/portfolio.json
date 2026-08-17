@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-14T09:44:25.988157",
+  "updated_at": "2026-08-17T09:45:56.000144",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -1690,6 +1690,70 @@
         }
       ],
       "portfolio_open_value": 28386.33
+    },
+    {
+      "date": "2026-08-17",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "NBIS",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "NBIS is still riding a fresh post-earnings AI/data-center pricing re-rating with continued analyst praise, but the stock is already up sharply and the move looks partially extended intraday.",
+          "trend_summary": "1d: +8.9%  1w: +47.7%  1m: +61.7%  3m: +25.6%  1yr: +282.8%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "MPWR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "MPWR has a quality large-cap earnings/AI-revenue momentum setup with a strong 1-year trend, but the move is already partially priced in and social/volume confirmation is limited.",
+          "trend_summary": "1d: +2.9%  1w: +0.0%  1m: +7.4%  3m: -13.1%  1yr: +64.9%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "SMCI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "SMCI is still benefiting from strong AI-server demand and a recent earnings beat, but the move is already extended over multiple timeframes and the fresh catalyst is fading into price action.",
+          "trend_summary": "1d: +1.7%  1w: +28.0%  1m: +61.4%  3m: +20.6%  1yr: -13.1%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "VRT",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "VRT is benefiting from ongoing AI infrastructure/power-cooling optimism, but the news is generic and already reflected in a modest 1-day move with no fresh hard catalyst or volume confirmation.",
+          "trend_summary": "1d: +2.4%  1w: +7.9%  1m: -0.1%  3m: -21.9%  1yr: +116.6%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "SPYM",
+          "score": 2,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 0.5,
+          "reason": "Broad market record-high commentary is not a stock-specific catalyst, so SPYM has little identifiable upside remaining today beyond normal index drift.",
+          "trend_summary": "1d: -0.2%  1w: +0.4%  1m: +3.4%  3m: +3.8%  1yr: +20.7%",
+          "sector": "Financials",
+          "catalyst_type": "sector_tailwind"
+        }
+      ],
+      "portfolio_open_value": 28387.93
     }
   ],
   "equity_curve": [
