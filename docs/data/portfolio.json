@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-18T09:44:49.998205",
+  "updated_at": "2026-08-19T09:41:04.134305",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -1774,6 +1774,92 @@
         }
       ],
       "portfolio_open_value": 28392.73
+    },
+    {
+      "date": "2026-08-19",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "WEAV",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "WEAV is trading on a fresh merger agreement with support from holders, but after a 31.6% one-day surge most of the takeover premium is likely already priced in and upside from here is limited.",
+          "trend_summary": "1d: +31.6%  1w: +44.7%  1m: +1.8%  3m: +33.8%  1yr: -4.8%",
+          "sector": "Communication",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "AMLX",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "AMLX is running on a fresh GLP-1 clinical update and a Baird target raise to $52, but the stock has already surged sharply so most of the move is likely partly priced in.",
+          "trend_summary": "1d: +63.8%  1w: +48.6%  1m: +101.2%  3m: +173.0%  1yr: +337.2%",
+          "sector": "Healthcare",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "DELL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Evercore\u2019s fresh target raise to $550 and maintained Outperform on DELL is a real but soft catalyst, with the stock already in a strong multi-month uptrend and likely only modest additional upside left today.",
+          "trend_summary": "1d: -2.3%  1w: +6.3%  1m: +22.7%  3m: +96.9%  1yr: +264.8%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "TSM",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "TSM has a mild AI/foundry tailwind from reports of higher chip prices and improving overseas profitability, but the news is not fresh enough or strong enough to imply more than modest intraday upside from here.",
+          "trend_summary": "1d: -4.1%  1w: -2.0%  1m: +2.8%  3m: +4.4%  1yr: +80.8%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "ABCL",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "ABCL has a fresh director buy filing, but the stock is already extended on a strong multi-month run and there is no broader fundamental catalyst or volume confirmation to suggest much more upside today.",
+          "trend_summary": "1d: -0.7%  1w: +13.9%  1m: +91.7%  3m: +167.3%  1yr: +166.7%",
+          "sector": "Healthcare",
+          "catalyst_type": "insider_buying"
+        },
+        {
+          "ticker": "XLE",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.2,
+          "reason": "XLE is benefiting from a strong energy-sector uptrend and recent bullish sector commentary, but this is a broad ETF move with no fresh binary catalyst and limited remaining intraday upside.",
+          "trend_summary": "1d: +1.8%  1w: +4.5%  1m: +9.9%  3m: +5.1%  1yr: +48.4%",
+          "sector": "Energy",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "BP",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "BP is getting a mild sector tailwind from higher oil prices and bond-yield pressure, but there is no fresh company-specific catalyst and the move already looks mostly reflected.",
+          "trend_summary": "1d: +1.3%  1w: +0.6%  1m: +3.4%  3m: -5.0%  1yr: +28.1%",
+          "sector": "Energy",
+          "catalyst_type": "sector_tailwind"
+        }
+      ],
+      "portfolio_open_value": 28394.33
     }
   ],
   "equity_curve": [
