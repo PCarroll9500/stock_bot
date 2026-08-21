@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-20T09:44:24.154015",
+  "updated_at": "2026-08-21T09:41:43.310466",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -1868,6 +1868,92 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 28395.93
+    },
+    {
+      "date": "2026-08-21",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "ABUS",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 6.0,
+          "reason": "Fresh announced $230M modified Dutch auction buyback/tender offer is a real capital-return catalyst and can still support upside today, though the move may be partially priced in without volume confirmation.",
+          "trend_summary": "1d: -4.2%  1w: +4.1%  1m: +10.2%  3m: +9.2%  1yr: +32.9%",
+          "sector": "Healthcare",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "TSM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "TSM has a fresh, credible AI-capex/price-tailwind narrative and a recent insider buy, but the news is mostly already reflected and volume confirmation is unavailable, limiting remaining upside today.",
+          "trend_summary": "1d: +0.9%  1w: -3.4%  1m: -1.2%  3m: +3.6%  1yr: +78.5%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "CRCL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "CRCL is riding a fresh crypto-sector bid from bitcoin\u2019s surge and regulatory optimism, but the move is already extended and the 1-year downtrend plus lack of company-specific news limit remaining upside.",
+          "trend_summary": "1d: +6.5%  1w: +11.0%  1m: +26.5%  3m: -25.0%  1yr: -38.0%",
+          "sector": "Financials",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "Fresh treasury/asset-holdings update and share repurchases support the stock, but the news is already 1 day old and the move looks partly priced in after a strong multi-day run.",
+          "trend_summary": "1d: +6.6%  1w: +17.9%  1m: +21.6%  3m: +11.2%  1yr: -54.8%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "BABA",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Baird\u2019s maintained Outperform and Daiwa\u2019s higher target on Alibaba\u2019s AI cloud upside are fresh but standalone analyst catalysts, so there is still modest intraday upside though the move is likely partly priced in.",
+          "trend_summary": "1d: +1.3%  1w: +6.9%  1m: +12.0%  3m: -2.9%  1yr: +6.2%",
+          "sector": "Consumer",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "PSX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 1.5,
+          "reason": "PSX is benefiting from a fresh sector-wide refining margin tailwind and a multi-month uptrend, but the move is already extended and today\u2019s news is more supportive than truly explosive.",
+          "trend_summary": "1d: -0.9%  1w: +3.2%  1m: +13.5%  3m: +33.8%  1yr: +84.7%",
+          "sector": "Energy",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "SHEL",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 1.2,
+          "reason": "Shell is benefiting from the energy sector breakout on higher oil prices, but the catalyst is broad and already partially reflected in a steady multi-timeframe uptrend rather than a fresh single-stock event.",
+          "trend_summary": "1d: +0.9%  1w: +4.1%  1m: +6.7%  3m: +8.0%  1yr: +27.7%",
+          "sector": "Energy",
+          "catalyst_type": "sector_tailwind"
+        }
+      ],
+      "portfolio_open_value": 28397.53
     }
   ],
   "equity_curve": [
