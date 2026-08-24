@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-21T09:41:43.310466",
+  "updated_at": "2026-08-24T09:41:47.269572",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -1954,6 +1954,125 @@
         }
       ],
       "portfolio_open_value": 28397.53
+    },
+    {
+      "date": "2026-08-24",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "BMNR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "Fresh 8-K/press release showing Bitmine\u2019s ETH holdings and crypto/cash assets at $14.9B is a real crypto-treasury catalyst, but the stock is already up sharply over the past week and the move may be partially priced in.",
+          "trend_summary": "1d: +5.8%  1w: +26.3%  1m: +37.6%  3m: +16.4%  1yr: -54.0%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "ABUS",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "Arbutus launched a $230M Dutch-auction tender offer at $5.00-$5.75/share, which is a real capital-return catalyst that can keep the stock bid today, though the 9% premarket move means much of the easy upside is likely already in.",
+          "trend_summary": "1d: +9.2%  1w: +11.6%  1m: +16.6%  3m: +17.3%  1yr: +48.9%",
+          "sector": "Healthcare",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "HWM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "HWM is a quality large-cap aerospace/defense name with fresh Q2 earnings-related coverage and a strong 1-year trend, but the move looks mostly priced in and there is no clear new catalyst or volume confirmation for a bigger intraday run.",
+          "trend_summary": "1d: -0.7%  1w: -6.1%  1m: -5.4%  3m: +4.5%  1yr: +58.7%",
+          "sector": "Industrials",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "GOOG",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh Google Cloud partnership with Verizon is a real enterprise AI catalyst for GOOG, but as a mega-cap with neutral sentiment and no volume confirmation the remaining upside today looks modest.",
+          "trend_summary": "1d: +1.0%  1w: -0.5%  1m: +7.4%  3m: -10.9%  1yr: +63.4%",
+          "sector": "Technology",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "ASST",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh 8-K and press release on a new Bitcoin purchase provide a real crypto-treasury catalyst, but the stock is already up sharply on the week and year so much of the move may be priced in.",
+          "trend_summary": "1d: +13.0%  1w: +48.0%  1m: +50.7%  3m: -1.7%  1yr: -81.0%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "PDD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "PDD is reacting to a fresh earnings print that beat expectations despite a 12% profit decline, but the move is modest and the lack of volume data makes it hard to call for much more than limited intraday follow-through.",
+          "trend_summary": "1d: -1.3%  1w: +4.2%  1m: +6.1%  3m: -9.6%  1yr: -31.1%",
+          "sector": "Consumer",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "HOOD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "HOOD is moving on a fresh thematic catalyst around expanded 24/7-style trading access and remains in a strong multi-month uptrend, but the 13.7% one-day surge likely leaves only modest additional upside today.",
+          "trend_summary": "1d: +13.7%  1w: +13.2%  1m: +6.4%  3m: +42.4%  1yr: +0.2%",
+          "sector": "Financials",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "WBD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh WSJ reporting on a potential Paramount-WBD merger settlement is a real M&A catalyst, but the deal is still uncertain and the move is likely partially priced in after yesterday\u2019s headlines.",
+          "trend_summary": "1d: +1.1%  1w: +2.0%  1m: +10.0%  3m: +5.4%  1yr: +137.1%",
+          "sector": "Communication",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "NVO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh collaboration milestone news with Novo Nordisk confirms ongoing value creation and royalty potential, but it is a modest follow-on catalyst rather than a transformative binary event so upside may be limited today.",
+          "trend_summary": "1d: +1.3%  1w: +1.9%  1m: -3.0%  3m: +5.3%  1yr: -17.0%",
+          "sector": "Healthcare",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "GE Vernova has a real but modest contract/data-center catalyst, but the news appears partially reflected already and the stock is slightly weak on the day with no volume confirmation.",
+          "trend_summary": "1d: -0.9%  1w: -10.0%  1m: -7.2%  3m: -8.3%  1yr: +58.9%",
+          "sector": "Industrials",
+          "catalyst_type": "contract_win"
+        }
+      ],
+      "portfolio_open_value": 28399.13
     }
   ],
   "equity_curve": [
