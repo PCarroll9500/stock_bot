@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-25T09:45:09.488064",
+  "updated_at": "2026-08-26T09:41:08.332279",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -2093,6 +2093,125 @@
         }
       ],
       "portfolio_open_value": 28403.93
+    },
+    {
+      "date": "2026-08-26",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "NBIS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "NBIS is getting a fresh market reaction to its $5.75B convertible note financing and broader neocloud/AI momentum, but the catalyst is already a day old and the move looks partially priced in.",
+          "trend_summary": "1d: +5.2%  1w: -10.7%  1m: +18.1%  3m: +6.7%  1yr: +216.6%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "BZ",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 1.5,
+          "reason": "Kanzhun is reacting to a fresh earnings beat and dividend announcement, but the stock already gained 5.5% today and the catalyst is largely priced in after yesterday\u2019s release.",
+          "trend_summary": "1d: +5.5%  1w: +3.1%  1m: +3.6%  3m: +22.4%  1yr: -28.7%",
+          "sector": "Communication",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "BE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Bloom Energy is benefiting from fresh Pelosi-related buying headlines and AI power demand momentum, but the move is already partially priced in after a 6.6% day and there is no hard fundamental event.",
+          "trend_summary": "1d: +6.6%  1w: +4.0%  1m: +15.6%  3m: -28.1%  1yr: +327.6%",
+          "sector": "Energy",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "WDAY",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "WDAY has a fresh cluster of analyst target raises, including a meaningful Oppenheimer increase, and its strong multi-month uptrend leaves some room for modest continuation today, though this is a soft catalyst and likely partly priced in.",
+          "trend_summary": "1d: -2.4%  1w: +2.0%  1m: +31.8%  3m: +56.8%  1yr: -15.4%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "MRVL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "MRVL has a fresh AI/custom-silicon momentum catalyst ahead of earnings, but with no confirmed results yet and the stock already up sharply over the past month, remaining upside today looks modest rather than explosive.",
+          "trend_summary": "1d: +4.8%  1w: +11.3%  1m: +27.1%  3m: +15.4%  1yr: +221.4%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "GE Vernova has a real AI power-infrastructure and battery-project contract narrative, but the news is not a fresh binary catalyst and the stock is already in a longer-term uptrend with recent weakness limiting immediate upside.",
+          "trend_summary": "1d: -1.6%  1w: -7.7%  1m: -7.0%  3m: -13.4%  1yr: +48.9%",
+          "sector": "Industrials",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "HWM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "HWM has a modest, fresh analyst price-target raise and conference appearance, but the move is already largely reflected and volume confirmation is unavailable, limiting remaining upside today.",
+          "trend_summary": "1d: +0.3%  1w: -9.8%  1m: -8.3%  3m: +0.8%  1yr: +50.3%",
+          "sector": "Industrials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "SMCI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.8,
+          "reason": "SMCI is benefiting from the Cisco partnership/news flow around Nvidia-equipped AI systems, but the move is already 9.4% on the day and looks partially priced in without volume confirmation.",
+          "trend_summary": "1d: +9.4%  1w: +2.8%  1m: +29.0%  3m: +3.7%  1yr: -14.1%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "MARA",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "MARA is benefiting from a fresh sector rotation into bitcoin miners on the Barron\u2019s note, but with no volume confirmation and the stock already up 5.8% today, most of the easy move looks partially priced in.",
+          "trend_summary": "1d: +5.8%  1w: +32.0%  1m: +0.5%  3m: -17.2%  1yr: -25.4%",
+          "sector": "Crypto",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "HOOD",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "HOOD is in a technical buy area with strong multi-timeframe momentum, but today\u2019s news is just an IBD market-commentary mention and the stock is already up sharply, so remaining upside looks limited.",
+          "trend_summary": "1d: +8.2%  1w: +22.5%  1m: +17.2%  3m: +51.3%  1yr: +8.9%",
+          "sector": "Financials",
+          "catalyst_type": "other"
+        }
+      ],
+      "portfolio_open_value": 28405.53
     }
   ],
   "equity_curve": [
