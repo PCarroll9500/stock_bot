@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-26T09:41:08.332279",
+  "updated_at": "2026-08-27T09:45:40.170601",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -2212,6 +2212,37 @@
         }
       ],
       "portfolio_open_value": 28405.53
+    },
+    {
+      "date": "2026-08-27",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "SNDK",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "Sandisk has a fresh but mostly thematic AI-memory tailwind and Japan investment headlines, but with no clear price/volume confirmation or hard earnings/contract catalyst, most of the move looks already reflected.",
+          "trend_summary": "unavailable",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "NBIS",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "NBIS is getting AI-infrastructure sympathy from Nvidia\u2019s blowout report and funding-concern relief, but the news is mostly indirect and already a day old so remaining upside today looks limited.",
+          "trend_summary": "unavailable",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        }
+      ],
+      "portfolio_open_value": 28407.13
     }
   ],
   "equity_curve": [
