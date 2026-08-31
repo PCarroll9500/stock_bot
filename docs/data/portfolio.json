@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-08-28T09:45:28.353102",
+  "updated_at": "2026-08-31T09:43:36.273706",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -2251,6 +2251,125 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 28408.73
+    },
+    {
+      "date": "2026-08-31",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "CW",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh $40M Army contract win is a real catalyst for CW, but the stock is still in a weak multi-timeframe downtrend and the news is likely only worth a modest continuation move today.",
+          "trend_summary": "1d: -1.5%  1w: -6.1%  1m: -16.8%  3m: -20.2%  1yr: +23.6%",
+          "sector": "Industrials",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "HAL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "HAL is getting a fresh oil-price/geopolitical tailwind this morning, and the Venezuela deal headlines support energy sentiment, but the move is modest and likely only has limited intraday upside left.",
+          "trend_summary": "1d: +1.9%  1w: +2.4%  1m: +14.3%  3m: -6.9%  1yr: +59.5%",
+          "sector": "Energy",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh 8-K and press release highlighting massive ETH and total crypto holdings is a real catalyst, but BMNR is already a highly extended crypto proxy so much of the move may be priced in.",
+          "trend_summary": "1d: -7.1%  1w: +4.2%  1m: +31.6%  3m: +23.5%  1yr: -44.0%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "CRM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "CRM has a fresh premarket analyst upgrade with a modest target raise to $300, and the strong multi-timeframe uptrend suggests some additional session upside remains, though this is a soft catalyst and likely partly priced in.",
+          "trend_summary": "1d: +1.6%  1w: +22.4%  1m: +41.7%  3m: +34.0%  1yr: +1.2%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "ABNB",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "DA Davidson\u2019s fresh $175 to $220 target raise and Buy reiteration give ABNB a legitimate but soft analyst catalyst, though the stock is already up strongly over the past month and year so most of the move may be priced in.",
+          "trend_summary": "1d: +2.7%  1w: +1.1%  1m: +24.6%  3m: +42.1%  1yr: +48.5%",
+          "sector": "Consumer",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "PATH",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "UBS raised PATH\u2019s price target from $12 to $19 this morning, which is a fresh bullish analyst catalyst, but it is a standalone upgrade and likely only supports modest additional upside today.",
+          "trend_summary": "1d: -1.0%  1w: +10.7%  1m: +46.7%  3m: +54.9%  1yr: +66.5%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "GAP",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Gap is reacting to better-than-feared quarterly results and improving August trends, but the catalyst is already 2 days old and the stock has largely moved on the news.",
+          "trend_summary": "1d: +12.9%  1w: +18.6%  1m: +15.2%  3m: +11.0%  1yr: +3.8%",
+          "sector": "Consumer",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "AFRM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Cantor\u2019s fresh price target raise to $97 with an Overweight reiteration is a legitimate bullish catalyst, but it is a standalone analyst action and likely only offers modest remaining upside today.",
+          "trend_summary": "1d: +0.3%  1w: +0.9%  1m: +6.2%  3m: +5.6%  1yr: -5.4%",
+          "sector": "Financials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "GOOG",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "GOOG has a fresh Google Cloud/CrowdStrike platform announcement and a strong long-term uptrend, but this is a modest partnership catalyst with no volume confirmation and likely limited same-day upside left.",
+          "trend_summary": "1d: +1.5%  1w: +0.3%  1m: +2.8%  3m: -8.9%  1yr: +61.7%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "MSTR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh Bitcoin accumulation headlines and buyback activity support MSTR, but the stock already fell sharply Friday and the catalyst is only modestly supportive with BTC also soft today.",
+          "trend_summary": "1d: -7.3%  1w: +6.8%  1m: +30.3%  3m: -20.0%  1yr: -62.7%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        }
+      ],
+      "portfolio_open_value": 28410.33
     }
   ],
   "equity_curve": [
