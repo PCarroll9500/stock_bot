@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-03T09:41:33.115629",
+  "updated_at": "2026-09-04T09:46:21.757512",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -2451,6 +2451,125 @@
         }
       ],
       "portfolio_open_value": 28418.33
+    },
+    {
+      "date": "2026-09-04",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "VRT",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.8,
+          "reason": "Vertiv has a fresh AI-infrastructure acquisition catalyst that supports the ongoing breakout, but the stock is already up on the news so remaining upside today looks moderate rather than explosive.",
+          "trend_summary": "1d: +4.7%  1w: -0.2%  1m: -3.3%  3m: -17.0%  1yr: +116.8%",
+          "sector": "Technology",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "MSTR",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "MSTR is riding a fresh crypto-beta surge tied to Bitcoin\u2019s move and ETF inflows, but after a 17.6% day the move is already extended and likely partially priced in.",
+          "trend_summary": "1d: +17.6%  1w: +5.4%  1m: +47.2%  3m: +11.9%  1yr: -56.9%",
+          "sector": "Crypto",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "HPE",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "HPE is still trading on a fresh earnings beat with raised fiscal outlook and AI server demand momentum, but the stock already jumped 5% yesterday so much of the easy upside is likely priced in.",
+          "trend_summary": "1d: +5.0%  1w: +0.1%  1m: +2.3%  3m: +1.4%  1yr: +131.5%",
+          "sector": "Technology",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "META",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh news on Meta\u2019s new AI coding model is a real positive catalyst, but with the stock already up 3% today and no hard revenue/earnings surprise, the remaining upside looks modest rather than explosive.",
+          "trend_summary": "1d: +3.0%  1w: +6.9%  1m: +3.7%  3m: -2.7%  1yr: -18.8%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "DE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 1.5,
+          "reason": "Deere has a fresh Evercore upgrade with a large price target raise and a strong multi-timeframe uptrend, but the move is already partly reflected and this is a standalone analyst catalyst rather than a hard fundamental event.",
+          "trend_summary": "1d: -0.6%  1w: +11.5%  1m: +13.5%  3m: +17.3%  1yr: +46.7%",
+          "sector": "Industrials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "IBIT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "IBIT is benefiting from a fresh crypto risk-on move as Bitcoin reclaims $80K on Fed pause signals, but the catalyst is broad and partially reflected after a 5.8% day move.",
+          "trend_summary": "1d: +5.8%  1w: +2.3%  1m: +26.2%  3m: +28.7%  1yr: -26.9%",
+          "sector": "Crypto",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.0,
+          "reason": "BMNR is benefiting from a fresh crypto-treasury/ETH momentum move and a B. Riley price target raise, but the catalyst is mostly analyst-driven and already partially reflected after a 14.7% day move.",
+          "trend_summary": "1d: +14.7%  1w: +3.2%  1m: +43.5%  3m: +47.8%  1yr: -37.3%",
+          "sector": "Crypto",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "CNH",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "CNH has a fresh standalone analyst upgrade to Outperform with a meaningful target raise to $18, and the stock\u2019s strong multi-timeframe uptrend suggests some further session upside remains, though the move is partly priced in after the 1-day gain.",
+          "trend_summary": "1d: +1.4%  1w: +21.1%  1m: +28.3%  3m: +27.6%  1yr: +20.8%",
+          "sector": "Industrials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "PFE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Fresh FDA approval for Pfizer\u2019s updated COVID vaccine is a real catalyst, but the stock has already run over the past month and the news looks partly priced in, limiting remaining upside today.",
+          "trend_summary": "1d: -0.7%  1w: +2.8%  1m: +11.6%  3m: +12.1%  1yr: +15.8%",
+          "sector": "Healthcare",
+          "catalyst_type": "fda_approval"
+        },
+        {
+          "ticker": "GOOG",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Alphabet has a fresh but soft AI/product-news tailwind and favorable valuation commentary, but there is no hard earnings, contract, or guidance catalyst and the move is already modest.",
+          "trend_summary": "1d: +1.6%  1w: +0.4%  1m: -5.8%  3m: -8.2%  1yr: +44.2%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        }
+      ],
+      "portfolio_open_value": 28419.93
     }
   ],
   "equity_curve": [
