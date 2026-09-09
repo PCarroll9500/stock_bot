@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-08T09:45:21.258256",
+  "updated_at": "2026-09-09T09:41:53.238474",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -2586,6 +2586,125 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 28421.53
+    },
+    {
+      "date": "2026-09-09",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "NBIS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Nebius has a fresh strategic AI partnership with Palantir that is still being digested, but the news is already 1 day old and the stock has largely moved on the headline.",
+          "trend_summary": "1d: +7.7%  1w: +18.2%  1m: +29.7%  3m: +11.9%  1yr: +161.1%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "SNDK",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "SNDK is still benefiting from the memory-chip rally and AI-related momentum, but today\u2019s move looks modest and the recent insider sales plus neutral sentiment limit confidence in much more upside from here.",
+          "trend_summary": "1d: -0.1%  1w: +10.9%  1m: +43.4%  3m: +5.8%  1yr: +2251.2%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "LITE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "LITE is moving with the AI hardware/optical infrastructure theme after Corning\u2019s Verizon megadeal and broader AI hardware strength, but the catalyst is indirect and much of the move is likely already reflected after the 11% day.",
+          "trend_summary": "1d: +11.0%  1w: +7.0%  1m: +9.9%  3m: +9.3%  1yr: +493.5%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "TSM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 1.5,
+          "reason": "TSMC has mild bullish support from multiple insider buys and a favorable AI/foundry sector backdrop, but the moves are small and the catalyst is not strong enough to imply major same-day upside from current levels.",
+          "trend_summary": "1d: +2.4%  1w: +5.7%  1m: +4.5%  3m: +2.9%  1yr: +68.6%",
+          "sector": "Technology",
+          "catalyst_type": "insider_buying"
+        },
+        {
+          "ticker": "BIAF",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "Fresh Nasdaq compliance regain removes a delisting overhang and can spark a relief bounce, but this is a weak non-fundamental catalyst and the stock\u2019s extreme long-term downtrend limits follow-through.",
+          "trend_summary": "1d: -41.5%  1w: +95.8%  1m: +16.7%  3m: -62.8%  1yr: -92.0%",
+          "sector": "Healthcare",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "QCOM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Qualcomm has a fresh Amazon AI chip/customer announcement plus a supportive Rosenblatt reiteration, but the move looks partly priced in and the analyst action is only a soft catalyst.",
+          "trend_summary": "1d: +3.2%  1w: +2.1%  1m: +3.7%  3m: -20.1%  1yr: +9.5%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "SMR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "SMR is reacting to fresh uranium-sector commentary and a reiterated DOE contract backdrop, but the news is mostly thematic and already partially reflected in a 15% daily run, limiting remaining upside today.",
+          "trend_summary": "1d: +15.3%  1w: +20.6%  1m: +13.8%  3m: +3.9%  1yr: -67.4%",
+          "sector": "Energy",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "HOOD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "HOOD has fresh analyst support and continued ARK accumulation, but the catalyst is soft and the stock is already extended on strong multi-timeframe momentum, limiting same-day upside.",
+          "trend_summary": "1d: -3.9%  1w: +12.0%  1m: +25.8%  3m: +38.0%  1yr: -0.1%",
+          "sector": "Financials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "IREN",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "IREN is benefiting from a fresh conditional ERCOT base-load designation for its 2GW Sweetwater hub, but the move is already partially priced in after the recent 5%+ run and the approval remains conditional.",
+          "trend_summary": "1d: +5.0%  1w: +26.4%  1m: +13.8%  3m: -20.7%  1yr: +39.5%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "ORCL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Oracle has a fresh AI/cloud re-rating narrative with multiple recent pieces highlighting OCI backlog and OpenAI-related exposure, but this is mostly perception-driven and already partly reflected in the recent run.",
+          "trend_summary": "1d: +2.4%  1w: +9.0%  1m: +10.5%  3m: -23.3%  1yr: -50.5%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        }
+      ],
+      "portfolio_open_value": 28427.93
     }
   ],
   "equity_curve": [
