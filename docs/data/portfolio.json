@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-09T09:41:53.238474",
+  "updated_at": "2026-09-10T09:42:00.283648",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -2705,6 +2705,125 @@
         }
       ],
       "portfolio_open_value": 28427.93
+    },
+    {
+      "date": "2026-09-10",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "TSM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "TSMC\u2019s record August revenue and 53% year-over-year growth are a real fresh catalyst, but the stock is only modestly lower premarket and the move looks mostly priced in already.",
+          "trend_summary": "1d: -0.8%  1w: +5.2%  1m: +4.0%  3m: +1.7%  1yr: +68.2%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "SHEL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Shell is benefiting from a fresh oil/gas spike with Brent above $105 and European energy peers higher, but this is a sector tailwind rather than a company-specific catalyst so upside looks modest from here.",
+          "trend_summary": "1d: +0.3%  1w: +2.2%  1m: +6.3%  3m: +11.9%  1yr: +32.7%",
+          "sector": "Energy",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "BP",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Brent breaking above $105 is a fresh sector tailwind for BP and can still support modest intraday upside, but the move is macro-driven and likely partially reflected already.",
+          "trend_summary": "1d: +1.8%  1w: +2.7%  1m: +6.5%  3m: +7.1%  1yr: +32.5%",
+          "sector": "Energy",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "SBET",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Cantor\u2019s fresh price target raise to $17 with an Overweight reiteration is a real bullish catalyst, but it is a standalone analyst action on a stock that has already run hard over the past month and year, limiting remaining upside today.",
+          "trend_summary": "1d: -3.2%  1w: +4.8%  1m: +38.2%  3m: +60.5%  1yr: -47.8%",
+          "sector": "Communication",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "PURR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Cantor\u2019s fresh target raise to $34.20 is a legitimate bullish catalyst, but it\u2019s a standalone analyst action on a stock that has already run hard over the past month and year, limiting remaining upside today.",
+          "trend_summary": "1d: +0.8%  1w: +5.9%  1m: +82.3%  3m: +45.8%  1yr: +208.5%",
+          "sector": "Crypto",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.0,
+          "reason": "Cantor\u2019s sharp price-target raise to $63.60 is a fresh bullish catalyst, but it\u2019s a standalone analyst action and BMNR already had a strong multi-month run, so some of the move is likely priced in.",
+          "trend_summary": "1d: -2.3%  1w: +3.6%  1m: +33.8%  3m: +49.4%  1yr: -46.9%",
+          "sector": "Crypto",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "HOOD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "HOOD has a fresh standalone Mizuho target raise to $140 plus a maintained Outperform and a supportive prediction-markets/NFL betting narrative, but the catalyst is soft and mostly priced in after the recent multi-week run.",
+          "trend_summary": "1d: -1.8%  1w: +11.4%  1m: +22.0%  3m: +37.6%  1yr: -2.1%",
+          "sector": "Financials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "QCOM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "RBC\u2019s $20 target raise plus the recent Amazon AI chip deal gives QCOM a fresh but still moderate upside catalyst, though the move is partly priced in after the last day\u2019s gain.",
+          "trend_summary": "1d: +1.3%  1w: +5.9%  1m: +8.8%  3m: -14.1%  1yr: +9.2%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "OKLO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Piper Sandler\u2019s new Overweight rating and $55 target are a fresh bullish catalyst for OKLO, but it\u2019s a standalone analyst action with the move likely partly priced in already.",
+          "trend_summary": "1d: -1.7%  1w: +10.5%  1m: -4.3%  3m: -24.6%  1yr: -46.8%",
+          "sector": "Energy",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "LITE",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Lumentum is in a strong multi-timeframe uptrend and is being mentioned as an AI/optical momentum name, but today\u2019s news is mostly market commentary with no fresh company-specific catalyst, so remaining upside looks limited.",
+          "trend_summary": "1d: +1.1%  1w: +13.8%  1m: +21.6%  3m: +20.3%  1yr: +499.8%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        }
+      ],
+      "portfolio_open_value": 28429.53
     }
   ],
   "equity_curve": [
