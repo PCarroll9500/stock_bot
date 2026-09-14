@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-11T09:44:54.346841",
+  "updated_at": "2026-09-14T09:41:06.251279",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -2855,6 +2855,103 @@
         }
       ],
       "portfolio_open_value": 28431.13
+    },
+    {
+      "date": "2026-09-14",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "RBLX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Multiple fresh analyst target raises on Roblox support a modest continuation move today, but this is a standalone soft catalyst with limited remaining upside after the initial reaction.",
+          "trend_summary": "1d: +1.4%  1w: +9.6%  1m: +28.0%  3m: +4.6%  1yr: -66.8%",
+          "sector": "Communication",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "ERIC",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Ericsson has a fresh rural 5G network modernization contract with Nex-Tech Wireless, but the move is modest and the news looks like a normal contract win rather than a major re-rating catalyst.",
+          "trend_summary": "1d: +3.0%  1w: +1.8%  1m: +1.3%  3m: -15.1%  1yr: +29.8%",
+          "sector": "Technology",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "CRDO",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh press-release visibility at an AI infrastructure conference supports the AI-connectivity theme, but it is a soft, non-financial catalyst with no volume confirmation and the stock has been weak over the past month.",
+          "trend_summary": "1d: +1.6%  1w: -0.7%  1m: -39.2%  3m: -38.5%  1yr: -0.6%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "INFQ",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh quantum-computing software integration news with NVIDIA is a real but soft catalyst, but it reads more like a technical/product update than a revenue-driving event so upside today looks limited.",
+          "trend_summary": "1d: +1.2%  1w: +3.6%  1m: +6.1%  3m: -7.1%  1yr: +25.2%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "ASST",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh 8-K confirms additional bitcoin purchases, but ASST is already heavily extended on the 1m/3m trend and this treasury update looks more like incremental support than a new explosive catalyst.",
+          "trend_summary": "1d: +2.7%  1w: +3.0%  1m: +122.9%  3m: +89.4%  1yr: -77.8%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "NOK",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh press release on Nokia Deepfield Defender adoption by ESpanix is a real but modest enterprise-security catalyst, though the stock already rose Friday and the news is unlikely to drive more than limited same-day upside.",
+          "trend_summary": "1d: +4.8%  1w: +13.9%  1m: +7.8%  3m: -21.0%  1yr: +144.6%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "BP",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "BP is benefiting from a fresh oil-price spike tied to Middle East supply fears, but this is a broad sector tailwind rather than a company-specific catalyst and much of the move may already be reflected.",
+          "trend_summary": "1d: +0.0%  1w: +5.8%  1m: +7.4%  3m: +8.0%  1yr: +34.8%",
+          "sector": "Energy",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "TNON",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "TNON has a fresh insider-related Form 4 headline and strong recent momentum, but the news is mixed and the stock is already up sharply on the week, so remaining upside looks limited and reversal risk is high.",
+          "trend_summary": "1d: +11.9%  1w: +57.3%  1m: +5.1%  3m: -72.8%  1yr: -85.3%",
+          "sector": "Healthcare",
+          "catalyst_type": "insider_buying"
+        }
+      ],
+      "portfolio_open_value": 28432.73
     }
   ],
   "equity_curve": [
