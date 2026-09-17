@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-16T09:44:44.204260",
+  "updated_at": "2026-09-17T09:45:33.472687",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -3002,6 +3002,59 @@
         }
       ],
       "portfolio_open_value": 28439.13
+    },
+    {
+      "date": "2026-09-17",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "TSM",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "TSMC has a fresh but soft semiconductor-positive narrative around 2nm commercialization and AI/foundry demand, but the news is mostly media-driven and already ~16-17h old with no volume confirmation.",
+          "trend_summary": "unavailable",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "META",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "META has a fresh analyst-style near-term trigger, but the news is vague and not a hard fundamental event, so any upside today looks modest and likely mostly priced in.",
+          "trend_summary": "unavailable",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "AMAT",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "AMAT has a fresh but soft India expansion headline and semiconductor-hub tailwind, which supports modest upside but looks more like a long-term strategic story than a same-day trading catalyst.",
+          "trend_summary": "unavailable",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "CW",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "CW has a fresh Guggenheim Buy initiation with a large $786 target, but this is a standalone analyst catalyst from 1\u20132 days ago and likely mostly priced in already.",
+          "trend_summary": "unavailable",
+          "sector": "Industrials",
+          "catalyst_type": "analyst_action"
+        }
+      ],
+      "portfolio_open_value": 28440.73
     }
   ],
   "equity_curve": [
