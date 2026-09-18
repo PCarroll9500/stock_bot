@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-17T09:45:33.472687",
+  "updated_at": "2026-09-18T09:42:47.233513",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -3055,6 +3055,125 @@
         }
       ],
       "portfolio_open_value": 28440.73
+    },
+    {
+      "date": "2026-09-18",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "NBIS",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Nebius has a fresh AI-cloud pricing catalyst from higher GPU/CPU rates, but the move is already partially reflected and volume confirmation is unavailable, limiting remaining upside today.",
+          "trend_summary": "1d: +4.1%  1w: -4.4%  1m: -12.3%  3m: -22.4%  1yr: +119.5%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "COIN",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Coinbase\u2019s filing to launch U.S. single-stock perpetual futures is a fresh, credible product catalyst that supports crypto-platform upside today, but it\u2019s a regulatory-process headline rather than a hard revenue event so remaining upside looks modest.",
+          "trend_summary": "1d: +5.8%  1w: +1.0%  1m: +19.0%  3m: +5.5%  1yr: -49.2%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "CLSK",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "CleanSpark\u2019s disclosed Meta tenancy plus a large $2.23B secured note financing is a real growth catalyst, but it is already a day old and the move looks partly priced in.",
+          "trend_summary": "1d: +4.4%  1w: +4.3%  1m: +13.8%  3m: -20.4%  1yr: -2.0%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "DT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Needham\u2019s fresh upgrade to Buy with a $68 target plus recent CFO buying and a new 13D stake support modest continuation, but this is a standalone analyst-action setup with limited remaining upside after the recent run.",
+          "trend_summary": "1d: +1.2%  1w: +8.6%  1m: +13.3%  3m: +35.3%  1yr: +15.4%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "MRK",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Merck has a fresh positive EU CHMP opinion for Keytruda/Padcev in bladder cancer, a real but largely incremental catalyst for a large-cap that likely leaves only modest same-day upside from here.",
+          "trend_summary": "1d: +1.5%  1w: +1.7%  1m: +8.9%  3m: +27.5%  1yr: +80.5%",
+          "sector": "Healthcare",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "AES",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Ohio regulators approved AES\u2019s sale to the GIP/EQT-led consortium, keeping a fresh M&A catalyst alive, but the deal was already announced and most upside is likely priced in.",
+          "trend_summary": "1d: +0.3%  1w: +0.3%  1m: +0.7%  3m: +1.6%  1yr: +13.8%",
+          "sector": "Utilities",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "COHR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.8,
+          "reason": "Coherent has a fresh product/capacity announcement tied to AI datacenter networking and is benefiting from a mild sector bid, but the move looks more like a modest momentum continuation than a high-conviction breakout.",
+          "trend_summary": "1d: +2.1%  1w: +1.0%  1m: -3.4%  3m: -21.9%  1yr: +171.3%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "PANW",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 1.5,
+          "reason": "PANW has a fresh but standalone analyst target raise to $351, yet the move is modest and the conflicting downgrade plus no volume confirmation make the remaining upside limited today.",
+          "trend_summary": "1d: -0.2%  1w: +10.8%  1m: +0.2%  3m: +32.9%  1yr: +80.2%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "VTRS",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Viatris has a fresh Japan approval for WAKIX plus a modest Piper Sandler target raise, but the move is already partly reflected and the standalone analyst action limits upside today.",
+          "trend_summary": "1d: +0.6%  1w: +4.6%  1m: +5.9%  3m: +8.9%  1yr: +73.0%",
+          "sector": "Healthcare",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "GM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "GM has a fresh defense-related contract/news flow around supplying Patriot missile parts, but this is a modest standalone catalyst for a large-cap that has already moved and likely has limited additional upside today.",
+          "trend_summary": "1d: +2.8%  1w: +0.6%  1m: +3.5%  3m: +8.8%  1yr: +46.9%",
+          "sector": "Industrials",
+          "catalyst_type": "contract_win"
+        }
+      ],
+      "portfolio_open_value": 28442.33
     }
   ],
   "equity_curve": [
