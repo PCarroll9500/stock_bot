@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-18T09:42:47.233513",
+  "updated_at": "2026-09-21T09:45:56.574036",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -3174,6 +3174,37 @@
         }
       ],
       "portfolio_open_value": 28442.33
+    },
+    {
+      "date": "2026-09-21",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "NBIS",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "Nebius has a fresh AI-neocloud sympathy tailwind from the Palantir alliance mention and ongoing sector coverage, but there is no direct company-specific binary catalyst or volume confirmation to suggest 5%+ upside remains today.",
+          "trend_summary": "unavailable",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "TSM",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "TSMC has a mild sector-positive setup from AI/chip optimism and trade-talk headlines, but there is no fresh company-specific catalyst and the news looks mostly already reflected.",
+          "trend_summary": "unavailable",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        }
+      ],
+      "portfolio_open_value": 28444.06
     }
   ],
   "equity_curve": [
