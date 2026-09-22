@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-21T09:45:56.574036",
+  "updated_at": "2026-09-22T09:41:28.141789",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -3205,6 +3205,125 @@
         }
       ],
       "portfolio_open_value": 28444.06
+    },
+    {
+      "date": "2026-09-22",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "NUAI",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.0,
+          "reason": "NUAI is still reacting to a fresh 20-year PPA with Vistra that materially de-risks its Texas data-center project, but the stock has already surged sharply over the last 1\u20133 days so upside is likely more limited from here.",
+          "trend_summary": "1d: +30.5%  1w: +36.6%  1m: +37.3%  3m: +14.5%  1yr: +805.4%",
+          "sector": "Industrials",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "SNDK",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Rosenblatt\u2019s fresh Buy initiation and $2,400 target keep SNDK\u2019s AI-memory momentum alive, but after a massive year-to-date run the standalone analyst catalyst is likely only worth a modest additional move today.",
+          "trend_summary": "1d: -1.4%  1w: +13.8%  1m: +10.4%  3m: -22.3%  1yr: +1560.4%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "META",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "META has a fresh analyst-driven catalyst with Jefferies raising its target to $875 and maintaining Buy, but this is a soft catalyst and the stock is already up sharply over the past week, limiting remaining upside today.",
+          "trend_summary": "1d: +11.3%  1w: +11.4%  1m: +35.8%  3m: +31.5%  1yr: -1.9%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "BB",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 3.0,
+          "reason": "BB has a fresh 8-K and press release on a new Coretura design win adding over $100M to QNX royalties, but the stock is already up on the day and the move may be partially priced in.",
+          "trend_summary": "1d: +6.8%  1w: +10.1%  1m: +4.8%  3m: -3.0%  1yr: +99.8%",
+          "sector": "Technology",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "HOOD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.0,
+          "reason": "HOOD is riding a fresh crypto-beta tailwind as Bitcoin hits an eight-month high, but the move is broad sector sympathy rather than a company-specific catalyst and the chairman\u2019s Form 144 is a mild overhang.",
+          "trend_summary": "1d: +2.9%  1w: +7.8%  1m: +29.7%  3m: +16.6%  1yr: -2.3%",
+          "sector": "Financials",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "RKLB",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "RKLB is reacting to a fresh bullish analyst note tied to Neutron and the Iridium acquisition, but this is a standalone upgrade-style catalyst and the stock already ran 8% today, limiting remaining upside.",
+          "trend_summary": "1d: +8.2%  1w: +11.7%  1m: -4.2%  3m: -30.3%  1yr: +32.1%",
+          "sector": "Industrials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "BMNR has a fresh crypto-treasury update showing 5.98M ETH and $17.1B in holdings, which supports continued momentum, but the news is already 1 day old and the stock has run hard over the past month and quarter.",
+          "trend_summary": "1d: +8.7%  1w: +9.7%  1m: +31.0%  3m: +78.1%  1yr: -48.7%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "SMCI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "SMCI is riding the broad AI/tech bid and has already shown relative strength, but today\u2019s move appears market-driven rather than a stock-specific fresh catalyst, so upside remains but is likely limited.",
+          "trend_summary": "1d: +5.4%  1w: +12.1%  1m: +12.9%  3m: +16.2%  1yr: -12.3%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "ARM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "ARM is riding a fresh AI/CPU sympathy rally tied to Meta\u2019s Muse-driven chip strength, but the move is already extended after a 17% day and the upside from here looks more like continuation than a fresh breakout.",
+          "trend_summary": "1d: +17.2%  1w: +35.1%  1m: +28.8%  3m: -20.8%  1yr: +129.0%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "GEV has a modest large-cap momentum setup with bullish grid/AI power narrative and a fresh analyst target-upside mention, but the move is already partly reflected and there is no hard company-specific event today.",
+          "trend_summary": "1d: +0.6%  1w: +8.2%  1m: -2.0%  3m: -16.1%  1yr: +49.4%",
+          "sector": "Industrials",
+          "catalyst_type": "analyst_action"
+        }
+      ],
+      "portfolio_open_value": 28449.25
     }
   ],
   "equity_curve": [
