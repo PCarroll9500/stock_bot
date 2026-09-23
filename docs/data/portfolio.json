@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-22T09:41:28.141789",
+  "updated_at": "2026-09-23T09:46:14.301388",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -3324,6 +3324,37 @@
         }
       ],
       "portfolio_open_value": 28449.25
+    },
+    {
+      "date": "2026-09-23",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "LHX",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "L3Harris has a fresh defense contract win and a multi-year Navy agreement, but these are modest, already-public catalysts with limited same-day upside remaining from the current price.",
+          "trend_summary": "unavailable",
+          "sector": "Industrials",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "UI",
+          "score": 3,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "UI only has a standalone Zacks Strong Buy upgrade from yesterday with no earnings beat, contract, insider, or volume confirmation, so any upside today is likely modest and partly priced in.",
+          "trend_summary": "unavailable",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        }
+      ],
+      "portfolio_open_value": 28450.98
     }
   ],
   "equity_curve": [
