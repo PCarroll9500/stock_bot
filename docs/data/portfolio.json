@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-25T09:46:06.607424",
+  "updated_at": "2026-09-28T09:43:06.190441",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -3394,6 +3394,125 @@
       "picks": [],
       "runner_ups": [],
       "portfolio_open_value": 28454.44
+    },
+    {
+      "date": "2026-09-28",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "CRDO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "CRDO is benefiting from fresh AI networking/optical connectivity product news and a supportive chip-sector rebound, but the catalyst is not a hard binary event and the move looks partly priced in already.",
+          "trend_summary": "1d: +7.7%  1w: +19.9%  1m: -6.9%  3m: -11.4%  1yr: +44.5%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Wells Fargo\u2019s fresh Overweight initiation and $340 target on Vertiv support continued AI/data-center momentum, but the move is already 2 days old and likely partly priced in.",
+          "trend_summary": "1d: +3.3%  1w: +1.6%  1m: -4.0%  3m: -16.7%  1yr: +76.7%",
+          "sector": "Industrials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "META",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Meta has a fresh AI monetization catalyst with a new enterprise AI business and a high-profile hire, but the stock is already up sharply over the past month so most of the move is likely priced in today.",
+          "trend_summary": "1d: -3.3%  1w: +12.9%  1m: +30.5%  3m: +36.6%  1yr: +1.1%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "IONQ",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "BofA\u2019s fresh Buy initiation and $60 target on IonQ is a legitimate bullish catalyst, but it\u2019s a standalone analyst action on a stock that has already run and is not showing volume confirmation here.",
+          "trend_summary": "1d: +1.1%  1w: +16.2%  1m: +13.6%  3m: -7.8%  1yr: -29.2%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "BMNR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.5,
+          "reason": "Fresh 8-K and press release highlight Bitmine\u2019s ETH holdings reaching over 6M tokens and $17.2B in crypto/cash assets, which is a real crypto-treasury catalyst but likely already partially priced in after the stock\u2019s huge multi-month run.",
+          "trend_summary": "1d: -1.7%  1w: +6.0%  1m: +10.6%  3m: +103.2%  1yr: -48.2%",
+          "sector": "Crypto",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "TER",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Teradyne has a fresh-looking partnership/product-news catalyst in semicap test and microLED, but the move is already modestly extended and the lack of volume/earnings confirmation limits remaining upside today.",
+          "trend_summary": "1d: +2.8%  1w: +7.2%  1m: +9.7%  3m: -8.8%  1yr: +196.6%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "TSM",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "TSMC has supportive semiconductor demand headlines and capacity expansion news, but the catalysts are broad and not fresh enough to imply more than modest same-day upside from current levels.",
+          "trend_summary": "1d: -0.1%  1w: +3.7%  1m: +7.9%  3m: +4.2%  1yr: +64.9%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "GOOG",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.2,
+          "reason": "GOOG has a mild AI/sector tailwind from fresh Nvidia/Google-related coverage, but there is no company-specific catalyst or volume confirmation, so most of the move looks already reflected.",
+          "trend_summary": "1d: +0.6%  1w: -1.0%  1m: +0.6%  3m: +1.9%  1yr: +39.6%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "HWM",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "HWM is getting sympathy attention from GE Aerospace\u2019s blade-manufacturing move and related aerospace commentary, but the news is indirect, not a direct company-specific catalyst, and the move looks mostly priced in already.",
+          "trend_summary": "1d: +1.4%  1w: +1.2%  1m: -13.7%  3m: -13.5%  1yr: +21.1%",
+          "sector": "Industrials",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "GLND",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 5,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh 8-K confirms completion of a government-approved environmental baseline program, but this is a procedural exploration milestone rather than a hard revenue or binary value-creation event, and the stock is already massively extended on the week.",
+          "trend_summary": "1d: +3.6%  1w: +361.7%  1m: +295.7%  3m: +121.6%  1yr: -44.9%",
+          "sector": "Energy",
+          "catalyst_type": "other"
+        }
+      ],
+      "portfolio_open_value": 28456.17
     }
   ],
   "equity_curve": [
