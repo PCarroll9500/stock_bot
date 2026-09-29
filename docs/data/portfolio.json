@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-09-28T09:43:06.190441",
+  "updated_at": "2026-09-29T09:38:45.187318",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -3513,6 +3513,81 @@
         }
       ],
       "portfolio_open_value": 28456.17
+    },
+    {
+      "date": "2026-09-29",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "BFLY",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 3.0,
+          "reason": "Evercore\u2019s fresh Outperform initiation with a $15 target is a legitimate standalone catalyst, but it\u2019s an analyst-action setup with limited remaining upside and no confirming volume data.",
+          "trend_summary": "1d: -2.6%  1w: +12.4%  1m: +4.9%  3m: +2.7%  1yr: +374.1%",
+          "sector": "Healthcare",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "MPWR",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "MPWR is a quality large-cap momentum name with a fresh foundry-deal/relative-strength narrative, but the move is modest, social/volume confirmation is lacking, and the Form 144 filing adds some overhang.",
+          "trend_summary": "1d: -1.2%  1w: +5.8%  1m: +3.1%  3m: +2.9%  1yr: +46.8%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "TER",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Fresh product-launch press release on AI/HPC memory test demand is a real positive catalyst, but it lacks hard financial impact and TER is only modestly up today so most of the move is likely already priced in.",
+          "trend_summary": "1d: +0.7%  1w: +5.2%  1m: +7.9%  3m: -13.4%  1yr: +191.6%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "BTI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "BTI has a fresh premarket strategy update with reiterated FY growth and cash-return messaging, but this is a mature large-cap tobacco name and the news looks more like incremental confirmation than a strong intraday re-rating catalyst.",
+          "trend_summary": "1d: +0.8%  1w: +0.5%  1m: -0.4%  3m: -10.7%  1yr: +5.6%",
+          "sector": "Consumer",
+          "catalyst_type": "guidance_raise"
+        },
+        {
+          "ticker": "TSM",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "TSM has supportive long-term demand/news flow around 2nm capacity and major customers, but this is a large-cap with no fresh binary catalyst or volume confirmation, so most of the move looks already priced in today.",
+          "trend_summary": "1d: +0.5%  1w: +1.7%  1m: +6.0%  3m: -0.5%  1yr: +62.2%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "STM",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "STM is catching a modest sector sympathy bid with European chip stocks rebounding and U.S. tech futures slightly positive, but this is broad market flow rather than a company-specific catalyst so upside looks limited.",
+          "trend_summary": "1d: +1.6%  1w: +2.1%  1m: +2.7%  3m: -29.5%  1yr: +86.6%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        }
+      ],
+      "portfolio_open_value": 28461.36
     }
   ],
   "equity_curve": [
