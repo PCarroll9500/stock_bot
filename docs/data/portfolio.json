@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-10-02T09:39:20.261219",
+  "updated_at": "2026-10-05T09:38:58.417861",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -3890,6 +3890,125 @@
         }
       ],
       "portfolio_open_value": 28466.55
+    },
+    {
+      "date": "2026-10-05",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "LITE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "LITE has a fresh premarket analyst upgrade/target raise from Stifel and Rosenblatt, but this is a standalone soft catalyst with no earnings or contract news and the stock is already in a strong multi-month uptrend.",
+          "trend_summary": "1d: +3.8%  1w: +15.3%  1m: +24.7%  3m: +48.4%  1yr: +575.9%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "BMO\u2019s fresh Outperform initiation with a $329 target is a legitimate bullish catalyst for VRT, but it\u2019s a standalone analyst action and the move is likely only partially extendable today.",
+          "trend_summary": "1d: +2.5%  1w: -0.4%  1m: -1.8%  3m: -20.8%  1yr: +54.9%",
+          "sector": "Industrials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "PBR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "PBR is reacting to a fresh Brazil election shock that is lifting Brazilian equities broadly, but the move is macro-driven and likely partially priced in after the premarket surge.",
+          "trend_summary": "1d: +3.2%  1w: +6.3%  1m: +3.8%  3m: +33.1%  1yr: +75.2%",
+          "sector": "Energy",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "GME",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Ryan Cohen\u2019s repeated insider buying is a real bullish signal for GME, but the stock has already run sharply over the past month and the catalyst is partly priced in with limited same-day upside left.",
+          "trend_summary": "1d: +2.4%  1w: +5.6%  1m: +30.2%  3m: +8.5%  1yr: -1.4%",
+          "sector": "Consumer",
+          "catalyst_type": "insider_buying"
+        },
+        {
+          "ticker": "NVTS",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh AI data-center reference design collaboration with Microchip is a real thematic catalyst, but it is a soft, non-binding announcement and likely only supports modest same-day upside from here.",
+          "trend_summary": "1d: +2.3%  1w: +1.6%  1m: +10.6%  3m: -18.6%  1yr: +52.5%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "BP",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Mizuho\u2019s fresh outperform reiteration and modest target raise to $56 provide a small positive catalyst, but BP is a large-cap already near recent highs so most of the move is likely priced in.",
+          "trend_summary": "1d: +0.7%  1w: +1.4%  1m: +2.0%  3m: +19.8%  1yr: +28.6%",
+          "sector": "Energy",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "ON",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Stifel\u2019s modest price target raise to $80 provides a fresh but soft catalyst for ON, and the stock\u2019s 6% daily gain suggests much of the move is already in the tape.",
+          "trend_summary": "1d: +6.0%  1w: +10.0%  1m: +17.3%  3m: -10.3%  1yr: +68.6%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "AMAT",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "AMAT is in a strong longer-term uptrend, but there is no fresh named catalyst today and the recent move looks like ordinary momentum rather than a new session-specific driver.",
+          "trend_summary": "1d: +2.0%  1w: +11.3%  1m: +23.2%  3m: -8.9%  1yr: +141.2%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "XP",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "XP is catching a broad Brazil-related premarket bid, but the move appears macro-driven and not tied to a company-specific catalyst, so remaining upside today looks limited.",
+          "trend_summary": "1d: +1.6%  1w: +4.8%  1m: +7.6%  3m: +31.1%  1yr: +25.6%",
+          "sector": "Financials",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "ASST",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.0,
+          "reason": "Fresh 8-K plus CFO insider buying supports a modest bullish bias, but the bitcoin accumulation update is not a strong enough catalyst to imply 5%+ remaining upside from here.",
+          "trend_summary": "1d: -0.3%  1w: +2.0%  1m: +23.5%  3m: +129.1%  1yr: -40.7%",
+          "sector": "Financials",
+          "catalyst_type": "insider_buying"
+        }
+      ],
+      "portfolio_open_value": 28468.28
     }
   ],
   "equity_curve": [
