@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-10-05T09:38:58.417861",
+  "updated_at": "2026-10-06T09:40:05.305578",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -4009,6 +4009,125 @@
         }
       ],
       "portfolio_open_value": 28468.28
+    },
+    {
+      "date": "2026-10-06",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "APLD",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 4.5,
+          "reason": "Fresh press release on a first international AI campus deal in Finland is a real growth catalyst, but APLD is already a volatile small/mid-cap name and the move may be partially priced in without volume confirmation.",
+          "trend_summary": "1d: -2.7%  1w: +0.7%  1m: -4.7%  3m: -19.6%  1yr: -9.5%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "DELL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Dell has a fresh analyst target raise to $650 plus a new AI data platform press release, but this is a soft catalyst and the stock is already in a strong multi-month uptrend so most of the move may be priced in.",
+          "trend_summary": "1d: -1.8%  1w: +1.6%  1m: +7.0%  3m: +32.4%  1yr: +266.1%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "VRT has a fresh analyst setup with BMO\u2019s large price target raise still early in the move, but the catalyst is soft and GLJ\u2019s sell initiation tempers upside follow-through.",
+          "trend_summary": "1d: +0.6%  1w: +3.9%  1m: -5.7%  3m: -17.0%  1yr: +59.6%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "TER",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Teradyne\u2019s fresh Titan HP platform launch for AI data center burn-in is a real product catalyst, but with no volume confirmation and the stock already up strongly over the past month/year, remaining upside today looks modest.",
+          "trend_summary": "1d: -1.0%  1w: +10.8%  1m: +31.3%  3m: +29.6%  1yr: +217.2%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "NTSK",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "BTIG\u2019s buy reiteration with a $4 target raise plus a fresh product-market expansion announcement supports modest continuation, but this looks like a soft analyst-led move with limited remaining upside after the recent run.",
+          "trend_summary": "1d: +3.8%  1w: +3.2%  1m: +28.5%  3m: +52.9%  1yr: -16.4%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "XP",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "XP has a fresh analyst upgrade and price target raise this morning, but the stock already surged sharply on the Brazil election catalyst, so most of the easy upside looks partially priced in.",
+          "trend_summary": "1d: +30.9%  1w: +39.1%  1m: +40.7%  3m: +76.3%  1yr: +71.0%",
+          "sector": "Financials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "CLF",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "Wells Fargo\u2019s upgrade to Overweight with a $14 target and the DOE/government visit to showcase the GOES expansion give CLF a fresh premarket catalyst, but this is still a soft analyst-driven move and much of the initial reaction is likely already priced in.",
+          "trend_summary": "1d: +7.8%  1w: +8.7%  1m: -0.7%  3m: +27.9%  1yr: -4.8%",
+          "sector": "Materials",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "SHOP",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "SHOP is a large-cap momentum name making a fresh 52-week-high style breakout with modestly elevated volume and a strong multi-timeframe uptrend, but the move is already partly extended so remaining upside today looks limited.",
+          "trend_summary": "1d: +5.8%  1w: +11.2%  1m: +9.8%  3m: +31.4%  1yr: -0.7%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "CRWD",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "CRWD is benefiting from a fresh cybersecurity/AI-beneficiary theme and multiple bullish media mentions, but there is no company-specific binary catalyst today so most of the move looks like sector momentum rather than fresh upside.",
+          "trend_summary": "1d: +1.0%  1w: +5.2%  1m: +26.8%  3m: +40.1%  1yr: +125.0%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "CCL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "CCL is still benefiting from a recent earnings beat and strong FY27 booking/pricing commentary, but the news is 1\u20132 days old and the move looks partly priced in without fresh volume confirmation.",
+          "trend_summary": "1d: -0.8%  1w: +15.4%  1m: +8.9%  3m: -4.2%  1yr: -12.1%",
+          "sector": "Consumer",
+          "catalyst_type": "earnings_beat"
+        }
+      ],
+      "portfolio_open_value": 28473.47
     }
   ],
   "equity_curve": [
