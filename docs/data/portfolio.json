@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-10-13T09:39:34.439858",
+  "updated_at": "2026-10-14T09:39:32.345928",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -4657,6 +4657,70 @@
         }
       ],
       "portfolio_open_value": 28485.58
+    },
+    {
+      "date": "2026-10-14",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "GME",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 4,
+          "expected_gain_pct": 2.5,
+          "reason": "Ryan Cohen\u2019s fresh Form 4 insider buying is a legitimate bullish catalyst for GME, but the stock is already near a 15-month high and the move looks partly priced in rather than offering 5%+ clean upside from here.",
+          "trend_summary": "1d: +-0.0%  1w: +9.9%  1m: +25.9%  3m: +22.3%  1yr: +16.4%",
+          "sector": "Consumer",
+          "catalyst_type": "insider_buying"
+        },
+        {
+          "ticker": "TER",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Teradyne has a fresh semiconductor-testing partnership with a $300M FormFactor investment plus an AI product launch, but the move looks partially priced in and today\u2019s upside is likely modest rather than explosive.",
+          "trend_summary": "1d: -0.9%  1w: -11.6%  1m: +15.5%  3m: +11.2%  1yr: +169.7%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "FTI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "UBS initiated FTI at Buy with an $89 target, which is a legitimate but standalone analyst catalyst and likely only supports modest additional upside today after the initial reaction.",
+          "trend_summary": "1d: +1.4%  1w: +1.2%  1m: -3.0%  3m: -2.1%  1yr: +98.8%",
+          "sector": "Energy",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "U",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Unity has a fresh analyst upgrade and $5 PT raise from Wedbush plus a second similar move from Morgan Stanley, but this is a standalone soft catalyst and likely mostly priced in after yesterday's run.",
+          "trend_summary": "1d: -0.1%  1w: +3.7%  1m: +7.3%  3m: +49.1%  1yr: +24.6%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "CW",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh contract-style project news with TerraPower/Natrium supports the nuclear simulation business, but it is a modest commercial update rather than a market-moving catalyst and the stock remains in a weak multi-timeframe downtrend.",
+          "trend_summary": "1d: -0.4%  1w: -9.3%  1m: -8.9%  3m: -33.2%  1yr: -9.8%",
+          "sector": "Industrials",
+          "catalyst_type": "contract_win"
+        }
+      ],
+      "portfolio_open_value": 28487.31
     }
   ],
   "equity_curve": [
