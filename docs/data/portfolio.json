@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-10-19T09:38:36.223174",
+  "updated_at": "2026-10-20T09:38:37.175324",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -4913,6 +4913,103 @@
         }
       ],
       "portfolio_open_value": 28492.5
+    },
+    {
+      "date": "2026-10-20",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "STX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Morgan Stanley\u2019s fresh top-pick upgrade and higher Seagate target are a real catalyst, but the move is modest and the stock has already bounced off recent weakness, so upside today looks limited rather than explosive.",
+          "trend_summary": "1d: +3.4%  1w: -12.3%  1m: -23.1%  3m: -25.9%  1yr: +208.0%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "LHX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "LHX has a fresh $876M Navy contract award that supports the defense backlog, but the news is already ~20 hours old and the stock\u2019s weak multi-timeframe trend limits remaining intraday upside.",
+          "trend_summary": "1d: -1.9%  1w: +2.3%  1m: -1.4%  3m: -12.2%  1yr: -16.6%",
+          "sector": "Industrials",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "MKSI",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "MKS has a fresh $650M all-cash sale of its Ophir Optics business, which is a real value-unlocking catalyst, but it was announced yesterday and the move is likely partially priced in already.",
+          "trend_summary": "1d: +0.3%  1w: -13.8%  1m: -14.5%  3m: -37.6%  1yr: +53.1%",
+          "sector": "Technology",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "RIG",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.8,
+          "reason": "Transocean has a fresh $550M contract backlog announcement and 8-K, which is a real fundamental catalyst, but it is already 1 day old and the stock has largely moved on the news so remaining upside today looks limited.",
+          "trend_summary": "1d: +4.8%  1w: +5.2%  1m: +4.4%  3m: +12.4%  1yr: +77.9%",
+          "sector": "Energy",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "TSM",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "TSM is a quality large-cap momentum name with resilient AI demand commentary and revenue still exceeding guidance, but the news is indirect and already partly reflected in the 1.8% move.",
+          "trend_summary": "1d: +1.8%  1w: -5.4%  1m: -3.3%  3m: -1.0%  1yr: +42.7%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "NOW",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "ServiceNow has a fresh analyst target raise to $165 and a supportive AI-security research release, but the catalyst is already 1 day old and the stock has likely absorbed much of the move.",
+          "trend_summary": "1d: +2.4%  1w: +3.6%  1m: +7.3%  3m: +42.4%  1yr: -22.8%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "KO",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 1,
+          "expected_gain_pct": 0.8,
+          "reason": "KFC\u2019s switch to Coca-Cola is a positive but largely already-public restaurant distribution win with limited near-term financial impact, so upside from current levels looks modest and mostly priced in.",
+          "trend_summary": "1d: -0.5%  1w: +4.0%  1m: +5.9%  3m: +14.0%  1yr: +31.2%",
+          "sector": "Consumer",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "CCC",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "Fresh product/feature press release on CCC\u2019s ADAS calibration workflow is a real but modest catalyst, but with no volume confirmation or hard financial impact it looks more like incremental upside than a strong day-trading breakout.",
+          "trend_summary": "1d: +0.3%  1w: +0.5%  1m: +16.5%  3m: +25.1%  1yr: -13.7%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        }
+      ],
+      "portfolio_open_value": 28497.69
     }
   ],
   "equity_curve": [
