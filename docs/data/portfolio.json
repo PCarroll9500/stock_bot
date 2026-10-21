@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-10-20T09:38:37.175324",
+  "updated_at": "2026-10-21T09:42:39.192766",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -5010,6 +5010,125 @@
         }
       ],
       "portfolio_open_value": 28497.69
+    },
+    {
+      "date": "2026-10-21",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh NVIDIA/Vertiv AI factory partnership news is a real catalyst for the AI infrastructure theme, but VRT is a large-cap and the move is still modest with no volume confirmation, so upside likely remains limited today.",
+          "trend_summary": "1d: -1.2%  1w: -14.2%  1m: -18.9%  3m: -32.4%  1yr: +18.6%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "DELL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "DELL is getting a fresh AI-infrastructure sympathy bid off SMCI\u2019s raised guidance and new NVIDIA-related enterprise AI news, but the catalyst is indirect and likely mostly priced into the 5.2% premarket move.",
+          "trend_summary": "1d: +1.3%  1w: -19.4%  1m: -19.8%  3m: +4.5%  1yr: +207.4%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "STX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "Morgan Stanley\u2019s price-target hike is a fresh bullish analyst catalyst for STX, but with only a modest 2% move today and no volume confirmation the remaining upside looks limited rather than explosive.",
+          "trend_summary": "1d: +2.2%  1w: -9.6%  1m: -23.0%  3m: -25.7%  1yr: +213.9%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "RIG",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "RIG has a fresh contract backlog catalyst and Brazil antitrust progress on the Valaris deal, but the news is already a day old and the stock has likely priced in much of the initial pop.",
+          "trend_summary": "1d: -1.2%  1w: +3.0%  1m: +6.8%  3m: +9.8%  1yr: +70.2%",
+          "sector": "Energy",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "BB",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "BlackBerry\u2019s record $1.2B QNX royalty backlog and new design-win visibility are a real fundamental catalyst, but the stock already jumped 8.7% today so much of the move is likely partially priced in.",
+          "trend_summary": "1d: +8.7%  1w: +4.7%  1m: +4.0%  3m: -0.9%  1yr: +96.7%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "NOW",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Fresh NVIDIA partnership expansion around AI governance is a real but incremental catalyst for NOW, supporting modest continuation today rather than a major breakout.",
+          "trend_summary": "1d: +2.9%  1w: +7.9%  1m: +8.6%  3m: +56.7%  1yr: -20.1%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "NBIS",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "NBIS has a fresh but modest AI-cloud visibility catalyst from GTC pricing disclosure, yet the move is being offset by sector-wide AI debt concerns and there is no strong volume confirmation or company-specific fundamental surprise.",
+          "trend_summary": "1d: +0.7%  1w: -17.1%  1m: -26.4%  3m: -21.4%  1yr: +73.8%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "LITE",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "Lumentum has a real AI/optical demand narrative with production bottlenecks and booked-out demand, but the news is not fresh enough or specific enough to imply a strong remaining intraday breakout from current levels.",
+          "trend_summary": "1d: -1.4%  1w: -16.7%  1m: -13.8%  3m: -0.9%  1yr: +420.4%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "AMAT",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "AMAT is a large-cap chip equipment name with a mild AI-sector sympathy bid from fresh semiconductor optimism, but there is no company-specific catalyst and the stock is already down on the week/month, limiting same-day upside.",
+          "trend_summary": "1d: -2.0%  1w: -12.8%  1m: -12.8%  3m: -26.9%  1yr: +83.6%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "KR",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Kroger has a fresh but modest catalyst from its $5B investment plan to lower grocery prices and gain share, but the news is already 17 hours old and the stock\u2019s move looks largely priced in.",
+          "trend_summary": "1d: -0.1%  1w: +3.7%  1m: +5.5%  3m: +9.5%  1yr: -8.2%",
+          "sector": "Consumer",
+          "catalyst_type": "other"
+        }
+      ],
+      "portfolio_open_value": 28499.42
     }
   ],
   "equity_curve": [
