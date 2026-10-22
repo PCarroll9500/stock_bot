@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-10-21T09:42:39.192766",
+  "updated_at": "2026-10-22T09:40:11.258007",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -5129,6 +5129,125 @@
         }
       ],
       "portfolio_open_value": 28499.42
+    },
+    {
+      "date": "2026-10-22",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "HBAN",
+          "score": 7,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "HBAN is reacting to a fresh Q3 earnings release with solid EPS, revenue and NIM figures, but as a large-cap bank the move is likely mostly priced in after the initial print.",
+          "trend_summary": "1d: +1.2%  1w: +4.1%  1m: +0.2%  3m: -9.7%  1yr: -0.9%",
+          "sector": "Financials",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "DELL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "Dell is benefiting from fresh AI/data-center sympathy tied to Nvidia and SpaceX commentary, but the move is already partially extended after a 5.3% day and lacks a direct company-specific catalyst.",
+          "trend_summary": "1d: +5.3%  1w: -4.3%  1m: -11.5%  3m: +10.6%  1yr: +215.0%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "RELX",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Relx\u2019s nine-month update reaffirmed full-year growth guidance and showed broad-based revenue growth, but this looks confirmatory rather than a fresh surprise so remaining upside today is limited.",
+          "trend_summary": "1d: -0.7%  1w: +6.0%  1m: +18.6%  3m: +19.1%  1yr: -14.8%",
+          "sector": "Communication",
+          "catalyst_type": "guidance_raise"
+        },
+        {
+          "ticker": "NOW",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "ServiceNow has a fresh analyst target raise to $180 plus ongoing AI product/newsflow, but the move is already partially priced in after a strong multi-month run and there\u2019s no earnings beat or hard contract surprise today.",
+          "trend_summary": "1d: +2.4%  1w: +9.4%  1m: +11.8%  3m: +66.5%  1yr: -18.5%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "DT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Dynatrace has a fresh analyst upgrade cycle with multiple Buy reiterations and meaningful target raises, plus a small insider net acquisition, but this is a soft catalyst and the stock is already extended on a strong multi-month run.",
+          "trend_summary": "1d: +1.8%  1w: +1.9%  1m: +13.3%  3m: +59.4%  1yr: +29.7%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "QGEN",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.0,
+          "reason": "Qiagen has a fresh analyst upgrade and modest target raise alongside deal-related support, but the move is already partially priced in and upside from here looks limited today.",
+          "trend_summary": "1d: +2.2%  1w: +9.7%  1m: +14.4%  3m: +20.6%  1yr: -2.3%",
+          "sector": "Healthcare",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "IBM",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "IBM has a fresh analyst-driven catalyst with two target raises and a maintained Buy, but this is a soft standalone upgrade setup and the stock has already run on the day, limiting remaining upside.",
+          "trend_summary": "1d: +3.9%  1w: +10.3%  1m: +8.7%  3m: +21.7%  1yr: -11.8%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "PLTR",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "PLTR has fresh positive press and partner/sovereign-AI announcements supporting the AI growth narrative, but the stock is already extended and the news looks more like confirmation than a new explosive catalyst.",
+          "trend_summary": "1d: +4.7%  1w: +0.4%  1m: +9.0%  3m: +63.5%  1yr: +11.8%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "PCG",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "PG&E has a fresh earnings/guidance update plus a strategic review and capex reduction that support the utility rerating, but the modest miss and lack of volume data limit confidence in meaningful same-day upside.",
+          "trend_summary": "1d: -0.2%  1w: +0.0%  1m: +2.1%  3m: -25.0%  1yr: -19.3%",
+          "sector": "Utilities",
+          "catalyst_type": "guidance_raise"
+        },
+        {
+          "ticker": "META",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "META has a fresh but soft analyst catalyst mix with a modest Wedbush target raise offset by two target cuts, so there is some upside left but not enough for a high-conviction move.",
+          "trend_summary": "1d: +0.5%  1w: -5.4%  1m: -5.3%  3m: +15.1%  1yr: -5.0%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        }
+      ],
+      "portfolio_open_value": 28501.15
     }
   ],
   "equity_curve": [
