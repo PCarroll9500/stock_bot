@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-10-26T09:39:14.163139",
+  "updated_at": "2026-10-27T09:39:08.190733",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -5398,6 +5398,125 @@
         }
       ],
       "portfolio_open_value": 28504.61
+    },
+    {
+      "date": "2026-10-27",
+      "mode": "aggressive",
+      "no_picks": true,
+      "picks": [],
+      "runner_ups": [
+        {
+          "ticker": "LITE",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 2.5,
+          "reason": "StoneX\u2019s fresh Buy initiation and $1200 target are supportive, and the optical networking/AI trade is getting sector lift, but the move is already partially priced in after yesterday\u2019s 8% run.",
+          "trend_summary": "1d: +8.2%  1w: -2.0%  1m: -13.1%  3m: +25.5%  1yr: +312.4%",
+          "sector": "Technology",
+          "catalyst_type": "analyst_action"
+        },
+        {
+          "ticker": "VRT",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Vertiv\u2019s completed $1.45B acquisition of Utility Innovation Group is a fresh strategic catalyst for AI/data-center power expansion, but the move is likely only partially priced in after the 2.8% day gain and there\u2019s no volume confirmation.",
+          "trend_summary": "1d: +2.8%  1w: -3.1%  1m: -21.1%  3m: -25.9%  1yr: +4.8%",
+          "sector": "Technology",
+          "catalyst_type": "ma_acquisition"
+        },
+        {
+          "ticker": "DELL",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Dell is benefiting from a fresh AI/data-center sympathy move and a new cybersecurity/resilience product announcement, but the catalyst is soft and likely only supports modest additional upside today.",
+          "trend_summary": "1d: +2.3%  1w: +2.6%  1m: -17.0%  3m: +19.1%  1yr: +183.3%",
+          "sector": "Technology",
+          "catalyst_type": "sector_tailwind"
+        },
+        {
+          "ticker": "BRO",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 2.5,
+          "reason": "Brown & Brown reported a modest Q3 earnings/revenue beat with a fresh 8-K, but the miss on EPS/revenue versus estimates and the lack of volume confirmation suggest only limited remaining upside today.",
+          "trend_summary": "1d: -2.6%  1w: +2.7%  1m: +16.9%  3m: -3.5%  1yr: -13.7%",
+          "sector": "Financials",
+          "catalyst_type": "earnings_beat"
+        },
+        {
+          "ticker": "CNP",
+          "score": 6,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "CenterPoint issued a fresh guidance raise and expanded capital plan this morning, which is supportive for a utility, but the move is likely mostly priced in and upside from here looks modest without volume confirmation.",
+          "trend_summary": "1d: +0.3%  1w: +4.1%  1m: +11.8%  3m: -6.6%  1yr: +4.3%",
+          "sector": "Utilities",
+          "catalyst_type": "guidance_raise"
+        },
+        {
+          "ticker": "GEV",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "GE Vernova is getting fresh positive media attention around its AI/gas-turbine leadership and is already showing relative strength, but the move is modest and there is no hard new fundamental catalyst or volume confirmation yet.",
+          "trend_summary": "1d: +4.9%  1w: -5.9%  1m: -10.7%  3m: -9.4%  1yr: +49.8%",
+          "sector": "Industrials",
+          "catalyst_type": "other"
+        },
+        {
+          "ticker": "NXPI",
+          "score": 5,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.8,
+          "reason": "NXP has a fresh Volkswagen supply partnership and is holding a 4.6% gain, but this looks like a modest large-cap momentum move with limited remaining upside after the initial reaction.",
+          "trend_summary": "1d: +4.6%  1w: +6.8%  1m: +3.3%  3m: -5.1%  1yr: +15.4%",
+          "sector": "Technology",
+          "catalyst_type": "contract_win"
+        },
+        {
+          "ticker": "NBIS",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 3,
+          "expected_gain_pct": 1.5,
+          "reason": "NBIS has a fresh director purchase and ongoing AI/neocloud attention, but the move is not backed by strong volume or a clear session-specific catalyst, so upside looks limited from here.",
+          "trend_summary": "1d: -3.4%  1w: -10.0%  1m: -35.4%  3m: -9.7%  1yr: +25.8%",
+          "sector": "Technology",
+          "catalyst_type": "insider_buying"
+        },
+        {
+          "ticker": "STX",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Seagate has a mild insider-buying signal from multiple director Form 4s, but with no fresh fundamental catalyst, neutral sentiment, and the stock already extended on a weak 1-month trend, upside today looks limited.",
+          "trend_summary": "1d: +2.2%  1w: -2.5%  1m: -29.7%  3m: -13.8%  1yr: +188.9%",
+          "sector": "Technology",
+          "catalyst_type": "insider_buying"
+        },
+        {
+          "ticker": "AMAT",
+          "score": 4,
+          "direction": "bullish",
+          "risk": 2,
+          "expected_gain_pct": 1.5,
+          "reason": "Applied Materials\u2019 increased stake in BE Semiconductor is a real semiconductor-sector catalyst, but it is already a day old and AMAT itself has only modest remaining upside from current levels.",
+          "trend_summary": "1d: +2.7%  1w: -6.2%  1m: -20.1%  3m: -18.7%  1yr: +70.3%",
+          "sector": "Technology",
+          "catalyst_type": "other"
+        }
+      ],
+      "portfolio_open_value": 28509.8
     }
   ],
   "equity_curve": [
