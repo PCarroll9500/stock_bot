@@ -30,6 +30,16 @@ body {
 }
 
 /* ── Header ── */
+.deprecation-banner {
+  background: rgba(251,191,36,0.12);
+  border-bottom: 1px solid rgba(251,191,36,0.35);
+  color: var(--yellow);
+  text-align: center;
+  font-size: .9rem;
+  padding: .6rem 1rem;
+}
+.deprecation-banner a { color: inherit; text-decoration: underline; }
+
 header {
   background: var(--bg2);
   border-bottom: 1px solid var(--card-border);
