@@ -1,5 +1,8 @@
 # Inf Money Stock Bot
 
+> [!WARNING]
+> **Deprecated:** this version of Stock Bot is no longer maintained. **Stock Bot v2.0.0** is in active development and will replace it. Expect no new features or fixes here.
+
 A fully automated, catalyst-driven day-trading engine powered by Python, Interactive Brokers (IBKR), and GPT-4o. The bot scans the market every morning, scores hot stocks against real newswire data using AI, allocates capital proportionally to conviction, executes buy orders through IBKR, and publishes results to a live public dashboard via GitHub Pages.
 
 > **Paper trading only** — all defaults point at the IBKR paper account. Switching to live requires explicit configuration.
