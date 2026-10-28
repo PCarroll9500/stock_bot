@@ -121,8 +121,11 @@ def _trail_sell_order(
             totalQuantity=shares,
             trailingPercent=trailing_pct,
             trailStopPrice=trail_stop_price,
+            # Offset only — IBKR rejects a TRAIL LIMIT that also sets lmtPrice
+            # (Error 321 "specify one value: limit price or limit price offset").
+            # On a bracket that rejection silently kept every parent BUY from
+            # transmitting: zero fills from 2026-08-11 to 2026-10-27.
             lmtPriceOffset=offset_dollars,
-            lmtPrice=round(trail_stop_price - offset_dollars, 2),
             transmit=transmit,
         )
     if parent_id is not None:

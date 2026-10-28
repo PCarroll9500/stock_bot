@@ -16,6 +16,8 @@ the trigger.
 import json
 from pathlib import Path
 
+from ib_insync.util import UNSET_DOUBLE
+
 from stock_bot.brokers.ib.buy_stocks import _trail_sell_order
 
 CONFIG_PATH = Path(__file__).parents[1] / "src" / "stock_bot" / "config" / "picker_config.json"
@@ -52,11 +54,13 @@ class TestTrailSellOrderLimit:
         assert order.trailStopPrice == round(50.0 * (1 - 2.5 / 100), 2)
         assert order.trailStopPrice < 50.0
 
-    def test_limit_price_below_trail_stop_price(self):
-        """The whole point: limit sits below the trigger so the fill can't
-        chase an unbounded distance down in a fast decline."""
+    def test_limit_price_left_unset(self):
+        """IBKR rejects a TRAIL LIMIT carrying both lmtPrice and lmtPriceOffset
+        (Error 321), and on a bracket that rejection keeps the parent BUY from
+        ever transmitting. The limit must come from the offset alone."""
         order = _trail_sell_order(100, 2.5, 50.0, limit_offset_pct=1.0)
-        assert order.lmtPrice < order.trailStopPrice
+        assert order.lmtPrice == UNSET_DOUBLE
+        assert 0 < order.lmtPriceOffset < order.trailStopPrice
 
     def test_offset_dollars_matches_pct_of_ref_price(self):
         order = _trail_sell_order(100, 2.5, 200.0, limit_offset_pct=1.0)
