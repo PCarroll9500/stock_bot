@@ -2,7 +2,7 @@
   "title": "Inf Money Stock Bot",
   "initial_investment": 29763.12,
   "start_date": "2026-08-04",
-  "updated_at": "2026-10-28T09:40:47.359542",
+  "updated_at": "2026-10-28T14:30:51.187467",
   "sessions": [
     {
       "date": "2026-08-05",
@@ -5539,9 +5539,9 @@
           "buy_value": 7066.2,
           "preflight_price": 75.93,
           "slippage_pct": 0.067,
-          "close_price": null,
-          "day_return_pct": null,
-          "day_return_usd": null
+          "close_price": 76.6,
+          "day_return_pct": 0.815,
+          "day_return_usd": 57.6
         },
         {
           "ticker": "ULBI",
@@ -5681,14 +5681,14 @@
       "qqq_close_price": null,
       "qqq_day_return_pct": null,
       "nasdaq_buy_price": 26532.41,
-      "nasdaq_close_price": null,
-      "nasdaq_day_return_pct": null,
+      "nasdaq_close_price": 26479.92,
+      "nasdaq_day_return_pct": -0.198,
       "portfolio_open_value": 28511.53,
-      "portfolio_close_value": null,
-      "session_return_pct": null,
-      "session_return_usd": null,
+      "portfolio_close_value": 28552.44,
+      "session_return_pct": 0.143,
+      "session_return_usd": 40.91,
       "cash_uninvested": 14320.03,
-      "cash_balance_close": null
+      "cash_balance_close": 21393.04
     }
   ],
   "equity_curve": [
@@ -5714,9 +5714,8 @@
     },
     {
       "date": "2026-10-28",
-      "portfolio_value": 28511.53,
-      "qqq_indexed": 29763.12,
-      "nasdaq_indexed": 29560.99
+      "portfolio_value": 28552.44,
+      "qqq_indexed": 29763.12
     }
   ]
 }
